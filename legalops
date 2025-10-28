@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRC AI Knowledge Hub</title>
+    <style>
+        /* Procore Sans Font - NOTE: The actual font files would need to be hosted and linked via @font-face for production. */
+        /* Using a standard, modern sans-serif as a robust fallback for the demonstration. */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        :root {
+            --procore-orange: #ff5200;
+            --procore-black: #000000;
+            --procore-stone: #ece0d6;
+            --procore-light-text: #ffffff;
+            --procore-dark-text: #333333;
+            --procore-font: 'Roboto', sans-serif;
+            /* HEADER HEIGHT (Top bar with logo/search) */
+            --header-height: 50px; 
+            --nav-height: 40px;
+            /* CAROUSEL HEIGHT (Scrolling Hub Header) */
+            --carousel-height: 150px; 
+            --total-fixed-height: calc(var(--header-height) + var(--nav-height) + var(--carousel-height));
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--procore-font);
+            color: var(--procore-dark-text);
+            background-color: var(--procore-stone);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--procore-orange);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--procore-black);
+        }
+
+        b {
+            font-weight: 700;
+        }
+
+        /* Fixed Header */
+        .fixed-header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background-color: var(--procore-black);
+            color: var(--procore-light-text);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-link {
+            height: 80%;
+            display: block;
+            margin-right: 15px;
+        }
+
+        .logo-link img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            /* Fallback style */
+            background-color: var(--procore-orange);
+            border-radius: 4px;
+        }
+
+        .page-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--procore-light-text);
+        }
+
+        .desktop-search {
+            display: none;
+            width: 300px;
+            margin-left: 20px;
+        }
+
+        .desktop-search input {
+            width: 100%;
+            padding: 6px 15px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background-color: var(--procore-orange);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 0 10px;
+        }
+
+        .nav-bar::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .nav-bar::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 2px;
+        }
+
+        .nav-bar a {
+            color: var(--procore-light-text);
+            padding: 0 15px;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-bar a:hover {
+            background-color: rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+        }
+
+        /* Carousel/Banner - Scrolling Hub Header */
+        .carousel-container {
+            height: var(--carousel-height);
+            background: linear-gradient(90deg, #ff5200, #ff8c00, #ff5200);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--procore-light-text);
+            font-size: 2.5em;
+            font-weight: 700;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 3px solid var(--procore-black);
+        }
+
+        .carousel-text-wrapper {
+            animation: carousel-slide 20s infinite linear;
+            display: flex;
+        }
+
+        .carousel-item {
+            padding: 0 30px;
+            white-space: nowrap;
+            min-width: 100vw;
+            flex-shrink: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes carousel-slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Spacer */
+        #fixed-spacer {
+            height: var(--total-fixed-height);
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--procore-light-text);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            min-height: calc(100vh - var(--total-fixed-height));
+        }
+
+        /* Mobile Search Bar */
+        .mobile-search {
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .mobile-search input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--procore-stone);
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        /* Section Styling (Collapsible) */
+        .content-section {
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 15px 15px;
+            background-color: var(--procore-stone);
+            border-left: 5px solid var(--procore-orange);
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            color: var(--procore-dark-text);
+        }
+
+        .section-header:hover {
+            background-color: #d8c9bc;
+        }
+
+        .section-header .icon {
+            font-size: 1.2em;
+            margin-left: 10px;
+            transition: transform 0.3s;
+        }
+
+        .section-content {
+            padding: 20px 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s;
+        }
+
+        .collapsed .section-content {
+            max-height: 0 !important;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+        }
+        
+        /* Back to Top Link */
+        .back-to-top {
+            display: block;
+            margin-top: 20px;
+            text-align: right;
+            font-size: 0.9em;
+            font-weight: 700;
+        }
+
+        /* Card/Tile Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .card {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+            border-top: 3px solid var(--procore-orange);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: var(--procore-orange);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .card p {
+            font-size: 0.95em;
+        }
+
+        /* Table Styling */
+        .responsive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .responsive-table table {
+             width: 100%;
+             min-width: 600px;
+        }
+
+        .responsive-table thead th {
+            background-color: var(--procore-orange);
+            color: var(--procore-light-text);
+            padding: 10px 15px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+
+        .responsive-table tbody tr {
+            border-bottom: 1px solid #eee;
+            background-color: #ffffff;
+            transition: background-color 0.2s;
+        }
+
+        .responsive-table tbody tr:hover {
+            background-color: #fffaf5;
+        }
+
+        .responsive-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .responsive-table tbody td {
+            padding: 15px;
+            vertical-align: top;
+            font-size: 0.95em;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (min-width: 768px) {
+            .mobile-search {
+                display: none;
+            }
+
+            .desktop-search {
+                display: block;
+            }
+
+            .nav-bar {
+                justify-content: center;
+                overflow-x: hidden;
+            }
+        }
+
+        @media (max-width: 767px) {
+            :root {
+                --carousel-height: 100px;
+            }
+
+            header {
+                padding: 0 10px;
+            }
+
+            .page-title {
+                font-size: 1em;
+            }
+
+            .carousel-container {
+                font-size: 2em;
+            }
+
+            .nav-bar {
+                padding: 0 5px;
+            }
+
+            .nav-bar a {
+                padding: 0 10px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Anchor for "Back to Top" functionality -->
+    <a id="home"></a>
+
+    <!-- Fixed Header Container -->
+    <div class="fixed-header-container">
+        <header>
+            <div class="logo-section">
+                <a href="#home" class="logo-link" aria-label="Back to Home">
+                    <img src="https://media.ffycdn.net/us/procore/etmeNi2XofqcS5LaePER.png?width=200"
+                         alt="Procore Logo"
+                         onerror="this.onerror=null; this.src=''; this.style.backgroundColor='var(--procore-orange)'; this.style.height='100%'; this.style.width='auto';"
+                    >
+                </a>
+                <span class="page-title">LRC AI Knowledge Hub</span>
+            </div>
+            <div class="desktop-search">
+                <input type="text" id="desktop-search-input" placeholder="Search the Knowledge Hub...">
+            </div>
+        </header>
+
+        <!-- Dynamic Carousel Banner - SCROLLING HUB HEADER -->
+        <div class="carousel-container" aria-live="polite">
+            <div class="carousel-text-wrapper">
+                <div class="carousel-item">LRC AI Knowledge Hub</div>
+                <div class="carousel-item">Legal AI Tools & Resources</div>
+                <div class="carousel-item">Best Practices & Certifications</div>
+                <div class="carousel-item">LRC AI Knowledge Hub</div>
+                <div class="carousel-item">Legal AI Tools & Resources</div>
+                <div class="carousel-item">Best Practices & Certifications</div>
+            </div>
+        </div>
+
+        <!-- Fixed Navigation Bar -->
+        <nav class="nav-bar" id="main-nav" aria-label="Main Page Navigation">
+            <a href="#blog-stream">Blog Stream</a>
+            <a href="#legal-ai-tools">Legal AI Tools</a>
+            <a href="#resources">Resources</a>
+            <a href="#best-practices">Best Practices</a>
+            <a href="#ai-news">AI News</a>
+            <a href="#lrc-tech-group-portal-spotlight">LRC Tech Portal</a>
+            <a href="#helpful-slack-channels">Slack Channels</a>
+            <a href="#what-platforms-are-we-testing">Platform Trials</a>
+            <a href="#additional-ai-learning-sessions">AI Learning</a>
+        </nav>
+    </div>
+
+    <!-- Spacer Element to push content down from fixed header -->
+    <div id="fixed-spacer"></div>
+
+    <main>
+        <!-- Mobile Search (Visible on small screens) -->
+        <div class="mobile-search">
+            <input type="text" id="mobile-search-input" placeholder="Search the Knowledge Hub...">
+        </div>
+
+        <!-- Blog Stream Section (Start Open) -->
+        <section class="content-section">
+            <h2 id="blog-stream" class="section-header" data-default-state="open">
+                Blog Stream
+                <span class="icon" aria-hidden="true">-</span>
+            </h2>
+            <div class="section-content">
+                <div class="card-grid">
+                    <div class="card" data-search-term="Update on the LRC EVS Action Plan! Announcement">
+                        <h3>Update on the LRC EVS Action Plan!</h3>
+                        <p>Description..</p>
+                        <p class="source-info"><i>Announcement</i></p>
+                    </div>
+                    <div class="card" data-search-term="The Wait is Over: Shareable Gems are Live From Core News Gemini">
+                        <h3>The Wait is Over: Shareable Gems are Live</h3>
+                        <p>From Core News The feature you've been asking for is finally here! You can now share your custom Gemini Gems with anyone at Procore.</p>
+                        <p class="source-info"><i>Core News</i></p>
+                    </div>
+                    <div class="card" data-search-term="Say Hello to Google Vids! AI-powered video teammate Crosspost from #tech-talk">
+                        <h3>Say Hello to Google Vids!</h3>
+                        <p>Crosspost from #tech-talk: Think of it as your AI-powered video teammate. <a href="#"><b>Learn more here!</b></a></p>
+                        <p class="source-info"><i>#tech-talk Crosspost</i></p>
+                    </div>
+                </div>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Legal AI Tools Section (NOW COLLAPSED/SMALLER) -->
+        <section class="content-section collapsed">
+            <h2 id="legal-ai-tools" class="section-header" data-default-state="collapsed">
+                Legal AI Tools
+                <span class="icon" aria-hidden="true">+</span>
+            </h2>
+            <div class="section-content">
+                <div class="responsive-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>AI Tool</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-search-term="Google Gemini Al assistant multimodal large language model text images audio">
+                                <td><b>Google Gemini</b></td>
+                                <td>An AI assistant that uses a multimodal large language model to help with a wide range of tasks by understanding and generating text, images, audio, and more.</td>
+                            </tr>
+                            <tr data-search-term="Google NotebookLM research assistant personalized knowledge base source materials documents PDFs audio external links YouTube videos">
+                                <td><b>Google NotebookLM</b></td>
+                                <td>An AI-powered research assistant that helps you learn and explore information more effectively. It allows you to ground your research in your own source materials, such as documents, PDFs, audio files, external links, and YouTube videos, creating a personalized knowledge base.</td>
+                            </tr>
+                            <tr data-search-term="Luminance AL legal technology platform proprietary LLM contracts eDiscovery drafting review negotiation">
+                                <td><b>Luminance AL</b></td>
+                                <td>A legal technology platform that uses a proprietary legal LLM to automate and enhance tasks related to legal documents, such as drafting, review, and negotiation of contracts, and support in eDiscovery processes.</td>
+                            </tr>
+                            <tr data-search-term="Rovo Chat Confluence Jira browser extension context workflow ideas Insights">
+                                <td><b>Rovo Chat</b></td>
+                                <td>Allows you to ask questions and get help, without disrupting your workflow. Rovo understands the context of your work to answer questions, or help provide ideas or Insights. It is available in Confluence and Jira products, as well as the Rovo browser extension.</td>
+                            </tr>
+                            <tr data-search-term="GTM Assist Enhancing Seller Support with AI Features August 21 2025 Video Update">
+                                <td><b>GTM Assist</b></td>
+                                <td>August 21, 2025 Video Update GTM Assist Enhancing Seller Support with AI Features</td>
+                            </tr>
+                            <tr data-search-term="Atlassian Intelligence automates tasks summarizes information generates content productivity">
+                                <td><b>Atlassian Intelligence</b></td>
+                                <td>Automates tasks, summarizes information, and generates content across Atlassian products to boost productivity.</td>
+                            </tr>
+                            <tr data-search-term="Slack Al smarter search instant conversation summaries automated responses communication">
+                                <td><b>Slack Al</b></td>
+                                <td>Provides smarter search, instant conversation summaries, and automated responses to streamline communication.</td>
+                            </tr>
+                            <tr data-search-term="Zoom Al digital assistant generative AI summarize meetings chats whiteboard content">
+                                <td><b>Zoom Al</b></td>
+                                <td>A digital assistant that uses generative AI to create content, summarize meetings and chats, generate ideas and content for whiteboards, and provide assistance during meetings.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Resources Section (NOW COLLAPSED/SMALLER) -->
+        <section class="content-section collapsed">
+            <h2 id="resources" class="section-header" data-default-state="collapsed">
+                Resources
+                <span class="icon" aria-hidden="true">+</span>
+            </h2>
+            <div class="section-content">
+                <div class="responsive-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Resource</th>
+                                <th>Level</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-search-term="Procare Al Tools Hub Beginners Getting started Procore AT Tools Gemini Notebook LM Slack AL Zoom Al Bolt Atlassian Intelligence Rovo">
+                                <td><b>Procare Al Tools Hub</b></td>
+                                <td>Beginners</td>
+                                <td>Getting started with Procore AI Tools (Gemini, Notebook LM, Slack AL, Zoom Al, Bolt Resource Center, Atlassian Intelligence, Rovo and more!)</td>
+                            </tr>
+                            <tr data-search-term="Agentic Design Patterns Advance Hands-On Guide Building Intelligent Systems">
+                                <td><b>Agentic Design Patterns</b></td>
+                                <td>Advance</td>
+                                <td>A Hands-On Guide to Building Intelligent Systems</td>
+                            </tr>
+                            <tr data-search-term="Agent Builder Agent Help non-technical construction professionals create customized Agents">
+                                <td><b>Agent Builder Agent</b></td>
+                                <td>-</td>
+                                <td>Help non-technical construction professionals create customized Agents for their specific needs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Best Practices Section (Start Open) -->
+        <section class="content-section">
+            <h2 id="best-practices" class="section-header" data-default-state="open">
+                Best Practices
+                <span class="icon" aria-hidden="true">-</span>
+            </h2>
+            <div class="section-content">
+                <p class="placeholder-text">This section will contain documents and guides on the best practices for leveraging Legal AI within LRC. This includes ethical guidelines, data security protocols, and effective prompting strategies.</p>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- AI News for In-House Legal Teams Section (Start Open) -->
+        <section class="content-section">
+            <h2 id="ai-news" class="section-header" data-default-state="open">
+                AI News for In-House Legal Teams
+                <span class="icon" aria-hidden="true">-</span>
+            </h2>
+            <div class="section-content">
+                <p class="placeholder-text">Stay up-to-date with the latest developments in Legal AI and how they impact in-house legal teams. Subscribe to the news stream for legal tech updates and regulatory changes.</p>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- LRC Tech Group Portal Spotlight! Section (Start Open) -->
+        <section class="content-section">
+            <h2 id="lrc-tech-group-portal-spotlight" class="section-header" data-default-state="open">
+                LRC Tech Group Portal Spotlight!
+                <span class="icon" aria-hidden="true">-</span>
+            </h2>
+            <div class="section-content">
+                <div class="card-grid">
+                    <div class="card" data-search-term="Team Spotlight Teammates doing amazing Things example Lil">
+                        <h3>Team Spotlight</h3>
+                        <p>Teammates doing amazing Things (example: Lil)</p>
+                    </div>
+                    <div class="card" data-search-term="Certifications training learning Procore AI tools">
+                        <h3>Certifications</h3>
+                        <p>Find learning paths and certification details for Procore AI tools and related legal tech.</p>
+                    </div>
+                </div>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Helpful Slack Channels Section (Start Open) -->
+        <section class="content-section">
+            <h2 id="helpful-slack-channels" class="section-header" data-default-state="open">
+                Helpful Slack Channels
+                <span class="icon" aria-hidden="true">-</span>
+            </h2>
+            <div class="section-content">
+                <div class="card-grid">
+                    <div class="card" data-search-term="Slack Channel ai-tiger-team-cl LRC AI Tiger Team shaping Procore's Al Infrastructure testing implementing new Al solutions">
+                        <h3>Slack Channel: #ai-tiger-team-cl</h3>
+                        <p>The official channel for the <a href="#"><b>LRC AI Tiger Team</b></a> is our hub for shaping Procore's AI Infrastructure by exploring, testing, and implementing new AI solutions. We'll share insights, coordinate efforts, and build knowledge here.</p>
+                    </div>
+                    <div class="card" data-search-term="Procore AI: unlocking-ai-community Welcome Curious Innovators support use cases Google Gemini NotebookLM">
+                        <h3>Procore AI: #unlocking-ai-community</h3>
+                        <p>Welcome Curious Innovators! This is your hub for all things AI at Procore. Get support, and share use cases for tools like <a href="#"><b>Google Gemini</b></a>, <a href="#"><b>NotebookLM</b></a> and beyond. We'll be adding resources, best practices, and insights.</p>
+                    </div>
+                    <div class="card" data-search-term="Ask Ironclad legal contract management platform support">
+                        <h3>Ask Ironclad</h3>
+                        <p>A channel for questions and support related to the Ironclad contract management platform and its AI features.</p>
+                    </div>
+                </div>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- What platforms are we testing? Section (Start Open) -->
+        <section class="content-section">
+            <h2 id="what-platforms-are-we-testing" class="section-header" data-default-state="open">
+                What platforms are we testing?
+                <span class="icon" aria-hidden="true">-</span>
+            </h2>
+            <div class="section-content">
+                <div class="card-grid">
+                    <div class="card" data-search-term="Draft Hold space LRC platform trials recently completed or in progress">
+                        <h3>Draft Hold space</h3>
+                        <p><a href="#"><b>Click here</b></a> for the latest LRC platform trials recently completed or in progress.</p>
+                    </div>
+                </div>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Additional Procore AI Learning Sessions Section (Start Open) -->
+        <section class="content-section">
+            <h2 id="additional-ai-learning-sessions" class="section-header" data-default-state="open">
+                Additional Procore AI Learning Sessions
+                <span class="icon" aria-hidden="true">-</span>
+            </h2>
+            <div class="section-content">
+                <div class="card-grid">
+                    <div class="card" data-search-term="AI Productivity Office Hours and Learning Sessions Schedule Upcoming sessions">
+                        <h3>AI Productivity Office Hours and Learning Sessions Schedule</h3>
+                        <p><a href="#"><b>See the schedule</b></a> for upcoming sessions!</p>
+                    </div>
+                </div>
+                <a href="#home" class="back-to-top">Back to Top ↑</a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInputs = document.querySelectorAll('#desktop-search-input, #mobile-search-input');
+            const sections = document.querySelectorAll('.content-section');
+            const cardsAndRows = document.querySelectorAll('.card, .responsive-table tbody tr');
+            const fixedHeaderContainer = document.querySelector('.fixed-header-container');
+
+            // --- Collapsible Logic Function ---
+            const toggleSection = (section, header, content, icon, open) => {
+                const isCollapsed = section.classList.contains('collapsed');
+                if (open !== undefined) {
+                    // Force state
+                    if (open) {
+                        section.classList.remove('collapsed');
+                        icon.textContent = '-';
+                        // Recalculate and set max-height
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        section.classList.add('collapsed');
+                        icon.textContent = '+';
+                        content.style.maxHeight = '0';
+                    }
+                } else {
+                    // Toggle state
+                    if (isCollapsed) {
+                        section.classList.remove('collapsed');
+                        icon.textContent = '-';
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        section.classList.add('collapsed');
+                        icon.textContent = '+';
+                        content.style.maxHeight = '0';
+                    }
+                }
+            }
+
+
+            // --- 1. Collapsible Sections Initial Setup & Click Listener ---
+            sections.forEach(section => {
+                const header = section.querySelector('.section-header');
+                const content = section.querySelector('.section-content');
+                const icon = section.querySelector('.icon');
+                const defaultState = header.dataset.defaultState; // "open" or "collapsed"
+
+                // Apply initial state based on data-default-state attribute
+                // Use a slight timeout to ensure max-height is calculated after DOM painting
+                setTimeout(() => {
+                    const shouldOpen = defaultState === 'open' && !section.classList.contains('collapsed');
+                    toggleSection(section, header, content, icon, shouldOpen);
+                }, 50);
+
+                header.addEventListener('click', () => {
+                    toggleSection(section, header, content, icon);
+                });
+            });
+            
+            // --- 2. Smooth Scroll Interception (Internal Links) ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+
+                    if (href.length > 1 && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            // Calculate the offset to account for fixed header/nav
+                            const headerHeight = fixedHeaderContainer.offsetHeight;
+                            const targetPosition = targetElement.offsetTop - headerHeight - 10; // -10 for extra breathing room
+
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+
+                            // Update URL hash for non-home links
+                            if (href !== '#home') {
+                                history.pushState(null, null, href);
+                            }
+                        }
+                    } else if (href === '#home') {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        // New, safer code: clear the URL hash without triggering a SecurityError
+                        history.pushState(null, null, window.location.pathname + window.location.search);
+                    }
+                });
+            });
+
+
+            // --- 3. Synchronized & Dynamic Search Filtering ---
+            const filterContent = (searchTerm) => {
+                const query = searchTerm.toLowerCase().trim();
+
+                cardsAndRows.forEach(item => {
+                    // Combine visible text content and the data-search-term for comprehensive filtering
+                    const content = (item.textContent + (item.dataset.searchTerm || '')).toLowerCase();
+                    const isTable = item.tagName === 'TR';
+
+                    if (content.includes(query)) {
+                        item.style.display = isTable ? 'table-row' : 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            };
+
+            searchInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value;
+
+                    // Synchronize the other input field
+                    searchInputs.forEach(otherInput => {
+                        if (otherInput !== e.target) {
+                            otherInput.value = searchTerm;
+                        }
+                    });
+
+                    filterContent(searchTerm);
+                });
+            });
+
+            // --- 4. Fixed Header Visibility/Spacing Adjustment ---
+            const updateFixedSpacerHeight = () => {
+                const spacer = document.getElementById('fixed-spacer');
+                const totalHeight = fixedHeaderContainer.offsetHeight;
+
+                document.documentElement.style.setProperty('--total-fixed-height', `${totalHeight}px`);
+
+                // Recalculate scroll position if we land on a hash link
+                if (window.location.hash) {
+                    const targetElement = document.querySelector(window.location.hash);
+                    if (targetElement) {
+                        // Small delay to ensure all fixed elements are measured
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - totalHeight,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    }
+                }
+            };
+
+            updateFixedSpacerHeight();
+            window.addEventListener('resize', updateFixedSpacerHeight);
+        });
+    </script>
+</body>
+</html>

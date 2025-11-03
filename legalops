@@ -199,6 +199,15 @@
             padding-left: calc(var(--left-padding-units) + 5px);
         }
         
+        /* --- DROPDOWN ARROW FIX: Using CSS for reliable size control --- */
+        .sidenav svg.dropdown-arrow {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0; /* Ensures it doesn't compress */
+            margin-left: auto; /* Replaces inline style for alignment */
+            transition: transform 0.2s; 
+        }
+
         /* ------------------- MAIN CONTENT AREA & FIXED ELEMENTS ------------------- */
         .main-content-wrapper {
             flex-grow: 1;
@@ -542,38 +551,43 @@
         
         <!-- NEW LINK: LRC Team Home -->
         <!-- ALIGNMENT FIX: Use calculated padding-left to align with the logo's internal padding -->
-        <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/overview?homepageId=2548859784" target="_blank" class="team-home-link" style="padding-left: calc(var(--left-padding-units) + 5px);">
+        <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/overview?homepageId=2548859784" target="_blank" class="team-home-link" style="padding-left: calc(var(--left-padding-units) + 5px);" title="🏠 Visit the LRC Team's main Confluence space for important announcements and collaborative content.">
              LRC Team Home
         </a>
         <!-- END NEW LINK -->
         
         <!-- NEW: Quick Links Title -->
         <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); margin: 15px 0;"></div>
-        <div class="sidenav-title">Quick Links</div>
+        <div class="sidenav-title">QUICK LINKS (with hover text)</div>
 
 
         <!-- EXISTING: SLACK CHANNELS Dropdown -->
         <div class="nav-link-item" id="slack-dropdown-trigger">
-            <span class="dropdown-trigger" style="justify-content: flex-start; align-items: center;">
+            <!-- REMOVED INLINE STYLE to ensure proper flex alignment inherited from CSS class -->
+            <span class="dropdown-trigger">
                 <span class="icon-3d-section">💬</span> SLACK CHANNELS
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-left: auto;" viewBox="0 0 16 16">
+                <!-- REMOVED width/height attributes, now relying on CSS class -->
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
                 </svg>
             </span>
             <div class="nav-dropdown">
-                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" target="_blank" rel="noopener noreferrer">#ai-tiger-team-cl</a>
-                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" target="_blank" rel="noopener noreferrer">#unlocking-ai-community</a>
-                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" target="_blank" rel="noopener noreferrer">Ask Ironclad</a>
+                
+                <a href="https://procore.enterprise.slack.com/docs/T02AS2EJA/F08CMGKKPA7" target="_blank" rel="noopener noreferrer" title="✨ AI Tools Hub: Your central resource for smarter work and career growth! 🔑 This hub provides essential training and deep dives into Procore’s key AI platforms. For GEMINI 🤖, learn Getting Started, Prompting, and using tools like NotebookLM. Master SLACK AI 💬 with guides on Recaps, Search, and Summaries. Find specialized guides for BOLT 🔩 across Accounts Payable, HR, and IT use cases. Accelerate productivity with ATLASSIAN AI & ROVO 🚀 for Confluence/Jira, including setup, features, and agent creation. (Note: ZOOM AI Companion 💻 setup is currently a Work In Progress).">Unlocking AI for All (Canvas)</a>
+
+                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" target="_blank" rel="noopener noreferrer" title="👋 Welcome Curious Innovators! Your hub for all things AI at Procore. Get support, share use cases, and discover best practices for tools like Google Gemini and NotebookLM. 💡">#unlocking-ai-community</a>
+                
             </div>
         </div>
         <!-- END SLACK DROPDOWN -->
         
         <!-- NEW SECTION: THE CORE DROPDOWN -->
         <div class="nav-link-item" id="thecore-dropdown-trigger">
-            <span class="dropdown-trigger" style="justify-content: flex-start; align-items: center;">
+            <span class="dropdown-trigger">
                 <!-- Replicating the Procore Logo look using inline styling and a single character -->
                 <span class="procore-logo-icon">P</span> THE CORE
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-left: auto;" viewBox="0 0 16 16">
+                <!-- REMOVED width/height attributes, now relying on CSS class -->
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
                 </svg>
             </span>
@@ -581,36 +595,36 @@
                 <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/aicontent/ai_demo_hub" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   title="AI DEMO HUB: Centralized area for internal Procore AI demonstrations, showcases, and recorded presentations.">AI DEMO HUB</a>
+                   title="📺 AI Demo Hub: Centralized area for internal Procore AI demonstrations, showcases, and recorded presentations.">AI Demo Hub</a>
                 <a href="https://thecore.procore.com/pac/unlockingai" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   title="Unlocking AI Hub: The main resource hub on The Core for all Procore AI initiatives, training, and governance.">Unlocking AI Hub</a>
+                   title="🔓 Unlocking AI Hub: The main resource center on The Core for all Procore AI training, initiatives, and governance. 🛡️">Unlocking AI Hub</a>
                 
                 <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   title="AI Tools Hub: A dedicated page listing all company-approved AI tools and usage guidelines.">AI Tools Hub</a>
+                   title="⚙️ AI Tools Hub: Dedicated list of all company-approved AI tools and their official usage guidelines.">AI Tools Hub</a>
                 
                 <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/atlreshub/atlassian_intelligence_resource_hub/atlassian_intelligence_ai_for_confluence" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   title="Atlassian AI for Confluence: Official guidance and resources for using Atlassian Intelligence within Confluence pages.">AI for Confluence</a>
+                   title="📝 AI for Confluence: Official guidance for using Atlassian Intelligence features within Confluence pages for drafting and summarizing.">AI for Confluence</a>
                 
                 <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/atlreshub/atlassian_intelligence_resource_hub/atlassian_intelligence_ai_for_jira" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   title="Atlassian AI for Jira: Official guidance and resources for using Atlassian Intelligence for summarizing and drafting content in Jira issues.">AI for Jira</a>
+                   title="✅ AI for Jira: Guidance on using Atlassian Intelligence for summarizing and drafting content in Jira issues to speed up workflows.">AI for Jira</a>
             </div>
         </div>
         <!-- END THE CORE DROPDOWN -->
         
         <!-- NEW: TRACKING EMERGING INNOVATION Dropdown -->
         <div class="nav-link-item" id="innovation-dropdown-trigger">
-            <span class="dropdown-trigger" style="justify-content: flex-start; align-items: center;">
+            <span class="dropdown-trigger">
                 <span class="icon-3d-section">🚀</span> TRACKING EMERGING INNOVATION
-                <!-- UPDATED: Ensure SVG matches size/alignment of other dropdown arrows -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-left: auto;" viewBox="0 0 16 16">
+                <!-- REMOVED width/height attributes, now relying on CSS class -->
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
                 </svg>
             </span>
@@ -619,7 +633,8 @@
                 <div class="nav-link-item" id="newsletters-dropdown-trigger">
                      <span class="dropdown-trigger flex items-center">
                         <span class="icon-3d-section" style="margin-right: 5px;">🗞️</span> Newsletters
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-left: auto;" viewBox="0 0 16 16">
+                        <!-- REMOVED width/height attributes, now relying on CSS class -->
+                        <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
                         </svg>
                     </span>
@@ -627,23 +642,23 @@
                         <a href="https://www.therundown.ai/subscribe" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           title="The Rundown (Author: Rowan Cheung): Daily AI newsletter that makes complex concepts accessible. Rowan also created the Supertools AI database and teaches in 'The Rundown AI University'.">The Rundown</a>
+                           title="📰 The Rundown: Daily AI newsletter by Rowan Cheung that makes complex concepts accessible and highlights new tools. 🚀">The Rundown</a>
                         
                         <a href="https://www.bensbites.com/subscribe" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           title="Ben's Bites (Author: Ben Tossell): Daily newsletter curating the latest AI news, tools, and product launches. Ben previously built and sold Makerpad to Zapier and is a tech investor.">Ben's Bites</a>
+                           title="🍪 Ben's Bites: Daily newsletter curating the latest AI news, hottest tools, and new product launches from tech investor Ben Tossell.">Ben's Bites</a>
                         
                         <a href="https://substack.com/@ajsai/posts" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           title="AJ Green Substack (Author: AJ Green): Provides daily news and developments via 'AI Daily News' and 'AI Advantage Daily News' newsletters. AJ also hosts a podcast within the Substack.">AJ Green Substack</a>
+                           title="📧 AJ Green Substack: Daily news and developments via 'AI Daily News' and 'AI Advantage Daily News' newsletters, plus an embedded podcast.">AJ Green Substack</a>
 
                         <!-- Pivot5 MOVED here -->
                         <a href="https://pivot5.beehiiv.com/?utm_source=pivot5&utm_medium=newsletter&utm_campaign=youtube-can-t-keep-up-with-ai-powered-scam-ads&_bhlid=666a131cb4c212d7743c0b00cde2d27d163aae49" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           title="Pivot5: A highly-regarded newsletter focused on tracking emerging innovation and AI developments.">Pivot5</a>
+                           title="🎯 Pivot5: Highly-regarded newsletter focused on tracking emerging innovation and significant AI developments.">Pivot5</a>
                     </div>
                 </div>
                 
@@ -651,7 +666,8 @@
                 <div class="nav-link-item" id="podcast-dropdown-trigger">
                      <span class="dropdown-trigger flex items-center">
                         <span class="icon-3d-section" style="margin-right: 5px;">🎤</span> Podcast
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-left: auto;" viewBox="0 0 16 16">
+                        <!-- REMOVED width/height attributes, now relying on CSS class -->
+                        <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
                         </svg>
                     </span>
@@ -659,7 +675,7 @@
                         <a href="https://www.latent.space/podcast" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           title="Latent Space: The AI Engineer Podcast (Hosts: Alessio & Swyx). Covers news, papers, and interviews in Software 3.0 (foundation models, AI agents, GPU infrastructure). Alessio is Partner/CTO at Decibel Partners. Swyx is the founder of SmolAI.">Latent Space</a>
+                           title="📻 Latent Space: The AI Engineer Podcast, covering news, papers, and interviews on foundation models, AI agents, and GPU infrastructure.">Latent Space</a>
                     </div>
                 </div>
             </div>
@@ -696,10 +712,10 @@
             <nav id="fixed-top-nav" aria-label="Quick Links Navigation">
                 <a href="#ai-unlocked-podcast" data-section-id="ai-unlocked-podcast">AI Unlocked</a>
                 <a href="#ai-updates" data-section-id="ai-updates">AI Updates</a>
-                <a href="#ai-news" data-section-id="ai-news">Legal Industry News</a>
+                <a href="#ai-news" data-section-id="ai-news">Legal Industry Topics</a>
                 <a href="#additional-ai-learning-sessions" data-section-id="additional-ai-learning-sessions">AI Learning</a>
                 <a href="#legal-ai-tools" data-section-id="legal-ai-tools">Legal AI Tools</a>
-                <a href="#what-platforms-are-we-testing" data-section-id="what-platforms-are-we-testing">Platform Trials</a>
+                <a href="#what-platforms-are-we-testing" data-section-id="what-platforms-are-we-testing">Active Platform Trials</a>
                 <a href="#lrc-tech-group-portal-spotlight" data-section-id="lrc-tech-group-portal-spotlight">LRC Team Spotlight</a>
             </nav>
 
@@ -780,7 +796,7 @@
                 <h2 class="section-header" data-default-state="collapsed" style="background-color: var(--procore-accent-stone);">
                     <!-- LEFT ALIGNMENT FIX: Use title-wrapper -->
                     <div class="title-wrapper">
-                        <span class="icon-3d-section">🛠️</span> Legal AI Tools
+                        <span class="icon-3d-section">🛠️</span> Procore Enterprise Tools | Legal AI Tools
                     </div>
                     <span class="icon" aria-hidden="true">+</span>
                 </h2>
@@ -793,6 +809,11 @@
                     </p>
                     <!-- END UPDATED INTRO PARAGRAPH -->
 
+                    <!-- ============================================== -->
+                    <!-- SUBSECTION 1: PROCORE ENTERPRISE TOOLS -->
+                    <!-- ============================================== -->
+                    <h3 style="font-size: 1.4em; margin-top: 15px; margin-bottom: 10px; padding-left: 5px; color: var(--procore-orange);">Procore Enterprise Tools</h3>
+                    
                     <div class="ai-tool-grid">
                         
                         <!-- ROW 1 (5 items) -->
@@ -830,27 +851,6 @@
                                 <p class="tool-description-text">AI code generation tool available in web chat, CLI, and VS Code. It assists developers by suggesting code, reducing repetitive development tasks.</p>
                             </div>
 
-                            <!-- Tool 5: Law 360 (FIXED: Using text-based placeholder due to cross-origin issues) -->
-                            <div class="ai-tool-card" tabindex="0" data-search-term="Law 360 legal news research industry updates">
-                                <!-- Using a CSS styled DIV as a placeholder to guarantee visibility, as external image URLs were blocked by CORS. -->
-                                <div class="tool-iframe law360" title="Law 360 Logo">L360</div>
-                                <span>Law 360</span>
-                                <p class="tool-description-text">A legal news service providing up-to-date information on litigation, regulation, and corporate deals across major legal industries.</p>
-                            </div>
-                        </div>
-                        <!-- END ROW 1 -->
-
-
-                        <!-- ROW 2 (5 items) -->
-                        <div class="tool-row">
-                            <!-- Tool 6: Luminance AI -->
-                            <div class="ai-tool-card" tabindex="0" data-search-term="Luminance AI legal technology platform proprietary legal LLM contracts eDiscovery drafting review negotiation">
-                                <!-- Logo from https://logo.clearbit.com/luminance.com. NOTE: If the image does not render due to cross-origin issues, please try hosting the image file directly. --> 
-                                <iframe src="https://logo.clearbit.com/luminance.com?size=40&format=png" class="tool-iframe" title="Luminance AI Logo" loading="lazy"></iframe>
-                                <span>Luminance AI</span>
-                                <p class="tool-description-text">A legal technology platform that uses a proprietary legal LLM to automate and enhance tasks related to legal documents (drafting, review, negotiation, and eDiscovery).</p>
-                            </div>
-
                             <!-- Tool 7: Rovo Chat -->
                             <div class="ai-tool-card" tabindex="0" data-search-term="Rovo Chat Confluence Jira browser extension context workflow ideas Insights">
                                 <!-- Logo from https://logo.clearbit.com/atlassian.com. NOTE: If the image does not render due to cross-origin issues, please try hosting the image file directly. --> 
@@ -858,7 +858,12 @@
                                 <span>Rovo Chat</span>
                                 <p class="tool-description-text">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension.</p>
                             </div>
+                        </div>
+                        <!-- END ROW 1 -->
 
+
+                        <!-- ROW 2 (5 items) -->
+                        <div class="tool-row">
                             <!-- Tool 8: Atlassian Intelligence -->
                             <div class="ai-tool-card" tabindex="0" data-search-term="Atlassian Intelligence automates tasks summarizes information generates content productivity">
                                 <!-- Logo from https://logo.clearbit.com/atlassian.com. NOTE: If the image does not render due to cross-origin issues, please try hosting the image file directly. --> 
@@ -882,10 +887,45 @@
                                 <span>Zoom AI</span>
                                 <p class="tool-description-text">A digital assistant that uses generative AI to create content, summarize meetings and chats, and generate ideas/content for whiteboards.</p>
                             </div>
+                            
+                            <!-- Placeholder for alignment -->
+                            <div class="ai-tool-card" style="visibility: hidden;"></div>
+                            <div class="ai-tool-card" style="visibility: hidden;"></div>
+
                         </div>
                         <!-- END ROW 2 -->
-
                     </div>
+                    
+                    <!-- ============================================== -->
+                    <!-- SUBSECTION 2: LEGAL AI TOOLS -->
+                    <!-- ============================================== -->
+                    <h3 style="font-size: 1.4em; margin-top: 30px; margin-bottom: 10px; padding-left: 5px; color: var(--procore-orange);">Legal AI Tools</h3>
+                    
+                    <div class="ai-tool-grid">
+                        <div class="tool-row">
+                            <!-- Tool 5: Law 360 -->
+                            <div class="ai-tool-card" tabindex="0" data-search-term="Law 360 legal news research industry updates">
+                                <!-- Using a CSS styled DIV as a placeholder to guarantee visibility, as external image URLs were blocked by CORS. -->
+                                <div class="tool-iframe law360" title="Law 360 Logo">L360</div>
+                                <span>Law 360</span>
+                                <p class="tool-description-text">A legal news service providing up-to-date information on litigation, regulation, and corporate deals across major legal industries.</p>
+                            </div>
+                            
+                            <!-- Tool 6: Luminance AI -->
+                            <div class="ai-tool-card" tabindex="0" data-search-term="Luminance AI legal technology platform proprietary legal LLM contracts eDiscovery drafting review negotiation">
+                                <!-- Logo from https://logo.clearbit.com/luminance.com. NOTE: If the image does not render due to cross-origin issues, please try hosting the image file directly. --> 
+                                <iframe src="https://logo.clearbit.com/luminance.com?size=40&format=png" class="tool-iframe" title="Luminance AI Logo" loading="lazy"></iframe>
+                                <span>Luminance AI</span>
+                                <p class="tool-description-text">A legal technology platform that uses a proprietary legal LLM to automate and enhance tasks related to legal documents (drafting, review, negotiation, and eDiscovery).</p>
+                            </div>
+                            
+                            <!-- Placeholder for alignment -->
+                            <div class="ai-tool-card" style="visibility: hidden;"></div>
+                            <div class="ai-tool-card" style="visibility: hidden;"></div>
+                            <div class="ai-tool-card" style="visibility: hidden;"></div>
+                        </div>
+                    </div>
+
                     <!-- CHANGED TO BUTTON -->
                     <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
                 </div>
@@ -977,7 +1017,7 @@
                     <h2 class="section-header" data-default-state="collapsed" style="background-color: var(--procore-accent-stone);">
                         <!-- LEFT ALIGNMENT FIX: Use title-wrapper -->
                         <div class="title-wrapper">
-                            <span class="icon-3d-section">📰</span> Legal Industry News
+                            <span class="icon-3d-section">📰</span> Legal Industry Topics
                         </div>
                         <span class="icon" aria-hidden="true">+</span>
                     </h2>
@@ -1093,7 +1133,7 @@
                     <h2 class="section-header" data-default-state="collapsed" style="background-color: var(--procore-accent-stone);">
                         <!-- LEFT ALIGNMENT FIX: Use title-wrapper -->
                         <div class="title-wrapper">
-                            <span class="icon-3d-section">🧪</span> Platform Trials
+                            <span class="icon-3d-section">🧪</span> Active Platform Trials
                         </div>
                         <span class="icon" aria-hidden="true">+</span>
                     </h2>
@@ -1106,43 +1146,22 @@
                         <div class="ai-tool-grid">
                             
                             <div class="tool-row">
-                                <!-- Trial 1: Harvey -->
-                                <div class="ai-tool-card" tabindex="0" data-search-term="Harvey AI trial external legal research document analysis">
-                                    <!-- Logo URL provided by user: https://logo.clearbit.com/www.harvey.ai. NOTE: If the image does not render due to cross-origin issues, please try hosting the image file directly. --> 
-                                    <iframe src="https://logo.clearbit.com/www.harvey.ai?size=40&format=png" class="tool-iframe" title="Harvey Logo" loading="lazy"></iframe>
-                                    <span>Harvey Trial</span>
-                                    <p class="tool-description-text">A new external AI platform currently being tested by the LRC team for its potential applications in legal research and document analysis.</p>
+                                <!-- Trial 1: LexisNexis Protege AI (NEW) -->
+                                <div class="ai-tool-card" tabindex="0" data-search-term="LexisNexis Protege AI legal research document drafting automation trial">
+                                    <!-- Using a text-based placeholder for LexisNexis with custom color style -->
+                                    <div class="tool-iframe law360" title="LexisNexis Logo" style="background-color: #f79600; color: white; line-height: 40px; font-size: 1.5em; font-weight: 900; font-family: Arial, sans-serif; padding: 0; display: inline-block;">LN</div>
+                                    <span>LexisNexis Protege AI</span>
+                                    <p class="tool-description-text">A next-generation AI platform being trialed for advanced legal research, document drafting, and workflow automation.</p>
                                 </div>
 
-                                <!-- Trial 2: Luminance -->
-                                <div class="ai-tool-card" tabindex="0" data-search-term="Luminance trial testing contract review eDiscovery legal functions">
-                                    <!-- Logo from https://logo.clearbit.com/luminance.com. NOTE: If the image does not render due to cross-origin issues, please try hosting the image file directly. --> 
-                                    <iframe src="https://logo.clearbit.com/luminance.com?size=40&format=png" class="tool-iframe" title="Luminance Trial Logo" loading="lazy"></iframe>
-                                    <span>Luminance Trial</span>
-                                    <p class="tool-description-text">Ongoing trials and testing of the Luminance platform's advanced features for contract review, eDiscovery, and other core legal functions.</p>
+                                <!-- Trial 2: Gemini Agentspace (NEW) -->
+                                <div class="ai-tool-card" tabindex="0" data-search-term="Gemini Agentspace AI agent development workflow automation trial">
+                                    <!-- Reusing Google/Gemini logo style from existing tool definitions -->
+                                    <iframe src="https://logo.clearbit.com/google.com?size=40&format=png" class="tool-iframe" title="Gemini Agentspace Logo" loading="lazy"></iframe>
+                                    <span>Gemini Agentspace</span>
+                                    <p class="tool-description-text">A Google platform focused on building, deploying, and managing custom, multi-step AI agents for complex corporate tasks.</p>
                                 </div>
                                 
-                                <!-- Trial 3: CoCounsel -->
-                                <div class="ai-tool-card" tabindex="0" data-search-term="CoCounsel AI trial legal assistant automation litigation support knowledge retrieval">
-                                    <!-- Logo from https://logo.clearbit.com/casetext.com. NOTE: If the image does not render due to cross-origin issues, please try hosting the image file directly. --> 
-                                    <iframe src="https://logo.clearbit.com/casetext.com?size=40&format=png" class="tool-iframe" title="CoCounsel Logo" loading="lazy"></iframe>
-                                    <span>CoCounsel Trial</span>
-                                    <p class="tool-description-text">CoCounsel is an AI legal assistant trial, designed to automate complex legal tasks, focusing on litigation support and knowledge retrieval.</p>
-                                </div>
-                                
-                                <!-- Placeholder 4 -->
-                                <div class="ai-tool-card" tabindex="0" data-search-term="Placeholder 4 for future trial">
-                                    <iframe src="https://placehold.co/40x40/DDDDDD/666666?text=P4" class="tool-iframe" title="Placeholder 4 Logo" loading="lazy"></iframe>
-                                    <span>Placeholder 4</span>
-                                    <p class="tool-description-text">Reserved for future platform trial and evaluation.</p>
-                                </div>
-                                
-                                <!-- Placeholder 5 -->
-                                <div class="ai-tool-card" tabindex="0" data-search-term="Placeholder 5 for future trial">
-                                    <iframe src="https://placehold.co/40x40/DDDDDD/666666?text=P5" class="tool-iframe" title="Placeholder 5 Logo" loading="lazy"></iframe>
-                                    <span>Placeholder 5</span>
-                                    <p class="tool-description-text">Reserved for future platform trial and evaluation.</p>
-                                </div>
                             </div>
 
                         </div>
@@ -1346,7 +1365,7 @@
                                 // Only toggle if it is currently collapsed
                                 if (isCollapsed) {
                                     const header = sectionToOpen.querySelector('.section-header');
-                                    const content = sectionToOpen.querySelector('.section-section');
+                                    const content = sectionToOpen.querySelector('.section-content');
                                     const icon = sectionToOpen.querySelector('.icon');
                                     
                                     toggleSection(sectionToOpen, header, content, icon, true); // Force open

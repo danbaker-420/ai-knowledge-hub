@@ -24,7 +24,7 @@
             --procore-font: 'Roboto', sans-serif;
             --header-height: 50px; 
             --nav-height: 40px; /* Height for the horizontal top nav */
-            --banner-height: 240px; /* INCREASED EXPLICIT HEIGHT for vertical padding */
+            --banner-height: 300px; /* INCREASED EXPLICIT HEIGHT for vertical padding */
             --sidebar-width: 280px; 
             --total-fixed-height: 0px; 
             --intro-padding: 15px 30px;
@@ -157,14 +157,14 @@
             margin-bottom: 15px; 
             padding-left: calc(var(--left-padding-units) + 5px);
             transition: all 0.2s ease-in-out; 
-            text-transform: uppercase; /* ADDED: Always uppercase */
+            /* REMOVED: text-transform: uppercase; */
         }
         
         /* NEW HOVER STYLES for LRC Information Library */
         .sidenav .team-home-link:hover {
-            background-color: var(--procore-orange); /* Cool solid orange background */
-            color: var(--procore-black) !important; /* Black text on orange background */
-            border-left-color: var(--procore-black); /* Accent color on border change */
+            background-color: var(--procore-accent-stone); /* Procore stone background */
+            color: var(--procore-black) !important; /* Ensure black text */
+            /* REMOVED: border-left-color: var(--procore-black); */
         }
         
         .sidenav svg.dropdown-arrow {
@@ -252,7 +252,7 @@
         
         /* BANNER STYLES - NEW OVERLAY TEXT STYLES */
         #banner-overlay-text .banner-title {
-            font-size: 2.5em; 
+            font-size: 3.5em; /* INCREASED FONT SIZE */
             font-weight: 700;
             margin-bottom: 10px; 
             color: var(--procore-light-text);
@@ -319,6 +319,15 @@
             font-size: 1.75em; 
             /* *** FIX: Set TOP LEVEL TEXT COLOR to WHITE *** */
             color: var(--procore-light-text); 
+            transition: background-color 0.2s, box-shadow 0.2s; /* Add transition for hover effect */
+            cursor: default; /* Keep cursor standard */
+        }
+
+        /* ADDED: Subtle hover effect for the top-level section headers */
+        #enterprise-ai-resources > .section-header:hover,
+        #legal-team-resources > .section-header:hover {
+            background-color: rgba(0, 0, 0, 0.9); /* Slightly lighter black */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Subtle white glow */
         }
         
         /* Ensure icons and text inside top-level headers are White (for text) and Orange (for icons) */
@@ -489,6 +498,19 @@
         .tool-iframe.law360 { background-color: #00447C; color: white; text-align: center; line-height: 40px; font-size: 1.5em; font-weight: 900; font-family: Arial, sans-serif; padding: 0; display: inline-block; }
         .ai-tool-card span { font-size: 1em; font-weight: 700; color: var(--procore-dark-text); margin-bottom: 5px; line-height: 1.2; }
         .tool-description-text { text-align: center; margin-top: 5px; font-size: 0.85em; line-height: 1.4; color: #555; min-height: 40px; }
+        
+        /* --- NEW: CARD HEADLINE STYLING --- */
+        .card h3 {
+            font-size: 1.5em; /* Larger headline size */
+            font-weight: 900;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--procore-orange); /* Bold orange separator for headline feel */
+            display: flex;
+            align-items: center;
+            line-height: 1.2;
+            color: var(--procore-dark-text);
+        }
 
     </style>
 </head>
@@ -700,13 +722,13 @@
             <!-- NEW: BANNER TEXT OVERLAY (Replicating original AI Hub text) -->
             <div id="banner-overlay-text" style="
                 position: absolute; 
-                top: calc(var(--header-height) + var(--nav-height)); /* Position right after nav */
+                top: calc(var(--header-height) + var(--nav-height)); /* Anchored right after navigation */
                 left: 0;
                 width: 100%;
                 height: var(--banner-height); /* Match banner height */
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: center; /* Center content vertically */
                 align-items: center;
                 color: var(--procore-light-text);
                 text-align: center;
@@ -781,7 +803,131 @@
                 </h2>
                 <div class="section-content">
 
-                    <!-- *** START: Procore Enterprise Tools Sub-Section (ID changed to procore-tools) *** -->
+                    
+                    <!-- *** START: Company AI Updates Sub-Section *** -->
+                    <section class="content-section collapsed" id="ai-updates">
+                        <h2 class="section-header" data-default-state="collapsed">
+                            <div class="title-wrapper">
+                                <span class="icon-3d-section">🧠</span> Company AI Updates 
+                            </div>
+                            <span class="icon" aria-hidden="true">+</span>
+                        </h2>
+                        <div class="section-content">
+                            <div class="card-grid">
+                                
+                                <!-- NEW CARD: Gemini in Chrome is now live for Procore! -->
+                                <div class="card" data-search-term="Gemini Chrome Live Procore Ctrl+G Alt+G Summarizing Explaining Quizzing Discussing">
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🚀</span> Gemini in Chrome is now live for Procore!</h3>
+                                    <p>Gemini now lives right inside Chrome. It pops open in a small floating window so you can ask for help in the moment, using context from the tab you’re on, when you want it.</p>
+                                    
+                                    <p><b>How to start:</b> Open Chrome → click the Gemini icon at the top right → opt in once.</p>
+                                    
+                                    <p><b>Bonus:</b> After opt-in, you’ll see Gemini in your Mac menu bar or Windows tray and can use keyboard shortcuts. (Mac: <b>Ctrl + G</b> | Windows: <b>Alt + G</b>)</p>
+
+                                    <p><b>Gemini in Chrome is good for:</b></p>
+                                    <ul>
+                                        <li>Summarizing a page you’re reading</li>
+                                        <li>Explaining tricky topics in plain English</li>
+                                        <li>Quizzing yourself on something new</li>
+                                        <li>Discussing the information on your tab and going deeper on concepts</li>
+                                    </ul>
+                                    <p class="source-info">
+                                        <i>Helpful Links: <a href="https://support.google.com/gemini/?p=get_started_chrome_extension" target="_blank">Getting Started with Gemini in Chrome</a> | <a href="https://support.google.com/gemini/answer/14569550" target="_blank">Use Gemini Live w/ Gemini in Chrome</a></i>
+                                        </p>
+                                </div>
+                                
+                                <!-- Existing Card 1: Presentations with Gemini -->
+                                <div class="card" data-search-term="Presentations with Gemini create decks upload document Canvas Google Slides">
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🖼️</span> Presentations with Gemini</h3>
+                                    <p>You can now create entire presentations <b>inside</b> the Gemini app. Give Gemini a prompt, or upload a document (brief, your notes, a 20-page report), select "Canvas" from tools and it will generate a full deck, complete with a theme and images. Then, export it to Google Slides to add your final polish.</p>
+                                    <p class="source-info"><i>Before: Crying softly as you try to turn a 10-page doc into a Q4 kickoff deck.</i></p>
+                                    <p class="source-info"><i>Now: Upload the doc. Select Canvas. Ask Gemini to "create a launch presentation". Get a 10-slide head start in 60 seconds.</i></p>
+                                    <p class="source-info">
+                                        <i>Source: <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank">Google Workspace Updates</a></i>
+                                    </p>
+                                </div>
+                                
+                                <!-- Existing Card 2: NotebookLM Upgrade -->
+                                <div class="card" data-search-term="NotebookLM Upgrade Bigger Brain Custom Goals skeptical research advisor">
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">📈</span> NotebookLM: Now with a Bigger Brain (and an 'Attitude')</h3>
+                                    <p>Your personal AI research assistant just got a serious engine upgrade. It now has an <b>8x larger context window</b> (1 million tokens!) and <b>6x longer conversation memory</b>. The best part? <b>Custom Goals</b>—You can now tell NotebookLM exactly how to act:</p>
+                                    <ul>
+                                        <li>"Act as a skeptical marketing director. Poke holes in this launch plan. Be direct and analytical."</li>
+                                        <li>"You are my research advisor. Rigorously challenge every assumption I make".</li>
+                                    </ul>
+                                    <p class="source-info">
+                                        <i>Source: <a href="https://blog.google/technology/google-labs/notebooklm-custom-personas-engine-upgrade/" target="_blank">Google Labs Blog</a></i>
+                                    </p>
+                                </div>
+                                
+                                <!-- Existing Card 3: Make Your Docs Look Crisp (LaTeX) -->
+                                <div class="card" data-search-term="Make Your Docs Look Crisp LaTeX professional documents project proposals technical guides PDF">
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">📜</span> Make Your Docs Look Crisp with LaTeX</h3>
+                                    <p>"LaTeX" is the secret code for making documents look incredibly professional <b>without</b> fighting a word processor. Gemini now makes you a LaTeX expert.</p>
+                                    <p class="source-info"><i>Before: Your project proposal looks messy in a standard doc.</i></p>
+                                    <p class="source-info"><i>Now: Ask Gemini to "Format this content as a clean, professional project proposal using LaTeX." It generates a perfect, sharp PDF you can download.</i></p>
+                                    <p class="source-info">
+                                        <i>Source: <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank">Google Workspace Updates</a></i>
+                                    </p>
+                                </div>
+                            </div>
+                            <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
+                        </div>
+                    </section>
+                    <!-- *** END: Company AI Updates Sub-Section *** -->
+
+
+                    <!-- *** START: AI Learning Sub-Section *** -->
+                    <section class="content-section collapsed" id="additional-ai-learning-sessions">
+                        <h2 class="section-header" data-default-state="collapsed">
+                            <div class="title-wrapper">
+                                <span class="icon-3d-section">📚</span> AI Learning
+                            </div>
+                            <span class="icon" aria-hidden="true">+</span>
+                        </h2>
+                        <div class="section-content">
+                            <div class="card-grid">
+                                
+                                <!-- NEW CARD: Procore AI Academy (TOP PRIORITY) -->
+                                <div class="card" data-search-term="Procore AI Academy classes register training courses certification">
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🎓</span> Did you know you can register for Procore AI classes?</h3>
+                                    <p>📢 Big news! Level up your AI fluency by enrolling in the official <b>Procore AI Academy</b>. This is your go-go hub for structured learning, responsible usage guidelines, and hands-on training tailored for Procore employees.</p>
+                                    <p><b>Courses include:</b> AI Basics, Generative AI for Productivity, and Ethical AI Usage.</p>
+                                    <p class="source-info" style="font-size: 1.1em; font-weight: 700;">
+                                        ➡️ <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3890676126/AI+Academy+-+P+T" target="_blank">Register for Classes Here!</a>
+                                    </p>
+                                </div>
+                                
+                                <div class="card" data-search-term="AI Productivity Office Hours and Learning Sessions Schedule Upcoming sessions">
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🗓️</span> AI Productivity Office Hours and Learning Sessions Schedule</h3>
+                                    <p>Upcoming sessions! Please check the <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3890676126/AI+Academy+-+P+T" target="_blank">AI Academy Hub</a> for the latest schedule.</p>
+                                </div>
+
+                                <!-- EXISTING: LinkedIn Learning Prompt Engineering Course -->
+                                <div class="card" data-search-term="LinkedIn Learning Introduction to Prompt Engineering Generative AI Course training">
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">💡</span> Introduction to Prompt Engineering for Generative AI</h3>
+                                    <p>This LinkedIn Learning course offers essential training on how to craft effective prompts, ensuring you receive accurate and relevant outputs from Gen AI tools like Gemini. Learning this skill is crucial for maximizing productivity and reducing "hallucinations."</p>
+                                <p classs="source-info">
+                                        <i>Source: <a href="https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai-24636124" target="_blank">LinkedIn Learning</a></i>
+                                    </p>
+                                </div>
+                                
+                                <!-- NEW CARD: AI prompt engineering in 2025: What works and what doesn’t (YouTube) -->
+                                <div class="card" data-search-term="AI prompt engineering 2025 YouTube best practices what works doesn't">
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🎥</span> AI Prompt Engineering in 2025: What Works and What Doesn’t</h3>
+                                    <p>This YouTube video deep-dives into the latest techniques and best practices for writing effective prompts, offering practical tips and showing examples of how to maximize Gen AI output quality in 2025.</p>
+                                    <p class="source-info">
+                                        <i>Source: <a href="https://www.youtube.com/watch?v=eKuFqQKYRrA" target="_blank">YouTube Video</a></i>
+                                    </p>
+                                </div>
+                            </div>
+                            <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
+                        </div>
+                    </section>
+                    <!-- *** END: AI Learning Sub-Section *** -->
+                    
+                    
+                    <!-- *** START: Procore Enterprise Tools Sub-Section (ID changed to procore-tools) - MOVED TO BOTTOM *** -->
                     <section class="content-section collapsed" id="procore-tools">
                         <h2 class="section-header" data-default-state="collapsed">
                             <div class="title-wrapper">
@@ -867,129 +1013,6 @@
                         </div>
                     </section>
                     <!-- *** END: Procore Enterprise Tools Sub-Section *** -->
-                    
-                    
-                    <!-- *** START: Company AI Updates Sub-Section *** -->
-                    <section class="content-section collapsed" id="ai-updates">
-                        <h2 class="section-header" data-default-state="collapsed">
-                            <div class="title-wrapper">
-                                <span class="icon-3d-section">🧠</span> Company AI Updates 
-                            </div>
-                            <span class="icon" aria-hidden="true">+</span>
-                        </h2>
-                        <div class="section-content">
-                            <div class="card-grid">
-                                
-                                <!-- NEW CARD: Gemini in Chrome is now live for Procore! -->
-                                <div class="card" data-search-term="Gemini Chrome Live Procore Ctrl+G Alt+G Summarizing Explaining Quizzing Discussing">
-                                    <h3>Gemini in Chrome is now live for Procore!</h3>
-                                    <p>Gemini now lives right inside Chrome. It pops open in a small floating window so you can ask for help in the moment, using context from the tab you’re on, when you want it.</p>
-                                    
-                                    <p><b>How to start:</b> Open Chrome → click the Gemini icon at the top right → opt in once.</p>
-                                    
-                                    <p><b>Bonus:</b> After opt-in, you’ll see Gemini in your Mac menu bar or Windows tray and can use keyboard shortcuts. (Mac: <b>Ctrl + G</b> | Windows: <b>Alt + G</b>)</p>
-
-                                    <p><b>Gemini in Chrome is good for:</b></p>
-                                    <ul>
-                                        <li>Summarizing a page you’re reading</li>
-                                        <li>Explaining tricky topics in plain English</li>
-                                        <li>Quizzing yourself on something new</li>
-                                        <li>Discussing the information on your tab and going deeper on concepts</li>
-                                    </ul>
-                                    <p class="source-info">
-                                        <i>Helpful Links: <a href="https://support.google.com/gemini/?p=get_started_chrome_extension" target="_blank">Getting Started with Gemini in Chrome</a> | <a href="https://support.google.com/gemini/answer/14569550" target="_blank">Use Gemini Live w/ Gemini in Chrome</a></i>
-                                        </p>
-                                </div>
-                                
-                                <!-- Existing Card 1: Presentations with Gemini -->
-                                <div class="card" data-search-term="Presentations with Gemini create decks upload document Canvas Google Slides">
-                                    <h3>Presentations with Gemini</h3>
-                                    <p>You can now create entire presentations <b>inside</b> the Gemini app. Give Gemini a prompt, or upload a document (brief, your notes, a 20-page report), select "Canvas" from tools and it will generate a full deck, complete with a theme and images. Then, export it to Google Slides to add your final polish.</p>
-                                    <p class="source-info"><i>Before: Crying softly as you try to turn a 10-page doc into a Q4 kickoff deck.</i></p>
-                                    <p class="source-info"><i>Now: Upload the doc. Select Canvas. Ask Gemini to "create a launch presentation". Get a 10-slide head start in 60 seconds.</i></p>
-                                    <p class="source-info">
-                                        <i>Source: <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank">Google Workspace Updates</a></i>
-                                    </p>
-                                </div>
-                                
-                                <!-- Existing Card 2: NotebookLM Upgrade -->
-                                <div class="card" data-search-term="NotebookLM Upgrade Bigger Brain Custom Goals skeptical research advisor">
-                                    <h3>NotebookLM: Now with a Bigger Brain (and an 'Attitude')</h3>
-                                    <p>Your personal AI research assistant just got a serious engine upgrade. It now has an <b>8x larger context window</b> (1 million tokens!) and <b>6x longer conversation memory</b>. The best part? <b>Custom Goals</b>—You can now tell NotebookLM exactly how to act:</p>
-                                    <ul>
-                                        <li>"Act as a skeptical marketing director. Poke holes in this launch plan. Be direct and analytical."</li>
-                                        <li>"You are my research advisor. Rigorously challenge every assumption I make".</li>
-                                    </ul>
-                                    <p class="source-info">
-                                        <i>Source: <a href="https://blog.google/technology/google-labs/notebooklm-custom-personas-engine-upgrade/" target="_blank">Google Labs Blog</a></i>
-                                    </p>
-                                </div>
-                                
-                                <!-- Existing Card 3: Make Your Docs Look Crisp (LaTeX) -->
-                                <div class="card" data-search-term="Make Your Docs Look Crisp LaTeX professional documents project proposals technical guides PDF">
-                                    <h3>Make Your Docs Look Crisp with LaTeX</h3>
-                                    <p>"LaTeX" is the secret code for making documents look incredibly professional <b>without</b> fighting a word processor. Gemini now makes you a LaTeX expert.</p>
-                                    <p class="source-info"><i>Before: Your project proposal looks messy in a standard doc.</i></p>
-                                    <p class="source-info"><i>Now: Ask Gemini to "Format this content as a clean, professional project proposal using LaTeX." It generates a perfect, sharp PDF you can download.</i></p>
-                                    <p class="source-info">
-                                        <i>Source: <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank">Google Workspace Updates</a></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                        </div>
-                    </section>
-                    <!-- *** END: Company AI Updates Sub-Section *** -->
-
-
-                    <!-- *** START: AI Learning Sub-Section *** -->
-                    <section class="content-section collapsed" id="additional-ai-learning-sessions">
-                        <h2 class="section-header" data-default-state="collapsed">
-                            <div class="title-wrapper">
-                                <span class="icon-3d-section">📚</span> AI Learning
-                            </div>
-                            <span class="icon" aria-hidden="true">+</span>
-                        </h2>
-                        <div class="section-content">
-                            <div class="card-grid">
-                                
-                                <!-- NEW CARD: Procore AI Academy (TOP PRIORITY) -->
-                                <div class="card" data-search-term="Procore AI Academy classes register training courses certification">
-                                    <h3>Did you know you can register for Procore AI classes?</h3>
-                                    <p>📢 Big news! Level up your AI fluency by enrolling in the official <b>Procore AI Academy</b>. This is your go-go hub for structured learning, responsible usage guidelines, and hands-on training tailored for Procore employees.</p>
-                                    <p><b>Courses include:</b> AI Basics, Generative AI for Productivity, and Ethical AI Usage.</p>
-                                    <p class="source-info" style="font-size: 1.1em; font-weight: 700;">
-                                        ➡️ <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3890676126/AI+Academy+-+P+T" target="_blank">Register for Classes Here!</a>
-                                    </p>
-                                </div>
-                                
-                                <div class="card" data-search-term="AI Productivity Office Hours and Learning Sessions Schedule Upcoming sessions">
-                                    <h3>AI Productivity Office Hours and Learning Sessions Schedule</h3>
-                                    <p>Upcoming sessions! Please check the <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3890676126/AI+Academy+-+P+T" target="_blank">AI Academy Hub</a> for the latest schedule.</p>
-                                </div>
-
-                                <!-- EXISTING: LinkedIn Learning Prompt Engineering Course -->
-                                <div class="card" data-search-term="LinkedIn Learning Introduction to Prompt Engineering Generative AI Course training">
-                                    <h3>Introduction to Prompt Engineering for Generative AI</h3>
-                                    <p>This LinkedIn Learning course offers essential training on how to craft effective prompts, ensuring you receive accurate and relevant outputs from Gen AI tools like Gemini. Learning this skill is crucial for maximizing productivity and reducing "hallucinations."</p>
-                                <p classs="source-info">
-                                        <i>Source: <a href="https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai-24636124" target="_blank">LinkedIn Learning</a></i>
-                                    </p>
-                                </div>
-                                
-                                <!-- NEW CARD: AI prompt engineering in 2025: What works and what doesn’t (YouTube) -->
-                                <div class="card" data-search-term="AI prompt engineering 2025 YouTube best practices what works doesn't">
-                                    <h3>AI Prompt Engineering in 2025: What Works and What Doesn’t</h3>
-                                    <p>This YouTube video deep-dives into the latest techniques and best practices for writing effective prompts, offering practical tips and showing examples of how to maximize Gen AI output quality in 2025.</p>
-                                    <p class="source-info">
-                                        <i>Source: <a href="https://www.youtube.com/watch?v=eKuFqQKYRrA" target="_blank">YouTube Video</a></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                        </div>
-                    </section>
-                    <!-- *** END: AI Learning Sub-Section *** -->
 
                 </div>
             </section>
@@ -1147,7 +1170,7 @@
         function getBannerHeight() {
             const rootStyle = getComputedStyle(document.documentElement);
             // Extract the numeric value of --banner-height (e.g., '240px' -> 240)
-            return parseFloat(rootStyle.getPropertyValue('--banner-height')) || 240; 
+            return parseFloat(rootStyle.getPropertyValue('--banner-height')) || 300; 
         }
 
         function updateCanvasSize() {

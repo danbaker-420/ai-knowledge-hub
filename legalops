@@ -490,10 +490,31 @@
         .card { background-color: var(--procore-light-text); border: 1px solid #ddd; padding: 20px; border-radius: 12px; }
         .card:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); transform: translateY(-2px); }
         .ai-tool-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
+        /* NOTE: The a.ai-tool-card rule below is used in place of the div.ai-tool-card which was removed */
         .tool-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; }
         @media (min-width: 900px) { #legal-ai-tools .tool-row { grid-template-columns: repeat(5, 1fr); } }
-        .ai-tool-card { cursor: default; background-color: var(--procore-light-text); border: 1px solid #ddd; border-radius: 12px; text-align: center; display: flex; flex-direction: column; align-items: center; padding: 20px 15px; position: relative; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
-        .ai-tool-card:hover { border-color: var(--procore-orange); box-shadow: 0 4px 8px rgba(255, 82, 0, 0.2); transform: translateY(-2px); }
+        .ai-tool-card { 
+            cursor: pointer; /* Changed to pointer since it's now a link */
+            background-color: var(--procore-light-text); 
+            border: 1px solid #ddd; 
+            border-radius: 12px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 20px 15px; 
+            position: relative; 
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); 
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+            text-decoration: none; /* Ensure link decoration is removed */
+            color: inherit; /* Ensure text color is inherited/default */
+        }
+        .ai-tool-card:hover { 
+            border-color: var(--procore-orange); 
+            box-shadow: 0 4px 8px rgba(255, 82, 0, 0.2); 
+            transform: translateY(-2px); 
+            text-decoration: none;
+        }
         .tool-iframe { width: 40px; height: 40px; margin-bottom: 5px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); border: none; overflow: hidden; flex-shrink: 0; background-color: #ffffff; z-index: 10; }
         .tool-iframe.law360 { background-color: #00447C; color: white; text-align: center; line-height: 40px; font-size: 1.5em; font-weight: 900; font-family: Arial, sans-serif; padding: 0; display: inline-block; }
         .ai-tool-card span { font-size: 1em; font-weight: 700; color: var(--procore-dark-text); margin-bottom: 5px; line-height: 1.2; }
@@ -510,6 +531,31 @@
             align-items: center;
             line-height: 1.2;
             color: var(--procore-dark-text);
+        }
+        
+        /* NEW STYLE: Prominent Link/Headline Styling for PEP Hub */
+        .prominent-link-container { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            padding: 15px;
+            background-color: var(--procore-accent-stone);
+            border: 2px solid var(--procore-orange);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .prominent-link-container a.play-link {
+            /* Override button alignment to ensure it looks good within the container */
+            margin: 0;
+            display: inline-block;
+        }
+        .prominent-text {
+            font-size: 1.5em; /* Match card h3 size */
+            font-weight: 900;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            line-height: 1.2;
+            color: var(--procore-dark-text);
+            display: block;
         }
 
     </style>
@@ -937,10 +983,15 @@
                         </h2>
                         <div class="section-content">
                             
-                            <p style="margin-bottom: 20px; font-weight: 500; font-size: 1.05em; line-height: 1.5;">
-                                The tools featured below represent some of Procore’s company-wide approved AI resources that are available to all employees, including their approved usage guidelines and resources. For the complete list of tools and corporate governance, please visit the: 
-                                <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/4039934078/AI+Tools+Resources+-+P+T" target="_blank">AI Tools & Resources (PEP) Hub</a>.
-                            </p>
+                            <!-- UPDATED TEXT AND STYLING FOR PEP HUB LINK -->
+                            <div class="prominent-link-container">
+                                <p class="prominent-text">
+                                    The tools featured below represent some of Procore’s company-wide approved AI resources that are available to all employees.
+                                </p>
+                                <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/4039934078/AI+Tools+Resources+-+P+T" target="_blank" class="play-link">
+                                    VISIT THE PEP HUB FOR MORE TOOLS PLUS USAGE GUIDELINES & OTHER RESOURCES
+                                </a>
+                            </div>
 
                             <!-- ============================================== -->
                             <!-- SUBSECTION 1: PROCORE ENTERPRISE TOOLS (CORE) -->
@@ -950,58 +1001,58 @@
                             <div class="ai-tool-grid">
                                 <div class="tool-row">
                                     <!-- Tool 1: Google Gemini -->
-                                    <div class="ai-tool-card" tabindex="0" data-search-term="Google Gemini Al assistant multimodal large language model text images audio">
+                                    <a href="https://gemini.google.com/" target="_blank" class="ai-tool-card" tabindex="0" data-search-term="Google Gemini Al assistant multimodal large language model text images audio">
                                         <iframe src="https://logo.clearbit.com/google.com?size=40&format=png" class="tool-iframe" title="Google Gemini Logo" loading="lazy"></iframe>
                                         <span>Google Gemini</span>
                                         <p class="tool-description-text">An AI assistant that uses a multimodal large language model to help with a wide range of tasks by understanding and generating text, images, audio, and more.</p>
-                                    </div>
+                                    </a>
                                     <!-- Tool 2: Google NotebookLM -->
-                                    <div class="ai-tool-card" tabindex="0" data-search-term="Google NotebookLM research assistant personalized knowledge base source materials documents PDFs audio external links YouTube videos">
+                                    <a href="https://notebooklm.google.com/" target="_blank" class="ai-tool-card" tabindex="0" data-search-term="Google NotebookLM research assistant personalized knowledge base source materials documents PDFs audio external links YouTube videos">
                                         <iframe src="https://logo.clearbit.com/google.com?size=40&format=png" class="tool-iframe" title="NotebookLM Logo" loading="lazy"></iframe>
                                         <span>NotebookLM</span>
                                         <p class="tool-description-text">An AI-powered research assistant that helps you learn and explore information more effectively, grounding research in your own source materials.</p>
-                                    </div>
+                                    </a>
                                     <!-- Tool 3: Loom AI -->
-                                    <div class="ai-tool-card" tabindex="0" data-search-term="Loom AI Summaries Transcription Video Productivity">
+                                    <a href="https://www.loom.com/ai" target="_blank" class="ai-tool-card" tabindex="0" data-search-term="Loom AI Summaries Transcription Video Productivity">
                                         <iframe src="https://logo.clearbit.com/loom.com?size=40&format=png" class="tool-iframe" title="Loom AI Logo" loading="lazy"></iframe>
                                         <span>Loom AI</span>
                                         <p class="tool-description-text">Automatically generates summaries, transcriptions, and suggested titles for your Loom videos, boosting productivity and enabling quick information retrieval.</p>
-                                    </div>
+                                    </a>
                                     <!-- Tool 4: GitHub Copilot -->
-                                    <div class="ai-tool-card" tabindex="0" data-search-term="GitHub Copilot Web Chat CLI VS Code Code Generation Development">
+                                    <a href="https://copilot.github.com/" target="_blank" class="ai-tool-card" tabindex="0" data-search-term="GitHub Copilot Web Chat CLI VS Code Code Generation Development">
                                         <iframe src="https://logo.clearbit.com/github.com?size=40&format=png" class="tool-iframe" title="GitHub Copilot Logo" loading="lazy"></iframe>
                                         <span>GitHub Copilot</span>
                                         <p class="tool-description-text">AI code generation tool available in web chat, CLI, and VS Code. It assists developers by suggesting code, reducing repetitive development tasks.</p>
-                                    </div>
+                                    </a>
                                     <!-- Tool 7: Rovo Chat -->
-                                    <div class="ai-tool-card" tabindex="0" data-search-term="Rovo Chat Confluence Jira browser extension context workflow ideas Insights">
+                                    <a href="https://www.atlassian.com/software/rovo" target="_blank" class="ai-tool-card" tabindex="0" data-search-term="Rovo Chat Confluence Jira browser extension context workflow ideas Insights">
                                         <iframe src="https://logo.clearbit.com/atlassian.com?size=40&format=png" class="tool-iframe" title="Rovo Chat Logo" loading="lazy"></iframe>
                                         <span>Rovo Chat</span>
                                         <p class="tool-description-text">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension.</p>
-                                    </div>
+                                    </a>
                                 </div>
 
                                 <div class="tool-row">
                                     <!-- Tool 8: Atlassian Intelligence -->
-                                    <div class="ai-tool-card" tabindex="0" data-search-term="Atlassian Intelligence automates tasks summarizes information generates content productivity">
+                                    <a href="https://www.atlassian.com/software/atlassian-intelligence" target="_blank" class="ai-tool-card" tabindex="0" data-search-term="Atlassian Intelligence automates tasks summarizes information generates content productivity">
                                         <iframe src="https://logo.clearbit.com/atlassian.com?size=40&format=png" class="tool-iframe" title="Atlassian AI Logo" loading="lazy"></iframe>
                                         <span style="font-size: 0.9em; line-height: 1.1;">Atlassian AI</span>
                                         <p class="tool-description-text">Automates tasks, summarizes information, and generates content across Atlassian products (Jira, Confluence) to boost productivity.</p>
-                                    </div>
+                                    </a>
 
                                     <!-- Tool 9: Slack Al -->
-                                    <div class="ai-tool-card" tabindex="0" data-search-term="Slack Al smarter search instant conversation summaries automated responses communication">
+                                    <a href="https://slack.com/features/slack-ai" target="_blank" class="ai-tool-card" tabindex="0" data-search-term="Slack Al smarter search instant conversation summaries automated responses communication">
                                         <iframe src="https://logo.clearbit.com/slack.com?size=40&format=png" class="tool-iframe" title="Slack AI Logo" loading="lazy"></iframe>
                                         <span>Slack AI</span>
                                         <p class="tool-description-text">Provides smarter search, instant conversation summaries, and automated responses to streamline team communication.</p>
-                                    </div>
+                                    </a>
 
                                     <!-- Tool 10: Zoom Al -->
-                                    <div class="ai-tool-card" tabindex="0" data-search-term="Zoom Al digital assistant generative AI summarize meetings chats whiteboard content">
-                                        <iframe src="https://logo.clearbit.com/zoom.us?size=40&format=png" class="tool-iframe" title="Zoom AI Logo" loading="lazy"></iframe>
+                                    <a href="https://www.zoom.us/ai" target="_blank" class="ai-tool-card" tabindex="0" data-search-term="Zoom Al digital assistant generative AI summarize meetings chats whiteboard content">
+                                        <iframe src="https://st1.zoom.us/homepage/publish/primary/assets/img/aic-logo.svg" class="tool-iframe" title="Zoom AI Logo" loading="lazy"></iframe>
                                         <span>Zoom AI</span>
                                         <p class="tool-description-text">A digital assistant that uses generative AI to create content, summarize meetings and chats, and generate ideas/content for whiteboards.</p>
-                                    </div>
+                                    </a>
                                     
                                     <div class="ai-tool-card" style="visibility: hidden;"></div>
                                     <div class="ai-tool-card" style="visibility: hidden;"></div>

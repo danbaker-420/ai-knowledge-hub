@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LRC AI Knowledge Hub</title>
+    <title>Legal, Regulatory, & Compliance (LRC)</title>
     <!-- Load Font (Fallback using Roboto) -->
     <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');</style>
     <!-- Load Three.js for the dynamic banner background -->
@@ -26,7 +26,7 @@
             --nav-height: 40px; /* Height for the horizontal top nav */
             --banner-height: 300px; /* INCREASED EXPLICIT HEIGHT for vertical padding */
             --sidebar-width: 280px; 
-            --total-fixed-height: 0px; 
+            --total-fixed-height: calc(var(--header-height) + var(--nav-height)); /* UPDATED: Only Header + Nav (90px) is fixed */
             --intro-padding: 15px 30px;
             --left-padding-units: 15px; 
         }
@@ -54,6 +54,8 @@
             padding: 0;
             display: flex;
             min-height: 100vh;
+            /* CRITICAL FIX 1: Set body to manage scrolling for the main content area */
+            overflow-y: auto; 
         }
         
         /* ------------------- SIDEBAR NAVIGATION ------------------- */
@@ -174,19 +176,57 @@
         /* ------------------- MAIN CONTENT AREA & FIXED ELEMENTS ------------------- */
         .main-content-wrapper {
             flex-grow: 1;
-            overflow-y: auto; 
+            /* CRITICAL FIX 2: Remove overflow-y and set scroll padding based on fixed header height */
+            overflow-y: visible; 
             position: relative;
-            /* CRITICAL FIX: Add scroll padding equal to fixed header height to prevent section headers from being cut off */
-            scroll-padding-top: calc(var(--header-height) + var(--nav-height) + var(--banner-height) + 10px); 
+            /* Scroll padding must equal total height of fixed elements (Header + Nav = 90px) */
+            scroll-padding-top: var(--total-fixed-height); 
         }
         
         .fixed-header-container {
+            /* CRITICAL FIX 3: Container holding Header and Nav sticks to the top of the viewport */
             position: sticky;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: none; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+            background-color: var(--procore-black); /* Ensures background when scrolling */
         }
+        
+        /* NEW WRAPPER FOR SCROLLING BANNER */
+        #banner-canvas-wrapper {
+            position: relative; /* To anchor the text overlay absolutely */
+            width: 100%;
+            height: var(--banner-height);
+            background-color: var(--procore-stone);
+            border-bottom: 3px solid var(--procore-metal);
+            border-top: 3px solid var(--procore-metal);
+        }
+
+        /* Ensure Canvas fills its new scrolling container */
+        #carousel-canvas {
+            display: block; 
+            width: 100%; 
+            height: 100%;
+        }
+
+        /* Banner text overlay is now positioned absolutely within the new scrolling wrapper */
+        #banner-overlay-text {
+            position: absolute; 
+            top: 0; 
+            left: 0;
+            width: 100%;
+            height: 100%; /* Fill the canvas wrapper height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: center;
+            color: var(--procore-light-text);
+            text-align: center;
+            pointer-events: none;
+            z-index: 950;
+        }
+
 
         header {
             position: relative; 
@@ -607,7 +647,18 @@
         .ai-tool-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
         /* NOTE: The a.ai-tool-card rule below is used in place of the div.ai-tool-card which was removed */
         .tool-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; }
-        @media (min-width: 900px) { #legal-ai-tools .tool-row { grid-template-columns: repeat(5, 1fr); } }
+        /* Adjusted grid template for trial cards to match the fixed size/count of specialized platforms */
+        #what-platforms-are-we-testing .tool-row { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 500px; margin-left: auto; margin-right: auto; }
+        @media (min-width: 900px) { 
+            #legal-ai-tools-specific .tool-row,
+            #what-platforms-are-we-testing .tool-row { grid-template-columns: repeat(2, 1fr); max-width: 450px; margin-left: auto; margin-right: auto;}
+            /* Removed third column to match the max-width of 500px/2 columns for both legal tool sections */
+            #legal-ai-tools-specific .ai-tool-card:nth-child(3),
+            #what-platforms-are-we-testing .ai-tool-card:nth-child(3) { display: none !important; }
+            /* Hide placeholder cards on desktop, assuming we only need two visible cards in the trial section, but keep 3 for Specialized Platforms */
+            #what-platforms-are-we-testing .ai-tool-card[style*="visibility: hidden"] { display: none !important; }
+        }
+
         .ai-tool-card { 
             cursor: pointer; /* Changed to pointer since it's now a link */
             background-color: var(--procore-light-text); 
@@ -623,6 +674,9 @@
             transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
             text-decoration: none; /* Ensure link decoration is removed */
             color: inherit; /* Ensure text color is inherited/default */
+            /* Added min-width and max-width logic to help size consistency with the 2-column centered layout */
+            min-width: 200px;
+            max-width: 200px;
         }
         .ai-tool-card:hover { 
             border-color: var(--procore-orange); 
@@ -707,10 +761,6 @@
                 <a href="https://procore.enterprise.slack.com/docs/T02AS2EJA/F08CMGKKPA7" target="_blank" rel="noopener noreferrer" title="✨ AI Tools Hub: Your central resource for smarter work and career growth! 🔑 This hub provides essential training and deep dives into Procore’s key AI platforms. For GEMINI 🤖, learn Getting Started, Prompting, and using tools like NotebookLM. Master SLACK AI 💬 with guides on Recaps, Search, and Summaries. Find specialized guides for BOLT 🔩 across Accounts Payable, HR, and IT use cases. Accelerate productivity with ATLASSIAN AI & ROVO 🚀 for Confluence/Jira, including setup, features, and agent creation. (Note: ZOOM AI Companion 💻 setup is currently a Work In Progress).">Unlocking AI for All (Canvas)</a>
 
                 <a href="slack://channel?team=T02517565&id=C01H0L3K8J" target="_blank" rel="noopener noreferrer" title="👋 Welcome Curious Innovators! Your hub for all things AI at Procore. Get support, share use cases, and discover best practices for tools like Google Gemini and NotebookLM. 💡">#unlocking-ai-community</a>
-                
-                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" target="_blank" rel="noopener noreferrer" title="🙋 Get help quickly with your productivity-related questions and share tips with the community.">#ai-productivity-help</a>
-
-                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" target="_blank" rel="noopener noreferrer" title="📹 Ask questions and get support directly from the Loom team on recording and utilizing Loom AI features.">#ask-loom-community</a>
             </div>
         </div>
         <!-- END SLACK DROPDOWN -->
@@ -731,22 +781,16 @@
                 <a href="https://thecore.procore.com/pac/unlockingai" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   title="🔓 Unlocking AI Hub: The main resource center on The Core for all Procore AI training, initiatives, and governance. 🛡️">Unlocking AI Hub</a>
+                   title="🔓 Unlocking AI Hub: The main resource center on The Core for all Procore AI training, initiatives, and governance.🛡️">Unlocking AI Hub</a>
                 
                 <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    title="⚙️ AI Tools Hub: Dedicated list of all company-approved AI tools and their official usage guidelines.">AI Tools Hub</a>
                 
-                <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/atlreshub/atlassian_intelligence_resource_hub/atlassian_intelligence_ai_for_confluence" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   title="📝 AI for Confluence: Official guidance for using Atlassian Intelligence features within Confluence pages for drafting and summarizing.">AI for Confluence</a>
+                <!-- REMOVED: AI for Confluence link -->
                 
-                <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/atlreshub/atlassian_intelligence_resource_hub/atlassian_intelligence_ai_for_jira" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   title="✅ AI for Jira: Guidance on using Atlassian Intelligence for summarizing and drafting content in Jira issues to speed up workflows.">AI for Jira</a>
+                <!-- REMOVED: AI for Jira link -->
             </div>
         </div>
         <!-- END THE CORE DROPDOWN -->
@@ -791,7 +835,7 @@
                 <!-- Newsletters Sub-Category -->
                 <div class="nav-link-item" id="newsletters-dropdown-trigger">
                      <span class="dropdown-trigger flex items-center">
-                        <span class="icon-3d-section" style="margin-right: 5px;">🗞️</span> Newsletters
+                        <span class="icon-3d-section">🗞️</span> Newsletters
                         <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
                         </svg>
@@ -845,6 +889,7 @@
     <div class="main-content-wrapper">
 
         <!-- Fixed Header Container (sticky to the top of the scrollable area) -->
+        <!-- Now only holds the Header and Nav, which are always visible -->
         <div class="fixed-header-container">
             <header>
                 <div class="logo-section" style="display: flex; align-items: center;">
@@ -855,7 +900,7 @@
                             style="height: 40px; width: auto; object-fit: contain; background-color: var(--procore-orange); border-radius: 4px; margin-right: 15px;"
                         >
                     </a>
-                    <span class="page-title">LRC AI Knowledge Hub</span>
+                    <span class="page-title">Legal, Regulatory, & Compliance (LRC)</span>
                 </div>
                 
                 <!-- Search Bar (Top Right Corner) -->
@@ -864,49 +909,33 @@
                 </div>
             </header>
             
-            <!-- Horizontal Top Navigation Bar for Quick Links (REVERTED TO SIMPLE LINKS) -->
+            <!-- Horizontal Top Navigation Bar for Quick Links (MOVED AI UNLEASHED TO THE END) -->
             <nav id="fixed-top-nav" aria-label="Quick Links Navigation">
                 <a href="#ai-unlocked-podcast" data-section-id="ai-unlocked-podcast">AI Unlocked</a>
-                <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" data-section-id="ai-unleashed-podcast-main">🎙️ AI Unleashed Podcast</a>
                 <a href="#enterprise-ai-resources" data-section-id="enterprise-ai-resources">Enterprise AI Resources</a>
                 <a href="#legal-team-resources" data-section-id="legal-team-resources">Legal-Specific Resources</a>
-                <a href="#lrc-tech-group-portal-spotlight" data-section-id="lrc-tech-group-portal-spotlight">LRC Team Spotlight</a> <!-- ADDED DIRECT LINK -->
+                <a href="#lrc-tech-group-portal-spotlight" data-section-id="lrc-tech-group-portal-spotlight">LRC Team Spotlight</a> 
+                <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" data-section-id="ai-unleashed-podcast-main">🎙️ AI Unleashed Podcast</a>
             </nav>
+        </div>
+        <!-- END FIXED HEADER CONTAINER -->
 
-
-            <!-- NEW: CAROUSEL BANNER (Three.js Canvas) -->
-            <canvas id="carousel-canvas" style="
-                background-color: var(--procore-stone);
-                display: block; 
-                width: 100%; 
-                height: var(--banner-height);
-                border-bottom: 3px solid var(--procore-metal);
-                border-top: 3px solid var(--procore-metal);
-            "></canvas>
+        <!-- NEW: BANNER WRAPPER (This scrolls with the content) -->
+        <div id="banner-canvas-wrapper">
+             <!-- NEW: CAROUSEL BANNER (Three.js Canvas) -->
+            <canvas id="carousel-canvas"></canvas>
             
             <!-- NEW: BANNER TEXT OVERLAY (Replicating original AI Hub text) -->
-            <div id="banner-overlay-text" style="
-                position: absolute; 
-                top: calc(var(--header-height) + var(--nav-height)); /* Anchored right after navigation */
-                left: 0;
-                width: 100%;
-                height: var(--banner-height); /* Match banner height */
-                display: flex;
-                flex-direction: column;
-                justify-content: center; /* Center content vertically */
-                align-items: center;
-                color: var(--procore-light-text);
-                text-align: center;
-                pointer-events: none;
-                z-index: 950;
-            ">
+            <div id="banner-overlay-text">
                 <div class="banner-title">WELCOME TO THE LRC AI KNOWLEDGE HUB</div>
                 <div class="banner-intro-text">
-                    This Knowledge Hub reflects our <b style="font-weight: 700; color: var(--procore-light-text);">commitment to your growth</b>, directly supporting the LRC EVS Action Plan and the goal of <b style="font-weight: 700; color: var(--procore-light-text);">enhancing your career at Procore</b>. Explore tools, training, and news designed to help you build Enhanced Expertise and Career Adaptability, amplifying your judgment and <b style="font-weight: 700; color: var(--procore-light-text);">delivering maximum value in your role</b>.
+                    This Knowledge Hub reflects our <b>commitment to your growth</b>, directly supporting the LRC EVS Action Plan and the goal of <b>enhancing your career at Procore</b>. Explore tools, training, and news designed to help you build Enhanced Expertise and Career Adaptability, amplifying your judgment and <b>delivering maximum value in your role</b>.
                 </div>
             </div>
             <!-- END BANNER -->
         </div>
+        <!-- END SCROLLING BANNER WRAPPER -->
+        
 
         <main>
             <!-- Mobile Search (Visible on small screens) -->
@@ -943,12 +972,12 @@
                             </div>
                         </div>
                         
-                        <!-- Card: Weekly Productivity Newsletter -->
+                        <!-- Card: Weekly Productivity Newsletter (UPDATED NAME) -->
                         <div class="card" id="weekly-newsletter" data-search-term="Weekly Newsletter Productivity Tips Wins New Tools">
                             <div class="podcast-card-content">
-                                <h3><span class="icon-3d-section" style="margin-right: 5px;">✨</span> Weekly Productivity Newsletter: Coming Soon!</h3>
+                                <h3><span class="icon-3d-section" style="margin-right: 5px;">✨</span> Team Productivity Newsletter: Coming Soon!</h3>
                                 <p class="intro-text" style="font-size: 1.1em; line-height: 1.5; margin-top: 0;">
-                                    Did you know this entire Confluence page was made with a Gem? How cool is that! We plan to launch a weekly newsletter that will celebrate quick wins, share productivity tips (including Gemini-specific hacks), and highlight new tool functionalities. Stay tuned, and we hope to share how our own LRC team is using AI to <b>help with day-to-day work!</b>
+                                    Did you know this entire Confluence page was made with a Gem? How cool is that! We plan to launch a team newsletter that will celebrate quick wins, share productivity tips (including Gemini-specific hacks), and highlight new tool functionalities. Stay tuned, and we hope to share how our own LRC team is <b>using AI to help with day-to-day work!</b>
                                 </p>
                             </div>
                         </div>
@@ -971,13 +1000,13 @@
                 <div class="section-content">
 
                     
-                    <!-- *** START: Company AI Updates Sub-Section *** -->
-                    <section class="content-section collapsed" id="ai-updates">
-                        <h2 class="section-header" data-default-state="collapsed">
+                    <!-- *** START: Company AI Updates Sub-Section (NOW OPEN BY DEFAULT) *** -->
+                    <section class="content-section" id="ai-updates">
+                        <h2 class="section-header" data-default-state="open">
                             <div class="title-wrapper">
                                 <span class="icon-3d-section">🧠</span> Company AI Updates 
                             </div>
-                            <span class="icon" aria-hidden="true">+</span>
+                            <span class="icon" aria-hidden="true">−</span>
                         </h2>
                         <div class="section-content">
                             <div class="card-grid">
@@ -1016,7 +1045,7 @@
                                 
                                 <!-- Existing Card 2: NotebookLM Upgrade -->
                                 <div class="card" data-search-term="NotebookLM Upgrade Bigger Brain Custom Goals skeptical research advisor">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">📈</span> NotebookLM: Now with a Bigger Brain (and an 'Attitude')</h3>
+                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">📈</span> Google NotebookLM: Now with a Bigger Brain (and an 'Attitude')</h3>
                                     <p>Your personal AI research assistant just got a serious engine upgrade. It now has an <b>8x larger context window</b> (1 million tokens!) and <b>6x longer conversation memory</b>. The best part? <b>Custom Goals</b>—You can now tell NotebookLM exactly how to act:</p>
                                     <ul>
                                         <li>"Act as a skeptical marketing director. Poke holes in this launch plan. Be direct and analytical."</li>
@@ -1044,13 +1073,13 @@
                     <!-- *** END: Company AI Updates Sub-Section *** -->
 
 
-                    <!-- *** START: AI Learning Sub-Section *** -->
-                    <section class="content-section collapsed" id="additional-ai-learning-sessions">
-                        <h2 class="section-header" data-default-state="collapsed">
+                    <!-- *** START: AI Learning Sub-Section (NOW OPEN BY DEFAULT) *** -->
+                    <section class="content-section" id="additional-ai-learning-sessions">
+                        <h2 class="section-header" data-default-state="open">
                             <div class="title-wrapper">
                                 <span class="icon-3d-section">📚</span> AI Learning
                             </div>
-                            <span class="icon" aria-hidden="true">+</span>
+                            <span class="icon" aria-hidden="true">−</span>
                         </h2>
                         <div class="section-content">
                             <div class="card-grid">
@@ -1094,7 +1123,7 @@
                     <!-- *** END: AI Learning Sub-Section *** -->
                     
                     
-                    <!-- *** START: Procore Enterprise Tools Sub-Section (ID changed to procore-tools) - CONVERTED TO TABLE *** -->
+                    <!-- *** START: Procore Enterprise Tools Sub-Section (NOW OPEN BY DEFAULT) *** -->
                     <section class="content-section" id="procore-tools">
                         <h2 class="section-header" data-default-state="open">
                             <div class="title-wrapper">
@@ -1110,7 +1139,7 @@
                             </p>
 
                             <!-- ============================================== -->
-                            <!-- NEW: PROCORE ENTERPRISE TOOLS TABLE (Core Productivity Tools) -->
+                            <!-- NEW: PROCORE ENTERPRISE TOOLS TABLE (Core Productivity Tools - ALPHABETIZED & UPDATED) -->
                             <!-- ============================================== -->
                             <h3 style="font-size: 1.4em; margin-top: 15px; margin-bottom: 10px; padding-left: 5px; color: var(--procore-orange);">Core Productivity Tools</h3>
 
@@ -1120,10 +1149,56 @@
                                         <th>Tool Name</th>
                                         <th>Description</th>
                                         <th>Internal Resources</th>
-                                        <th>External Resources</th>
+                                        <th>WHEN TO USE (COMING SOON!)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
+                                    <!-- Atlassian Confluence AI (NEWLY ADDED) -->
+                                    <tr data-search-term="Atlassian Confluence AI automates tasks summarizes information generates content productivity">
+                                        <td data-label="Tool Name">
+                                            <img src="https://logo.clearbit.com/atlassian.com?size=30&format=png" class="tool-table-icon" title="Atlassian Confluence AI Logo" loading="lazy">
+                                            Atlassian Confluence AI
+                                        </td>
+                                        <td data-label="Description">Automates tasks, summarizes information, and generates content in Confluence to boost productivity.</td>
+                                        <td data-label="Internal Resources">
+                                            <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/atlreshub/atlassian_intelligence_resource_hub/atlassian_intelligence_ai_for_confluence" 
+                                               target="_blank" 
+                                               rel="noopener noreferrer" 
+                                               id="procore-tools-atlassian-confluence-ai-internal">AI for Confluence Guide</a>
+                                        </td>
+                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
+                                    </tr>
+
+                                    <!-- Atlassian JIRA AI (RENAMED FROM Atlassian AI) -->
+                                    <tr data-search-term="Atlassian JIRA AI automates tasks summarizes information generates content productivity">
+                                        <td data-label="Tool Name">
+                                            <img src="https://logo.clearbit.com/atlassian.com?size=30&format=png" class="tool-table-icon" title="Atlassian JIRA AI Logo" loading="lazy">
+                                            Atlassian JIRA AI
+                                        </td>
+                                        <td data-label="Description">Automates tasks, summarizes information, and generates content across Atlassian products (Jira) to boost productivity.</td>
+                                        <td data-label="Internal Resources">
+                                            <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/atlreshub/atlassian_intelligence_resource_hub/atlassian_intelligence_ai_for_jira" 
+                                               target="_blank" 
+                                               rel="noopener noreferrer" 
+                                               id="procore-tools-atlassian-jira-ai-internal">AI for Jira Guide</a>
+                                        </td>
+                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
+                                    </tr>
+                                    
+                                    <!-- Atlassian Rovo AI (RENAMED FROM Rovo Chat) -->
+                                    <tr data-search-term="Atlassian Rovo AI Confluence Jira browser extension context workflow insights agent creation">
+                                        <td data-label="Tool Name">
+                                            <img src="https://logo.clearbit.com/atlassian.com?size=30&format=png" class="tool-table-icon" title="Atlassian Rovo AI Logo" loading="lazy">
+                                            Atlassian Rovo AI
+                                        </td>
+                                        <td data-label="Description">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension. <b>It can also create custom workflow agents.</b></td>
+                                        <td data-label="Internal Resources">
+                                        </td>
+                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
+                                    </tr>
+                                    
+                                    <!-- Google Gemini -->
                                     <tr data-search-term="Google Gemini AI assistant multimodal text images audio">
                                         <td data-label="Tool Name">
                                             <img src="https://logo.clearbit.com/google.com?size=30&format=png" class="tool-table-icon" title="Google Gemini Logo" loading="lazy">
@@ -1132,18 +1207,22 @@
                                         <td data-label="Description">An AI assistant that uses a multimodal large language model to help with a wide range of tasks by understanding and generating text, images, audio, and more.</td>
                                         <td data-label="Internal Resources">
                                         </td>
-                                        <td data-label="External Resources"></td>
+                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
                                     </tr>
-                                    <tr data-search-term="NotebookLM research assistant knowledge base source materials PDFs">
+                                    
+                                    <!-- Google NotebookLM (RENAMED FROM NotebookLM) -->
+                                    <tr data-search-term="Google NotebookLM research assistant knowledge base source materials PDFs">
                                         <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/google.com?size=30&format=png" class="tool-table-icon" title="NotebookLM Logo" loading="lazy">
-                                            NotebookLM
+                                            <img src="https://logo.clearbit.com/google.com?size=30&format=png" class="tool-table-icon" title="Google NotebookLM Logo" loading="lazy">
+                                            Google NotebookLM
                                         </td>
                                         <td data-label="Description">An AI-powered research assistant that helps you learn and explore information more effectively, grounding research in your own source materials.</td>
                                         <td data-label="Internal Resources">
                                         </td>
-                                        <td data-label="External Resources"></td>
+                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
                                     </tr>
+
+                                    <!-- Loom AI -->
                                     <tr data-search-term="Loom AI Summaries Transcription Video Productivity">
                                         <td data-label="Tool Name">
                                             <img src="https://logo.clearbit.com/loom.com?size=30&format=png" class="tool-table-icon" title="Loom AI Logo" loading="lazy">
@@ -1152,28 +1231,10 @@
                                         <td data-label="Description">Automatically generates summaries, transcriptions, and suggested titles for your Loom videos, boosting productivity and enabling quick information retrieval.</td>
                                         <td data-label="Internal Resources">
                                         </td>
-                                        <td data-label="External Resources"></td>
+                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
                                     </tr>
-                                    <tr data-search-term="Rovo Chat Confluence Jira browser extension context workflow insights">
-                                        <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/atlassian.com?size=30&format=png" class="tool-table-icon" title="Rovo Chat Logo" loading="lazy">
-                                            Rovo Chat
-                                        </td>
-                                        <td data-label="Description">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension.</td>
-                                        <td data-label="Internal Resources">
-                                        </td>
-                                        <td data-label="External Resources"></td>
-                                    </tr>
-                                    <tr data-search-term="Atlassian Intelligence automates tasks summarizes information generates content productivity">
-                                        <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/atlassian.com?size=30&format=png" class="tool-table-icon" title="Atlassian AI Logo" loading="lazy">
-                                            Atlassian AI
-                                        </td>
-                                        <td data-label="Description">Automates tasks, summarizes information, and generates content across Atlassian products (Jira, Confluence) to boost productivity.</td>
-                                        <td data-label="Internal Resources">
-                                        </td>
-                                        <td data-label="External Resources"></td>
-                                    </tr>
+
+                                    <!-- Slack AI -->
                                     <tr data-search-term="Slack AI smarter search instant conversation summaries automated responses communication">
                                         <td data-label="Tool Name">
                                             <div class="tool-table-icon slack-logo">S</div>
@@ -1182,8 +1243,10 @@
                                         <td data-label="Description">Provides smarter search, instant conversation summaries, and automated responses to streamline team communication.</td>
                                         <td data-label="Internal Resources">
                                         </td>
-                                        <td data-label="External Resources"></td>
+                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
                                     </tr>
+                                    
+                                    <!-- Zoom AI -->
                                     <tr data-search-term="Zoom AI digital assistant generative AI summarize meetings chats whiteboard content">
                                         <td data-label="Tool Name">
                                             <div class="tool-table-icon zoom-logo">Z</div>
@@ -1192,7 +1255,7 @@
                                         <td data-label="Description">A digital assistant that uses generative AI to create content, summarize meetings and chats, and generate ideas/content for whiteboards.</td>
                                         <td data-label="Internal Resources">
                                         </td>
-                                        <td data-label="External Resources"></td>
+                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1240,7 +1303,8 @@
                                 <h3 style="font-size: 1.4em; margin-top: 15px; margin-bottom: 10px; padding-left: 5px; color: var(--procore-orange);">Specialized Platforms</h3>
 
                                 <div class="ai-tool-grid">
-                                    <div class="tool-row">
+                                    <!-- Applying the centered, max-width style to match Active Platform Trials -->
+                                    <div class="tool-row" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 500px; margin-left: auto; margin-right: auto;">
                                         <!-- Tool 5: Law 360 -->
                                         <div class="ai-tool-card" tabindex="0" data-search-term="Law 360 legal news research industry updates">
                                             <div class="tool-iframe law360" title="Law 360 Logo">L360</div>
@@ -1255,9 +1319,7 @@
                                             <p class="tool-description-text">A legal technology platform that uses a proprietary legal LLM to automate and enhance tasks related to legal documents (drafting, review, negotiation, and eDiscovery).</p>
                                         </div>
                                         
-                                        <div class="ai-tool-card" style="visibility: hidden;"></div>
-                                        <div class="ai-tool-card" style="visibility: hidden;"></div>
-                                        <div class="ai-tool-card" style="visibility: hidden;"></div>
+                                        <!-- Removed unnecessary placeholder cards -->
                                     </div>
                                 </div>
                                 
@@ -1279,14 +1341,15 @@
                                 <span class="icon" aria-hidden="true">+</span>
                             </h2>
                             <div class="section-content">
-                                <!-- NEW CONTACT STATEMENT -->
-                                <p style="margin-bottom: 20px; font-weight: 500; font-size: 1.05em; line-height: 1.5; color: var(--procore-orange);">
-                                    Interested in learning more about our trials, reach out to <a href="https://procore.enterprise.slack.com/archives/D077PPLS71S" target="_blank" style="color: var(--procore-orange); text-decoration: underline;">@Daniel Baker</a> via Slack for questions.
+                                <!-- UPDATED CONTACT STATEMENT -->
+                                <p style="margin-bottom: 20px; font-weight: 500; font-size: 1.05em; line-height: 1.5; color: var(--procore-dark-text);">
+                                    <span class="icon-3d-section" style="color: var(--procore-metal); font-size: 1.2em;">💬</span> Interested in learning more about our trials, reach out to <a href="slack://user?team=T02517565&id=D059K0B5HNJ" target="_blank" style="color: var(--procore-orange); text-decoration: underline;">@Daniel Baker</a> via Slack for questions.
                                 </p>
                                 <!-- END CONTACT STATEMENT -->
                                 <div class="ai-tool-grid">
                                     
-                                    <div class="tool-row">
+                                    <!-- Use tool-row layout and limit columns to 2 for the two trials -->
+                                    <div class="tool-row" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 500px; margin-left: auto; margin-right: auto;">
                                         <!-- Trial 1: LexisNexis Protege AI (NEW) -->
                                         <div class="ai-tool-card" tabindex="0" data-search-term="LexisNexis Protege AI legal research document drafting automation trial">
                                             <div class="tool-iframe law360" title="LexisNexis Logo" style="background-color: #f79600; color: white; line-height: 40px; font-size: 1.5em; font-weight: 900; font-family: Arial, sans-serif; padding: 0; display: inline-block;">LN</div>
@@ -1363,7 +1426,8 @@
 
         function updateCanvasSize() {
             const canvas = document.getElementById('carousel-canvas');
-            const newWidth = mainContent ? mainContent.clientWidth : window.innerWidth;
+            // Use parent wrapper's client width, which should match mainContent's width
+            const newWidth = canvas.parentElement ? canvas.parentElement.clientWidth : window.innerWidth;
             const newHeight = getBannerHeight(); // Use explicit height
             
             if (renderer && canvas) {
@@ -1594,7 +1658,9 @@
 
                 // Initial setup for other sections (sub-sections)
                 setTimeout(() => {
+                    // Check if it's explicitly set to be open by the user request (data-default-state="open")
                     const shouldOpen = defaultState === 'open';
+                    
                     if (!shouldOpen) {
                         section.classList.add('collapsed');
                         if (icon) icon.textContent = '+';

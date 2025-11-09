@@ -3,1835 +3,887 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal, Regulatory, & Compliance (LRC)</title>
-    <!-- Load Font (Fallback using Roboto) -->
-    <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');</style>
+    <title>LRC AI Knowledge Hub</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Load Three.js for the dynamic banner background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <style>
-        /* Procore Custom CSS Variables and Fonts */
-        :root {
-            --procore-orange: #ff5200;
-            --procore-black: #000000;
-            --procore-metal: #566578; 
-            /* Accent Stone Color for Section Headers */
-            --procore-accent-stone: #cec4a1; 
-            /* Banner Background: Procore Orange #ff5200 (Used for fallback/variables) */
-            --procore-stone: var(--procore-orange); 
-            --procore-light-text: #ffffff;
-            --procore-dark-text: #333333;
-            --procore-font: 'Roboto', sans-serif;
-            --header-height: 50px; 
-            --nav-height: 40px; /* Height for the horizontal top nav */
-            --banner-height: 300px; /* INCREASED EXPLICIT HEIGHT for vertical padding */
-            --sidebar-width: 280px; 
-            --total-fixed-height: calc(var(--header-height) + var(--nav-height)); /* UPDATED: Only Header + Nav (90px) is fixed */
-            --intro-padding: 15px 30px;
-            --left-padding-units: 15px; 
-        }
-
-        /* Base Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-        
-        /* Custom Scrollbar for Modern Look */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
-        ::-webkit-scrollbar-thumb { background: var(--procore-orange); border-radius: 10px; }
-
+        /* Custom font and Procore theme */
         body {
-            font-family: var(--procore-font);
-            color: var(--procore-dark-text);
-            line-height: 1.6;
-            font-size: 14px; 
-            background-color: #ece0d6; 
-            margin: 0; 
-            padding: 0;
-            display: flex;
-            min-height: 100vh;
-            /* CRITICAL FIX 1: Set body to manage scrolling for the main content area */
-            overflow-y: auto; 
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Procore Black - Main Background */
+            color: #ECE0D6; /* Procore Stone - Default Text */
+            scroll-behavior: smooth; /* Enable smooth scrolling globally */
         }
-        
-        /* ------------------- SIDEBAR NAVIGATION ------------------- */
-        .sidenav {
-            width: var(--sidebar-width);
-            background-color: var(--procore-black);
-            color: var(--procore-light-text);
-            padding: 20px 0;
-            flex-shrink: 0; 
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 100;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        /* Navigation styles */
+        .nav-item-button:hover .dropdown-icon {
+            transform: rotate(180deg);
         }
-        
-        .sidenav-title {
-            font-size: 1.1em;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 10px var(--left-padding-units);
-            margin-bottom: 10px;
-            border-bottom: 2px solid var(--procore-orange);
-            display: block; 
+        .nav-item-button {
+            transition: background-color 0.2s, transform 0.2s;
         }
-        
-        .sidenav a, .sidenav .dropdown-trigger {
-            display: block;
-            padding: 10px var(--left-padding-units);
-            color: var(--procore-light-text);
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: 500;
-            transition: background-color 0.2s, color 0.2s;
-            cursor: pointer;
+        .dropdown-icon {
+            transition: transform 0.2s;
         }
-        
-        .sidenav a:hover, .sidenav .dropdown-trigger:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            text-decoration: none;
+        /* Mobile menu specific styles */
+        #mobile-menu {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #mobile-menu.open {
+            max-height: 500px; /* A large enough value to accommodate content */
+            opacity: 1;
         }
 
-        /* NEW 3D ICON TEXT SHADOW (Applied globally to all icons/emojis in headers) */
-        .icon-3d-section {
-            text-shadow: 
-                1px 1px 0 #333333,   /* Dark shadow down-right */
-                -1px -1px 0 #ffffff; /* Light highlight up-left */
-            color: var(--procore-orange); /* Ensure base icon color is orange */ 
-            margin-right: 10px;
-            flex-shrink: 0;
-        }
-
-        .procore-logo-icon {
-            text-shadow: 
-                -1px -1px 0 rgba(0, 0, 0, 0.5), 
-                1px 1px 2px rgba(0, 0, 0, 0.8),
-                2px 2px 3px rgba(0, 0, 0, 0.5); 
-            margin-right: 10px;
-            display: inline-block;
-            width: 1.2em; 
-            height: 1.2em;
-            background-color: var(--procore-orange);
-            border-radius: 4px;
-            color: var(--procore-light-text); 
-            font-size: 1em;
-            font-weight: 700;
-            line-height: 1.2;
-            text-align: center;
-            vertical-align: middle;
-            padding: 2px 0;
-        }
-
-        /* Sidebar Dropdown Styles */
-        .sidenav .nav-link-item { position: relative; }
-        .sidenav .dropdown-trigger { display: flex; justify-content: space-between; align-items: center; }
-        .sidenav .nav-dropdown {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 0;
-            display: none; 
-            flex-direction: column;
-        }
-        .sidenav .nav-link-item.open > .nav-dropdown {
-            display: flex; 
-            padding: 5px 0;
-        }
-        .sidenav .nav-dropdown a, .sidenav .nav-dropdown .dropdown-trigger {
-            padding: 8px calc(var(--left-padding-units) + 5px) 8px calc(var(--left-padding-units) + 15px); 
-            font-weight: 400;
-        }
-        .sidenav .nav-link-item .nav-dropdown .nav-dropdown a {
-            padding-left: calc(var(--left-padding-units) + 35px);
-        }
-        .sidenav .nav-link-item .nav-dropdown .dropdown-trigger {
-            background-color: rgba(255, 255, 255, 0.05); 
-        }
-        .sidenav .team-home-link {
-            font-weight: 700; 
-            background-color: rgba(255, 255, 255, 0.15); 
-            border-left: 3px solid var(--procore-orange); 
-            margin-bottom: 15px; 
-            padding-left: calc(var(--left-padding-units) + 5px);
-            transition: all 0.2s ease-in-out; 
-            /* REMOVED: text-transform: uppercase; */
-        }
-        
-        /* NEW HOVER STYLES for LRC Information Library */
-        .sidenav .team-home-link:hover {
-            background-color: var(--procore-accent-stone); /* Procore stone background */
-            color: var(--procore-black) !important; /* Ensure black text */
-            /* REMOVED: border-left-color: var(--procore-black); */
-        }
-        
-        .sidenav svg.dropdown-arrow {
-            width: 18px; height: 18px; flex-shrink: 0; margin-left: auto; transition: transform 0.2s; 
-        }
-
-        /* ------------------- MAIN CONTENT AREA & FIXED ELEMENTS ------------------- */
-        .main-content-wrapper {
-            flex-grow: 1;
-            /* CRITICAL FIX 2: Remove overflow-y and set scroll padding based on fixed header height */
-            overflow-y: visible; 
-            position: relative;
-            /* Scroll padding must equal total height of fixed elements (Header + Nav = 90px) */
-            scroll-padding-top: var(--total-fixed-height); 
-        }
-        
-        .fixed-header-container {
-            /* CRITICAL FIX 3: Container holding Header and Nav sticks to the top of the viewport */
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-            background-color: var(--procore-black); /* Ensures background when scrolling */
-        }
-        
-        /* NEW WRAPPER FOR SCROLLING BANNER */
-        #banner-canvas-wrapper {
-            position: relative; /* To anchor the text overlay absolutely */
-            width: 100%;
-            height: var(--banner-height);
-            background-color: var(--procore-stone);
-            border-bottom: 3px solid var(--procore-metal);
-            border-top: 3px solid var(--procore-metal);
-        }
-
-        /* Ensure Canvas fills its new scrolling container */
+        /* --- THREE.JS BANNER STYLES --- */
         #carousel-canvas {
             display: block; 
             width: 100%; 
             height: 100%;
         }
-
-        /* Banner text overlay is now positioned absolutely within the new scrolling wrapper */
+        /* Ensure the overlay is correctly styled for maximum visibility */
         #banner-overlay-text {
-            position: absolute; 
-            top: 0; 
-            left: 0;
-            width: 100%;
-            height: 100%; /* Fill the canvas wrapper height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            align-items: center;
-            color: var(--procore-light-text);
-            text-align: center;
-            pointer-events: none;
-            z-index: 950;
+            background-color: rgba(0, 0, 0, 0.4); /* Increased opacity to 40% for better contrast */
         }
 
-
-        header {
-            position: relative; 
-            width: 100%; 
-            background-color: var(--procore-black);
-            color: var(--procore-light-text);
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            padding: 0 var(--left-padding-units); 
-            justify-content: space-between;
-        }
+        /* Procore Orange utility class for hover/active states */
+        .procore-orange-text { color: #FF5200; }
+        .hover-procore-orange-bg:hover { background-color: #FF5200; }
+        .procore-orange-bg { background-color: #FF5200; }
         
-        .logo-section { margin-left: 0; }
-        .page-title { font-size: 1.2em; font-weight: 700; color: var(--procore-light-text); }
-        .logo-link img { height: 40px; width: auto; object-fit: contain; background-color: var(--procore-orange); border-radius: 4px; margin-right: 15px; }
-
-        /* Horizontal Top Navigation Bar */
-        #fixed-top-nav {
-            background-color: var(--procore-metal); 
-            height: var(--nav-height);
-            display: flex;
-            align-items: center;
-            width: 100%; 
-            overflow-x: auto;
-            white-space: nowrap;
-            /* REMOVE padding here; we rely on padding inside the links now */
-            padding: 0; 
-            box-shadow: none; 
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-            /* --- FIX: Center the links horizontally --- */
-            justify-content: center; 
-        }
-        
-        /* Reverted to simple link styling */
-        #fixed-top-nav a {
-            color: var(--procore-light-text);
-            padding: 0 15px;
-            text-transform: uppercase;
-            font-size: 1.15em; /* INCREASED FONT SIZE HERE */
-            font-weight: 700;
-            transition: background-color 0.3s;
-            height: 100%;
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        #fixed-top-nav a:hover {
-            background-color: rgba(0, 0, 0, 0.2); 
-            text-decoration: none;
-        }
-        
-        /* REMOVED ALL TOP NAV DROPDOWN STYLING (.nav-dropdown-wrapper, .nav-dropdown-trigger, etc.) */
-
-        /* Search Bar Styling (Top Right Corner) */
-        .desktop-search { display: block; width: 300px; margin-left: 20px; }
-        .desktop-search input {
-            width: 100%; padding: 6px 15px; border: 2px solid var(--procore-orange); border-radius: 20px; font-size: 1em; background-color: var(--procore-light-text); color: var(--procore-dark-text); transition: all 0.2s;
-        }
-        .desktop-search input:focus { outline: none; box-shadow: 0 0 0 3px rgba(255, 82, 0, 0.5); }
-        .desktop-search input::placeholder { color: #777; }
-        
-        /* BANNER STYLES - NEW OVERLAY TEXT STYLES */
-        #banner-overlay-text .banner-title {
-            font-size: 3.5em; /* INCREASED FONT SIZE */
-            font-weight: 700;
-            margin-bottom: 10px; 
-            color: var(--procore-light-text);
-            text-shadow: 0 0 10px rgba(0,0,0,0.5); 
-        }
-
-        #banner-overlay-text .banner-intro-text {
-            max-width: 950px; 
-            font-size: 1.4em; /* INCREASED FONT SIZE HERE */
-            font-weight: 400;
-            line-height: 1.4;
-            padding: 20px;
-            color: var(--procore-light-text);
-            text-shadow: 0 0 5px rgba(0,0,0,0.7); 
-        }
-
-        /* Main Content */
-        main {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: transparent; 
-            min-height: 50vh;
-        }
-        
-        /* --- COLUMN LAYOUT FOR SECTIONS --- */
-        .content-column-wrapper {
-            /* Now an intentional single column stack */
-            display: block;
-            margin-top: 20px;
-        }
-        
-        /* Removed @media (min-width: 900px) rules for .content-column-wrapper */
-        
-        .content-section {
-            padding: 0; 
-            width: 100%; 
-            display: block; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); 
-            /* Ensure the section is positioned relative for the pseudo-element bar */
-            position: relative; 
-        }
-        
-        /* FIX 1 (Spacing): Ensure separation when open. */
-        .content-section:not(.collapsed) {
-            margin-bottom: 25px; 
-        }
-        
-        /* FIX 2 (Spacing): Reduce margin when closed for tight grouping. */
-        .content-section.collapsed {
-            margin-bottom: 15px; 
-        }
-
-        /* ********************************************************* */
-        /* NEW LOOK & FEEL: SECTION HEADER STYLING */
-        /* ********************************************************* */
-        
-        /* 1. TOP-LEVEL GROUPING HEADERS (Black/White) */
-        /* Targets only the immediate headers of the main grouping sections */
-        #enterprise-ai-resources > .section-header,
-        #legal-team-resources > .section-header {
-            background-color: var(--procore-black); 
-            border: 1px solid var(--procore-black); 
-            font-size: 1.75em; 
-            /* *** FIX: Set TOP LEVEL TEXT COLOR to WHITE *** */
-            color: var(--procore-light-text); 
-            transition: background-color 0.2s, box-shadow 0.2s; /* Add transition for hover effect */
-            cursor: default; /* Keep cursor standard */
-        }
-
-        /* ADDED: Subtle hover effect for the top-level section headers */
-        #enterprise-ai-resources > .section-header:hover,
-        #legal-team-resources > .section-header:hover {
-            background-color: rgba(0, 0, 0, 0.9); /* Slightly lighter black */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Subtle white glow */
-        }
-        
-        /* Ensure icons and text inside top-level headers are White (for text) and Orange (for icons) */
-        #enterprise-ai-resources > .section-header .title-wrapper .icon-3d-section,
-        #legal-team-resources > .section-header .title-wrapper .icon-3d-section {
-            color: var(--procore-orange) !important;
-        }
-        /* Ensure wrapper text color is white */
-        #enterprise-ai-resources > .section-header .title-wrapper,
-        #legal-team-resources > .section-header .title-wrapper {
-             color: var(--procore-light-text) !important;
-        }
-
-
-        /* 2. ALL COLLAPSIBLE SUB-HEADERS (Stone/Dark) */
-        /* This applies to ALL headers including AI Unlocked and all nested sub-sections. */
-        .content-section .section-header {
-            padding: 15px 15px; 
-            background-color: var(--procore-accent-stone); 
-            border: 1px solid #c0c0c0; 
-            border-bottom: none; 
-            margin-top: 0; 
-            font-size: 1.6em; 
-            color: var(--procore-dark-text); 
-            border-radius: 4px 4px 0 0; 
-            transition: background-color 0.2s; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            cursor: pointer;
-            /* Ensure header is positioned relative to allow pseudo-element bar to anchor */
-            position: relative; 
-            overflow: hidden; /* Important for containing pseudo-element before positioning */
-        }
-
-        /* ********************************************************* */
-        /* NEW FEATURE: ORANGE LEFT BAR ACCENT */
-        /* Applies to ALL section headers */
-        .content-section .section-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 5px; /* Thin orange bar width */
-            background-color: var(--procore-orange);
-            z-index: 1;
-        }
-        /* Adjust padding to accommodate the new bar without content overlap */
-        .content-section .section-header {
-            padding-left: calc(15px + 5px); /* Original padding + bar width */
-        }
-        /* ********************************************************* */
-
-
-        
-        /* Ensure icons and text within the title wrapper of collapsible sub-sections are dark text */
-        /* This rule is crucial to override the parent black/orange setting for nested sections */
-        .content-section .section-header .icon-3d-section,
-        .content-section .section-header .title-wrapper,
-        #ai-unlocked-podcast .section-header .icon-3d-section,
-        #ai-unlocked-podcast .section-header .title-wrapper {
-             color: var(--procore-dark-text) !important;
-        }
-
-        /* Overrides for AI Unlocked (Featured Section) which is top-level but needs light style */
-        #ai-unlocked-podcast .section-header {
-            background-color: var(--procore-accent-stone); 
-            border-color: #c0c0c0;
-            color: var(--procore-dark-text);
-            font-size: 1.6em; 
-        }
-        #ai-unlocked-podcast .section-header .title-wrapper *,
-        #ai-unlocked-podcast .section-header .icon {
-            color: var(--procore-dark-text);
-        }
-
-
-        /* Ensures the header looks like a closed box when the content is hidden */
-        .content-section.collapsed .section-header {
-            border-bottom: 1px solid #c0c0c0; /* Light border on collapse for sub-sections */
-            border-radius: 4px; 
-        }
-        
-        .section-header:hover { 
-            background-color: #d8c9bc; /* Lighter stone hover for sub-sections */
-        }
-        
-        .section-header .title-wrapper { display: flex; align-items: center; }
-        
-        .section-content {
-            background-color: var(--procore-light-text); 
-            border: 1px solid #ddd; 
-            border-top: none; 
-            border-radius: 0 0 4px 4px; 
-            overflow: hidden;
-            display: block; 
-            
-            /* ADDED: Explicit padding for open state */
-            padding: 20px 15px;
-        }
-        
-        /* ********************************************************* */
-        /* CRITICAL FIX: Guaranteed hiding using CSS targeting the collapsed class */
-        /* ********************************************************* */
-        .content-section.collapsed .section-content {
-            /* Guaranteed hiding of everything inside when collapsed */
-            display: none !important; 
-        }
-        
-        /* GENERAL BUTTON STYLING */
-        .play-link {
-            display: inline-block; background-color: var(--procore-orange); color: var(--procore-light-text); padding: 8px 20px; border-radius: 20px; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 6px rgba(255, 82, 0, 0.4); transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; text-decoration: none; border: none; cursor: pointer;
-        }
-        
-        .play-link:hover {
-            background-color: #e64500; transform: translateY(-1px); box-shadow: 0 6px 8px rgba(255, 82, 0, 0.6); text-decoration: none;
-        }
-        
-        .podcast-card-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        
-        /* !!! FIX APPLIED HERE: Contain the button within the white background !!! */
-        .back-to-top { 
-            display: block; 
-            /* REMOVE original margin-top that escaped the container */
-            margin-top: 0; 
-            /* Set new padding (top: 25px for visual separation, bottom: 5px for button size) */
-            padding: 25px 0 5px 0; 
-            font-size: 1.1em; 
-            font-weight: 700; 
-            color: var(--procore-orange); 
-            text-align: right; 
-            opacity: 1; 
-            transition: opacity 0.2s; 
-            text-decoration: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-        .back-to-top:hover { opacity: 0.8; text-decoration: underline; }
-        
-        /* General mobile adjustments */
-        @media (max-width: 767px) {
-            body { flex-direction: column; }
-            .sidenav { width: 100%; height: auto; position: relative; overflow-y: visible; padding-bottom: 0; }
-            .main-content-wrapper { overflow-y: visible; }
-            .fixed-header-container { position: relative; }
-        }
-        
-        /* Media Queries (for search bar visibility) */
-        @media (min-width: 768px) {
-            .mobile-search { display: none; }
-            .desktop-search { display: block; }
-            /* Removing two-column layout wrapper rule for all content-column-wrapper blocks */
-        }
-        
-        /* ADDED CSS FOR RESPONSIVE TABLE */
-        .responsive-tool-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 0.95em;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            background-color: var(--procore-light-text);
-        }
-
-        .responsive-tool-table th, .responsive-tool-table td {
-            padding: 12px 15px;
+        /* Ensure specific banner elements are left-aligned, not centered */
+        #banner-overlay-text .banner-content-container {
             text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        .responsive-tool-table thead th {
-            background-color: var(--procore-metal);
-            color: var(--procore-light-text);
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .responsive-tool-table tbody tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        /* Tool Name column styling */
-        .responsive-tool-table td:first-child {
-            font-weight: 700;
-            color: var(--procore-dark-text);
-            white-space: nowrap;
-            display: flex; /* Allow content and icon/logo to align */
-            align-items: center;
-        }
-        /* Icon/Logo styling within table cell */
-        .tool-table-icon {
-            width: 30px; 
-            height: 30px; 
-            margin-right: 10px;
-            border-radius: 50%; 
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
-            border: none; 
-            overflow: hidden; 
-            flex-shrink: 0; 
-            background-color: #ffffff; 
-            object-fit: contain;
-        }
-        /* Special case styling for custom text logos */
-        .tool-table-icon.slack-logo { background-color: #4A154B; color: white; text-align: center; line-height: 30px; font-size: 1.2em; font-weight: 900; }
-        .tool-table-icon.zoom-logo { background-color: #2D8CFF; color: white; text-align: center; line-height: 30px; font-size: 1.2em; font-weight: 900; }
-
-
-        /* Link styling within table */
-        .responsive-tool-table td a {
-            color: var(--procore-orange);
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .responsive-tool-table td a:hover {
-            color: #e64500;
-            text-decoration: underline;
-        }
-
-
-        /* Responsive Table Styling (Mobile View) */
-        @media (max-width: 767px) {
-            .responsive-tool-table thead {
-                display: none; /* Hide header on mobile */
-            }
-
-            .responsive-tool-table, .responsive-tool-table tbody, .responsive-tool-table tr, .responsive-tool-table td {
-                display: block;
-                width: 100%;
-            }
-            
-            .responsive-tool-table tr {
-                margin-bottom: 15px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                overflow: hidden;
-            }
-            
-            .responsive-tool-table td {
-                text-align: right;
-                padding-left: 50%; /* Space for pseudo-element label */
-                position: relative;
-            }
-            
-            .responsive-tool-table td::before {
-                /* Mobile Label */
-                content: attr(data-label);
-                position: absolute;
-                left: 15px;
-                width: calc(50% - 30px);
-                padding-right: 10px;
-                white-space: nowrap;
-                text-align: left;
-                font-weight: 700;
-                color: var(--procore-metal);
-            }
-            
-            .responsive-tool-table td:first-child {
-                background-color: var(--procore-accent-stone);
-                color: var(--procore-black);
-                font-size: 1.1em;
-                text-align: center;
-                padding-left: 15px; /* Reset padding for center align */
-                justify-content: center; /* Center content horizontally on mobile */
-            }
-            .responsive-tool-table td:first-child::before { content: ''; }
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* --- Rest of the Existing Styles (Restored from AI Hub File) --- */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 15px; }
-        .card { background-color: var(--procore-light-text); border: 1px solid #ddd; padding: 20px; border-radius: 12px; }
-        .card:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); transform: translateY(-2px); }
-        .ai-tool-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
-        /* NOTE: The a.ai-tool-card rule below is used in place of the div.ai-tool-card which was removed */
-        .tool-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; }
-        /* Adjusted grid template for trial cards to match the fixed size/count of specialized platforms */
-        #what-platforms-are-we-testing .tool-row { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 500px; margin-left: auto; margin-right: auto; }
-        @media (min-width: 900px) { 
-            #legal-ai-tools-specific .tool-row,
-            #what-platforms-are-we-testing .tool-row { grid-template-columns: repeat(2, 1fr); max-width: 450px; margin-left: auto; margin-right: auto;}
-            /* Removed third column to match the max-width of 500px/2 columns for both legal tool sections */
-            #legal-ai-tools-specific .ai-tool-card:nth-child(3),
-            #what-platforms-are-we-testing .ai-tool-card:nth-child(3) { display: none !important; }
-            /* Hide placeholder cards on desktop, assuming we only need two visible cards in the trial section, but keep 3 for Specialized Platforms */
-            #what-platforms-are-we-testing .ai-tool-card[style*="visibility: hidden"] { display: none !important; }
+        /* New styles for collapsible content */
+        .collapsible-content {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .collapsible-content.open {
+            max-height: 5000px; /* Sufficiently large value for smooth transition */
+        }
+        .collapsible-button .dropdown-icon {
+            transition: transform 0.3s ease;
+        }
+        .collapsible-button.open .dropdown-icon {
+            transform: rotate(180deg);
+        }
+        /* Interview specific styling */
+        .interview-content h4 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            color: #ECE0D6; /* Procore Stone (White) */
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        /* Style for workstream sub-headings */
+        .workstream-card h3 {
+            color: #ECE0D6; /* Procore Stone (White) */
         }
 
-        .ai-tool-card { 
-            cursor: pointer; /* Changed to pointer since it's now a link */
-            background-color: var(--procore-light-text); 
-            border: 1px solid #ddd; 
-            border-radius: 12px; 
-            text-align: center; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            padding: 20px 15px; 
-            position: relative; 
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); 
-            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-            text-decoration: none; /* Ensure link decoration is removed */
-            color: inherit; /* Ensure text color is inherited/default */
-            /* Added min-width and max-width logic to help size consistency with the 2-column centered layout */
-            min-width: 200px;
-            max-width: 200px;
+        /* Custom style for the circular image */
+        .spotlight-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 4px solid #FF5200; /* Procore Orange border */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
-        .ai-tool-card:hover { 
-            border-color: var(--procore-orange); 
-            box-shadow: 0 4px 8px rgba(255, 82, 0, 0.2); 
-            transform: translateY(-2px); 
-            text-decoration: none;
-        }
-        .tool-iframe { width: 40px; height: 40px; margin-bottom: 5px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); border: none; overflow: hidden; flex-shrink: 0; background-color: #ffffff; z-index: 10; }
-        .tool-iframe.law360 { background-color: #00447C; color: white; text-align: center; line-height: 40px; font-size: 1.5em; font-weight: 900; font-family: Arial, sans-serif; padding: 0; display: inline-block; }
-        .ai-tool-card span { font-size: 1em; font-weight: 700; color: var(--procore-dark-text); margin-bottom: 5px; line-height: 1.2; }
-        .tool-description-text { text-align: center; margin-top: 5px; font-size: 0.85em; line-height: 1.4; color: #555; min-height: 40px; }
-        
-        /* --- NEW: CARD HEADLINE STYLING --- */
-        .card h3 {
-            font-size: 1.5em; /* Larger headline size */
-            font-weight: 900;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--procore-orange); /* Bold orange separator for headline feel */
-            display: flex;
-            align-items: center;
-            line-height: 1.2;
-            color: var(--procore-dark-text);
-        }
-        
-        /* NEW STYLE: Prominent Link/Headline Styling for PEP Hub */
-        .prominent-link-container { 
-            text-align: center; 
-            margin-bottom: 30px; 
-            padding: 15px;
-            background-color: var(--procore-accent-stone);
-            border: 2px solid var(--procore-orange);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .prominent-link-container a.play-link {
-            /* Override button alignment to ensure it looks good within the container */
-            margin: 0;
-            display: inline-block;
-        }
-        .prominent-text {
-            font-size: 1.5em; /* Match card h3 size */
-            font-weight: 900;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            line-height: 1.2;
-            color: var(--procore-dark-text);
-            display: block;
-        }
-
     </style>
 </head>
 <body>
-    <!-- Anchor for "Back to Top" functionality -->
-    <a id="home"></a>
-    
-    <!-- ---------------------------------------------------- -->
-    <!-- SIDEBAR NAVIGATION -->
-    <!-- ---------------------------------------------------- -->
-    <nav class="sidenav" id="main-nav" aria-label="Main Page Navigation">
-        
-        <!-- LRC Information Library Link (UPDATED HOVER EFFECT) -->
-        <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" class="team-home-link" style="padding-left: calc(var(--left-padding-units) + 5px);" title="Access the comprehensive internal LRC information and documents.">
-             LRC Information Library
-        </a>
-        
-        <!-- Quick Links Title -->
-        <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); margin: 15px 0;"></div>
-        <!-- UPDATED: Added span to customize "(with hover text)" appearance -->
-        <div class="sidenav-title">QUICK LINKS <span style="font-weight: 400; text-transform: none; font-size: 0.9em;">(with hover text)</span></div>
 
-        <!-- SLACK CHANNELS Dropdown -->
-        <div class="nav-link-item" id="slack-dropdown-trigger">
-            <span class="dropdown-trigger">
-                <span class="icon-3d-section">💬</span> SLACK CHANNELS
-                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
-                </svg>
-            </span>
-            <div class="nav-dropdown">
-                
-                <a href="https://procore.enterprise.slack.com/docs/T02AS2EJA/F08CMGKKPA7" target="_blank" rel="noopener noreferrer" title="✨ AI Tools Hub: Your central resource for smarter work and career growth! 🔑 This hub provides essential training and deep dives into Procore’s key AI platforms. For GEMINI 🤖, learn Getting Started, Prompting, and using tools like NotebookLM. Master SLACK AI 💬 with guides on Recaps, Search, and Summaries. Find specialized guides for BOLT 🔩 across Accounts Payable, HR, and IT use cases. Accelerate productivity with ATLASSIAN AI & ROVO 🚀 for Confluence/Jira, including setup, features, and agent creation. (Note: ZOOM AI Companion 💻 setup is currently a Work In Progress).">Unlocking AI for All (Canvas)</a>
+<header class="bg-black shadow-lg sticky top-0 z-50 border-b border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
 
-                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" target="_blank" rel="noopener noreferrer" title="👋 Welcome Curious Innovators! Your hub for all things AI at Procore. Get support, share use cases, and discover best practices for tools like Google Gemini and NotebookLM. 💡">#unlocking-ai-community</a>
+            <!-- Logo/Brand (Procore Logo SVG) -->
+            <div class="flex-shrink-0">
+                <img src="https://media.ffycdn.net/us/procore/oJWY14VdUCCeDGsU52FU.svg?width=150" alt="Procore Logo" class="h-8 w-auto">
             </div>
-        </div>
-        <!-- END SLACK DROPDOWN -->
-        
-        <!-- THE CORE DROPDOWN -->
-        <div class="nav-link-item" id="thecore-dropdown-trigger">
-            <span class="dropdown-trigger">
-                <span class="procore-logo-icon">P</span> THE CORE
-                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
-                </svg>
-            </span>
-            <div class="nav-dropdown">
-                <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/aicontent/ai_demo_hub" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   title="📺 AI Demo Hub: Centralized area for internal Procore AI demonstrations, showcases, and recorded presentations.">AI Demo Hub</a>
-                <a href="https://thecore.procore.com/pac/unlockingai" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   title="🔓 Unlocking AI Hub: The main resource center on The Core for all Procore AI training, initiatives, and governance.🛡️">Unlocking AI Hub</a>
+
+            <!-- Desktop Menu (visible on large screens) -->
+            <nav class="hidden md:flex space-x-2 items-center">
                 
-                <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   title="⚙️ AI Tools Hub: Dedicated list of all company-approved AI tools and their official usage guidelines.">AI Tools Hub</a>
-                
-                <!-- REMOVED: AI for Confluence link -->
-                
-                <!-- REMOVED: AI for Jira link -->
-            </div>
-        </div>
-        <!-- END THE CORE DROPDOWN -->
-        
-        <!-- TRACKING EMERGING INNOVATION Dropdown -->
-        <div class="nav-link-item open" id="innovation-dropdown-trigger"> <!-- RETAINED: 'open' class -->
-            <span class="dropdown-trigger">
-                <span class="icon-3d-section">🚀</span> TRACKING EMERGING INNOVATION
-                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
-                </svg>
-            </span>
-            <div class="nav-dropdown" style="display: flex;"> <!-- RETAINED: inline style for initial open state -->
-                
-                <!-- NEW LEGAL INDUSTRY TOPICS DROPDOWN -->
-                <div class="nav-link-item" id="legal-industry-topics-dropdown-trigger">
-                     <span class="dropdown-trigger flex items-center">
-                        <span class="icon-3d-section" style="margin-right: 5px;">📰</span> Legal Industry Topics
-                        <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
+                <!-- UPDATED LINK: LRC Team Spotlight -->
+                <a href="#lrc-team-spotlight-section" class="nav-item-button text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium transition-colors">
+                    LRC Team Spotlight
+                </a>
+
+                <!-- Dropdown Menu 1: Solutions -->
+                <div class="relative">
+                    <button id="dropdown-toggle-1" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-1', this)">
+                        Solutions
+                        <!-- Down Arrow Icon -->
+                        <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
-                    </span>
-                    <div class="nav-dropdown">
-                        <a href="https://www.acc.com/sites/default/files/resources/upload/ACC-Artificial-Intelligence-Toolkit-for-In-house-Lawyers-FINAL.pdf" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           title="ACC Toolkit: Focuses on AI Governance, Protecting IP & Ethics, and Career Readiness for in-house counsel.">ACC AI Toolkit Summary: 3 Pillars of Legal AI Readiness</a>
-                        
-                        <a href="https://news.bloomberglaw.com/artificial-intelligence/in-house-lawyers-use-of-gen-al-more-than-doubles-in-one-year" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           title="Bloomberg Law: Reports a massive surge in corporate Gen AI adoption, primarily driven by efficiency and productivity gains.">In-House Use of Gen AI More Than Doubles in One Year</a>
-                        
-                        <a href="https://www.lawyersweekly.com.au/corporate-counsel/43221-could-ai-be-the-new-devil-s-advocate-for-in-house-lawyers" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           title="Lawyers Weekly: Discusses using AI as a sparring partner to challenge core legal arguments and expose weaknesses.">AI: The New Devil's Advocate for Legal Strategy</a>
+                    </button>
+                    
+                    <!-- Dropdown Content (White background, Procore Orange accents) -->
+                    <div id="dropdown-menu-1" class="origin-top-right absolute right-0 mt-2 w-48 rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu">
+                        <div class="py-1" role="none">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-t-lg">Project Management</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Financials</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-b-lg">Quality & Safety</a>
+                        </div>
                     </div>
                 </div>
-                <!-- END LEGAL INDUSTRY TOPICS DROPDOWN -->
-                
-                <!-- Newsletters Sub-Category -->
-                <div class="nav-link-item" id="newsletters-dropdown-trigger">
-                     <span class="dropdown-trigger flex items-center">
-                        <span class="icon-3d-section">🗞️</span> Newsletters
-                        <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
-                        </svg>
-                    </span>
-                    <div class="nav-dropdown">
-                        <a href="https://www.therundown.ai/subscribe" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           title="📰 The Rundown: Daily AI newsletter by Rowan Cheung that makes complex concepts accessible and highlights new tools. 🚀">The Rundown</a>
-                        
-                        <a href="https://www.bensbites.com/subscribe" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           title="🍪 Ben's Bites: Daily newsletter curating the latest AI news, hottest tools, and new product launches from tech investor Ben Tossell.">Ben's Bites</a>
-                        
-                        <a href="https://substack.com/@ajsai/posts" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           title="📧 AJ Green Substack: Daily news and developments via 'AI Daily News' and 'AI Advantage Daily News' newsletters, plus an embedded podcast.">AJ Green Substack</a>
 
-                        <a href="https://pivot5.beehiiv.com/?utm_source=pivot5&utm_medium=newsletter&utm_campaign=youtube-can-t-keep-up-with-ai-powered-scam-ads&_bhlid=666a131cb4c212d7743c0b00cde2d27d163aae49" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           title="🎯 Pivot5: Highly-regarded newsletter focused on tracking emerging innovation and significant AI developments.">Pivot5</a>
+                <!-- Dropdown Menu 2: Resources -->
+                <div class="relative">
+                    <button id="dropdown-toggle-2" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-2', this)">
+                        Resources
+                        <!-- Down Arrow Icon -->
+                        <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    
+                    <!-- Dropdown Content -->
+                    <div id="dropdown-menu-2" class="origin-top-right absolute right-0 mt-2 w-48 rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu">
+                        <div class="py-1" role="none">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-t-lg">Customer Stories</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Webinars</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-b-lg">Documentation</a>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Podcast Sub-Category -->
-                <div class="nav-link-item" id="podcast-dropdown-trigger">
-                     <span class="dropdown-trigger flex items-center">
-                        <span class="icon-3d-section">🎤</span> Podcast
-                        <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M7.247 11.14 2.451 5.658C1.885 5.012 2.345 4 3.204 4h9.592c.859 0 1.319 1.012.753 1.658l-4.796 5.482c-.173.198-.44.198-.614 0z"/>
-                        </svg>
-                    </span>
-                    <div class="nav-dropdown">
-                        <a href="https://www.latent.space/podcast" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           title="📻 Latent Space: The AI Engineer Podcast, covering news, papers, and interviews on foundation models, AI agents, and GPU infrastructure.">Latent Space</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END TRACKING EMERGING INNOVATION Dropdown -->
-    </nav>
-    
-    <!-- ---------------------------------------------------- -->
-    <!-- MAIN CONTENT AREA (Scrollable) -->
-    <!-- ---------------------------------------------------- -->
-    <div class="main-content-wrapper">
+                <a href="#" class="nav-item-button text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium transition-colors">
+                    Pricing
+                </a>
 
-        <!-- Fixed Header Container (sticky to the top of the scrollable area) -->
-        <!-- Now only holds the Header and Nav, which are always visible -->
-        <div class="fixed-header-container">
-            <header>
-                <div class="logo-section" style="display: flex; align-items: center;">
-                    <a href="#home" class="logo-link" aria-label="Back to Home" style="height: 100%; display: flex; align-items: center;">
-                        <img src="https://media.ffycdn.net/us/procore/etmeNi2XofqcS5LaePER.png?width=200"
-                            alt="Procore Logo"
-                            onerror="this.onerror=null; this.src='https://placehold.co/100x50/ff5200/ffffff?text=LOGO'; this.style.backgroundColor='var(--procore-orange)'; this.style.height='100%'; this.style.width='auto';"
-                            style="height: 40px; width: auto; object-fit: contain; background-color: var(--procore-orange); border-radius: 4px; margin-right: 15px;"
-                        >
-                    </a>
-                    <span class="page-title">Legal, Regulatory, & Compliance (LRC)</span>
-                </div>
-                
-                <!-- Search Bar (Top Right Corner) -->
-                <div class="desktop-search">
-                    <input type="text" id="desktop-search-input" placeholder="Search the Knowledge Hub..." class="searchable-input">
-                </div>
-            </header>
-            
-            <!-- Horizontal Top Navigation Bar for Quick Links (MOVED AI UNLEASHED TO THE END) -->
-            <nav id="fixed-top-nav" aria-label="Quick Links Navigation">
-                <a href="#ai-unlocked-podcast" data-section-id="ai-unlocked-podcast">AI Unlocked</a>
-                <a href="#enterprise-ai-resources" data-section-id="enterprise-ai-resources">Enterprise AI Resources</a>
-                <a href="#legal-team-resources" data-section-id="legal-team-resources">Legal-Specific Resources</a>
-                <a href="#lrc-tech-group-portal-spotlight" data-section-id="lrc-tech-group-portal-spotlight">LRC Team Spotlight</a> 
-                <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" data-section-id="ai-unleashed-podcast-main">🎙️ AI Unleashed Podcast</a>
+                <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors ml-4">
+                    Sign In
+                </a>
+                <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors">
+                    Get a Demo
+                </a>
+
             </nav>
-        </div>
-        <!-- END FIXED HEADER CONTAINER -->
 
-        <!-- NEW: BANNER WRAPPER (This scrolls with the content) -->
-        <div id="banner-canvas-wrapper">
-             <!-- NEW: CAROUSEL BANNER (Three.js Canvas) -->
-            <canvas id="carousel-canvas"></canvas>
-            
-            <!-- NEW: BANNER TEXT OVERLAY (Replicating original AI Hub text) -->
-            <div id="banner-overlay-text">
-                <div class="banner-title">WELCOME TO THE LRC AI KNOWLEDGE HUB</div>
-                <div class="banner-intro-text">
-                    This Knowledge Hub reflects our <b>commitment to your growth</b>, directly supporting the LRC EVS Action Plan and the goal of <b>enhancing your career at Procore</b>. Explore tools, training, and news designed to help you build Enhanced Expertise and Career Adaptability, amplifying your judgment and <b>delivering maximum value in your role</b>.
-                </div>
+            <!-- Mobile Menu Button (visible on small screens) -->
+            <div class="flex md:hidden">
+                <button id="mobile-menu-toggle" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMobileMenu()">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Icon when menu is closed. -->
+                    <svg class="block h-6 w-6" id="menu-open-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- Icon when menu is open. -->
+                    <svg class="hidden h-6 w-6" id="menu-close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-            <!-- END BANNER -->
         </div>
-        <!-- END SCROLLING BANNER WRAPPER -->
-        
-
-        <main>
-            <!-- Mobile Search (Visible on small screens) -->
-            <div class="mobile-search">
-                <input type="text" id="mobile-search-input" placeholder="Search the Knowledge Hub..." class="searchable-input">
-            </div>
-            
-            <!-- ************************************ -->
-            <!-- 1. FEATURED AI UNLOCKED (PERMANENTLY OPEN - Stays at top) -->
-            <!-- ************************************ -->
-            <section class="content-section" id="ai-unlocked-podcast">
-                <h2 id="ai-unlocked-podcast" class="section-header" data-default-state="open" style="cursor: default;">
-                    <div class="title-wrapper">
-                        <span class="icon-3d-section">🎧</span> Featured: AI Unlocked
-                    </div>
-                </h2>
-                <div class="section-content">
-                    <div class="card-grid">
-                        
-                        <!-- NOTE: Removed the 'AI Unleashed Podcast Main Index' card per user request -->
-                        
-                        <!-- Existing Card: GTM Assist Recording -->
-                        <div class="card podcast-feature" data-search-term="AI Unleashed Podcast GTM Assist Recording Seller AI Tool Legal Ops Efficiency">
-                            <div class="podcast-card-content">
-                                <h3><span class="icon-3d-section" style="margin-right: 5px;">🎙️</span> AI Unleashed Podcast: The GTM Assist Recording</h3>
-                                
-                                <p class="intro-text" style="font-size: 1.1em; line-height: 1.5; margin-top: 0; margin-bottom: 15px;">
-                                    Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the <b class="orange-bold">GTM Assist Seller AI Tool</b>, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI.
-                                </p>
-                                
-                                <a href="https://www.loom.com/share/752a8991386c4b588db46a4124e28a35?sid=79b6a660-843a-4641-a98c-1c91731d66da" target="_blank" class="play-link">
-                                    WATCH THE VIDEO PODCAST
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- Card: Weekly Productivity Newsletter (UPDATED NAME) -->
-                        <div class="card" id="weekly-newsletter" data-search-term="Weekly Newsletter Productivity Tips Wins New Tools">
-                            <div class="podcast-card-content">
-                                <h3><span class="icon-3d-section" style="margin-right: 5px;">✨</span> Team Productivity Newsletter: Coming Soon!</h3>
-                                <p class="intro-text" style="font-size: 1.1em; line-height: 1.5; margin-top: 0;">
-                                    Did you know this entire Confluence page was made with a Gem? How cool is that! We plan to launch a team newsletter that will celebrate quick wins, share productivity tips (including Gemini-specific hacks), and highlight new tool functionalities. Stay tuned, and we hope to share how our own LRC team is <b>using AI to help with day-to-day work!</b>
-                                </p>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                </div>
-            </section>
-            
-            
-            <!-- ============================================== -->
-            <!-- TOP LEVEL SECTION: ENTERPRISE AI RESOURCES -->
-            <!-- ============================================== -->
-            <section class="content-section" id="enterprise-ai-resources">
-                 <h2 class="section-header" data-default-state="open" style="cursor: default;">
-                    <div class="title-wrapper">
-                        <span class="icon-3d-section">🏢</span> Enterprise AI Resources
-                    </div>
-                </h2>
-                <div class="section-content">
-
-                    
-                    <!-- *** START: Company AI Updates Sub-Section (NOW OPEN BY DEFAULT) *** -->
-                    <section class="content-section" id="ai-updates">
-                        <h2 class="section-header" data-default-state="open">
-                            <div class="title-wrapper">
-                                <span class="icon-3d-section">🧠</span> Company AI Updates 
-                            </div>
-                            <span class="icon" aria-hidden="true">−</span>
-                        </h2>
-                        <div class="section-content">
-                            <div class="card-grid">
-                                
-                                <!-- NEW CARD: Gemini in Chrome is now live for Procore! -->
-                                <div class="card" data-search-term="Gemini Chrome Live Procore Ctrl+G Alt+G Summarizing Explaining Quizzing Discussing">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🚀</span> Gemini in Chrome is now live for Procore!</h3>
-                                    <p>Gemini now lives right inside Chrome. It pops open in a small floating window so you can ask for help in the moment, using context from the tab you’re on, when you want it.</p>
-                                    
-                                    <p><b>How to start:</b> Open Chrome → click the Gemini icon at the top right → opt in once.</p>
-                                    
-                                    <p><b>Bonus:</b> After opt-in, you’ll see Gemini in your Mac menu bar or Windows tray and can use keyboard shortcuts. (Mac: <b>Ctrl + G</b> | Windows: <b>Alt + G</b>)</p>
-
-                                    <p><b>Gemini in Chrome is good for:</b></p>
-                                    <ul>
-                                        <li>Summarizing a page you’re reading</li>
-                                        <li>Explaining tricky topics in plain English</li>
-                                        <li>Quizzing yourself on something new</li>
-                                        <li>Discussing the information on your tab and going deeper on concepts</li>
-                                    </ul>
-                                    <p class="source-info">
-                                        <i>Helpful Links: <a href="https://support.google.com/gemini/?p=get_started_chrome_extension" target="_blank">Getting Started with Gemini in Chrome</a> | <a href="https://support.google.com/gemini/answer/14569550" target="_blank">Use Gemini Live w/ Gemini in Chrome</a></i>
-                                        </p>
-                                </div>
-                                
-                                <!-- Existing Card 1: Presentations with Gemini -->
-                                <div class="card" data-search-term="Presentations with Gemini create decks upload document Canvas Google Slides">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🖼️</span> Presentations with Gemini</h3>
-                                    <p>You can now create entire presentations <b>inside</b> the Gemini app. Give Gemini a prompt, or upload a document (brief, your notes, a 20-page report), select "Canvas" from tools and it will generate a full deck, complete with a theme and images. Then, export it to Google Slides to add your final polish.</p>
-                                    <p class="source-info"><i>Before: Crying softly as you try to turn a 10-page doc into a Q4 kickoff deck.</i></p>
-                                    <p class="source-info"><i>Now: Upload the doc. Select Canvas. Ask Gemini to "create a launch presentation". Get a 10-slide head start in 60 seconds.</i></p>
-                                    <p class="source-info">
-                                        <i>Source: <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank">Google Workspace Updates</a></i>
-                                    </p>
-                                </div>
-                                
-                                <!-- Existing Card 2: NotebookLM Upgrade -->
-                                <div class="card" data-search-term="NotebookLM Upgrade Bigger Brain Custom Goals skeptical research advisor">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">📈</span> Google NotebookLM: Now with a Bigger Brain (and an 'Attitude')</h3>
-                                    <p>Your personal AI research assistant just got a serious engine upgrade. It now has an <b>8x larger context window</b> (1 million tokens!) and <b>6x longer conversation memory</b>. The best part? <b>Custom Goals</b>—You can now tell NotebookLM exactly how to act:</p>
-                                    <ul>
-                                        <li>"Act as a skeptical marketing director. Poke holes in this launch plan. Be direct and analytical."</li>
-                                        <li>"You are my research advisor. Rigorously challenge every assumption I make".</li>
-                                    </ul>
-                                    <p class="source-info">
-                                        <i>Source: <a href="https://blog.google/technology/google-labs/notebooklm-custom-personas-engine-upgrade/" target="_blank">Google Labs Blog</a></i>
-                                    </p>
-                                </div>
-                                
-                                <!-- Existing Card 3: Make Your Docs Look Crisp (LaTeX) -->
-                                <div class="card" data-search-term="Make Your Docs Look Crisp LaTeX professional documents project proposals technical guides PDF">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">📜</span> Make Your Docs Look Crisp with LaTeX</h3>
-                                    <p>"LaTeX" is the secret code for making documents look incredibly professional <b>without</b> fighting a word processor. Gemini now makes you a LaTeX expert.</p>
-                                    <p class="source-info"><i>Before: Your project proposal looks messy in a standard doc.</i></p>
-                                    <p class="source-info"><i>Now: Ask Gemini to "Format this content as a clean, professional project proposal using LaTeX." It generates a perfect, sharp PDF you can download.</i></p>
-                                    <p class="source-info">
-                                        <i>Source: <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank">Google Workspace Updates</a></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                        </div>
-                    </section>
-                    <!-- *** END: Company AI Updates Sub-Section *** -->
-
-
-                    <!-- *** START: AI Learning Sub-Section (NOW OPEN BY DEFAULT) *** -->
-                    <section class="content-section" id="additional-ai-learning-sessions">
-                        <h2 class="section-header" data-default-state="open">
-                            <div class="title-wrapper">
-                                <span class="icon-3d-section">📚</span> AI Learning
-                            </div>
-                            <span class="icon" aria-hidden="true">−</span>
-                        </h2>
-                        <div class="section-content">
-                            <div class="card-grid">
-                                
-                                <!-- NEW CARD: Procore AI Academy (TOP PRIORITY) -->
-                                <div class="card" data-search-term="Procore AI Academy classes register training courses certification">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🎓</span> Did you know you can register for Procore AI classes?</h3>
-                                    <p>📢 Big news! Level up your AI fluency by enrolling in the official <b>Procore AI Academy</b>. This is your go-go hub for structured learning, responsible usage guidelines, and hands-on training tailored for Procore employees.</p>
-                                    <p><b>Courses include:</b> AI Basics, Generative AI for Productivity, and Ethical AI Usage.</p>
-                                    <p class="source-info" style="font-size: 1.1em; font-weight: 700;">
-                                        ➡️ <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3890676126/AI+Academy+-+P+T" target="_blank">Register for Classes Here!</a>
-                                    </p>
-                                </div>
-                                
-                                <div class="card" data-search-term="AI Productivity Office Hours and Learning Sessions Schedule Upcoming sessions">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🗓️</span> AI Productivity Office Hours and Learning Sessions Schedule</h3>
-                                    <p>Upcoming sessions! Please check the <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3890676126/AI+Academy+-+P+T" target="_blank">AI Academy Hub</a> for the latest schedule.</p>
-                                </div>
-
-                                <!-- EXISTING: LinkedIn Learning Prompt Engineering Course -->
-                                <div class="card" data-search-term="LinkedIn Learning Introduction to Prompt Engineering Generative AI Course training">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">💡</span> Introduction to Prompt Engineering for Generative AI</h3>
-                                    <p>This LinkedIn Learning course offers essential training on how to craft effective prompts, ensuring you receive accurate and relevant outputs from Gen AI tools like Gemini. Learning this skill is crucial for maximizing productivity and reducing "hallucinations."</p>
-                                <p classs="source-info">
-                                        <i>Source: <a href="https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai-24636124" target="_blank">LinkedIn Learning</a></i>
-                                    </p>
-                                </div>
-                                
-                                <!-- NEW CARD: AI prompt engineering in 2025: What works and what doesn’t (YouTube) -->
-                                <div class="card" data-search-term="AI prompt engineering 2025 YouTube best practices what works doesn't">
-                                    <h3><span class="icon-3d-section" style="margin-right: 5px;">🎥</span> AI Prompt Engineering in 2025: What Works and What Doesn’t</h3>
-                                    <p>This YouTube video deep-dives into the latest techniques and best practices for writing effective prompts, offering practical tips and showing examples of how to maximize Gen AI output quality in 2025.</p>
-                                    <p class="source-info">
-                                        <i>Source: <a href="https://www.youtube.com/watch?v=eKuFqQKYRrA" target="_blank">YouTube Video</a></i>
-                                    </p>
-                                </div>
-                            </div>
-                            <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                        </div>
-                    </section>
-                    <!-- *** END: AI Learning Sub-Section *** -->
-                    
-                    
-                    <!-- *** START: Procore Enterprise Tools Sub-Section (NOW OPEN BY DEFAULT) *** -->
-                    <section class="content-section" id="procore-tools">
-                        <h2 class="section-header" data-default-state="open">
-                            <div class="title-wrapper">
-                                <span class="icon-3d-section">🛠️</span> Procore Enterprise Tools
-                            </div>
-                            <span class="icon" aria-hidden="true">−</span>
-                        </h2>
-                        <div class="section-content" style="display: block;">
-                            
-                            <!-- ADDED INTRODUCTORY PARAGRAPH -->
-                            <p style="margin-bottom: 20px; font-weight: 500; font-size: 1.05em; line-height: 1.5; padding: 0 5px;">
-                                The tools featured below represent some of Procore’s company-wide approved AI resources that are available to all employees.
-                            </p>
-
-                            <!-- ============================================== -->
-                            <!-- NEW: PROCORE ENTERPRISE TOOLS TABLE (Core Productivity Tools - ALPHABETIZED & UPDATED) -->
-                            <!-- ============================================== -->
-                            <h3 style="font-size: 1.4em; margin-top: 15px; margin-bottom: 10px; padding-left: 5px; color: var(--procore-orange);">Core Productivity Tools</h3>
-
-                            <table class="responsive-tool-table" id="enterprise-tools-table">
-                                <thead>
-                                    <tr>
-                                        <th>Tool Name</th>
-                                        <th>Description</th>
-                                        <th>Internal Resources</th>
-                                        <th>WHEN TO USE (COMING SOON!)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    <!-- Atlassian Confluence AI (NEWLY ADDED) -->
-                                    <tr data-search-term="Atlassian Confluence AI automates tasks summarizes information generates content productivity">
-                                        <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/atlassian.com?size=30&format=png" class="tool-table-icon" title="Atlassian Confluence AI Logo" loading="lazy">
-                                            Atlassian Confluence AI
-                                        </td>
-                                        <td data-label="Description">Automates tasks, summarizes information, and generates content in Confluence to boost productivity.</td>
-                                        <td data-label="Internal Resources">
-                                            <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/atlreshub/atlassian_intelligence_resource_hub/atlassian_intelligence_ai_for_confluence" 
-                                               target="_blank" 
-                                               rel="noopener noreferrer" 
-                                               id="procore-tools-atlassian-confluence-ai-internal">AI for Confluence Guide</a>
-                                        </td>
-                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
-                                    </tr>
-
-                                    <!-- Atlassian JIRA AI (RENAMED FROM Atlassian AI) -->
-                                    <tr data-search-term="Atlassian JIRA AI automates tasks summarizes information generates content productivity">
-                                        <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/atlassian.com?size=30&format=png" class="tool-table-icon" title="Atlassian JIRA AI Logo" loading="lazy">
-                                            Atlassian JIRA AI
-                                        </td>
-                                        <td data-label="Description">Automates tasks, summarizes information, and generates content across Atlassian products (Jira) to boost productivity.</td>
-                                        <td data-label="Internal Resources">
-                                            <a href="https://thecore.procore.com/pac/unlockingai/aitoolshub/atlreshub/atlassian_intelligence_resource_hub/atlassian_intelligence_ai_for_jira" 
-                                               target="_blank" 
-                                               rel="noopener noreferrer" 
-                                               id="procore-tools-atlassian-jira-ai-internal">AI for Jira Guide</a>
-                                        </td>
-                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
-                                    </tr>
-                                    
-                                    <!-- Atlassian Rovo AI (RENAMED FROM Rovo Chat) -->
-                                    <tr data-search-term="Atlassian Rovo AI Confluence Jira browser extension context workflow insights agent creation">
-                                        <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/atlassian.com?size=30&format=png" class="tool-table-icon" title="Atlassian Rovo AI Logo" loading="lazy">
-                                            Atlassian Rovo AI
-                                        </td>
-                                        <td data-label="Description">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension. <b>It can also create custom workflow agents.</b></td>
-                                        <td data-label="Internal Resources">
-                                        </td>
-                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
-                                    </tr>
-                                    
-                                    <!-- Google Gemini -->
-                                    <tr data-search-term="Google Gemini AI assistant multimodal text images audio">
-                                        <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/google.com?size=30&format=png" class="tool-table-icon" title="Google Gemini Logo" loading="lazy">
-                                            Google Gemini
-                                        </td>
-                                        <td data-label="Description">An AI assistant that uses a multimodal large language model to help with a wide range of tasks by understanding and generating text, images, audio, and more.</td>
-                                        <td data-label="Internal Resources">
-                                        </td>
-                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
-                                    </tr>
-                                    
-                                    <!-- Google NotebookLM (RENAMED FROM NotebookLM) -->
-                                    <tr data-search-term="Google NotebookLM research assistant knowledge base source materials PDFs">
-                                        <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/google.com?size=30&format=png" class="tool-table-icon" title="Google NotebookLM Logo" loading="lazy">
-                                            Google NotebookLM
-                                        </td>
-                                        <td data-label="Description">An AI-powered research assistant that helps you learn and explore information more effectively, grounding research in your own source materials.</td>
-                                        <td data-label="Internal Resources">
-                                        </td>
-                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
-                                    </tr>
-
-                                    <!-- Loom AI -->
-                                    <tr data-search-term="Loom AI Summaries Transcription Video Productivity">
-                                        <td data-label="Tool Name">
-                                            <img src="https://logo.clearbit.com/loom.com?size=30&format=png" class="tool-table-icon" title="Loom AI Logo" loading="lazy">
-                                            Loom AI
-                                        </td>
-                                        <td data-label="Description">Automatically generates summaries, transcriptions, and suggested titles for your Loom videos, boosting productivity and enabling quick information retrieval.</td>
-                                        <td data-label="Internal Resources">
-                                        </td>
-                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
-                                    </tr>
-
-                                    <!-- Slack AI -->
-                                    <tr data-search-term="Slack AI smarter search instant conversation summaries automated responses communication">
-                                        <td data-label="Tool Name">
-                                            <div class="tool-table-icon slack-logo">S</div>
-                                            Slack AI
-                                        </td>
-                                        <td data-label="Description">Provides smarter search, instant conversation summaries, and automated responses to streamline team communication.</td>
-                                        <td data-label="Internal Resources">
-                                        </td>
-                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
-                                    </tr>
-                                    
-                                    <!-- Zoom AI -->
-                                    <tr data-search-term="Zoom AI digital assistant generative AI summarize meetings chats whiteboard content">
-                                        <td data-label="Tool Name">
-                                            <div class="tool-table-icon zoom-logo">Z</div>
-                                            Zoom AI
-                                        </td>
-                                        <td data-label="Description">A digital assistant that uses generative AI to create content, summarize meetings and chats, and generate ideas/content for whiteboards.</td>
-                                        <td data-label="Internal Resources">
-                                        </td>
-                                        <td data-label="WHEN TO USE (COMING SOON!)"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            
-                            <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                        </div>
-                    </section>
-                    <!-- *** END: Procore Enterprise Tools Sub-Section *** -->
-
-                </div>
-            </section>
-            <!-- ============================================== -->
-            <!-- END NEW TOP LEVEL SECTION: ENTERPRISE AI RESOURCES -->
-            <!-- ============================================== -->
-            
-            
-            <!-- ============================================== -->
-            <!-- TOP LEVEL SECTION: LEGAL TEAM-SPECIFIC RESOURCES -->
-            <!-- ============================================== -->
-            <section class="content-section" id="legal-team-resources">
-                <h2 class="section-header" data-default-state="open" style="cursor: default;">
-                    <div class="title-wrapper">
-                        <span class="icon-3d-section">⚖️</span> Legal-Specific Resources <!-- RENAMED HERE -->
-                    </div>
-                </h2>
-                <div class="section-content">
-                    <!-- Content here is now a single-column stack of collapsible sections -->
-
-                        <!-- ************************************ -->
-                        <!-- NEW SECTION: Legal AI Tools (Legal-Specific) -->
-                        <!-- ************************************ -->
-                        <section class="content-section collapsed" id="legal-ai-tools-specific">
-                            <h2 class="section-header" data-default-state="collapsed">
-                                <div class="title-wrapper">
-                                    <span class="icon-3d-section">🔬</span> Legal AI Tools
-                                </div>
-                                <span class="icon" aria-hidden="true">+</span>
-                            </h2>
-                            <div class="section-content">
-                                
-                                <p style="margin-bottom: 20px; font-weight: 500; font-size: 1.05em; line-height: 1.5;">
-                                    These tools are specific to the LRC team's workflows and include proprietary or specialized platforms used for legal research, contract review, and intellectual property management.
-                                </p>
-
-                                <h3 style="font-size: 1.4em; margin-top: 15px; margin-bottom: 10px; padding-left: 5px; color: var(--procore-orange);">Specialized Platforms</h3>
-
-                                <div class="ai-tool-grid">
-                                    <!-- Applying the centered, max-width style to match Active Platform Trials -->
-                                    <div class="tool-row" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 500px; margin-left: auto; margin-right: auto;">
-                                        <!-- Tool 5: Law 360 -->
-                                        <div class="ai-tool-card" tabindex="0" data-search-term="Law 360 legal news research industry updates">
-                                            <div class="tool-iframe law360" title="Law 360 Logo">L360</div>
-                                            <span>Law 360</span>
-                                            <p class="tool-description-text">A legal news service providing up-to-date information on litigation, regulation, and corporate deals across major legal industries.</p>
-                                        </div>
-                                        
-                                        <!-- Tool 6: Luminance AI -->
-                                        <div class="ai-tool-card" tabindex="0" data-search-term="Luminance AI legal technology platform proprietary legal LLM contracts eDiscovery drafting review negotiation">
-                                            <iframe src="https://logo.clearbit.com/luminance.com?size=40&format=png" class="tool-iframe" title="Luminance AI Logo" loading="lazy"></iframe>
-                                            <span>Luminance AI</span>
-                                            <p class="tool-description-text">A legal technology platform that uses a proprietary legal LLM to automate and enhance tasks related to legal documents (drafting, review, negotiation, and eDiscovery).</p>
-                                        </div>
-                                        
-                                        <!-- Removed unnecessary placeholder cards -->
-                                    </div>
-                                </div>
-                                
-                                <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                            </div>
-                        </section>
-                        <!-- ************************************ -->
-                        <!-- END NEW SECTION: Legal AI Tools (Legal-Specific) -->
-                        <!-- ************************************ -->
-
-                        <!-- ************************************ -->
-                        <!-- 5. Platform Trials Section -->
-                        <!-- ************************************ -->
-                        <section class="content-section collapsed" id="what-platforms-are-we-testing">
-                            <h2 class="section-header" data-default-state="collapsed">
-                                <div class="title-wrapper">
-                                    <span class="icon-3d-section">🧪</span> Active Platform Trials
-                                </div>
-                                <span class="icon" aria-hidden="true">+</span>
-                            </h2>
-                            <div class="section-content">
-                                <!-- UPDATED CONTACT STATEMENT -->
-                                <p style="margin-bottom: 20px; font-weight: 500; font-size: 1.05em; line-height: 1.5; color: var(--procore-dark-text);">
-                                    <span class="icon-3d-section" style="color: var(--procore-metal); font-size: 1.2em;">💬</span> Interested in learning more about our trials, reach out to <a href="slack://user?team=T02517565&id=D059K0B5HNJ" target="_blank" style="color: var(--procore-orange); text-decoration: underline;">@Daniel Baker</a> via Slack for questions.
-                                </p>
-                                <!-- END CONTACT STATEMENT -->
-                                <div class="ai-tool-grid">
-                                    
-                                    <!-- Use tool-row layout and limit columns to 2 for the two trials -->
-                                    <div class="tool-row" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 500px; margin-left: auto; margin-right: auto;">
-                                        <!-- Trial 1: LexisNexis Protege AI (NEW) -->
-                                        <div class="ai-tool-card" tabindex="0" data-search-term="LexisNexis Protege AI legal research document drafting automation trial">
-                                            <div class="tool-iframe law360" title="LexisNexis Logo" style="background-color: #f79600; color: white; line-height: 40px; font-size: 1.5em; font-weight: 900; font-family: Arial, sans-serif; padding: 0; display: inline-block;">LN</div>
-                                            <span>LexisNexis Protege AI</span>
-                                            <p class="tool-description-text">A next-generation AI platform being trialed for advanced legal research, document drafting, and workflow automation.</p>
-                                        </div>
-
-                                        <!-- Trial 2: Gemini Agentspace (NEW) -->
-                                        <div class="ai-tool-card" tabindex="0" data-search-term="Gemini Agentspace AI agent development workflow automation trial">
-                                            <iframe src="https://logo.clearbit.com/google.com?size=40&format=png" class="tool-iframe" title="Gemini Agentspace Logo" loading="lazy"></iframe>
-                                            <span>Gemini Agentspace</span>
-                                            <p class="tool-description-text">A Google platform focused on building, deploying, and managing custom, multi-step AI agents for complex corporate tasks.</p>
-                                        </div>
-                                        
-                                    </div>
-
-                                </div>
-                                <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                            </div>
-                        </section>
-
-                        <!-- ************************************ -->
-                        <!-- 6. LRC Tech Group Portal Spotlight! Section -->
-                        <!-- ************************************ -->
-                        <section class="content-section" id="lrc-tech-group-portal-spotlight">
-                            <h2 class="section-header" data-default-state="open">
-                                <div class="title-wrapper">
-                                    <span class="icon-3d-section">🌟</span> LRC Team Spotlight
-                                </div>
-                                <span class="icon" aria-hidden="true">−</span>
-                            </h2>
-                            <div class="section-content">
-                                <div class="card-grid">
-                                    <div class="card" data-search-term="Team Spotlight Teammates doing amazing Things example Lil">
-                                        <h3>Team Spotlight</h3>
-                                        <p>Teammates doing amazing Things</p>
-                                    </div>
-                                    
-                                    <!-- REMOVED: Certifications Card -->
-
-                                </div>
-                                <button type="button" class="back-to-top back-to-top-scroll">Back to Top ↑</button>
-                            </div>
-                        </section>
-                    
-                </div>
-            </section>
-            <!-- ============================================== -->
-            <!-- END NEW TOP LEVEL SECTION: ENTERPRISE AI RESOURCES -->
-            <!-- ============================================== -->
-            
-        </main>
     </div>
 
-    <!-- ---------------------------------------------------- -->
-    <!-- JAVASCRIPT LOGIC (Dropdown, Collapsible, Search, and 3D Banner) -->
-    <!-- ---------------------------------------------------- -->
-    <script>
-        let renderer, camera, scene, cubes = [];
-        let backgroundPlane; 
-        const textureLoader = new THREE.TextureLoader();
+    <!-- Mobile Menu (Dropdown structure for small screens) -->
+    <div class="md:hidden bg-gray-900" id="mobile-menu" aria-expanded="false">
+        <div class="pt-2 pb-3 space-y-1 sm:px-3">
+            
+            <!-- UPDATED LINK: LRC Team Spotlight -->
+            <a href="#lrc-team-spotlight-section" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-700">LRC Team Spotlight</a>
+            
+            <!-- Mobile Dropdown 1 -->
+            <div class="relative">
+                <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-1', this)">
+                    Solutions
+                    <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="mobile-dropdown-menu-1" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
+                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Project Management</a>
+                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Financials</a>
+                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Quality & Safety</a>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown 2 -->
+            <div class="relative">
+                <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-2', this)">
+                    Resources
+                    <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="mobile-dropdown-menu-2" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
+                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Customer Stories</a>
+                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Webinars</a>
+                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Documentation</a>
+                </div>
+            </div>
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Pricing</a>
+            <a href="#" class="block px-3 py-2 rounded-full text-base font-medium text-white procore-orange-bg text-center mt-3">Get a Demo</a>
+            <a href="#" class="block px-3 py-2 rounded-full text-base font-medium text-white bg-gray-600 text-center">Sign In</a>
+
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section: Updated with 3D Canvas -->
+    <div id="banner-canvas-wrapper" class="relative w-full overflow-hidden" style="height: 500px;">
+        <!-- THREE.JS CANVAS -->
+        <canvas id="carousel-canvas" aria-hidden="true"></canvas>
         
-        // Use the colors/urls from the desired banner background (Procore Orange + Light Gray pattern)
-        const backgroundImage = 'https://placehold.co/1200x240/ff5200/ff5200'; // Updated placeholder height
-        const patentDiagramUrl = 'https://placehold.co/2000x240/D0D0D0/D0D0D0'; // Updated placeholder height
-        const mainContent = document.querySelector('.main-content-wrapper');
-
-        // NEW HELPER FUNCTION to get the numeric banner height from CSS variable
-        function getBannerHeight() {
-            const rootStyle = getComputedStyle(document.documentElement);
-            // Extract the numeric value of --banner-height (e.g., '240px' -> 240)
-            return parseFloat(rootStyle.getPropertyValue('--banner-height')) || 300; 
-        }
-
-        function updateCanvasSize() {
-            const canvas = document.getElementById('carousel-canvas');
-            // Use parent wrapper's client width, which should match mainContent's width
-            const newWidth = canvas.parentElement ? canvas.parentElement.clientWidth : window.innerWidth;
-            const newHeight = getBannerHeight(); // Use explicit height
+        <!-- TEXT OVERLAY -->
+        <div id="banner-overlay-text" class="absolute inset-0 flex flex-col justify-center p-4 z-10 text-white drop-shadow-lg">
             
-            if (renderer && canvas) {
-                renderer.setSize(newWidth, newHeight);
-                camera.aspect = newWidth / newHeight;
-                camera.updateProjectionMatrix();
-            }
-        }
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <!-- UPDATED: Subtitle / Header -->
+                <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 drop-shadow-lg">
+                    LEGAL, REGULATORY, & COMPLIANCE (LRC)
+                </h2>
+                
+                <!-- UPDATED: Main Title -->
+                <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight text-white drop-shadow-xl">
+                    Welcome to the LRC AI Knowledge Hub
+                </h1>
+                
+                <!-- UPDATED: Introduction Text -->
+                <p class="mt-4 max-w-2xl text-xl text-stone-200 drop-shadow-md">
+                    This Knowledge Hub reflects our <b>commitment to your growth</b>, directly supporting the <b>LRC EVS Action Plan</b> and the goal of <b>enhancing your career at Procore</b>. Explore tools, training, and topics designed to help you build <b>Enhanced Expertise and Career Adaptability</b>, amplifying your judgment and delivering maximum value in your role.
+                </p>
+                
+                <!-- Updated margin-top to mt-8 and added margin-bottom for space -->
+                <div class="mt-8 mb-6"> 
+                    <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors">
+                        Explore Legal Resources
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END 3D Banner -->
+
+    <!-- Main Content Sections -->
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         
-        function initCarousel() {
-            const canvas = document.getElementById('carousel-canvas');
-            if (!canvas) return;
+        <!-- EXPLORE/SEARCH UTILITY BAR -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12 py-4">
+            <!-- Explore Dropdown (Visual only for now) -->
+            <div class="flex items-center space-x-2 text-3xl font-extrabold text-white cursor-pointer">
+                <span class="text-stone-200">Explore</span>
+                <svg class="w-6 h-6 text-stone-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <!-- Search Input (Added ID for JS targeting) -->
+            <div class="flex-grow w-full sm:w-auto">
+                <input type="text" placeholder="Search" id="global-search-input" class="w-full bg-black text-white text-lg px-4 py-3 border-2 border-gray-600 rounded-lg focus:outline-none focus:border-orange-500 transition duration-150" aria-label="Explore Search">
+            </div>
+        </div>
+        <!-- END EXPLORE/SEARCH UTILITY BAR -->
+        
+        <section class="mb-16" id="workstreams-section">
+            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Key AI Work Streams</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="workstream-cards-container">
+                
+                <!-- Workstream 1: EVS Action Plan -->
+                <div class="p-6 bg-gray-900 rounded-xl shadow-lg border border-gray-800 workstream-card">
+                    <h3 class="text-xl font-semibold mb-3">1. EVS Action Plan</h3>
+                    <p class="text-gray-400">We are actively building a comprehensive action plan to align our AI efforts with the company’s enterprise vision. This includes developing and delivering education and training to upskill our team on AI tools and best practices. As part of this, we are also transforming our hiring processes to better attract and integrate talent with AI-related skills, ensuring our team is equipped for the future.</p>
+                </div>
+                
+                <!-- Workstream 2: Internal Productivity with Google Enterprise Gemini -->
+                <div class="p-6 bg-gray-900 rounded-xl shadow-lg border border-gray-800 workstream-card">
+                    <h3 class="text-xl font-semibold mb-3">2. Internal Productivity (Gemini)</h3>
+                    <p class="text-gray-400">This workstream focuses on maximizing the value of our existing Google Enterprise Gemini tools. We are actively identifying and promoting productivity gains by educating the team on how to leverage these tools for a wide range of daily tasks.</p>
+                </div>
+                
+                <!-- Workstream 3: Third-Party AI Solutions -->
+                <div class="p-6 bg-gray-900 rounded-xl shadow-lg border border-gray-800 workstream-card">
+                    <h3 class="text-xl font-semibold mb-3">3. Third-Party AI Solutions</h3>
+                    <p class="text-gray-400">We are in the process of piloting and onboarding carefully vetted third-party AI solutions. This workstream involves evaluating potential tools, conducting trials to assess their performance and security, and then implementing those that meet our strict criteria. The goal is to safely introduce specialized AI tools that can solve specific in-house legal challenges.</p>
+                </div>
+            </div>
+        </section>
 
-            // Use the explicit height from CSS variable for initialization
-            const initialHeight = getBannerHeight(); 
-
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xff5200); 
-
-            // Initialize camera using fixed height to ensure correct aspect ratio, even if canvas.offsetHeight is 0 momentarily
-            camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / initialHeight, 0.1, 1000);
-            camera.position.z = 5.5; 
-
-            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        <!-- START LRC Team Spotlight Section (Formerly Legal Team Updates) -->
+        <section class="mb-16" id="lrc-team-spotlight-section">
+            <!-- REMOVED 🌟 from title -->
+            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">LRC Team Spotlight</h2>
             
-            updateCanvasSize(); 
-
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-            scene.add(ambientLight);
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight.position.set(0, 5, 5);
-            scene.add(directionalLight);
-            
-            
-            // 1. SET PRIMARY BACKGROUND TO TEXTURE (Procore Orange)
-            textureLoader.load(backgroundImage, 
-                function(texture) {
-                    texture.colorSpace = THREE.SRGBColorSpace;
-                    scene.background = texture;
-                },
-                undefined,
-                function(err) {
-                    console.error('Error loading background image:', err);
-                    scene.background = new THREE.Color(0xff5200); 
-                }
-            );
-            
-            // 2. RE-ADDED WATERMARK LAYER (Light Gray for contrast against orange)
-            textureLoader.load(patentDiagramUrl, 
-                function(texture) {
-                    texture.colorSpace = THREE.SRGBColorSpace;
+            <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-800" id="spotlight-container">
+                
+                <!-- Image Container -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center mb-6 space-y-4 sm:space-y-0 sm:space-x-6">
+                    <!-- Circular Image -->
+                    <img 
+                        src="https://media.licdn.com/dms/image/v2/D4E03AQGIU0Jb-C9x4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682708253519?e=1764201600&v=beta&t=y8baMlbvfCzTsCO8ZYc5tX6VxH-Q4eDxo3Ced4xs1-I" 
+                        alt="Caleigh Campion Profile Picture" 
+                        class="spotlight-image"
+                        onerror="this.onerror=null; this.src='https://placehold.co/120x120/FF5200/FFFFFF?text=CC';"
+                    >
                     
-                    const backgroundGeometry = new THREE.PlaneGeometry(20, 10); 
-                    const backgroundMaterial = new THREE.MeshBasicMaterial({
-                        map: texture,
-                        transparent: true,
-                        opacity: 0.3, 
-                        side: THREE.DoubleSide
-                    });
+                    <!-- Introduction Text -->
+                    <p class="text-stone-200 leading-relaxed sm:mb-0">
+                        Our team's success is defined by innovation. In this featured spotlight, we talk with <b>Caleigh Campion</b> about her work on the <b>RFP Gem</b> project and the critical role internal initiatives play in driving team efficiency and strategic value at Procore.
+                    </p>
+                </div>
+                <!-- End Image and Intro Wrapper -->
 
-                    backgroundPlane = new THREE.Mesh(backgroundGeometry, backgroundMaterial);
-                    backgroundPlane.position.z = -1; 
-                    backgroundPlane.rotation.z = -Math.PI * 0.05; 
-                    backgroundPlane.position.y = -1;
-                    scene.add(backgroundPlane);
-                },
-                undefined,
-                function(err) {
-                    console.error('Error loading patent diagram texture:', err);
-                }
-            );
-
-            // Cube Definitions
-            const excitingAreas = [
-                { title: "Legal Tech", color: 0xff5200, position: -1.8 }, 
-                { title: "Process", color: 0x000000, position: 0.0 }, 
-                { title: "Strategy", color: 0xff5200, position: 1.8 }
-            ];
-
-            const width = 2.0, height = 3.0, depth = 0.8, segments = 10; 
-
-            excitingAreas.forEach((area) => {
-                const cubeGeometry = new THREE.BoxGeometry(width, height, depth, segments, segments, segments);
-                cubeGeometry.computeVertexNormals(); 
+                <!-- Collapsible Button -->
+                <button 
+                    id="spotlight-toggle-button" 
+                    class="collapsible-button inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors mt-4"
+                    onclick="toggleCollapsible('spotlight-interview-content', this)"
+                    aria-expanded="false"
+                >
+                    View Full Interview
+                    <svg class="ml-2 h-5 w-5 dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
                 
-                const materialColor = area.color === 0x000000 ? 0x222222 : 0xf04400; 
-                const material = new THREE.MeshPhongMaterial({ 
-                    color: materialColor, 
-                    emissive: materialColor, 
-                    emissiveIntensity: 0.2, 
-                    shininess: 80, 
-                    specular: 0xcccccc 
-                });
+                <!-- Interview Content (Collapsible) -->
+                <div id="spotlight-interview-content" class="collapsible-content interview-content mt-6">
+                    <div class="text-gray-400 space-y-4">
+                        
+                        <!-- Interview questions use the new white text style defined in CSS -->
+                        <h4>1. What AI innovation or project are you currently most excited about?</h4>
+                        <p>I’m most excited about the <b>RFP Gem</b>, which I think most of the legal folks have heard of. After an intensive 6-month journey, we are on the verge of formally piloting and eventually launching it with our sales and proposals teams, and I couldn’t be more excited. I’ve been its champion from day one. The initial spark came from a quarterly sync with Alice, and from there, I’ve had the privilege of leading the charge. Building it from the ground up. It's been a marathon, but I want to be clear that this has been a massive team effort with incredible collaboration and support from all our stakeholders.</p>
+                        
+                        <h4>2. Can you walk us through the problem this AI solution addresses and how it provides value to our team or users?</h4>
+                        <p>Our current go/no-go process is a manual, multi-stakeholder review that can consume dozens of man-hours per RFP. It's a non-standardized process that results in subjective, high-variance risk assessment and, critically, yields no analyzable data. Additionally, it is only utilized by one subset of the sales organization, if it’s utilized at all.</p>
+                        <p>The <b>RFP Gem</b> is designed to fix this systemically. It leverages a fine-tuned model to perform analysis on complex terms. It parses entire RFP documents and intake forms, extracting and classifying key terms against a predefined matrix of our core legal, security, and business model requirements. It then generates a quantitative risk score and a data-backed 'Go/No-Go' recommendation.</p>
+                        <p>For our Teams: It compresses the initial review cycle from days to minutes. Sales, Legal, and Proposals get an instant, objective, and standardized risk score. This creates a unified output and recommendation, aligning all stakeholders around a single, auditable report from the very start. This means that we will not only have a better grasp on what RFPs we should proceed with, but the entire sales organization can adopt the process.</p>
+                        <p>For Procore: This enables scalable growth by decoupling our review bandwidth from RFP volume. It shifts our valuable SME hours from low-value textual extraction to high-value strategic negotiation. Most importantly, it allows for future implementation of data-driven governance. This will provide a structured dataset from unstructured documents for the first time. We can aggregate this data to answer strategic questions like, "What percentage of enterprise RFPs are flagged for uncapped liability?" This transforms risk management from a reactive, deal-by-deal function into a proactive, data-driven corporate strategy.</p>
+                        
+                        <h4>3. What was the biggest technical challenge you faced during this project or task?</h4>
+                        <p>The real hurdle was translating the deep, human expertise from our internal teams into a language the AI could actually execute reliably. It’s not just about keywords; it’s about concepts. How do you teach an AI to understand the intent behind dozens of different clauses? I quickly learned the AI would sometimes drop instructions or miss a subtle nuance. The solution wasn't a single "fix." It was countless hours of testing, refining, and collaborating closely with the AI itself and our internal experts to fine-tune the prompts until it was rock-solid.</p>
+                        
+                        <h4>4. In one sentence, how would you describe the impact of this innovation on our team's workflow or future direction?</h4>
+                        <p>This gem moves our review process from a manual, subjective bottleneck to a high-speed, data-driven function, instantly aligning Legal, Sales, and Proposals with a single source of truth thus reducing inter-team friction and instead promoting collaboration.</p>
+                        
+                        <h4>5. How do you stay current with the rapidly evolving field of AI?</h4>
+                        <p>You can't just be a spectator in this field. Besides reading articles and talking with colleagues, I believe you have to be hands-on. I'm constantly experimenting. I’m testing new tools, pushing prompts to see where they break, and even revisiting old prompts to see how the underlying models have improved. The field is moving too fast for just theory; you have to "live it" through daily trial and error.</p>
+                        
+                        <h4>6. What is your personal philosophy on the role of AI in our industry?</h4>
+                        <p>I’ll be the first to admit I was an AI skeptic. I had the same "will it replace me?" anxiety many people feel. My entire mindset shifted during Paul’s prompting seminar at the legal team offsite, where I had an "a-ha!" moment: AI isn't a replacement; it's an <b>amplifier</b>.</p>
+                        <p>My philosophy now is that AI is a powerful tool in our toolkit. It's not a cure-all, and it absolutely requires human oversight. It’s here to handle the repetitive work, which frees us up to focus on the critical work that requires deep human expertise and strategic nuance.</p>
+                        <p>What excites me most is watching AI become more concept-aware. It’s already moving beyond simple keyword matching to understand meaning, like knowing "indemnify without limitation" is the concept of "<b>uncapped liability</b>." As that capability grows, it will build incredible trust between users and AI, and unlock entirely new ways for us to work smarter.</p>
+                        
+                        <h4>7. Is there a tool, library, or technique you've recently adopted that has fundamentally changed the way you approach your work?</h4>
+                        <p>I’ve most recently adopted the <b>Improve Prompt</b> feature in Harvey. This feature utilizes AI before the response generation. Good input is one of, if not the most, important components of AI use. The improve prompt feature works to make your prompt clearer, more thorough, and more AI friendly. The best part is, it can be applied to any AI platform. I will go into Harvey, pop in my prompt, and use the improve prompt feature. I think rework the prompt and bring it over to Gemini if I think that’s the more appropriate platform for the project/task. This has allowed for exponentially better input on my end, meaning better base output and less reworking to try and get the AI to understand what I am asking it.</p>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- END LRC Team Spotlight Section -->
+
+        <!-- START Media Resources Section -->
+        <section class="mb-16 mt-16" id="integration-resources-section">
+            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Integration & Partner Resources</h2>
+            
+            <!-- Resource 1: App Marketplace -->
+            <a href="#" class="searchable-item block p-4 transition duration-200 border-b border-gray-900 hover:bg-gray-900 rounded-xl">
+                <div class="flex items-center space-x-6">
+                    <!-- Placeholder Image/Icon 1 (Using Metal color for icon background) -->
+                    <div class="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden bg-[#566578]">
+                        <img src="https://placehold.co/64x64/566578/ECE0D6?text=Apps" alt="App Marketplace Icon" class="w-full h-full object-cover p-3">
+                    </div>
+                    
+                    <!-- Text Content -->
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-extrabold text-white mb-1">Legal Tech Integration Hub</h3>
+                        <p class="text-gray-400 max-w-2xl text-sm">Find integrated legal solutions and access points for proprietary AI review tools.</p>
+                    </div>
+
+                    <!-- Link Arrow Icon (Using Procore Orange) -->
+                    <div class="flex-shrink-0">
+                        <svg class="w-8 h-8 procore-orange-text transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Resource 2: Developer Documentation -->
+            <a href="#" class="searchable-item block p-4 transition duration-200 hover:bg-gray-900 rounded-xl">
+                <div class="flex items-center space-x-6">
+                    <!-- Placeholder Image/Icon 2 (Using Earth color for icon background) -->
+                    <div class="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden bg-[#8D6E5B]">
+                        <img src="https://placehold.co/64x64/8D6E5B/ECE0D6?text=Doc" alt="Documentation Icon" class="w-full h-full object-cover p-3">
+                    </div>
+                    
+                    <!-- Text Content -->
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-extrabold text-white mb-1">Internal Legal Documentation & Policies</h3>
+                        <p class="text-gray-400 max-w-2xl text-sm">Access the latest company policies, guidelines, and compliance documentation.</p>
+                    </div>
+
+                    <!-- Link Arrow Icon (Using Procore Orange) -->
+                    <div class="flex-shrink-0">
+                        <svg class="w-8 h-8 procore-orange-text transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        </section>
+        <!-- END Media Resources Section -->
+        
+        <!-- START Procore Stories Section (Newsfeed) -->
+        <section class="mb-16 mt-16" id="stories-section">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-4xl font-extrabold text-white">Compliance & Governance Stories</h2>
+                <a href="#" class="procore-orange-text font-bold hover:text-white inline-flex items-center transition">
+                    Explore All Insights
+                    <div class="w-2 h-2 ml-1 procore-orange-bg rounded-full"></div>
+                </a>
+            </div>
+
+            <!-- Featured Stories (Large Cards) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
                 
-                const cube = new THREE.Mesh(cubeGeometry, material);
+                <!-- Featured Story 1 -->
+                <a href="#" class="searchable-item relative block rounded-xl overflow-hidden shadow-2xl group">
+                    <img src="https://placehold.co/600x400/000000/FF5200?text=AI+Policy+Document" alt="AI Policy Document" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <div class="flex text-xs uppercase font-semibold procore-orange-text mb-1">
+                            <span class="border border-white px-2 py-0.5 rounded-md mr-3 text-white">GUIDE</span>
+                            <span>4 MIN READ</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-extrabold leading-snug">New Company AI Usage Policy: Key Takeaways for Employees</h3>
+                    </div>
+                </a>
                 
-                cube.position.x = area.position;
-                cube.userData.originalX = area.position;
-                cube.userData.rotationSpeed = 0.01;
-                cubes.push(cube);
-                scene.add(cube);
-            });
+                <!-- Featured Story 2 -->
+                <a href="#" class="searchable-item relative block rounded-xl overflow-hidden shadow-2xl group">
+                    <img src="https://placehold.co/600x400/CEC4A1/000000?text=Legal+Team+Meeting" alt="Legal Team Meeting" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                        <div class="flex text-xs uppercase font-semibold procore-orange-text mb-1">
+                            <span class="border border-white px-2 py-0.5 rounded-md mr-3 text-white">INTERVIEW</span>
+                            <span>6 MIN READ</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-extrabold leading-snug">Interview with the Head of Regulatory Affairs on Global Expansion</h3>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Smaller Related Stories -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                
+                <!-- Small Story 1 -->
+                <a href="#" class="searchable-item flex flex-col items-start space-y-3 group">
+                    <img src="https://placehold.co/100x100/1F2937/ECE0D6?text=Training" alt="Training Icon" class="w-16 h-16 rounded-full object-cover">
+                    <div class="text-left">
+                        <div class="text-xs uppercase font-semibold text-gray-400 mb-1">8 MIN READ <span class="mx-1">•</span> TRAINING</div>
+                        <p class="text-white text-sm font-semibold group-hover:procore-orange-text transition">Data Privacy Training: Essential Knowledge for All Departments</p>
+                    </div>
+                </a>
+                
+                <!-- Small Story 2 -->
+                <a href="#" class="searchable-item flex flex-col items-start space-y-3 group">
+                    <img src="https://placehold.co/100x100/374151/ECE0D6?text=Blog" alt="Blog Post" class="w-16 h-16 rounded-full object-cover">
+                    <div class="text-left">
+                        <div class="text-xs uppercase font-semibold text-gray-400 mb-1">3 MIN READ <span class="mx-1">•</span> BLOG</div>
+                        <p class="text-white text-sm font-semibold group-hover:procore-orange-text transition">The Impact of New European Regulations on SaaS Contracts</p>
+                    </div>
+                </a>
+                
+                <!-- Small Story 3 -->
+                <a href="#" class="searchable-item flex flex-col items-start space-y-3 group">
+                    <img src="https://placehold.co/100x100/4B5563/ECE0D6?text=Update" alt="Update Icon" class="w-16 h-16 rounded-full object-cover">
+                    <div class="text-left">
+                        <div class="text-xs uppercase font-semibold text-gray-400 mb-1">2 MIN READ <span class="mx-1">•</span> UPDATE</div>
+                        <p class="text-white text-sm font-semibold group-hover:procore-orange-text transition">Key Changes to the Vendor Due Diligence Process</p>
+                    </div>
+                </a>
+                
+                <!-- Small Story 4 (Placeholder) -->
+                <a href="#" class="searchable-item flex flex-col items-start space-y-3 group hidden sm:flex">
+                    <img src="https://placehold.co/100x100/6B7280/ECE0D6?text=Tech" alt="Tech Icon" class="w-16 h-16 rounded-full object-cover">
+                    <div class="text-left">
+                        <div class="text-xs uppercase font-semibold text-gray-400 mb-1">5 MIN READ <span class="mx-1">•</span> TECH BRIEF</div>
+                        <p class="text-white text-sm font-semibold group-hover:procore-orange-text transition">Leveraging AI for Contract Review Speed and Accuracy</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <!-- END Procore Stories Section -->
+        
+    </div>
+</main>
+
+<footer class="bg-gray-900 mt-12 py-8 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+        <p>&copy; 2025 Procore Technologies, Inc. | All Rights Reserved.</p>
+        <p class="mt-2 text-sm">Legal | Privacy Policy | Accessibility</p>
+    </div>
+</footer>
+
+<script>
+    // --- THREE.JS LOGIC FOR DYNAMIC BANNER BACKGROUND ---
+    let renderer, camera, scene, cubes = [];
+    let backgroundPlane; 
+    const textureLoader = new THREE.TextureLoader();
+    
+    // Custom assets matching Procore theme
+    const backgroundImage = 'https://placehold.co/1200x600/FF5200/FF5200?text=Procore'; 
+    const patentDiagramUrl = 'https://placehold.co/2000x240/D0D0D0/D0D0D0?text=ABSTRACT+CONSTRUCTION+PLAN'; 
+
+    function getBannerHeight() {
+        // Retrieve explicit height from the HTML element's inline style
+        const wrapper = document.getElementById('banner-canvas-wrapper');
+        if (wrapper && wrapper.style.height) {
+            return parseFloat(wrapper.style.height);
         }
+        return 500; // Updated default fallback height
+    }
 
-        let animationFrameId;
+    function updateCanvasSize() {
+        const canvas = document.getElementById('carousel-canvas');
+        if (!canvas) return;
+        
+        const newWidth = canvas.parentElement ? canvas.parentElement.clientWidth : window.innerWidth;
+        const newHeight = getBannerHeight(); 
+        
+        if (renderer && camera) {
+            renderer.setSize(newWidth, newHeight);
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+        }
+    }
+    
+    function initCarousel() {
+        const canvas = document.getElementById('carousel-canvas');
+        if (!canvas) return;
 
-        function animate() {
-            animationFrameId = requestAnimationFrame(animate);
+        const initialHeight = getBannerHeight(); 
 
-            if (backgroundPlane) {
-                backgroundPlane.rotation.z += 0.0005; 
-                backgroundPlane.position.x = Math.sin(Date.now() * 0.0001) * 0.5;
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xff5200); // Procore Orange fallback 
+
+        // Initialize camera
+        camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / initialHeight, 0.1, 1000);
+        camera.position.z = 5.5; 
+
+        renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        
+        updateCanvasSize(); 
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(0, 5, 5);
+        scene.add(directionalLight);
+        
+        
+        // 1. Set Primary Background to Texture (Procore Orange)
+        textureLoader.load(backgroundImage, 
+            function(texture) {
+                texture.colorSpace = THREE.SRGBColorSpace;
+                scene.background = texture;
+            },
+            undefined,
+            function(err) {
+                console.error('Error loading background image:', err);
+                scene.background = new THREE.Color(0xff5200); 
             }
-            
-            cubes.forEach(cube => {
-                cube.rotation.y += cube.userData.rotationSpeed * 0.5;
-                cube.rotation.x += cube.userData.rotationSpeed / 4; 
-                cube.rotation.z += cube.userData.rotationSpeed / 8;
+        );
+        
+        // 2. Watermark Layer (Abstract pattern in light gray for contrast)
+        textureLoader.load(patentDiagramUrl, 
+            function(texture) {
+                texture.colorSpace = THREE.SRGBColorSpace;
                 
-                cube.updateMatrixWorld(true);
-                
-                const scaleFactor = 1 + Math.sin(Date.now() * 0.001 * cube.userData.rotationSpeed * 20) * 0.03;
-                cube.scale.x = cube.scale.y = cube.scale.z = scaleFactor;
-            });
+                const backgroundGeometry = new THREE.PlaneGeometry(20, 10); 
+                const backgroundMaterial = new THREE.MeshBasicMaterial({
+                    map: texture,
+                    transparent: true,
+                    opacity: 0.3, 
+                    side: THREE.DoubleSide
+                });
 
-            if (renderer) {
-                renderer.render(scene, camera);
+                backgroundPlane = new THREE.Mesh(backgroundGeometry, backgroundMaterial);
+                backgroundPlane.position.z = -1; 
+                backgroundPlane.rotation.z = -Math.PI * 0.05; 
+                backgroundPlane.position.y = -1;
+                scene.add(backgroundPlane);
+            },
+            undefined,
+            function(err) {
+                console.error('Error loading patent diagram texture:', err);
             }
-        }
+        );
 
-        function onWindowResize() {
-            updateCanvasSize();
-        }
+        // Cube Definitions (Abstract concepts)
+        const excitingAreas = [
+            { title: "Legal Tech", color: 0xff5200, position: -1.8 }, 
+            { title: "Process", color: 0x000000, position: 0.0 }, 
+            { title: "Strategy", color: 0xff5200, position: 1.8 }
+        ];
 
-        document.addEventListener('DOMContentLoaded', () => {
-            window.addEventListener('resize', onWindowResize);
-            initCarousel();
-            animate();
+        const width = 2.0, height = 3.0, depth = 0.8, segments = 10; 
 
-            // ------------------- SIDEBAR DROPDOWN LOGIC -------------------
-            const setupSidebarDropdowns = () => {
-                document.querySelectorAll('.sidenav .nav-link-item').forEach(root => {
-                    const trigger = root.querySelector('.dropdown-trigger');
-                    const dropdown = root.querySelector('.nav-dropdown');
-
-                    if (trigger && dropdown) {
-                        // Check if the item should be open by default (like the one we set to 'open' in HTML)
-                        const isInitiallyOpen = root.classList.contains('open');
-
-                        if (!isInitiallyOpen) {
-                            dropdown.style.display = 'none';
-                        } else {
-                            // If marked as open, ensure display style is set correctly on load
-                            dropdown.style.display = 'flex';
-                        }
-                        
-                        trigger.addEventListener('click', function(event) {
-                            event.stopPropagation();
-                            const isOpening = !root.classList.contains('open');
-
-                            if (isOpening) {
-                                root.classList.add('open');
-                                dropdown.style.display = 'flex'; 
-                                
-                            } else {
-                                root.classList.remove('open');
-                                dropdown.style.display = 'none';
-                            }
-                        });
-                        
-                        document.addEventListener('click', function(event) {
-                            if (root.contains(event.target)) {
-                                // If click is inside, let the trigger handle it or do nothing
-                                return;
-                            }
-                            // Close if clicking outside the dropdown item (sidebar scope)
-                            if (root.classList.contains('open')) {
-                                root.classList.remove('open');
-                                dropdown.style.display = 'none';
-                            }
-                        });
-                    }
-                });
-            };
+        excitingAreas.forEach((area) => {
+            const cubeGeometry = new THREE.BoxGeometry(width, height, depth, segments, segments, segments);
+            cubeGeometry.computeVertexNormals(); 
             
-            setupSidebarDropdowns();
-            // --- End Sidebar Dropdown Logic ---
-            
-            // --- Top Nav Click Logic (No Dropdowns) ---
-            // Removed all top nav dropdown listeners as requested.
-
-            // --- Collapsible Logic Function (USING DIRECT DISPLAY CONTROL) ---
-            const sections = document.querySelectorAll('.content-section');
-            const toggleSection = (section, header, content, icon, open) => {
-                // Ignore permanent top-level sections
-                if (section.id === 'ai-unlocked-podcast' || section.id === 'enterprise-ai-resources' || section.id === 'legal-team-resources') return;
-
-                const isCollapsed = section.classList.contains('collapsed');
-                const shouldOpen = (open !== undefined) ? open : isCollapsed;
-                
-                if (shouldOpen) {
-                    section.classList.remove('collapsed');
-                    if (icon) icon.textContent = '−'; 
-                    if (content) content.style.display = 'block'; 
-                } else {
-                    section.classList.add('collapsed');
-                    if (icon) icon.textContent = '+'; 
-                    if (content) content.style.display = 'none';
-                }
-            };
-
-
-            // --- 1. Collapsible Sections Initial Setup & Click Listener (FIXED) ---
-            sections.forEach(section => {
-                const header = section.querySelector('.section-header');
-                const content = section.querySelector('.section-content');
-                const icon = section.querySelector('.icon');
-                const defaultState = header.dataset.defaultState; 
-
-                // Determine if this is a top-level grouping section that should always be open
-                const isTopLevelGroup = (section.id === 'ai-unlocked-podcast' || section.id === 'enterprise-ai-resources' || section.id === 'legal-team-resources');
-                
-                if (isTopLevelGroup) {
-                    section.classList.remove('collapsed');
-                    if (content) content.style.display = 'block'; 
-                    return;
-                }
-
-                // Initial setup for other sections (sub-sections)
-                setTimeout(() => {
-                    // Check if it's explicitly set to be open by the user request (data-default-state="open")
-                    const shouldOpen = defaultState === 'open';
-                    
-                    if (!shouldOpen) {
-                        section.classList.add('collapsed');
-                        if (icon) icon.textContent = '+';
-                        if (content) content.style.display = 'none';
-                    } else {
-                        section.classList.remove('collapsed');
-                        if (icon) icon.textContent = '−'; 
-                        if (content) content.style.display = 'block';
-                    }
-                    
-                }, 50);
-
-                if (header) {
-                    header.addEventListener('click', () => {
-                        toggleSection(section, header, content, icon);
-                    });
-                }
+            // Darker colors for the 3D objects
+            const materialColor = area.color === 0x000000 ? 0x222222 : 0xcc4400; 
+            const material = new THREE.MeshPhongMaterial({ 
+                color: materialColor, 
+                emissive: materialColor, 
+                emissiveIntensity: 0.2, 
+                shininess: 80, 
+                specular: 0xcccccc 
             });
             
-            // --- 2. RELIABLE ANCHOR / SCROLL & OPEN HANDLER (Updated to use simplified top nav links) ---
-            document.querySelectorAll('.sidenav a[href^="#"], #fixed-top-nav a[href^="#"], .nav-dropdown-content a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    const targetId = href.substring(1);
-                    
-                    if (href.length > 1 && href.startsWith('#')) {
-                        e.preventDefault();
-                        const targetElement = document.querySelector(href);
-                        
-                        if (targetElement) {
-                            
-                            // 1. SCROLL TO SECTION
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-
-                            // 2. OPEN THE SECTION
-                            const sectionToOpen = document.getElementById(targetId);
-                            if (sectionToOpen && sectionToOpen.classList.contains('content-section')) {
-                                const header = sectionToOpen.querySelector('.section-header');
-                                const content = sectionToOpen.querySelector('.section-content');
-                                const icon = sectionToOpen.querySelector('.icon');
-                                
-                                // Only call toggle if it's a collapsible section that isn't already open
-                                if (sectionToOpen.id !== 'ai-unlocked-podcast' && sectionToOpen.id !== 'enterprise-ai-resources' && sectionToOpen.id !== 'legal-team-resources' && sectionToOpen.classList.contains('collapsed')) {
-                                    toggleSection(sectionToOpen, header, content, icon, true); // Force open
-                                }
-                            }
-                        }
-                    }
-                });
-            });
-
-
-            // --- 3. Synchronized & Dynamic Search Filtering (Fixed for robust search) ---
-            const searchInputs = document.querySelectorAll('#desktop-search-input, #mobile-search-input');
-            const cardsAndRows = document.querySelectorAll('.card, .ai-tool-card, .responsive-tool-table tr');
+            const cube = new THREE.Mesh(cubeGeometry, material);
             
-            const filterContent = (searchTerm) => {
-                const query = searchTerm.toLowerCase().trim();
-                const allSections = document.querySelectorAll('.content-section');
-
-                if (!query) {
-                     // Reset visibility and collapse state when search is empty
-                     allSections.forEach(section => {
-                        const header = section.querySelector('.section-header');
-                        const content = section.querySelector('.section-content');
-                        const icon = section.querySelector('.icon');
-                        const defaultState = header.dataset.defaultState; 
-
-                        // Handle only sub-sections for collapse logic (top level groups remain open)
-                        if (section.id !== 'ai-unlocked-podcast' && section.id !== 'enterprise-ai-resources' && section.id !== 'legal-team-resources') {
-                            const shouldOpen = defaultState === 'open';
-                            if (!shouldOpen) {
-                                section.classList.add('collapsed');
-                                if (icon) icon.textContent = '+';
-                                if (content) content.style.display = 'none';
-                            } else {
-                                section.classList.remove('collapsed');
-                                if (icon) icon.textContent = '−';
-                                if (content) content.style.display = 'block';
-                            }
-                        }
-
-                    });
-                    
-                    cardsAndRows.forEach(item => {
-                        // Handle card visibility (display: flex)
-                        if (item.classList.contains('card') || item.classList.contains('ai-tool-card')) {
-                             item.style.display = 'flex';
-                        }
-                        // Handle table row visibility (display: table-row or block for mobile)
-                        if (item.closest('.responsive-tool-table')) {
-                             item.style.display = ''; // Default display (table-row/block)
-                        }
-                    });
-                    
-                    return;
-                }
-
-                let sectionsToOpen = new Set();
-                
-                cardsAndRows.forEach(item => {
-                    let content = '';
-                    let itemDisplay = 'none';
-                    
-                    if (item.classList.contains('card') || item.classList.contains('ai-tool-card') || item.closest('.responsive-tool-table')) {
-                        const searchData = item.dataset ? item.dataset.searchTerm || '' : ''; 
-                        const itemBodyText = item.textContent || '';
-                        content = (searchData + ' ' + itemBodyText).toLowerCase();
-
-                        if (content.includes(query)) {
-                            // If it's a card, use flex. If it's a table row, use an empty string to revert to default (which handles responsiveness).
-                            itemDisplay = item.classList.contains('card') || item.classList.contains('ai-tool-card') ? 'flex' : '';
-                            
-                            let parentSection = item.closest('.content-section');
-                            if (parentSection) {
-                                sectionsToOpen.add(parentSection.id);
-                            }
-                        }
-                    }
-                    
-                    item.style.display = itemDisplay;
-                });
-                
-                allSections.forEach(section => {
-                    const header = section.querySelector('.section-header');
-                    const content = section.querySelector('.section-content');
-                    const icon = section.querySelector('.icon');
-                    
-                    if (section.id === 'ai-unlocked-podcast' || section.id === 'enterprise-ai-resources' || section.id === 'legal-team-resources') return;
-                    
-                    if (sectionsToOpen.has(section.id)) {
-                        section.classList.remove('collapsed');
-                        if (icon) icon.textContent = '−'; 
-                        if (content) content.style.display = 'block';
-                    } else {
-                        section.classList.add('collapsed');
-                        if (icon) icon.textContent = '+'; 
-                        if (content) content.style.display = 'none';
-                    }
-                });
-            };
-
-            searchInputs.forEach(input => {
-                input.addEventListener('input', (e) => {
-                    const searchTerm = e.target.value;
-                    searchInputs.forEach(otherInput => {
-                        if (otherInput !== e.target) {
-                            otherInput.value = searchTerm;
-                        }
-                    });
-                    filterContent(searchTerm);
-                });
-            });
-            
-            // --- NEW: Scroll to Top Button Handler ---
-            document.querySelectorAll('.back-to-top-scroll').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const homeAnchor = document.getElementById('home');
-                    if (homeAnchor) {
-                        homeAnchor.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
+            cube.position.x = area.position;
+            cube.userData.rotationSpeed = 0.01;
+            cubes.push(cube);
+            scene.add(cube);
         });
-    </script>
+    }
+
+    let animationFrameId;
+
+    function animate() {
+        animationFrameId = requestAnimationFrame(animate);
+
+        if (backgroundPlane) {
+            backgroundPlane.rotation.z += 0.0005; 
+            backgroundPlane.position.x = Math.sin(Date.now() * 0.0001) * 0.5;
+        }
+        
+        cubes.forEach(cube => {
+            cube.rotation.y += cube.userData.rotationSpeed * 0.5;
+            cube.rotation.x += cube.userData.rotationSpeed / 4; 
+            cube.rotation.z += cube.userData.rotationSpeed / 8;
+            
+            cube.updateMatrixWorld(true);
+            
+            // Subtle pulsing scale animation
+            const scaleFactor = 1 + Math.sin(Date.now() * 0.001 * cube.userData.rotationSpeed * 20) * 0.03;
+            cube.scale.x = cube.scale.y = cube.scale.z = scaleFactor;
+        });
+
+        if (renderer) {
+            renderer.render(scene, camera);
+        }
+    }
+
+    function onWindowResize() {
+        updateCanvasSize();
+    }
+    // --- END THREE.JS LOGIC ---
+
+    // --- MAIN SCRIPT LOGIC (Dropdown, Mobile Menu, Collapsible) ---
+
+    /**
+     * Toggles the visibility of a specified dropdown menu.
+     */
+    function toggleDropdown(menuId, button) {
+        const menu = document.getElementById(menuId);
+        const icon = button.querySelector('.dropdown-icon');
+
+        document.querySelectorAll('.rounded-lg[role="menu"], .bg-gray-800[id^="mobile-dropdown-menu-"]').forEach(otherMenu => {
+            if (otherMenu.id !== menuId) {
+                otherMenu.classList.add('hidden');
+            }
+        });
+        document.querySelectorAll('.dropdown-icon').forEach(otherIcon => {
+            if (otherIcon !== icon) {
+                otherIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        menu.classList.toggle('hidden');
+
+        if (!menu.classList.contains('hidden')) {
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    /**
+     * Toggles the mobile menu for small screens.
+     */
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const openIcon = document.getElementById('menu-open-icon');
+        const closeIcon = document.getElementById('menu-close-icon');
+
+        const isOpen = mobileMenu.classList.toggle('open');
+        
+        openIcon.classList.toggle('hidden', isOpen);
+        closeIcon.classList.toggle('hidden', !isOpen);
+
+        mobileMenu.setAttribute('aria-expanded', isOpen);
+
+        if (!isOpen) {
+            document.querySelectorAll('.bg-gray-800[id^="mobile-dropdown-menu-"]').forEach(subDropdown => {
+                subDropdown.classList.add('hidden');
+            });
+        }
+    }
+
+    /**
+     * Toggles the visibility of a collapsible section.
+     * Also updates the ARIA attribute.
+     */
+    function toggleCollapsible(contentId, button) {
+        const content = document.getElementById(contentId);
+        if (content) {
+            const isOpening = !content.classList.contains('open');
+            
+            content.classList.toggle('open');
+            button.classList.toggle('open');
+            button.setAttribute('aria-expanded', isOpening);
+            
+            // Check if we need to scroll to the button if the content is opening
+            if (isOpening) {
+                button.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    }
+
+    /**
+     * Closes desktop dropdowns if the user clicks anywhere else on the document.
+     */
+    document.addEventListener('click', (event) => {
+        const isButton = event.target.closest('button[id^="dropdown-toggle-"]');
+        const isDropdownContent = event.target.closest('.rounded-lg[role="menu"]');
+
+        if (!isButton && !isDropdownContent) {
+            document.querySelectorAll('.rounded-lg[role="menu"]').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+            document.querySelectorAll('.dropdown-icon').forEach(icon => {
+                icon.style.transform = 'rotate(0deg)';
+            });
+        }
+    });
+
+    // --- NEW: Search Logic Implementation ---
+    function filterContent(searchTerm) {
+        const query = searchTerm.toLowerCase().trim();
+        
+        // 1. Target all main searchable containers
+        const workstreamCards = document.querySelectorAll('.workstream-card');
+        const resourceItems = document.querySelectorAll('#integration-resources-section .searchable-item');
+        const storyItems = document.querySelectorAll('#stories-section .searchable-item');
+        
+        // 2. Target Spotlight elements
+        const spotlightContainer = document.getElementById('spotlight-container');
+        const spotlightInterviewContent = document.getElementById('spotlight-interview-content');
+        const spotlightButton = document.getElementById('spotlight-toggle-button');
+        
+        let foundMatchInSpotlight = false;
+        let isSearchActive = query !== '';
+
+        // --- Reset / General Filtering ---
+        [...workstreamCards, ...resourceItems, ...storyItems].forEach(item => {
+            const content = item.textContent || '';
+            const isMatch = content.toLowerCase().includes(query);
+            
+            // Show item if match found or if search is cleared
+            item.style.display = (isMatch || !isSearchActive) ? (item.classList.contains('workstream-card') ? 'block' : 'flex') : 'none';
+
+            // Ensure grid items (stories) use correct flex/block display on reset
+            if (item.closest('#stories-section')) {
+                 item.style.display = (isMatch || !isSearchActive) ? 'flex' : 'none';
+            }
+        });
+
+        // --- Spotlight Specific Filtering ---
+        if (spotlightContainer) {
+            const spotlightContentText = spotlightContainer.textContent || '';
+            const spotlightMatch = spotlightContentText.toLowerCase().includes(query);
+
+            if (spotlightMatch) {
+                spotlightContainer.style.display = 'block';
+                foundMatchInSpotlight = true;
+
+                // If a match is found in the hidden content, force it open
+                if (isSearchActive && spotlightInterviewContent && spotlightButton) {
+                    spotlightInterviewContent.classList.add('open');
+                    spotlightButton.classList.add('open');
+                    spotlightButton.setAttribute('aria-expanded', true);
+                }
+            } else if (isSearchActive) {
+                spotlightContainer.style.display = 'none';
+            } else {
+                // Reset to default visibility
+                spotlightContainer.style.display = 'block';
+            }
+        }
+        
+        // --- Reset Collapsible State when search is cleared ---
+        if (!isSearchActive && spotlightInterviewContent && spotlightButton) {
+            spotlightInterviewContent.classList.remove('open');
+            spotlightButton.classList.remove('open');
+            spotlightButton.setAttribute('aria-expanded', false);
+        }
+
+
+        // --- Hide/Show main sections based on content visibility ---
+        const sections = document.querySelectorAll('main > div > section');
+        sections.forEach(section => {
+            if (!isSearchActive) {
+                section.style.display = 'block';
+                return;
+            }
+
+            // Check if any children are visible
+            const visibleChildren = Array.from(section.querySelectorAll('.workstream-card, .searchable-item, #spotlight-container')).filter(child => {
+                // Special check for spotlight since it's a nested container
+                if (child.id === 'spotlight-container') {
+                    return foundMatchInSpotlight;
+                }
+                return child.style.display !== 'none';
+            });
+
+            section.style.display = visibleChildren.length > 0 ? 'block' : 'none';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Search Listener Setup ---
+        const searchInput = document.getElementById('global-search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                filterContent(e.target.value);
+            });
+        }
+    });
+
+
+    // Initialize Three.js on load and set up resize listener
+    window.onload = function() {
+        window.addEventListener('resize', onWindowResize);
+        initCarousel();
+        animate();
+    };
+
+</script>
+
 </body>
 </html>

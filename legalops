@@ -16,7 +16,8 @@
             font-family: 'Inter', sans-serif;
             background-color: #000000; /* Procore Black - Main Background */
             color: #ECE0D6; /* Procore Stone - Default Text */
-            scroll-behavior: smooth; /* Enable smooth scrolling globally */
+            /* The following line enables smooth scrolling for modern browsers */
+            scroll-behavior: smooth; 
         }
         /* Navigation styles */
         .nav-item-button:hover .dropdown-icon {
@@ -26,7 +27,7 @@
             transition: background-color 0.2s, transform 0.2s;
         }
         .dropdown-icon {
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
         }
         /* Mobile menu specific styles */
         #mobile-menu {
@@ -39,6 +40,47 @@
             max-height: 500px; /* A large enough value to accommodate content */
             opacity: 1;
         }
+        
+        /* --- NEW: Header Dropdown Overrides (Matches attached NASA style) --- */
+        .header-dropdown-menu {
+            width: 300px; /* Wider menu */
+            background-color: #111827; /* bg-gray-900 */
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+        }
+        .dropdown-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #1f2937; /* border-gray-800 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dropdown-header-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            color: #ffffff;
+        }
+        /* NOTE: This class now defines the standard padding for ALL Level 1 dropdown links */
+        .dropdown-link {
+            display: block;
+            padding: 0.75rem 1.5rem; /* Standard L1 padding (px-6 py-3 adjusted to match 0.75rem 1.5rem) */
+            font-size: 1rem;
+            color: #ffffff; /* text-white */
+            transition: background-color 0.2s;
+        }
+        .dropdown-link:hover {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        /* Specific padding adjustment for nested L2 buttons/links */
+        .nested-dropdown-button {
+            padding: 0.75rem 1.5rem; /* Match L1 link padding for visual consistency */
+        }
+        .nested-dropdown-content a {
+             padding: 0.5rem 2rem; /* Increased left padding for nested visual offset */
+             display: block;
+        }
+        /* END NEW: Header Dropdown Overrides */
+
 
         /* --- THREE.JS BANNER STYLES --- */
         #carousel-canvas {
@@ -75,20 +117,22 @@
         .collapsible-button .dropdown-icon {
             transition: transform 0.3s ease;
         }
+        /* UPDATED: Arrow icon for the OPEN state (e.g., Procore Enterprise Tools) */
         .collapsible-button.open .dropdown-icon {
-            transform: rotate(180deg);
+            transform: rotate(45deg); /* 45 degrees down/right */
         }
+
         /* Interview specific styling */
         .interview-content h4 {
             font-size: 1.25rem; /* text-xl */
             font-weight: 700; /* font-bold */
-            color: #ECE0D6; /* Procore Stone (White) */
+            color: #ECE0D6; /* Procore Stone - White */
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }
         /* Style for workstream sub-headings */
         .workstream-card h3 {
-            color: #ECE0D6; /* Procore Stone (White) */
+            color: #ECE0D6; /* Procore Stone - White */
         }
 
         /* Custom style for the circular image */
@@ -101,6 +145,269 @@
             border: 4px solid #FF5200; /* Procore Orange border */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
+        /* Style for the new emoji learning tiles */
+        .emoji-icon {
+            font-size: 2.5rem; /* Large emoji size */
+        }
+        
+        /* --- NEW AI CARD STYLES --- */
+        .ai-card {
+            position: relative;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Ensure image and overlay stay within rounded corners */
+            display: flex; /* Helps ensure content stays at the bottom */
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .ai-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.7);
+        }
+        .ai-card-overlay {
+            position: absolute;
+            inset: 0;
+            /* Dark gradient from bottom up */
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%);
+        }
+        .ai-card-content {
+            position: relative; /* Position relative to overlay/card for stacking context */
+            z-index: 10;
+            padding: 1.5rem; /* p-6 */
+            color: white;
+            width: 100%;
+        }
+        
+        /* Custom arrow style matching the user's image */
+        .ai-card-arrow {
+            width: 48px;
+            height: 48px;
+            background-color: #FF5200; /* Procore Orange */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .ai-card:hover .ai-card-arrow {
+            background-color: #CC4400; /* Slightly darker orange on hover */
+        }
+        .ai-card-arrow svg {
+            color: white;
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Custom icon colors for the table - NOW USED AS BACKGROUND FOR SVGs */
+        .adobe-icon-bg, .atlassian-icon-bg, .loom-icon-bg, .slack-icon-bg, .zoom-icon-bg, .google-icon-bg { 
+            background-color: #ffffff; /* Universal White Background for Visibility */
+        }
+        
+        /* Custom Table Icon Styling */
+        .table-icon-container {
+            width: 36px; /* Slightly larger container */
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        .table-icon-img {
+            width: 20px; /* Slightly larger image size */
+            height: 20px;
+            object-contain: contain;
+        }
+        
+        /* Custom link style in table */
+        .table-link {
+            color: #FF5200;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .table-link:hover {
+            color: #ECE0D6;
+        }
+
+        /* --- NEW: LRC Information Library Hover Effect (Shadow Glow Removed) --- */
+        .lrc-library-button {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .lrc-library-button:hover {
+            transform: scale(1.05);
+            /* Removed box-shadow */
+            background-color: #4B5563; /* Gray hover color similar to Unlocking AI button */
+        }
+        
+        /* Style for the new Legal-Specific Resources section */
+        .legal-specific-card {
+            min-height: 250px;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.2s;
+        }
+        .legal-specific-card:hover {
+            background-color: #2a2a2a;
+        }
+        
+        /* Consistent styling for the Company AI Updates block to match Procore Enterprise Tools block */
+        .company-ai-updates-block {
+            border: 1px solid #333;
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1rem; /* p-4 */
+            transition: background-color 0.2s;
+        }
+        .company-ai-updates-block:hover {
+            background-color: #1a1a1a; /* Subtle hover effect */
+        }
+        
+        /* NEW ICON BACKGROUND COLOR FOR COMPANY AI UPDATES */
+        .company-ai-icon-bg {
+            background-color: #566578; /* Procore Metal Gray */
+        }
+        /* UPDATED ICON BACKGROUND COLOR FOR LEGAL TECH TOOLS (Procore Gold) */
+        .legal-tech-icon-bg {
+            background-color: #CEC4A1; /* Procore Gold */
+        }
+        /* NEW ICON BACKGROUND COLOR FOR LEGAL TOPICS (Earth/Stone color for documentation/trends) */
+        .legal-trends-icon-bg {
+            background-color: #8D6E5B; /* Earth color */
+        }
+
+        /* --- NEW PROJECT CARD ICON STYLES (Used to be dark theme) --- */
+        .project-icon-container {
+            width: 56px; 
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            margin-bottom: 1rem;
+        }
+        .project-icon-img {
+            width: 30px; 
+            height: 30px;
+            object-contain: contain;
+        }
+        .blueprint-bg {
+            background-color: #3498DB; /* Blue for blueprint/planning */
+        }
+        .excavator-bg {
+            background-color: #A0522D; /* Sienna/Earth tone for equipment */
+        }
+        /* --- END NEW PROJECT CARD ICON STYLES --- */
+
+        /* --- NEW LIGHT/ARTICLE THEME --- */
+        .light-article-section {
+            /* CHANGED FROM #ffffff TO LIGHT GREY */
+            background-color: #F4F4F4; /* Very light grey */
+            color: #000000; /* Dark text for contrast */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for lift */
+        }
+        .light-article-section h3 {
+            font-size: 1.875rem; /* text-3xl for prominence */
+            font-weight: 800; /* Extra bold */
+            margin-bottom: 0.5rem;
+            color: #000000; /* Black headline */
+        }
+        .light-article-section p, .light-article-section li {
+            color: #333333; /* Dark gray body text */
+        }
+        .key-feature-subheading {
+            font-size: 1rem; /* Base text size for subheads */
+            font-weight: 600; /* Semibold */
+            color: #FF5200; /* Procore Orange for differentiation */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            /* Added line to separate features */
+            border-bottom: 1px solid #e5e7eb; /* Light gray line */
+            padding-bottom: 0.5rem;
+        }
+        .article-topic-label {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* Semibold */
+            color: #6b7280; /* Gray text for category label */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        /* New style for beveled icons (used for Key Benefits/Outcome) */
+        .beveled-icon-container {
+            /* Emulate a 3D beveled effect */
+            width: 32px;
+            height: 32px;
+            border-radius: 6px; /* Slightly rounded square/rectangle */
+            background: #FF5200; /* Procore Orange base */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            /* Soft 3D/Bevel look */
+            box-shadow: 
+                inset 0 2px 4px rgba(255, 255, 255, 0.5), /* Highlight top-left */
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3), /* Shadow bottom-right */
+                0 4px 6px rgba(0, 0, 0, 0.2); /* Lifted shadow */
+        }
+        .beveled-icon-container svg {
+            width: 18px;
+            height: 18px;
+            /* Slight offset to make the icon look inset */
+            transform: translate(0, 0); 
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));
+        }
+        /* --- END NEW LIGHT/ARTICLE THEME --- */
+        
+        /* New styling for the section divider differentiator text (left justified) */
+        .section-differentiator {
+            text-align: left;
+            font-size: 0.75rem; /* text-xs */
+            color: #ECE0D6; /* UPDATED: Brighter font color for visibility */
+            text-transform: uppercase;
+            letter-spacing: 0.1em; /* tracking-widest */
+            margin-bottom: 0.5rem; /* mb-2 - Reduced spacing to place closer to H2 */
+            padding-top: 1rem; /* py-4 */
+        }
+        
+        /* Custom styles for the highlighted quote block */
+        .highlighted-quote {
+            background-color: #1f2937; /* bg-gray-800 */
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .highlighted-quote .quote-bar {
+            background-color: #FF5200; /* Procore Orange */
+        }
+        /* Custom styles for the background text in the featured cards (LRC Learning) */
+        .featured-card-text {
+            font-size: 1.25rem; /* reduced from 2xl to xl for subtlety */
+        }
+        
+        /* UPDATED: Increased Quote Text Size */
+        .highlighted-quote p {
+            font-size: 1.25rem; /* text-xl for more prominence */
+            font-style: italic;
+        }
+        
+        /* --- Custom Positioning for LexisNexis Protege+ image (SVG) --- */
+        .protege-card {
+            background-size: 50% auto !important; /* Adjust size to fit in center */
+            background-repeat: no-repeat !important;
+        }
+        
     </style>
 </head>
 <body>
@@ -115,37 +422,111 @@
             </div>
 
             <!-- Desktop Menu (visible on large screens) -->
+            <!-- RESTORED space-x-2 for comfortable spacing -->
             <nav class="hidden md:flex space-x-2 items-center">
                 
-                <!-- UPDATED LINK: LRC Team Spotlight -->
+                <!-- NEW EXPLORE DROPDOWN (Mirrors utility bar logic) - STYLED TO MATCH OTHERS -->
+                <div class="relative">
+                    <button id="header-explore-toggle" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleExploreDropdown('header-explore-menu-1', this)">
+                        Explore
+                        <!-- Down Arrow Icon -->
+                        <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <!-- Main Dropdown Menu (Level 1) - REDESIGNED -->
+                    <div id="header-explore-menu-1" class="origin-top-left absolute left-0 mt-2 header-dropdown-menu hidden z-30" role="menu">
+                        <div class="dropdown-header">
+                            <h3 class="dropdown-header-title">Explore</h3>
+                            <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="py-1" role="none">
+                            
+                            <!-- UPDATED LINK: AI News & Team Highlights -->
+                            <a href="#lrc-team-updates-section" class="dropdown-link rounded-t-xl" title="Highlights and announcements for new corporate AI features, tools, and platforms.">
+                                AI News & Team Highlights
+                            </a>
+                            <!-- NEW LINK: LRC Learning & Innovation Showcase -->
+                            <a href="#stories-section" class="dropdown-link" title="Featured projects, training updates, and innovation stories from the LRC team.">
+                                LRC Learning & Innovation Showcase
+                            </a>
+
+                            <!-- Sub-Dropdown 1: Enterprise AI Resources (Level 2 Toggle) -->
+                            <div class="relative">
+                                <button id="header-explore-toggle-2a" class="w-full text-left flex justify-between items-center nested-dropdown-button text-sm font-medium text-white hover:bg-gray-800" onclick="toggleExploreSubDropdown('header-explore-menu-2a', this)">
+                                    Enterprise AI Resources
+                                    <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="header-icon-2a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                
+                                <!-- Sub-Dropdown Content 1 (Level 2) -->
+                                <div id="header-explore-menu-2a" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
+                                    <a href="#tools-toggle-button" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Procore Enterprise Tools</a>
+                                </div>
+                            </div>
+
+                            <!-- Sub-Dropdown 2: Legal Specific-Resources (Level 2 Toggle) -->
+                            <div class="relative">
+                                <button id="header-explore-toggle-2b" class="w-full text-left flex justify-between items-center nested-dropdown-button text-sm font-medium text-white hover:bg-gray-800 rounded-b-xl" onclick="toggleExploreSubDropdown('header-explore-menu-2b', this)">
+                                    Legal-Specific Resources
+                                    <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="header-icon-2b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                
+                                <!-- Sub-Dropdown Content 2 (Level 2) -->
+                                <div id="header-explore-menu-2b" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
+                                    <a href="#trends-toggle-button" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Legal Industry Topics & Trends</a>
+                                    <a href="#tools-trials-toggle-button" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Legal AI Tech Tools & Recent Trials</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END NEW EXPLORE DROPDOWN -->
+
+
+                <!-- LRC Team Spotlight (Now points to the nested section) -->
                 <a href="#lrc-team-spotlight-section" class="nav-item-button text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium transition-colors">
                     LRC Team Spotlight
                 </a>
 
-                <!-- Dropdown Menu 1: Solutions -->
+                <!-- Dropdown Menu 1: Blogs - RESTORED WRAPPER -->
                 <div class="relative">
                     <button id="dropdown-toggle-1" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-1', this)">
-                        Solutions
+                        Blogs
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
                     
-                    <!-- Dropdown Content (White background, Procore Orange accents) -->
-                    <div id="dropdown-menu-1" class="origin-top-right absolute right-0 mt-2 w-48 rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu">
+                    <!-- Dropdown Content (Blogs) - NEW STRUCTURE AND CLASS -->
+                    <div id="dropdown-menu-1" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden" role="menu">
+                        <div class="dropdown-header">
+                            <h3 class="dropdown-header-title">Blogs</h3>
+                            <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
                         <div class="py-1" role="none">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-t-lg">Project Management</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Financials</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-b-lg">Quality & Safety</a>
+                            <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="dropdown-link rounded-t-lg">The Rundown</a>
+                            <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="dropdown-link">Ben's Bites</a>
+                            <a href="https://ajsai.substack.com/" target="_blank" title="In-depth analysis of AI, technology, and their broader implications." class="dropdown-link">AJ's AI</a>
+                            <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI." class="dropdown-link">Pivot 5 AI</a>
+                            <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI." class="dropdown-link rounded-b-lg">Dazza Greenwood</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Dropdown Menu 2: Resources -->
+                <!-- Dropdown Menu 2: Podcasts - RESTORED WRAPPER -->
                 <div class="relative">
                     <button id="dropdown-toggle-2" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-2', this)">
-                        Resources
+                        Podcasts
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -153,24 +534,55 @@
                     </button>
                     
                     <!-- Dropdown Content -->
-                    <div id="dropdown-menu-2" class="origin-top-right absolute right-0 mt-2 w-48 rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu">
+                    <div id="dropdown-menu-2" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden" role="menu">
+                        <div class="dropdown-header">
+                            <h3 class="dropdown-header-title">Podcasts</h3>
+                            <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
                         <div class="py-1" role="none">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-t-lg">Customer Stories</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Webinars</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 rounded-b-lg">Documentation</a>
+                            <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="dropdown-link rounded-t-lg">Latent Space</a>
+                            <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="dropdown-link rounded-b-lg">AI Unleashed Podcast (Procore)</a>
                         </div>
                     </div>
                 </div>
                 
-                <a href="#" class="nav-item-button text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium transition-colors">
-                    Pricing
-                </a>
+                <!-- Dropdown Menu 3: AI on The Core - RESTORED WRAPPER -->
+                <div class="relative">
+                    <button id="dropdown-toggle-3" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-3', this)">
+                        AI on The Core
+                        <!-- Down Arrow Icon -->
+                        <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    
+                    <!-- Dropdown Content (The Core) -->
+                    <div id="dropdown-menu-3" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden" role="menu">
+                        <div class="dropdown-header">
+                            <h3 class="dropdown-header-title">AI on The Core</h3>
+                            <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="py-1" role="none">
+                            <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="dropdown-link rounded-t-lg rounded-b-lg">Unlocking AI for All Hub</a>
+                        </div>
+                    </div>
+                </div>
 
-                <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors ml-4">
-                    Sign In
+                <!-- UPDATED LINK: Unlocking AI (Slack) - PUSHED TO RIGHT -->
+                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors ml-auto" title="#unlocking-ai-community">
+                    <!-- Updated Slack icon usage with circular and larger style -->
+                    <img src="https://e7.pngegg.com/pngimages/775/191/png-clipart-slack-new-logo-icon-tech-companies-thumbnail.png" alt="Slack Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
+                    Unlocking AI
                 </a>
-                <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors">
-                    Get a Demo
+                <!-- UPDATED LINK: LRC Information Library - PUSHED TO RIGHT -->
+                <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white procore-orange-bg transition-colors lrc-library-button" title="Access internal legal documentation, policies, and knowledge bases.">
+                    <!-- NEW Icon for LRC Information Library -->
+                    <img src="https://play-lh.googleusercontent.com/7HFT3wvmk_2r_8HSydOUBJ7nzUnyzjA2gCOSGEIe5XjAikdLJke0a9n044hzqc3FcCY" alt="Library Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
+                    LRC Info Library
                 </a>
 
             </nav>
@@ -197,40 +609,67 @@
         <div class="pt-2 pb-3 space-y-1 sm:px-3">
             
             <!-- UPDATED LINK: LRC Team Spotlight -->
-            <a href="#lrc-team-spotlight-section" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-700">LRC Team Spotlight</a>
+            <!-- Keeping this link as it points to the parent section where the articles are -->
+            <a href="#lrc-team-updates-section" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-700">AI News & Team Highlights</a>
             
-            <!-- Mobile Dropdown 1 -->
+            <!-- Mobile Dropdown 1: Blogs (Updated from Solutions) -->
             <div class="relative">
                 <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-1', this)">
-                    Solutions
+                    Blogs
                     <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
                 <div id="mobile-dropdown-menu-1" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
-                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Project Management</a>
-                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Financials</a>
-                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Quality & Safety</a>
+                    <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="block py-2 text-sm text-gray-300 hover:text-white">The Rundown</a>
+                    <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="block py-2 text-sm text-gray-300 hover:text-white">Ben's Bites</a>
+                    <a href="https://ajsai.substack.com/" target="_blank" title="In-depth analysis of AI, technology, and their broader implications." class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
+                    <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI." class="block py-2 text-sm text-gray-300 hover:text-white">Pivot 5 AI</a>
+                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI." class="block py-2 text-sm text-gray-300 hover:text-white">Dazza Greenwood</a>
                 </div>
             </div>
 
-            <!-- Mobile Dropdown 2 -->
+            <!-- Mobile Dropdown 2: Podcasts -->
             <div class="relative">
                 <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-2', this)">
-                    Resources
+                    Podcasts
                     <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
                 <div id="mobile-dropdown-menu-2" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
-                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Customer Stories</a>
-                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Webinars</a>
-                    <a href="#" class="block py-2 text-sm text-gray-300 hover:text-white">Documentation</a>
+                    <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="block py-2 text-sm text-gray-300 hover:text-white">Latent Space</a>
+                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
                 </div>
             </div>
-            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Pricing</a>
-            <a href="#" class="block px-3 py-2 rounded-full text-base font-medium text-white procore-orange-bg text-center mt-3">Get a Demo</a>
-            <a href="#" class="block px-3 py-2 rounded-full text-base font-medium text-white bg-gray-600 text-center">Sign In</a>
+
+            <!-- Mobile Dropdown 3: The Core (Updated from Pricing) -->
+            <div class="relative">
+                <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-3', this)">
+                    AI on The Core
+                    <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="mobile-dropdown-menu-3" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
+                    <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="block py-2 text-sm text-gray-300 hover:text-white">Unlocking AI for All Hub</a>
+                </div>
+            </div>
+            
+            <!-- UPDATED LINK: Unlocking AI (Mobile) -->
+            <a href="slack://channel?team=T02517565&id=C01H0L3K8J" class="block px-3 py-2 rounded-full text-base font-medium text-white bg-gray-600 text-center mt-3" title="#unlocking-ai-community">
+                <span class="inline-flex items-center">
+                    <img src="https://e7.pngegg.com/pngimages/775/191/png-clipart-slack-new-logo-icon-tech-companies-thumbnail.png" alt="Slack Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
+                    Unlocking AI
+                </span>
+            </a>
+            <!-- UPDATED LINK: LRC Information Library (Mobile) -->
+            <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" class="block px-3 py-2 rounded-full text-base font-medium text-white procore-orange-bg text-center lrc-library-button" title="Access internal legal documentation, policies, and knowledge bases.">
+                <span class="inline-flex items-center">
+                    <img src="https://play-lh.googleusercontent.com/7HFT3wvmk_2r_8HSydOUBJ7nzUnyzjA2gCOSGEIe5XjAikdLJke0a9n044hzqc3FcCY" alt="Library Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
+                    LRC Info Library
+                </span>
+            </a>
 
         </div>
     </div>
@@ -238,34 +677,40 @@
 
 <main>
     <!-- Hero Section: Updated with 3D Canvas -->
-    <div id="banner-canvas-wrapper" class="relative w-full overflow-hidden" style="height: 500px;">
-        <!-- THREE.JS CANVAS -->
-        <canvas id="carousel-canvas" aria-hidden="true"></canvas>
-        
-        <!-- TEXT OVERLAY -->
-        <div id="banner-overlay-text" class="absolute inset-0 flex flex-col justify-center p-4 z-10 text-white drop-shadow-lg">
+    <!-- WRAPPED ENTIRE BANNER CONTENT IN A MAX-WIDTH CONTAINER -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+        <!-- REDUCED HEIGHT TO 450px -->
+        <div id="banner-canvas-wrapper" class="relative w-full overflow-hidden" style="height: 450px;">
+            <!-- THREE.JS CANVAS -->
+            <canvas id="carousel-canvas" aria-hidden="true"></canvas>
             
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <!-- UPDATED: Subtitle / Header -->
-                <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 drop-shadow-lg">
-                    LEGAL, REGULATORY, & COMPLIANCE (LRC)
-                </h2>
+            <!-- TEXT OVERLAY -->
+            <!-- INCREASED VERTICAL PADDING TO py-8 -->
+            <div id="banner-overlay-text" class="absolute inset-0 flex flex-col justify-center py-8 px-4 sm:px-6 lg:px-8 z-10 text-white drop-shadow-lg">
                 
-                <!-- UPDATED: Main Title -->
-                <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight text-white drop-shadow-xl">
-                    Welcome to the LRC AI Knowledge Hub
-                </h1>
-                
-                <!-- UPDATED: Introduction Text -->
-                <p class="mt-4 max-w-2xl text-xl text-stone-200 drop-shadow-md">
-                    This Knowledge Hub reflects our <b>commitment to your growth</b>, directly supporting the <b>LRC EVS Action Plan</b> and the goal of <b>enhancing your career at Procore</b>. Explore tools, training, and topics designed to help you build <b>Enhanced Expertise and Career Adaptability</b>, amplifying your judgment and delivering maximum value in your role.
-                </p>
-                
-                <!-- Updated margin-top to mt-8 and added margin-bottom for space -->
-                <div class="mt-8 mb-6"> 
-                    <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors">
-                        Explore Legal Resources
-                    </a>
+                <!-- REMOVED max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 from here as it's now on the parent -->
+                <div class="w-full">
+                    <!-- UPDATED: Subtitle / Header -->
+                    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 drop-shadow-lg">
+                        LEGAL, REGULATORY, & COMPLIANCE (LRC)
+                    </h2>
+                    
+                    <!-- UPDATED: Main Title -->
+                    <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight text-white drop-shadow-xl">
+                        Welcome to the LRC AI Knowledge Hub
+                    </h1>
+                    
+                    <!-- UPDATED: Introduction Text -->
+                    <p class="mt-4 max-w-2xl text-xl text-stone-200 drop-shadow-md">
+                        This Knowledge Hub reflects our <b>commitment to your growth</b>, directly supporting the <b>LRC EVS Action Plan</b> and the goal of <b>enhancing your career at Procore</b>. Explore tools, training, and topics designed to help you build <b>Enhanced Expertise and Career Adaptability</b>, amplifying your judgment and delivering maximum value in your role.
+                    </p>
+                    
+                    <!-- Updated margin-top to mt-8 and added margin-bottom for space -->
+                    <div class="mt-6"> 
+                        <a href="#legal-specific-resources-section" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors">
+                            Explore Legal Resources
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -275,14 +720,64 @@
     <!-- Main Content Sections -->
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         
-        <!-- EXPLORE/SEARCH UTILITY BAR -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12 py-4">
-            <!-- Explore Dropdown (Visual only for now) -->
-            <div class="flex items-center space-x-2 text-3xl font-extrabold text-white cursor-pointer">
-                <span class="text-stone-200">Explore</span>
-                <svg class="w-6 h-6 text-stone-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
+        <!-- EXPLORE/SEARCH UTILITY BAR - UPDATED WITH NESTED DROPDOWN -->
+        <div class="relative flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12 py-4">
+            
+            <!-- Explore Dropdown Button (Level 1 Toggle) -->
+            <div class="relative z-20">
+                <button id="explore-toggle-1" class="flex items-center space-x-2 text-3xl font-extrabold text-white px-3 py-2 rounded-lg nav-item-button" onclick="toggleExploreDropdown('explore-menu-1', this)">
+                    <span class="text-white">Explore</span>
+                    <svg class="w-6 h-6 text-white dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <!-- Main Dropdown Menu (Level 1) - REPLICATES TOP MENU -->
+                <div id="explore-menu-1" class="absolute left-0 mt-2 w-72 rounded-xl shadow-2xl bg-gray-900 border border-gray-700 ring-1 ring-black ring-opacity-5 hidden z-30" role="menu">
+                    <div class="py-1" role="none">
+                        
+                        <!-- NEW LINK: AI News & Team Highlights -->
+                        <a href="#lrc-team-updates-section" class="dropdown-link rounded-t-xl" title="Highlights and announcements for new corporate AI features, tools, and platforms.">
+                            AI News & Team Highlights
+                        </a>
+                        <!-- NEW LINK: LRC Learning & Innovation Showcase -->
+                        <a href="#stories-section" class="dropdown-link" title="Featured projects, training updates, and innovation stories from the LRC team.">
+                            LRC Learning & Innovation Showcase
+                        </a>
+
+                        <!-- Sub-Dropdown 1: Enterprise AI Resources (Level 2 Toggle) -->
+                        <div class="relative">
+                            <button id="explore-toggle-2a" class="w-full text-left flex justify-between items-center nested-dropdown-button text-sm font-medium text-white hover:bg-gray-800" onclick="toggleExploreSubDropdown('explore-menu-2a', this)">
+                                Enterprise AI Resources
+                                <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="icon-2a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            
+                            <!-- Sub-Dropdown Content 1 (Level 2) - ADDED SCROLL LINKS -->
+                            <div id="explore-menu-2a" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
+                                <!-- LINKS THAT SOFT-SCROLL -->
+                                <a href="#tools-toggle-button" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Procore Enterprise Tools</a>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Dropdown 2: Legal Specific-Resources (Level 2 Toggle) -->
+                        <div class="relative">
+                            <button id="explore-toggle-2b" class="w-full text-left flex justify-between items-center nested-dropdown-button text-sm font-medium text-white hover:bg-gray-800 rounded-b-xl" onclick="toggleExploreSubDropdown('explore-menu-2b', this)">
+                                Legal-Specific Resources
+                                <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="icon-2b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+
+                            <!-- Sub-Dropdown Content 2 (Level 2) - ADDED SCROLL LINKS -->
+                            <div id="explore-menu-2b" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
+                                <a href="#trends-toggle-button" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Legal Industry Topics & Trends</a>
+                                <a href="#tools-trials-toggle-button" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Legal AI Tech Tools & Recent Trials</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Search Input (Added ID for JS targeting) -->
             <div class="flex-grow w-full sm:w-auto">
@@ -291,8 +786,13 @@
         </div>
         <!-- END EXPLORE/SEARCH UTILITY BAR -->
         
+        <!-- START Work Streams Section (MOVED UP) -->
         <section class="mb-16" id="workstreams-section">
-            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Key AI Work Streams</h2>
+            <div class="section-differentiator">
+                STRATEGIC FOCUS AREAS
+            </div>
+            <!-- UPDATED HEADER -->
+            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Our Three AI Work Streams</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="workstream-cards-container">
                 
                 <!-- Workstream 1: EVS Action Plan -->
@@ -301,10 +801,10 @@
                     <p class="text-gray-400">We are actively building a comprehensive action plan to align our AI efforts with the company’s enterprise vision. This includes developing and delivering education and training to upskill our team on AI tools and best practices. As part of this, we are also transforming our hiring processes to better attract and integrate talent with AI-related skills, ensuring our team is equipped for the future.</p>
                 </div>
                 
-                <!-- Workstream 2: Internal Productivity with Google Enterprise Gemini -->
+                <!-- Workstream 2: Internal Productivity (Updated) -->
                 <div class="p-6 bg-gray-900 rounded-xl shadow-lg border border-gray-800 workstream-card">
-                    <h3 class="text-xl font-semibold mb-3">2. Internal Productivity (Gemini)</h3>
-                    <p class="text-gray-400">This workstream focuses on maximizing the value of our existing Google Enterprise Gemini tools. We are actively identifying and promoting productivity gains by educating the team on how to leverage these tools for a wide range of daily tasks.</p>
+                    <h3 class="text-xl font-semibold mb-3">2. Internal Productivity</h3>
+                    <p class="text-gray-400">This workstream focuses on maximizing the value of our existing internal tools, including <b>Google, Rovo, Slack, Zoom, and Bolt</b>. We are actively identifying and promoting productivity gains by educating the team on how to leverage this suite of tools for a wide range of daily tasks.</p>
                 </div>
                 
                 <!-- Workstream 3: Third-Party AI Solutions -->
@@ -314,223 +814,777 @@
                 </div>
             </div>
         </section>
+        <!-- END Work Streams Section -->
 
-        <!-- START LRC Team Spotlight Section (Formerly Legal Team Updates) -->
-        <section class="mb-16" id="lrc-team-spotlight-section">
-            <!-- REMOVED 🌟 from title -->
-            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">LRC Team Spotlight</h2>
+
+        <!-- START AI News & Team Highlights Section (NEW NAME/STRUCTURE) -->
+        <section class="mb-16 mt-16" id="lrc-team-updates-section">
+            <div class="section-differentiator">
+                WHAT'S NEW
+            </div>
+            <!-- UPDATED SECTION NAME -->
+            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">AI News & Team Highlights</h2>
             
-            <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-800" id="spotlight-container">
+            <!-- NEW: Descriptive intro text moved from collapsible button -->
+            <p class="text-gray-400 mb-8 max-w-4xl">Key LRC innovation projects, pilot results, and department milestones are featured below.</p>
+            
+            
+            <!-- 1. LRC Team Updates (Internal Project Narrative) - Now direct, non-collapsible content -->
+            <div class="w-full mb-10">
                 
-                <!-- Image Container -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center mb-6 space-y-4 sm:space-y-0 sm:space-x-6">
-                    <!-- Circular Image -->
-                    <img 
-                        src="https://media.licdn.com/dms/image/v2/D4E03AQGIU0Jb-C9x4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682708253519?e=1764201600&v=beta&t=y8baMlbvfCzTsCO8ZYc5tX6VxH-Q4eDxo3Ced4xs1-I" 
-                        alt="Caleigh Campion Profile Picture" 
-                        class="spotlight-image"
-                        onerror="this.onerror=null; this.src='https://placehold.co/120x120/FF5200/FFFFFF?text=CC';"
-                    >
+                <!-- REFACTORED: Use light-article-section for newspaper aesthetic -->
+                <div class="light-article-section p-8 space-y-4 rounded-xl border border-gray-200">
                     
-                    <!-- Introduction Text -->
-                    <p class="text-stone-200 leading-relaxed sm:mb-0">
-                        Our team's success is defined by innovation. In this featured spotlight, we talk with <b>Caleigh Campion</b> about her work on the <b>RFP Gem</b> project and the critical role internal initiatives play in driving team efficiency and strategic value at Procore.
-                    </p>
-                </div>
-                <!-- End Image and Intro Wrapper -->
+                    <!-- Project 1: Building Our Foundation: The Strategic AI Roadmap -->
+                    <!-- REDUCED BOTTOM PADDING FOR TIGHTER SPACING -->
+                    <div class="searchable-item border-b border-gray-200 pb-4">
+                        
+                        <!-- Category Label (mimics the "REAL ESTATE" label in the example) -->
+                        <h4 class="article-topic-label">Strategic Project</h4>
 
-                <!-- Collapsible Button -->
-                <button 
-                    id="spotlight-toggle-button" 
-                    class="collapsible-button inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors mt-4"
-                    onclick="toggleCollapsible('spotlight-interview-content', this)"
-                    aria-expanded="false"
-                >
-                    View Full Interview
-                    <svg class="ml-2 h-5 w-5 dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
+                        <!-- Article Headline -->
+                        <h3 class="text-3xl font-extrabold mb-2 leading-snug">Building Our Foundation: Drafting our Strategic AI Roadmap with Elevate</h3>
+                        
+                        <p class="leading-relaxed mb-4">To ensure our AI adoption is intentional and drives maximum value across the department, we are partnering with the third-party consultant <b>Elevate</b>. Elevate is helping us draft a clear, practical roadmap designed to maximize our collective expertise.</p>
+                        
+                        <!-- Key Benefits (with Beveled Icon) -->
+                        <div class="flex items-center">
+                            <div class="beveled-icon-container">
+                                <!-- Checkmark icon for success/benefits -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <h5 class="key-feature-subheading flex-1">Key Benefits</h5>
+                        </div>
+                        
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                            <li><b>Visibility:</b> Mapping out where and how our team is currently using AI.</li>
+                            <li><b>Prioritization:</b> Identifying specific legal tasks where AI can deliver the greatest productivity lift.</li>
+                            <li><b>Scalability:</b> Pinpointing the data and technology needed to scale successful AI use cases enterprise-wide.</li>
+                            <li><b>Alignment:</b> Creating clarity and confidence in AI across all levels of the team.</li>
+                        </ul>
+                        
+                        <!-- Outcome (with Beveled Icon) -->
+                        <div class="flex items-center mt-6">
+                            <div class="beveled-icon-container">
+                                <!-- Target icon for outcome/goal -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.697V11.25a2.25 2.25 0 004.5 0V9.697z" />
+                                </svg>
+                            </div>
+                            <h5 class="key-feature-subheading flex-1">Outcome</h5>
+                        </div>
+                        
+                        <p class="leading-relaxed">A clear, practical roadmap to guide our AI adoption and investment decisions, ensuring every step we take drives <b>strategic value</b>.</p>
+                        
+                    </div>
+
+                    <!-- Project 2: New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool Procurement Starts -->
+                    <!-- REDUCED TOP PADDING FOR TIGHTER SPACING -->
+                    <div class="searchable-item pt-4">
+                            <!-- Category Label (mimics the "REAL ESTATE" label in the example) -->
+                        <h4 class="article-topic-label">New Technology Rollout</h4>
+
+                        <!-- Article Headline -->
+                        <h3 class="text-3xl font-extrabold mb-2 leading-snug">New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool Procurement Starts</h3>
+                        
+                        <p class="leading-relaxed mb-4">The procurement process <b>has started</b> for <b>Harvey.ai</b>, a cutting-edge generative AI platform built specifically for legal professionals. Think of Harvey as a powerful, secure AI partner that will help us deliver results faster!</p>
+                        
+                        <!-- Key Benefits (with Beveled Icon) -->
+                        <div class="flex items-center">
+                            <div class="beveled-icon-container">
+                                <!-- Checkmark icon for benefits -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <h5 class="key-feature-subheading flex-1">Key Benefits</h5>
+                        </div>
+
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                            <li><b>Accelerated Drafting:</b> Generate first drafts of complex contracts and memos instantly.</li>
+                            <li><b>Rapid Review:</b> Rapidly analyze large volumes of legal documents (like due diligence).</li>
+                            <li><b>Enhanced Research:</b> Get accurate, source-cited answers to complex legal queries quickly.</li>
+                            <li><b>Risk Management:</b> Streamline tasks like regulatory review and internal policy cross-referencing.</li>
+                        </ul>
+                        
+                        <!-- Outcome (with Beveled Icon) -->
+                        <div class="flex items-center mt-6">
+                            <div class="beveled-icon-container">
+                                <!-- Target icon for outcome/goal -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.697V11.25a2.25 2.25 0 004.5 0V9.697z" />
+                                </svg>
+                            </div>
+                            <h5 class="key-feature-subheading flex-1">Outcome</h5>
+                        </div>
+                        
+                        <p class="leading-relaxed">Harvey will automate repetitive, time-consuming tasks, allowing us to focus our expertise on <b>high-value strategic analysis, critical judgment, and key negotiations</b>.</p>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- END LRC Team Updates (New Internal Updates) -->
+
+
+            <!-- 2. LRC Team Spotlight (MOVED DOWN) -->
+            <div class="mb-16" id="lrc-team-spotlight-section">
+                 <h3 class="text-2xl font-bold text-white mb-4">LRC Team Spotlight</h3>
+                 <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-800" id="spotlight-container">
+                    
+                    <!-- Image Container -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center mb-6 space-y-4 sm:space-y-0 sm:space-x-6">
+                        <!-- Circular Image -->
+                        <img 
+                            src="https://media.licdn.com/dms/image/v2/D4E03AQGIU0Jb-C9x4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682708253519?e=1764201600&v=beta&t=y8baMlbvfCzTsCO8ZYc5tX6VxH-Q4eDxo3Ced4xs1-I" 
+                            alt="Caleigh Campion Profile Picture" 
+                            class="spotlight-image"
+                            onerror="this.onerror=null; this.src='https://placehold.co/120x120/FF5200/FFFFFF?text=CC';"
+                        >
+                        
+                        <!-- ADDED TITLE AND TEAM -->
+                        <div class="flex flex-col text-stone-200">
+                            <span class="text-xl font-bold mb-1">Caleigh Campion</span>
+                            <span class="text-sm font-medium procore-orange-text">Contracts Negotiator, Commercial Legal</span>
+                            <p class="mt-3 leading-relaxed sm:mb-0 text-gray-400">
+                                Our team's success is defined by innovation. In this featured spotlight, we talk with Caleigh Campion about her work on the <b>RFP Gem</b> project and the critical role internal initiatives play in driving team efficiency and strategic value at Procore.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Image and Intro Wrapper -->
+
+                    <!-- QUOTE AND BUTTON CONTAINER -->
+                    <div class="flex flex-col md:flex-row md:items-end justify-start md:space-x-8 mt-4">
+                        
+                        <!-- Collapsible Button -->
+                        <button 
+                            id="spotlight-toggle-button" 
+                            class="collapsible-button inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors mb-4 md:mb-0"
+                            onclick="toggleCollapsible('spotlight-interview-content', this)"
+                            aria-expanded="false"
+                        >
+                            View Full Interview
+                            <svg class="ml-2 h-5 w-5 dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <!-- Highlighted Quote -->
+                        <!-- UPDATED: TEXT SIZE TO XL and w-full/max-w-full added for max stretch -->
+                        <div class="flex-1 p-4 highlighted-quote rounded-lg shadow-lg relative w-full md:max-w-full">
+                            <!-- Orange Accent Bar -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1.5 quote-bar rounded-l-lg"></div>
+                            <p class="text-xl italic pl-3">
+                                "My entire mindset shifted during Paul’s prompting seminar at the legal team offsite, where I had an "a-ha!" moment: AI isn't a replacement; it's an <b>amplifier</b>."
+                            </p>
+                        </div>
+
+                    </div>
+                    <!-- END QUOTE AND BUTTON CONTAINER -->
+                    
+                    <!-- Interview Content (Collapsible) -->
+                    <div id="spotlight-interview-content" class="collapsible-content interview-content mt-6">
+                        <div class="text-gray-400 space-y-4">
+                            
+                            <!-- Interview questions use the new white text style defined in CSS -->
+                            <h4>1. What AI innovation or project are you currently most excited about?</h4>
+                            <p>I’m most excited about the <b>RFP Gem</b>, which I think most of the legal folks have heard of. After an intensive 6-month journey, we are on the verge of formally piloting and eventually launching it with our sales and proposals teams, and I couldn’t be more excited. I’ve been its champion from day one. The initial spark came from a quarterly sync with Alice, and from there, I’ve had the privilege of leading the charge. Building it from the ground up. It's been a marathon, but I want to be clear that this has been a massive team effort with incredible collaboration and support from all our stakeholders.</p>
+                            
+                            <h4>2. Can you walk us through the problem this AI solution addresses and how it provides value to our team or users?</h4>
+                            <p>Our current go/no-go process is a manual, multi-stakeholder review that can consume dozens of man-hours per RFP. It's a non-standardized process that results in subjective, high-variance risk assessment and, critically, yields no analyzable data. Additionally, it is only utilized by one subset of the sales organization, if it’s utilized at all.</p>
+                            <p>The <b>RFP Gem</b> is designed to fix this systemically. It leverages a fine-tuned model to perform analysis on complex terms. It parses entire RFP documents and intake forms, extracting and classifying key terms against a predefined matrix of our core legal, security, and business model requirements. It then generates a quantitative risk score and a data-backed 'Go/No-Go' recommendation.</p>
+                            
+                            <h4>3. What was the biggest technical challenge you faced during this project or task?</h4>
+                            <p>The real hurdle was translating the deep, human expertise from our internal teams into a language the AI could actually execute reliably. It’s not just about keywords; it’s about concepts. How do you teach an AI to understand the intent behind dozens of different clauses? I quickly learned the AI would sometimes drop instructions or miss a subtle nuance. The solution wasn't a single "fix." It's been countless hours of testing, refining, and collaborating closely with the AI itself and our internal experts to fine-tune the prompts until it was rock-solid.</p>
+                            
+                            <h4>4. In one sentence, how would you describe the impact of this innovation on our team's workflow or future direction?</h4>
+                            <p>This gem moves our review process from a manual, subjective bottleneck to a high-speed, data-driven function, instantly aligning Legal, Sales, and Proposals with a single source of truth thus reducing inter-team friction and instead promoting collaboration.</p>
+                            
+                            <h4>5. How do you stay current with the rapidly evolving field of AI?</h4>
+                            <p>You can't just be a spectator in this field. Besides reading articles and talking with colleagues, I believe you have to be hands-on. I'm constantly experimenting. I’m testing new tools, pushing prompts to see where they break, and even revisiting old prompts to see how the underlying models have improved. The field is moving too fast for just theory; you have to "live it" through daily trial and error.</p>
+                            
+                            <h4>6. What is your personal philosophy on the role of AI in our industry?</h4>
+                            <p>I’ll be the first to admit I was an AI skeptic. I had the same "will it replace me?" anxiety many people feel. My entire mindset shifted during Paul’s prompting seminar at the legal team offsite, where I had an "a-ha!" moment: AI isn't a replacement; it's an <b>amplifier</b>.</p>
+                            <p>My philosophy now is that AI is a powerful tool in our toolkit. It's not a cure-all, and it absolutely requires human oversight. It’s here to handle the repetitive work, which frees us up to focus on the critical work that requires deep human expertise and strategic nuance.</p>
+                            <p>What excites me most is watching AI become more concept-aware. It’s already moving beyond simple keyword matching to understand meaning, like knowing "indemnify without limitation" is the concept of "<b>uncapped liability</b>." As that capability grows, it will build incredible trust between users and AI, and unlock entirely new ways for us to work smarter.</p>
+                            
+                            <h4>7. Is there a tool, library, or technique you've recently adopted that has fundamentally changed the way you approach your work?</h4>
+                            <p>I’ve most recently adopted the <b>Improve Prompt</b> feature in Harvey. This feature utilizes AI before the response generation. Good input is one of, if not the most, important components of AI use. The improve prompt feature works to make your prompt clearer, more thorough, and more AI friendly. The best part is, it can be applied to any AI platform. I will go into Harvey, pop in my prompt, and use the improve prompt feature. I think rework the prompt and bring it over to Gemini if I think that’s the more appropriate platform for the project/task. This has allowed for exponentially better input on my end, meaning better base output and less reworking to try and get the AI to understand what I am asking it.</p>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END LRC Team Spotlight -->
+
+
+            <!-- 3. Company AI Updates -> Enterprise AI News (Corporate) (MOVED DOWN) -->
+            <div class="w-full mb-10">
+                <button id="updates-toggle-button" class="collapsible-button flex items-center justify-between w-full p-4 transition duration-200 hover:bg-gray-900 rounded-xl open" onclick="toggleCollapsible('updates-collapsible-content', this)" aria-expanded="true" title="Click to view highlights and announcements for new corporate AI features.">
+                    <div class="flex items-center">
+                        <!-- ICON BLOCK REMOVED -->
+                        <div class="flex-grow text-left">
+                            <h3 class="text-2xl font-extrabold text-white mb-1">Enterprise AI News (Corporate)</h3>
+                            <p class="text-gray-400 max-w-2xl text-sm">Highlights and announcements for new corporate AI features, tools, and platforms.</p>
+                        </div>
+                    </div>
+                    <!-- Down Arrow Icon -->
+                    <div class="flex-shrink-0">
+                        <svg class="w-8 h-8 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
                 </button>
                 
-                <!-- Interview Content (Collapsible) -->
-                <div id="spotlight-interview-content" class="collapsible-content interview-content mt-6">
-                    <div class="text-gray-400 space-y-4">
-                        
-                        <!-- Interview questions use the new white text style defined in CSS -->
-                        <h4>1. What AI innovation or project are you currently most excited about?</h4>
-                        <p>I’m most excited about the <b>RFP Gem</b>, which I think most of the legal folks have heard of. After an intensive 6-month journey, we are on the verge of formally piloting and eventually launching it with our sales and proposals teams, and I couldn’t be more excited. I’ve been its champion from day one. The initial spark came from a quarterly sync with Alice, and from there, I’ve had the privilege of leading the charge. Building it from the ground up. It's been a marathon, but I want to be clear that this has been a massive team effort with incredible collaboration and support from all our stakeholders.</p>
-                        
-                        <h4>2. Can you walk us through the problem this AI solution addresses and how it provides value to our team or users?</h4>
-                        <p>Our current go/no-go process is a manual, multi-stakeholder review that can consume dozens of man-hours per RFP. It's a non-standardized process that results in subjective, high-variance risk assessment and, critically, yields no analyzable data. Additionally, it is only utilized by one subset of the sales organization, if it’s utilized at all.</p>
-                        <p>The <b>RFP Gem</b> is designed to fix this systemically. It leverages a fine-tuned model to perform analysis on complex terms. It parses entire RFP documents and intake forms, extracting and classifying key terms against a predefined matrix of our core legal, security, and business model requirements. It then generates a quantitative risk score and a data-backed 'Go/No-Go' recommendation.</p>
-                        <p>For our Teams: It compresses the initial review cycle from days to minutes. Sales, Legal, and Proposals get an instant, objective, and standardized risk score. This creates a unified output and recommendation, aligning all stakeholders around a single, auditable report from the very start. This means that we will not only have a better grasp on what RFPs we should proceed with, but the entire sales organization can adopt the process.</p>
-                        <p>For Procore: This enables scalable growth by decoupling our review bandwidth from RFP volume. It shifts our valuable SME hours from low-value textual extraction to high-value strategic negotiation. Most importantly, it allows for future implementation of data-driven governance. This will provide a structured dataset from unstructured documents for the first time. We can aggregate this data to answer strategic questions like, "What percentage of enterprise RFPs are flagged for uncapped liability?" This transforms risk management from a reactive, deal-by-deal function into a proactive, data-driven corporate strategy.</p>
-                        
-                        <h4>3. What was the biggest technical challenge you faced during this project or task?</h4>
-                        <p>The real hurdle was translating the deep, human expertise from our internal teams into a language the AI could actually execute reliably. It’s not just about keywords; it’s about concepts. How do you teach an AI to understand the intent behind dozens of different clauses? I quickly learned the AI would sometimes drop instructions or miss a subtle nuance. The solution wasn't a single "fix." It was countless hours of testing, refining, and collaborating closely with the AI itself and our internal experts to fine-tune the prompts until it was rock-solid.</p>
-                        
-                        <h4>4. In one sentence, how would you describe the impact of this innovation on our team's workflow or future direction?</h4>
-                        <p>This gem moves our review process from a manual, subjective bottleneck to a high-speed, data-driven function, instantly aligning Legal, Sales, and Proposals with a single source of truth thus reducing inter-team friction and instead promoting collaboration.</p>
-                        
-                        <h4>5. How do you stay current with the rapidly evolving field of AI?</h4>
-                        <p>You can't just be a spectator in this field. Besides reading articles and talking with colleagues, I believe you have to be hands-on. I'm constantly experimenting. I’m testing new tools, pushing prompts to see where they break, and even revisiting old prompts to see how the underlying models have improved. The field is moving too fast for just theory; you have to "live it" through daily trial and error.</p>
-                        
-                        <h4>6. What is your personal philosophy on the role of AI in our industry?</h4>
-                        <p>I’ll be the first to admit I was an AI skeptic. I had the same "will it replace me?" anxiety many people feel. My entire mindset shifted during Paul’s prompting seminar at the legal team offsite, where I had an "a-ha!" moment: AI isn't a replacement; it's an <b>amplifier</b>.</p>
-                        <p>My philosophy now is that AI is a powerful tool in our toolkit. It's not a cure-all, and it absolutely requires human oversight. It’s here to handle the repetitive work, which frees us up to focus on the critical work that requires deep human expertise and strategic nuance.</p>
-                        <p>What excites me most is watching AI become more concept-aware. It’s already moving beyond simple keyword matching to understand meaning, like knowing "indemnify without limitation" is the concept of "<b>uncapped liability</b>." As that capability grows, it will build incredible trust between users and AI, and unlock entirely new ways for us to work smarter.</p>
-                        
-                        <h4>7. Is there a tool, library, or technique you've recently adopted that has fundamentally changed the way you approach your work?</h4>
-                        <p>I’ve most recently adopted the <b>Improve Prompt</b> feature in Harvey. This feature utilizes AI before the response generation. Good input is one of, if not the most, important components of AI use. The improve prompt feature works to make your prompt clearer, more thorough, and more AI friendly. The best part is, it can be applied to any AI platform. I will go into Harvey, pop in my prompt, and use the improve prompt feature. I think rework the prompt and bring it over to Gemini if I think that’s the more appropriate platform for the project/task. This has allowed for exponentially better input on my end, meaning better base output and less reworking to try and get the AI to understand what I am asking it.</p>
-                        
+                <!-- Collapsible Content for Company AI Updates (The 4 cards) -->
+                <div id="updates-collapsible-content" class="collapsible-content pt-4 open">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                        <!-- Card 1: Gemini in Chrome - UPDATED ARROW STYLE -->
+                        <a href="https://support.google.com/gemini/?p=get_started_chrome_extension" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/QmYvaJpfBE9RgsLwxWKgg/c36cc019d7af9b7336ad902ad870ccea/RailworksHQ-hero-1440px.jpg?fit=fill&f=center&w=768&h=432');" title="Instant AI help right in your browser tab, using context from the current page. Click for getting started guide & live usage tips.">
+                            <div class="ai-card-overlay"></div>
+                            <div class="ai-card-content">
+                                <h4 class="text-2xl font-extrabold leading-snug">Gemini in Chrome is Live</h4>
+                                <p class="mt-2 text-sm text-gray-300">Instant AI help right in your browser tab, using context from the current page.</p>
+                                <div class="mt-4 flex justify-end">
+                                    <div class="ai-card-arrow">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card 2: Presentations with Gemini - UPDATED ARROW STYLE & IMAGE & LINK -->
+                        <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4tbEFNNJ7r6JuCBRLur4Y0/f7da8089c5199588bb6e3eec6e142bc6e/tile_globaldataprocessing?fit=fill&f=center&w=768&h=432');" title="Generate a full presentation deck from a document or prompt using the 'Canvas' tool.">
+                            <div class="ai-card-overlay"></div>
+                            <div class="ai-card-content">
+                                <h4 class="text-2xl font-extrabold leading-snug">Presentations with Gemini</h4>
+                                <p class="mt-2 text-sm text-gray-300">Generate a full presentation deck from a document or prompt using the 'Canvas' tool.</p>
+                                <div class="mt-4 flex justify-end">
+                                    <div class="ai-card-arrow">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card 3: Google NotebookLM - UPDATED ARROW STYLE AND LINK -->
+                        <a href="https://blog.google/technology/google-labs/notebooklm-custom-personas-engine-upgrade/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/2NhO9ZrCCydm5fgcWuB5zx/9720fd07f9ff3625ff83184826b3ddfc/profservices_hero?fit=fill&f=center&w=768&h=432');" title="Your personal AI assistant now features Custom Goals and an 8x larger context window.">
+                            <div class="ai-card-overlay"></div>
+                            <div class="ai-card-content">
+                                <h4 class="text-2xl font-extrabold leading-snug">NotebookLM: Enhanced Research</h4>
+                                <p class="mt-2 text-sm text-gray-300">Your personal AI assistant now features Custom Goals and an 8x larger context window.</p>
+                                <div class="mt-4 flex justify-end">
+                                    <div class="ai-card-arrow">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card 4: LaTeX Docs - UPDATED ARROW STYLE AND LINK -->
+                        <a href="https://workspaceupdates.googleblog.com/2025/10/new-latex-features-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4Zyrj8vQlUNuV9J4wYg8qB/c9f8019d2ba89f0ef62f1cc4fa4f506d/Procore-Pay-Legal-Tile.jpg?fit=fill&f=center&w=768&h=432');" title="Generate clean, perfectly formatted project proposals and documents using Gemini.">
+                            <div class="ai-card-overlay"></div>
+                            <div class="ai-card-content">
+                                <h4 class="text-2xl font-extrabold leading-snug">LaTeX for Professional Docs</h4>
+                                <p class="mt-2 text-sm text-gray-300">Generate clean, perfectly formatted project proposals and documents using Gemini.</p>
+                                <div class="mt-4 flex justify-end">
+                                    <div class="ai-card-arrow">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-
             </div>
+            <!-- END Enterprise AI News (Corporate) Collapsible -->
+
         </section>
-        <!-- END LRC Team Spotlight Section -->
+        <!-- END AI News & Team Highlights Section -->
 
-        <!-- START Media Resources Section -->
-        <section class="mb-16 mt-16" id="integration-resources-section">
-            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Integration & Partner Resources</h2>
+
+        <!-- START Enterprise AI Resources Section (New Top-Level Section) -->
+        <section class="mb-16 mt-16" id="enterprise-ai-resources-section">
+            <div class="section-differentiator">
+                CORE PRODUCTIVITY TOOLS
+            </div>
+            <!-- UPDATED SECTION NAME -->
+            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Enterprise AI Resources</h2>
             
-            <!-- Resource 1: App Marketplace -->
-            <a href="#" class="searchable-item block p-4 transition duration-200 border-b border-gray-900 hover:bg-gray-900 rounded-xl">
-                <div class="flex items-center space-x-6">
-                    <!-- Placeholder Image/Icon 1 (Using Metal color for icon background) -->
-                    <div class="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden bg-[#566578]">
-                        <img src="https://placehold.co/64x64/566578/ECE0D6?text=Apps" alt="App Marketplace Icon" class="w-full h-full object-cover p-3">
-                    </div>
-                    
-                    <!-- Text Content -->
-                    <div class="flex-grow">
-                        <h3 class="text-2xl font-extrabold text-white mb-1">Legal Tech Integration Hub</h3>
-                        <p class="text-gray-400 max-w-2xl text-sm">Find integrated legal solutions and access points for proprietary AI review tools.</p>
-                    </div>
+            <p class="text-gray-400 mb-8 max-w-4xl">This catalog provides a centralized overview of the <b>AI capabilities integrated into our standard Procore enterprise tools</b>. Knowing the specific strengths of these tools—from content creation to meeting summaries—is key to maximizing your daily productivity and leveraging Generative AI responsibly.</p>
 
-                    <!-- Link Arrow Icon (Using Procore Orange) -->
+            <!-- START Procore Enterprise Tools Collapsible (Now standalone section) -->
+            <div class="w-full mb-10"> 
+                <!-- This button now functions as the main section header, still using the same content. -->
+                <button id="tools-toggle-button" class="collapsible-button flex items-center justify-between w-full p-4 transition duration-200 hover:bg-gray-900 rounded-xl open" onclick="toggleCollapsible('tools-collapsible-content', this)" aria-expanded="true" title="Click to view the full list of AI and core productivity tools used at Procore.">
+                    <div class="flex items-center space-x-6">
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden bg-[#8D6E5B] flex items-center justify-center">
+                            <img src="https://media.ffycdn.net/us/procore/zsUyKPbNVB9vxmVyBSjH.svg?mod=v1/max=64" alt="Procore Enterprise Tools Icon" class="w-full h-full object-cover p-3">
+                        </div>
+                        <div class="flex-grow text-left">
+                            <h3 class="text-2xl font-extrabold text-white mb-1">Procore Enterprise Tools</h3>
+                            <p class="text-gray-400 max-w-2xl text-sm">A comprehensive reference of Procore's core AI-enhanced productivity tools and resources.</p>
+                        </div>
+                    </div>
+                    <!-- Down Arrow Icon - Rotated by the 'open' class in CSS -->
                     <div class="flex-shrink-0">
-                        <svg class="w-8 h-8 procore-orange-text transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        <svg class="w-8 h-8 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </div>
-                </div>
-            </a>
-            
-            <!-- Resource 2: Developer Documentation -->
-            <a href="#" class="searchable-item block p-4 transition duration-200 hover:bg-gray-900 rounded-xl">
-                <div class="flex items-center space-x-6">
-                    <!-- Placeholder Image/Icon 2 (Using Earth color for icon background) -->
-                    <div class="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden bg-[#8D6E5B]">
-                        <img src="https://placehold.co/64x64/8D6E5B/ECE0D6?text=Doc" alt="Documentation Icon" class="w-full h-full object-cover p-3">
+                </button>
+
+                <div id="tools-collapsible-content" class="collapsible-content pt-4 px-4 open">
+                    
+                    <!-- Table Structure -->
+                    <div class="overflow-x-auto rounded-xl shadow-lg border border-gray-700">
+                        <!-- Tailwind Table Design -->
+                        <table class="min-w-full divide-y divide-gray-700 text-left">
+                            <thead class="bg-gray-800">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
+                                        Tool Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider w-1/3">
+                                        Description
+                                    </th>
+                                    <!-- UPDATED COLUMN NAME -->
+                                    <th scope="col" class="hidden sm:table-cell px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
+                                        Resources
+                                    </th>
+                                    <!-- UPDATED COLUMN NAME -->
+                                    <th scope="col" class="hidden sm:table-cell px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
+                                        When to Use (Coming Soon)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-gray-900 divide-y divide-gray-700 text-gray-400">
+                                <!-- Row: Adobe AI Assistant (Updated to use Image/SVG) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Adobe AI Assistant for PDF Summarization and Analysis">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="table-icon-container adobe-icon-bg">
+                                                <img src="https://pngdownload.io/wp-content/uploads/2023/12/Adobe-Logo-PNG-Design-Brand-Transparent-jpg.webp" alt="Adobe Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Adobe AI Assistant</div>
+                                        </div>
+                                    </td>
+                                    <!-- UPDATED DESCRIPTION -->
+                                    <td class="px-6 py-4 max-w-sm text-sm">Integrates with <b>Adobe Acrobat</b> to summarize documents, answer questions, and perform deep content analysis on PDFs.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <!-- UPDATED LINKS FOR ADOBE ACROBAT AI ASSISTANT -->
+                                        <p><a href="https://www.adobe.com/acrobat/acrobat-ai-assistant.html" target="_blank" class="table-link">Acrobat AI Overview</a></p>
+                                        <p><a href="https://helpx.adobe.com/acrobat/using/ai-assistant-to-summarize-generate-questions.html" target="_blank" class="table-link">Usage Guide</a></p>
+                                    </td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                                <!-- Row: Atlassian Confluence AI (Updated to use Atlassian Logo) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian Confluence AI for Content Creation">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="table-icon-container atlassian-icon-bg">
+                                                <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Atlassian Confluence AI</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content in Confluence to boost productivity.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <!-- REMOVED RESOURCE LINKS AS REQUESTED -->
+                                    </td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                                <!-- Row: Atlassian JIRA AI (Updated to use Atlassian Logo) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian JIRA AI for Task Automation">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="table-icon-container atlassian-icon-bg">
+                                                <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Atlassian JIRA AI</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content across Atlassian products (Jira) to boost productivity.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <!-- REMOVED RESOURCE LINKS AS REQUESTED -->
+                                    </td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                                <!-- Row: Atlassian Rovo AI (Updated to use Atlassian Logo) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian Rovo AI for Search and Workflow Agents">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="table-icon-container atlassian-icon-bg">
+                                                <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Atlassian Rovo AI</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-sm text-sm">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension. It can also create custom <b>workflow agents</b>.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <!-- REMOVED RESOURCE LINKS AS REQUESTED -->
+                                    </td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                                <!-- Row: Google Gemini (Updated to use Image/SVG) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Google Gemini Assistant for Workspace">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <!-- NEW: White background added for contrast -->
+                                            <div class="table-icon-container google-icon-bg">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Google Gemini *</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-sm text-sm">An AI assistant that uses a multimodal large language model to help with a wide range of tasks by understanding and generating text, images, audio, and more.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <p><a href="https://support.google.com/gemini/" target="_blank" class="table-link">Gemini Help Center</a></p>
+                                        <p><a href="https://workspace.google.com/features/gemini/" target="_blank" class="table-link">Gemini for Workspace</a></p>
+                                    </td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                                <!-- Row: Google NotebookLM (Updated to use Image/SVG) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Google NotebookLM for Research and Document Grounding">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <!-- NEW: White background added for contrast -->
+                                            <div class="table-icon-container google-icon-bg">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Google NotebookLM</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-sm text-sm">An AI-powered research assistant that helps you learn and explore information more effectively, grounding research in your own source materials.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <p><a href="https://notebooklm.google/support" target="_blank" class="table-link">NotebookLM Support</a></p>
+                                        <p><a href="https://blog.google/technology/ai/google-notebooklm-generative-ai-research-tool/" target="_blank" class="table-link">Official Blog Post</a></p>
+                                    </td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                                <!-- Row: Loom AI (Updated to use Image/SVG) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Loom AI for Video Summaries">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="table-icon-container loom-icon-bg">
+                                                <img src="https://e7.pngegg.com/pngimages/472/111/png-clipart-loom-new-logo-icon-tech-companies.png" alt="Loom Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Loom AI</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-sm text-sm">Automatically generates summaries, transcriptions, and suggested titles for your Loom videos, boosting productivity and enabling quick information retrieval.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <p><a href="https://support.loom.com/hc/en-us/categories/16900223707787-Loom-AI" target="_blank" class="table-link">Loom AI Support</a></p>
+                                        <p><a href="https://www.loom.com/loom-ai" target="_blank" class="table-link">Loom AI Features</a></p>
+                                    </td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                                <!-- Row: Slack AI (Updated to use Image/SVG) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Slack AI for Conversation Summarization and Search">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="table-icon-container slack-icon-bg">
+                                                <img src="https://images.icon-icons.com/2699/PNG/512/slack_tile_logo_icon_168820.png" alt="Slack Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Slack AI</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-sm text-sm">Provides smarter search, instant conversation summaries, and automated responses to streamline team communication.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <p><a href="https://slack.com/help/slack-ai" target="_blank" class="table-link">Slack AI Help Center</a></p>
+                                        <p><a href="https://slack.com/product/slack-ai" target="_blank" class="table-link">Slack AI Overview</a></p>
+                                    </td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                                <!-- Row: Zoom AI (Updated to use Image/SVG) -->
+                                <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Zoom AI for Meeting Summaries">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="table-icon-container zoom-icon-bg">
+                                                <img src="https://www.citypng.com/public/uploads/preview/download-round-blue-zoom-logo-icon-png-701751695039210sjnvxytv5d.png" alt="Zoom Icon" class="table-icon-img">
+                                            </div>
+                                            <div class="text-sm font-medium text-white">Zoom AI</div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-sm text-sm">A digital assistant that uses generative AI to create content, summarize meetings and chats, and generate ideas/content for whiteboards.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     
-                    <!-- Text Content -->
-                    <div class="flex-grow">
-                        <h3 class="text-2xl font-extrabold text-white mb-1">Internal Legal Documentation & Policies</h3>
-                        <p class="text-gray-400 max-w-2xl text-sm">Access the latest company policies, guidelines, and compliance documentation.</p>
+                    <!-- NEW NOTES SECTION -->
+                    <div class="mt-4 text-gray-400 text-sm italic">
+                        <p>* <b>Note on Google Gemini availability:</b> Generative AI capabilities are available across Google Workspace products, including <b>Chrome, Drive, Gmail, Docs, Sheets,</b> and <b>Slides</b>. Availability may vary by specific license type.</p>
                     </div>
 
-                    <!-- Link Arrow Icon (Using Procore Orange) -->
-                    <div class="flex-shrink-0">
-                        <svg class="w-8 h-8 procore-orange-text transform rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </div>
                 </div>
-            </a>
+            </div>
+            <!-- END Procore Enterprise Tools Collapsible -->
         </section>
-        <!-- END Media Resources Section -->
+        <!-- END Enterprise AI Resources Section -->
         
-        <!-- START Procore Stories Section (Newsfeed) -->
-        <section class="mb-16 mt-16" id="stories-section">
-            <div class="flex justify-between items-center mb-10">
-                <h2 class="text-4xl font-extrabold text-white">Compliance & Governance Stories</h2>
-                <a href="#" class="procore-orange-text font-bold hover:text-white inline-flex items-center transition">
-                    Explore All Insights
-                    <div class="w-2 h-2 ml-1 procore-orange-bg rounded-full"></div>
-                </a>
+        
+        <!-- START Legal-Specific Resources Section (New Top-Level Section) -->
+        <section class="mb-16 mt-16" id="legal-specific-resources-section">
+            <div class="section-differentiator">
+                APPLYING AI TO LEGAL PRACTICE
             </div>
+            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Legal-Specific Resources</h2>
+            
+            <p class="text-gray-400 mb-8">Access documentation and deep-dive technical guidance on AI tools customized for the LRC team, including our internal, specialized AI systems.</p>
+            
+            <!-- Collapsible Legal Industry Topics & Trends -->
+            <div class="w-full mb-10"> <!-- INCREASED MARGIN HERE -->
+                <button id="trends-toggle-button" class="collapsible-button flex items-center justify-between w-full p-4 transition duration-200 hover:bg-gray-900 rounded-xl open" onclick="toggleCollapsible('trends-collapsible-content', this)" aria-expanded="true" title="Click to view curated articles and training on current legal industry trends related to AI.">
+                    <div class="flex items-center space-x-6">
+                        <!-- ICON: Earth color for trends/topics (Updated URL) -->
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden legal-trends-icon-bg flex items-center justify-center">
+                            <img src="https://media.ffycdn.net/us/procore/b7MuCKm6nA57V17ZwwnA.svg?mod=v1/max=64" alt="Topics & Trends Icon" class="w-full h-full object-cover p-3">
+                        </div>
+                        <div class="flex-grow text-left">
+                            <h3 class="text-2xl font-extrabold text-white mb-1">Legal Industry Topics & Trends</h3>
+                            <p class="text-gray-400 max-w-2xl text-sm">Curated articles, webinars, and training on the evolving legal and regulatory landscape of AI.</p>
+                        </div>
+                    </div>
+                    <!-- Down Arrow Icon -->
+                    <div class="flex-shrink-0">
+                        <svg class="w-8 h-8 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </button>
+                
+                <!-- Collapsible Content for Topics & Trends - NOW A CARD GRID (Populated with user content) -->
+                <div id="trends-collapsible-content" class="collapsible-content pt-4 open">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- Featured Stories (Large Cards) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-                
-                <!-- Featured Story 1 -->
-                <a href="#" class="searchable-item relative block rounded-xl overflow-hidden shadow-2xl group">
-                    <img src="https://placehold.co/600x400/000000/FF5200?text=AI+Policy+Document" alt="AI Policy Document" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
-                        <div class="flex text-xs uppercase font-semibold procore-orange-text mb-1">
-                            <span class="border border-white px-2 py-0.5 rounded-md mr-3 text-white">GUIDE</span>
-                            <span>4 MIN READ</span>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-extrabold leading-snug">New Company AI Usage Policy: Key Takeaways for Employees</h3>
+                        <!-- Card 1: ACC AI Toolkit - UPDATED LINK AND BACKGROUND IMAGE -->
+                        <a href="https://www.acc.com/sites/default/files/resources/upload/ACC-Artificial-Intelligence-Toolkit-for-In-house-Lawyers-FINAL.pdf" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/76ymLftNSahu1k0zXTrG4B/9599d01223d0ae15fbb0513391a6e552/terms-of-use-tile.jpg?fit=fill&f=center&w=768&h=432');" title="This toolkit focuses on key areas for in-house counsel: AI Governance, Protecting IP & Ethics, and Career Readiness. It provides a foundational framework for safe and effective AI adoption within corporate legal departments.">
+                            <div class="ai-card-overlay"></div>
+                            <div class="ai-card-content">
+                                <!-- REMOVED ICON -->
+                                <h4 class="text-2xl font-extrabold leading-snug">ACC AI Toolkit: 3 Pillars of Legal AI Readiness</h4>
+                                <p class="mt-2 text-sm text-gray-300">Foundational framework for safe and effective AI adoption within corporate legal departments.</p>
+                                <div class="mt-4 flex justify-end">
+                                    <div class="ai-card-arrow">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card 2: In-House Use of Gen AI More Than Doubles - UPDATED LINK AND BACKGROUND -->
+                        <a href="https://news.bloomberglaw.com/artificial-intelligence/in-house-lawyers-use-of-gen-al-more-than-doubles-in-one-year" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://news-api.bloomberglaw.com/v1/resize-image?url=http%3A%2F%2Fbloomberg-bna-brightspot.s3.amazonaws.com%2F52%2Fea%2F7fb148aa41f58d03de9aec7a37b7%2Fai.jpg&width=2480&height=960&fit=cover&crop=3993x1539%2B3%2B105');" title="A Bloomberg Law report highlighting the massive surge in corporate Gen AI adoption, primarily driven by the need for increased efficiency and productivity gains across the legal profession.">
+                            <div class="ai-card-overlay"></div>
+                            <div class="ai-card-content">
+                                <!-- REMOVED ICON -->
+                                <h4 class="text-2xl font-extrabold leading-snug">In-House Use of Gen AI More Than Doubles in One Year</h4>
+                                <p class="mt-2 text-sm text-gray-300">Report on the surge in corporate Gen AI adoption driven by efficiency and productivity gains.</p>
+                                <div class="mt-4 flex justify-end">
+                                    <div class="ai-card-arrow">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card 3: AI: The New Devil's Advocate -->
+                        <a href="https://www.lawyersweekly.com.au/corporate-counsel/43221-could-ai-be-the-new-devil-s-advocate-for-in-house-lawyers" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/3oZf0iVdhgxZRdjCZpYvFv/4d5ea4b332be59cb2082fdfb9aa686c7/state-licenses-tile.jpg?fit=fill&f=center&w=768&h=432');" title="An article discussing the emerging strategic value of using AI as a 'sparring partner' to challenge core legal arguments, rigorously testing assumptions and exposing potential weaknesses in defense or deal structures.">
+                            <div class="ai-card-overlay"></div>
+                            <div class="ai-card-content">
+                                <!-- REMOVED ICON -->
+                                <h4 class="text-2xl font-extrabold leading-snug">AI: The New Devil's Advocate for Legal Strategy</h4>
+                                <p class="mt-2 text-sm text-gray-300">Strategic value of using AI to challenge core legal arguments and test assumptions.</p>
+                                <div class="mt-4 flex justify-end">
+                                    <div class="ai-card-arrow">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
                     </div>
-                </a>
-                
-                <!-- Featured Story 2 -->
-                <a href="#" class="searchable-item relative block rounded-xl overflow-hidden shadow-2xl group">
-                    <img src="https://placehold.co/600x400/CEC4A1/000000?text=Legal+Team+Meeting" alt="Legal Team Meeting" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                    <div class="absolute bottom-0 left-0 p-6 text-white w-full">
-                        <div class="flex text-xs uppercase font-semibold procore-orange-text mb-1">
-                            <span class="border border-white px-2 py-0.5 rounded-md mr-3 text-white">INTERVIEW</span>
-                            <span>6 MIN READ</span>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-extrabold leading-snug">Interview with the Head of Regulatory Affairs on Global Expansion</h3>
-                    </div>
-                </a>
+                </div>
             </div>
+            
+            <!-- Collapsible Legal Tech Tools & Recent Trials (Renamed) -->
+            <div class="w-full">
+                <!-- UPDATED NAME -->
+                <button id="tools-trials-toggle-button" class="collapsible-button flex items-center justify-between w-full p-4 transition duration-200 hover:bg-gray-900 rounded-xl open" onclick="toggleCollapsible('tools-trials-collapsible-content', this)" aria-expanded="true" title="Click to view internal documentation and status updates on legal technology pilots.">
+                    <div class="flex items-center space-x-6">
+                        <!-- ICON: Procore Gold color for tech/tools (Updated URL) -->
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden legal-tech-icon-bg flex items-center justify-center">
+                            <img src="https://media.ffycdn.net/us/procore/3GWC7Fa6R7gB3DkGr1H8.svg?mod=v1/max=64" alt="Legal Tech Icon" class="w-full h-full object-cover p-3">
+                        </div>
+                        <div class="flex-grow text-left">
+                            <!-- UPDATED NAME HERE -->
+                            <h3 class="text-2xl font-extrabold text-white mb-1">Legal AI Tech Tools & Recent Trials</h3>
+                            <p class="text-gray-400 max-w-2xl text-sm">Documentation, guides, and status updates for internally developed and third-party legal AI tools (e.g., RFP Gem).</p>
+                        </div>
+                    </div>
+                    <!-- Down Arrow Icon -->
+                    <div class="flex-shrink-0">
+                        <svg class="w-8 h-8 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </button>
 
-            <!-- Smaller Related Stories -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                
-                <!-- Small Story 1 -->
-                <a href="#" class="searchable-item flex flex-col items-start space-y-3 group">
-                    <img src="https://placehold.co/100x100/1F2937/ECE0D6?text=Training" alt="Training Icon" class="w-16 h-16 rounded-full object-cover">
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold text-gray-400 mb-1">8 MIN READ <span class="mx-1">•</span> TRAINING</div>
-                        <p class="text-white text-sm font-semibold group-hover:procore-orange-text transition">Data Privacy Training: Essential Knowledge for All Departments</p>
+                <!-- Collapsible Content for Legal Tech Tools & Recent Trials -->
+                <div id="tools-trials-collapsible-content" class="collapsible-content pt-4 px-4 open">
+                    
+                    <!-- Sub-Section 1: Legal Tech Tools -->
+                    <div class="w-full mb-10"> <!-- INCREASED MARGIN HERE -->
+                            <!-- ADDED 'open' CLASS TO BUTTON FOR DEFAULT OPEN STATE -->
+                        <button id="legal-tools-toggle" class="collapsible-button flex items-center justify-between w-full p-3 transition duration-200 hover:bg-gray-800 rounded-lg open" onclick="toggleCollapsible('legal-tools-content', this)" aria-expanded="true" title="Click to view details on established and approved legal technology tools.">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-6 h-6 procore-orange-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <span class="text-xl font-bold text-white">Legal AI Tech Tools</span>
+                            </div>
+                              <!-- Down Arrow Icon -->
+                            <div class="flex-shrink-0">
+                                <svg class="w-6 h-6 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </button>
+                        <div id="legal-tools-content" class="collapsible-content pt-3 px-3 open">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                                    <!-- Card 1: Luminance - UPDATED IMAGE AND LINK -->
+                                    <a href="https://www.luminance.com/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://golden-storage-production.golden-support.com/topic_images/13296a02269a4283aeb2f63a888d55ad.png');" title="AI-powered contract review platform used for due diligence and negotiation.">
+                                        <div class="ai-card-overlay"></div>
+                                        <div class="ai-card-content">
+                                            <h4 class="text-2xl font-extrabold leading-snug">Luminance</h4>
+                                            <p class="mt-2 text-sm text-gray-300">AI-powered contract review platform used for due diligence and negotiation.</p>
+                                            <div class="mt-4 flex justify-end">
+                                                <div class="ai-card-arrow">
+                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <!-- Card 2: Knowable -->
+                                    <a href="https://www.knowable.com/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://www.knowable.com/wp-content/uploads/2024/11/AskKnowable_Slide.jpg');" title="Platform specializing in contract data extraction and enterprise contract repository management.">
+                                        <div class="ai-card-overlay"></div>
+                                        <div class="ai-card-content">
+                                            <h4 class="text-2xl font-extrabold leading-snug">Knowable</h4>
+                                            <p class="mt-2 text-sm text-gray-300">Platform specializing in contract data extraction and enterprise contract repository management.</p>
+                                            <div class="mt-4 flex justify-end">
+                                                <div class="ai-card-arrow">
+                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                        </div>
                     </div>
-                </a>
-                
-                <!-- Small Story 2 -->
-                <a href="#" class="searchable-item flex flex-col items-start space-y-3 group">
-                    <img src="https://placehold.co/100x100/374151/ECE0D6?text=Blog" alt="Blog Post" class="w-16 h-16 rounded-full object-cover">
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold text-gray-400 mb-1">3 MIN READ <span class="mx-1">•</span> BLOG</div>
-                        <p class="text-white text-sm font-semibold group-hover:procore-orange-text transition">The Impact of New European Regulations on SaaS Contracts</p>
+                    
+                    <!-- Sub-Section 2: Recent Trials -->
+                    <div class="w-full">
+                            <!-- ADDED 'open' CLASS TO BUTTON FOR DEFAULT OPEN STATE -->
+                        <button id="recent-trials-toggle" class="collapsible-button flex items-center justify-between w-full p-3 transition duration-200 hover:bg-gray-800 rounded-lg open" onclick="toggleCollapsible('recent-trials-content', this)" aria-expanded="true" title="Click to view status updates and reports on ongoing legal AI trials.">
+                            <div class="flex items-center space-x-4">
+                                <svg class="w-6 h-6 procore-orange-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-xl font-bold text-white">Recent Trials</span>
+                            </div>
+                              <!-- Down Arrow Icon -->
+                            <div class="flex-shrink-0">
+                                <svg class_ ="w-6 h-6 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </button>
+                        <div id="recent-trials-content" class="collapsible-content pt-3 px-3 open">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <!-- Card 1: Harvey.ai - UPDATED IMAGE AND LINK -->
+                                <!-- REMOVED .harvey-card CLASS -->
+                                <a href="https://www.harvey.ai/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/1qJW5Otz8RN7rDgconLyqR/4ff59ca0788d65708cc3f46b7afc8ec1/ConstructionSoftwareBuyersGuide_keyart_1920x1080?fit=fill&f=center&w=768&h=432');" title="Trial status for the custom generative AI legal assistant platform.">
+                                    <div class="ai-card-overlay"></div>
+                                    <div class="ai-card-content">
+                                        <h4 class="text-2xl font-extrabold leading-snug">Harvey.ai Trial Status</h4>
+                                        <p class="mt-2 text-sm text-gray-300">Evaluating generative AI capabilities for legal research, contract analysis, and Q&A.</p>
+                                        <div class="mt-4 flex justify-end">
+                                            <div class="ai-card-arrow">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- Card 2: Thomson Reuters CoCounsel - UPDATED DESCRIPTION -->
+                                <a href="https://www.thomsonreuters.com/en" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://legal.thomsonreuters.com/en/c/cocounsel-legal/all-in-pan/_jcr_content/root/container/container_copy_copy/image_copy.coreimg.jpeg/1753900224328/253782.jpeg');" title="Trial status for Thomson Reuters' generative AI legal research and drafting tool.">
+                                    <div class="ai-card-overlay"></div>
+                                    <div class="ai-card-content">
+                                        <h4 class="text-2xl font-extrabold leading-snug">Thomson Reuters CoCounsel Trial</h4>
+                                        <!-- UPDATED DESCRIPTION TO INCLUDE LEGAL RESEARCH -->
+                                        <p class="mt-2 text-sm text-gray-300">Testing its effectiveness for legal research, summarizing documents, and creating first drafts of memos.</p>
+                                        <div class="mt-4 flex justify-end">
+                                            <div class="ai-card-arrow">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <!-- Card 3: LexisNexis Protege+ - UPDATED IMAGE AND LINK -->
+                                <a href="https://www.lexisnexis.com/en-us/products/protege.page" target="_blank" class="ai-card searchable-item group protege-card" style="background-image: url('https://www.lexisnexis.com/images/logo.svg');" title="Trial status for LexisNexis' comprehensive document and knowledge management AI suite.">
+                                    <div class="ai-card-overlay"></div>
+                                    <div class="ai-card-content">
+                                        <h4 class="text-2xl font-extrabold leading-snug">LexisNexis Protege+ Pilot</h4>
+                                        <p class="mt-2 text-sm text-gray-300">Evaluation of advanced legal research, analytical tools, and predictive modeling features.</p>
+                                        <div class="mt-4 flex justify-end">
+                                            <div class="ai-card-arrow">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </a>
-                
-                <!-- Small Story 3 -->
-                <a href="#" class="searchable-item flex flex-col items-start space-y-3 group">
-                    <img src="https://placehold.co/100x100/4B5563/ECE0D6?text=Update" alt="Update Icon" class="w-16 h-16 rounded-full object-cover">
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold text-gray-400 mb-1">2 MIN READ <span class="mx-1">•</span> UPDATE</div>
-                        <p class="text-white text-sm font-semibold group-hover:procore-orange-text transition">Key Changes to the Vendor Due Diligence Process</p>
-                    </div>
-                </a>
-                
-                <!-- Small Story 4 (Placeholder) -->
-                <a href="#" class="searchable-item flex flex-col items-start space-y-3 group hidden sm:flex">
-                    <img src="https://placehold.co/100x100/6B7280/ECE0D6?text=Tech" alt="Tech Icon" class="w-16 h-16 rounded-full object-cover">
-                    <div class="text-left">
-                        <div class="text-xs uppercase font-semibold text-gray-400 mb-1">5 MIN READ <span class="mx-1">•</span> TECH BRIEF</div>
-                        <p class="text-white text-sm font-semibold group-hover:procore-orange-text transition">Leveraging AI for Contract Review Speed and Accuracy</p>
-                    </div>
-                </a>
+
+                </div>
             </div>
         </section>
-        <!-- END Procore Stories Section -->
+        <!-- END Legal-Specific Resources Section -->
         
     </div>
 </main>
 
 <footer class="bg-gray-900 mt-12 py-8 border-t border-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
-        <p>&copy; 2025 Procore Technologies, Inc. | All Rights Reserved.</p>
-        <p class="mt-2 text-sm">Legal | Privacy Policy | Accessibility</p>
+        <!-- Removed Legal | Privacy Policy | Accessibility -->
     </div>
 </footer>
 
@@ -541,8 +1595,8 @@
     const textureLoader = new THREE.TextureLoader();
     
     // Custom assets matching Procore theme
-    const backgroundImage = 'https://placehold.co/1200x600/FF5200/FF5200?text=Procore'; 
-    const patentDiagramUrl = 'https://placehold.co/2000x240/D0D0D0/D0D0D0?text=ABSTRACT+CONSTRUCTION+PLAN'; 
+    const backgroundImage = 'https://placehold.co/1200x600/FF5200/FF5200?text=Procore+Orange'; 
+    const patentDiagramUrl = 'https://placehold.co/2000x240/1A1A1A/1A1A1A?text=ABSTRACT+CONSTRUCTION+PLAN'; // Darker watermark for subtlety
 
     function getBannerHeight() {
         // Retrieve explicit height from the HTML element's inline style
@@ -550,7 +1604,7 @@
         if (wrapper && wrapper.style.height) {
             return parseFloat(wrapper.style.height);
         }
-        return 500; // Updated default fallback height
+        return 450; // Updated default fallback height
     }
 
     function updateCanvasSize() {
@@ -574,7 +1628,8 @@
         const initialHeight = getBannerHeight(); 
 
         scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xff5200); // Procore Orange fallback 
+        // Set Procore Orange as the initial fallback background color
+        scene.background = new THREE.Color(0xFF5200); 
 
         // Initialize camera
         camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / initialHeight, 0.1, 1000);
@@ -601,7 +1656,8 @@
             undefined,
             function(err) {
                 console.error('Error loading background image:', err);
-                scene.background = new THREE.Color(0xff5200); 
+                // Ensure orange fallback on texture load failure
+                scene.background = new THREE.Color(0xFF5200); 
             }
         );
         
@@ -694,25 +1750,41 @@
     }
     // --- END THREE.JS LOGIC ---
 
-    // --- MAIN SCRIPT LOGIC (Dropdown, Mobile Menu, Collapsible) ---
+    // --- MAIN SCRIPT LOGIC (Dropdown, Mobile Menu, Collapsible, Explore) ---
 
     /**
-     * Toggles the visibility of a specified dropdown menu.
+     * Toggles the visibility of a specified dropdown menu (used for header nav).
      */
     function toggleDropdown(menuId, button) {
         const menu = document.getElementById(menuId);
         const icon = button.querySelector('.dropdown-icon');
 
-        document.querySelectorAll('.rounded-lg[role="menu"], .bg-gray-800[id^="mobile-dropdown-menu-"]').forEach(otherMenu => {
+        // Close other desktop dropdowns
+        document.querySelectorAll('.rounded-lg[role="menu"], .header-dropdown-menu').forEach(otherMenu => {
             if (otherMenu.id !== menuId) {
                 otherMenu.classList.add('hidden');
             }
         });
-        document.querySelectorAll('.dropdown-icon').forEach(otherIcon => {
-            if (otherIcon !== icon) {
+        document.querySelectorAll('.nav-item-button .dropdown-icon').forEach(otherIcon => {
+            // Find the correct parent button for the icon
+            if (otherIcon !== icon && otherIcon.closest('button').id.startsWith('dropdown-toggle')) {
                 otherIcon.style.transform = 'rotate(0deg)';
             }
         });
+        
+        // Also close the middle Explore menu (specific fix)
+        document.getElementById('explore-menu-1').classList.add('hidden');
+        document.getElementById('explore-menu-2a').classList.add('hidden');
+        document.getElementById('explore-menu-2b').classList.add('hidden');
+        const exploreIcon = document.getElementById('explore-toggle-1')?.querySelector('.dropdown-icon');
+        if (exploreIcon) exploreIcon.style.transform = 'rotate(0deg)';
+        
+        // Also close the header Explore menu
+        document.getElementById('header-explore-menu-1').classList.add('hidden');
+        document.getElementById('header-explore-menu-2a').classList.add('hidden');
+        document.getElementById('header-explore-menu-2b').classList.add('hidden');
+        const headerExploreIcon = document.getElementById('header-explore-toggle')?.querySelector('.dropdown-icon');
+        if (headerExploreIcon) headerExploreIcon.style.transform = 'rotate(0deg)';
 
         menu.classList.toggle('hidden');
 
@@ -747,7 +1819,6 @@
 
     /**
      * Toggles the visibility of a collapsible section.
-     * Also updates the ARIA attribute.
      */
     function toggleCollapsible(contentId, button) {
         const content = document.getElementById(contentId);
@@ -758,112 +1829,234 @@
             button.classList.toggle('open');
             button.setAttribute('aria-expanded', isOpening);
             
-            // Check if we need to scroll to the button if the content is opening
-            if (isOpening) {
-                button.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // NOTE: Removed `scrollTarget.scrollIntoView` call here to fix unwanted scrolling
+        }
+    }
+
+    /**
+     * Toggles the visibility of the main Explore menu (Level 1).
+     */
+    function toggleExploreDropdown(menuId, button) {
+        const menu = document.getElementById(menuId);
+        
+        // 1. Close all other main header dropdowns explicitly via toggleDropdown
+        document.querySelectorAll('nav .relative button[id^="dropdown-toggle-"]').forEach(btn => {
+            const match = btn.getAttribute('onclick').match(/'(.*?)'/);
+            const btnMenuId = match ? match[1] : null;
+            if (btnMenuId && btnMenuId !== menuId) {
+                document.getElementById(btnMenuId).classList.add('hidden');
+                btn.querySelector('.dropdown-icon').style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // 2. Close the *other* Explore menu if it's open (header vs utility)
+        const isHeader = menuId.startsWith('header-');
+        const otherExploreMenuId = isHeader ? 'explore-menu-1' : 'header-explore-menu-1';
+        const otherExploreMenu = document.getElementById(otherExploreMenuId);
+        if (otherExploreMenu) {
+            otherExploreMenu.classList.add('hidden');
+            // Reset the other Explore icon
+            const otherExploreToggleId = isHeader ? 'explore-toggle-1' : 'header-explore-toggle';
+            const otherExploreIcon = document.getElementById(otherExploreToggleId)?.querySelector('.dropdown-icon');
+            if (otherExploreIcon) otherExploreIcon.style.transform = 'rotate(0deg)';
+        }
+
+
+        // 3. Close all Level 2 menus associated with the target menu area
+        document.getElementById('explore-menu-2a').classList.add('hidden');
+        document.getElementById('explore-menu-2b').classList.add('hidden');
+        document.getElementById('header-explore-menu-2a').classList.add('hidden');
+        document.getElementById('header-explore-menu-2b').classList.add('hidden');
+        // Reset all Level 2 icons
+        document.getElementById('icon-2a').style.transform = 'rotate(0deg)';
+        document.getElementById('icon-2b').style.transform = 'rotate(0deg)';
+        const headerIcon2a = document.getElementById('header-icon-2a');
+        if (headerIcon2a) headerIcon2a.style.transform = 'rotate(0deg)';
+        const headerIcon2b = document.getElementById('header-icon-2b');
+        if (headerIcon2b) headerIcon2b.style.transform = 'rotate(0deg)';
+
+
+        // 4. Toggle the target Level 1 menu
+        const isHidden = menu.classList.toggle('hidden');
+
+        // 5. Toggle the main arrow icon
+        const mainIcon = button.querySelector('.dropdown-icon');
+        if (mainIcon) {
+            if (!isHidden) {
+                mainIcon.style.transform = 'rotate(180deg)';
+            } else {
+                mainIcon.style.transform = 'rotate(0deg)';
             }
         }
     }
 
     /**
+     * Toggles the visibility of a nested Explore sub-dropdown (Level 2).
+     */
+    function toggleExploreSubDropdown(subMenuId, button) {
+        const subMenu = document.getElementById(subMenuId);
+        const icon = button.querySelector('svg'); // Get the specific icon inside the button
+        const isHeaderMenu = subMenuId.startsWith('header-');
+
+        // Determine sibling IDs based on whether it's the header or utility menu
+        let siblingMenuIds, siblingIconIds;
+        if (isHeaderMenu) {
+            siblingMenuIds = (subMenuId === 'header-explore-menu-2a') ? ['header-explore-menu-2b'] : ['header-explore-menu-2a'];
+            siblingIconIds = (subMenuId === 'header-explore-menu-2a') ? ['header-icon-2b'] : ['header-icon-2a'];
+        } else {
+            siblingMenuIds = (subMenuId === 'explore-menu-2a') ? ['explore-menu-2b'] : ['explore-menu-2a'];
+            siblingIconIds = (subMenuId === 'explore-menu-2a') ? ['icon-2b'] : ['icon-2a'];
+        }
+        
+        // Close the sibling Level 2 menu
+        siblingMenuIds.forEach(siblingId => {
+            const siblingMenu = document.getElementById(siblingId);
+            if (siblingMenu && !siblingMenu.classList.contains('hidden')) {
+                siblingMenu.classList.add('hidden');
+            }
+        });
+        siblingIconIds.forEach(siblingIconId => {
+            const siblingIcon = document.getElementById(siblingIconId);
+             if(siblingIcon) siblingIcon.style.transform = 'rotate(0deg)';
+        });
+
+
+        // Toggle the target Level 2 menu
+        const isHidden = subMenu.classList.toggle('hidden');
+        
+        // Toggle the right-arrow icon for the current sub-menu
+        if (!isHidden) {
+            icon.style.transform = 'rotate(90deg)';
+        } else {
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    /**
+     * Filters content blocks based on the search input value.
+     * Searches content by title/tooltip text.
+     */
+    function filterContent(query) {
+        const searchText = query.toLowerCase().trim();
+        // Target elements that are visually distinct and link to content
+        // Including the collapsible buttons themselves for searchable text
+        const items = document.querySelectorAll('.searchable-item, .workstream-card, #spotlight-container, #updates-toggle-button, #tools-toggle-button, #trends-toggle-button, #tools-trials-toggle-button, #legal-tools-toggle, #recent-trials-toggle, #team-highlights-toggle-button');
+        
+        // Check if we are actively searching
+        const isSearching = searchText.length > 0;
+
+        items.forEach(item => {
+            let searchableText = (item.title || item.textContent).toLowerCase();
+            
+            // Include nested content for complex sections
+            if (item.classList.contains('ai-card') || item.id === 'spotlight-container' || item.classList.contains('workstream-card') || item.classList.contains('collapsible-button')) {
+                searchableText += ' ' + item.textContent.toLowerCase();
+            }
+
+            const isMatch = searchableText.includes(searchText);
+
+            // Determine the element to hide/show based on its purpose
+            let elementToControl = item;
+            
+            // Handle different display styles for direct child elements in a grid/flex
+            let displayStyle = 'block';
+
+            if (item.closest('#small-stories-container')) {
+                displayStyle = 'flex'; // Small story cards are flex children
+            } else if (item.classList.contains('ai-card')) {
+                displayStyle = 'block'; // AI cards are block children of a grid
+            } else if (item.classList.contains('workstream-card')) {
+                displayStyle = 'block'; // Workstream cards are block children of a grid
+            } else if (item.classList.contains('collapsible-button')) {
+                 // Collapsible buttons should remain block-level elements
+                displayStyle = 'flex'; 
+            } else if (item.id === 'spotlight-container') {
+                displayStyle = 'block'; 
+            }
+
+
+            // Apply display logic
+            if (isSearching) {
+                elementToControl.style.display = isMatch ? displayStyle : 'none';
+            } else {
+                // If search is empty, clear inline display style to restore original CSS/Tailwind classes
+                elementToControl.style.display = '';
+            }
+        });
+
+        // Toggle Collapsible Sections based on search status
+        document.querySelectorAll('.collapsible-button[id$="-toggle-button"], .collapsible-button[id^="legal-tools-toggle"], .collapsible-button[id^="recent-trials-toggle"], #team-highlights-toggle-button').forEach(button => {
+            const match = button.getAttribute('onclick').match(/'(.*?)'/);
+            const contentId = match ? match[1] : null;
+            const content = document.getElementById(contentId);
+            const isButtonMatch = button.style.display !== 'none';
+
+            if (content) {
+                if (isSearching) {
+                    // When searching, collapse sections unless the button itself matched the search query
+                    if (isButtonMatch) {
+                          // If the button title matched, keep the button displayed, but the content should still be collapsed unless the content itself is part of the "searchable items" logic above.
+                        content.classList.remove('open');
+                        button.classList.remove('open');
+                        button.setAttribute('aria-expanded', 'false');
+
+                    } else {
+                        // If the button didn't match, it's already display:none, and the content remains closed.
+                        content.classList.remove('open');
+                    }
+                } else {
+                    // When search is cleared, restore them to their default 'open' state (all default to open in your HTML)
+                    content.classList.add('open');
+                    button.classList.add('open');
+                    button.setAttribute('aria-expanded', 'true');
+                    
+                    // Reset visibility explicitly in case the logic above hid it
+                    button.style.display = 'flex';
+                }
+            }
+        });
+    }
+
+
+    // --- EVENT LISTENERS ---
+
+    /**
      * Closes desktop dropdowns if the user clicks anywhere else on the document.
      */
     document.addEventListener('click', (event) => {
-        const isButton = event.target.closest('button[id^="dropdown-toggle-"]');
-        const isDropdownContent = event.target.closest('.rounded-lg[role="menu"]');
+        // Elements that should keep the dropdown open if clicked
+        const isHeaderButton = event.target.closest('button[id^="dropdown-toggle-"]');
+        const isHeaderDropdownContent = event.target.closest('#dropdown-menu-1, #dropdown-menu-2, #dropdown-menu-3');
+        const isExploreButton = event.target.closest('#header-explore-toggle, #explore-toggle-1');
+        const isExploreMenu = event.target.closest('#header-explore-menu-1, #explore-menu-1');
 
-        if (!isButton && !isDropdownContent) {
-            document.querySelectorAll('.rounded-lg[role="menu"]').forEach(menu => {
+        if (!isHeaderButton && !isHeaderDropdownContent && !isExploreButton && !isExploreMenu) {
+            
+            // Close all standard header dropdowns
+            document.querySelectorAll('#dropdown-menu-1, #dropdown-menu-2, #dropdown-menu-3').forEach(menu => {
                 menu.classList.add('hidden');
             });
-            document.querySelectorAll('.dropdown-icon').forEach(icon => {
-                icon.style.transform = 'rotate(0deg)';
+            
+            // Reset standard header dropdown icons
+            document.querySelectorAll('nav .nav-item-button .dropdown-icon').forEach(icon => {
+                if (icon.closest('button') && icon.closest('button').id.startsWith('dropdown-toggle')) {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Close all Explore Menus (Header and Utility)
+            document.querySelectorAll('#header-explore-menu-1, #explore-menu-1, #explore-menu-2a, #explore-menu-2b, #header-explore-menu-2a, #header-explore-menu-2b').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+            
+            // Reset all Explore Icons
+            const iconsToReset = ['header-explore-toggle', 'explore-toggle-1', 'header-icon-2a', 'header-icon-2b', 'icon-2a', 'icon-2b'];
+            iconsToReset.forEach(id => {
+                const iconElement = document.getElementById(id)?.querySelector('.dropdown-icon') || document.getElementById(id);
+                if (iconElement) iconElement.style.transform = 'rotate(0deg)';
             });
         }
     });
-
-    // --- NEW: Search Logic Implementation ---
-    function filterContent(searchTerm) {
-        const query = searchTerm.toLowerCase().trim();
-        
-        // 1. Target all main searchable containers
-        const workstreamCards = document.querySelectorAll('.workstream-card');
-        const resourceItems = document.querySelectorAll('#integration-resources-section .searchable-item');
-        const storyItems = document.querySelectorAll('#stories-section .searchable-item');
-        
-        // 2. Target Spotlight elements
-        const spotlightContainer = document.getElementById('spotlight-container');
-        const spotlightInterviewContent = document.getElementById('spotlight-interview-content');
-        const spotlightButton = document.getElementById('spotlight-toggle-button');
-        
-        let foundMatchInSpotlight = false;
-        let isSearchActive = query !== '';
-
-        // --- Reset / General Filtering ---
-        [...workstreamCards, ...resourceItems, ...storyItems].forEach(item => {
-            const content = item.textContent || '';
-            const isMatch = content.toLowerCase().includes(query);
-            
-            // Show item if match found or if search is cleared
-            item.style.display = (isMatch || !isSearchActive) ? (item.classList.contains('workstream-card') ? 'block' : 'flex') : 'none';
-
-            // Ensure grid items (stories) use correct flex/block display on reset
-            if (item.closest('#stories-section')) {
-                 item.style.display = (isMatch || !isSearchActive) ? 'flex' : 'none';
-            }
-        });
-
-        // --- Spotlight Specific Filtering ---
-        if (spotlightContainer) {
-            const spotlightContentText = spotlightContainer.textContent || '';
-            const spotlightMatch = spotlightContentText.toLowerCase().includes(query);
-
-            if (spotlightMatch) {
-                spotlightContainer.style.display = 'block';
-                foundMatchInSpotlight = true;
-
-                // If a match is found in the hidden content, force it open
-                if (isSearchActive && spotlightInterviewContent && spotlightButton) {
-                    spotlightInterviewContent.classList.add('open');
-                    spotlightButton.classList.add('open');
-                    spotlightButton.setAttribute('aria-expanded', true);
-                }
-            } else if (isSearchActive) {
-                spotlightContainer.style.display = 'none';
-            } else {
-                // Reset to default visibility
-                spotlightContainer.style.display = 'block';
-            }
-        }
-        
-        // --- Reset Collapsible State when search is cleared ---
-        if (!isSearchActive && spotlightInterviewContent && spotlightButton) {
-            spotlightInterviewContent.classList.remove('open');
-            spotlightButton.classList.remove('open');
-            spotlightButton.setAttribute('aria-expanded', false);
-        }
-
-
-        // --- Hide/Show main sections based on content visibility ---
-        const sections = document.querySelectorAll('main > div > section');
-        sections.forEach(section => {
-            if (!isSearchActive) {
-                section.style.display = 'block';
-                return;
-            }
-
-            // Check if any children are visible
-            const visibleChildren = Array.from(section.querySelectorAll('.workstream-card, .searchable-item, #spotlight-container')).filter(child => {
-                // Special check for spotlight since it's a nested container
-                if (child.id === 'spotlight-container') {
-                    return foundMatchInSpotlight;
-                }
-                return child.style.display !== 'none';
-            });
-
-            section.style.display = visibleChildren.length > 0 ? 'block' : 'none';
-        });
-    }
 
     document.addEventListener('DOMContentLoaded', () => {
         // --- Search Listener Setup ---
@@ -873,6 +2066,23 @@
                 filterContent(e.target.value);
             });
         }
+        
+        // --- ADDED FIX for Smooth Anchor Scrolling ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // Check if the href targets an element that exists
+            const href = anchor.getAttribute('href');
+            const targetId = href.substring(1);
+
+            if (targetId && document.getElementById(targetId)) {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.getElementById(targetId).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+        });
     });
 
 

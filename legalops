@@ -308,8 +308,8 @@
 
         /* --- NEW LIGHT/ARTICLE THEME --- */
         .light-article-section {
-            /* CHANGED FROM #ffffff TO LIGHT GREY */
-            background-color: #F4F4F4; /* Very light grey */
+            /* CHANGED FROM #ffffff TO SLIGHTLY GRAYER TONE */
+            background-color: #EAEAEA; /* Slightly grayer tone for articles */
             color: #000000; /* Dark text for contrast */
             border-radius: 0.75rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for lift */
@@ -573,7 +573,7 @@
                 </div>
 
                 <!-- UPDATED LINK: Unlocking AI (Slack) - PUSHED TO RIGHT -->
-                <a href="slack://channel?team=T02517565&id=C01H0L3K8J" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors ml-auto" title="#unlocking-ai-community">
+                <a href="https://app.slack.com/client/ETE26C2LQ/C08BHU3M2G2" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors ml-auto" title="#unlocking-ai-community">
                     <!-- Updated Slack icon usage with circular and larger style -->
                     <img src="https://e7.pngegg.com/pngimages/775/191/png-clipart-slack-new-logo-icon-tech-companies-thumbnail.png" alt="Slack Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
                     Unlocking AI
@@ -657,7 +657,7 @@
             </div>
             
             <!-- UPDATED LINK: Unlocking AI (Mobile) -->
-            <a href="slack://channel?team=T02517565&id=C01H0L3K8J" class="block px-3 py-2 rounded-full text-base font-medium text-white bg-gray-600 text-center mt-3" title="#unlocking-ai-community">
+            <a href="https://app.slack.com/client/ETE26C2LQ/C08BHU3M2G2" class="block px-3 py-2 rounded-full text-base font-medium text-white bg-gray-600 text-center mt-3" title="#unlocking-ai-community">
                 <span class="inline-flex items-center">
                     <img src="https://e7.pngegg.com/pngimages/775/191/png-clipart-slack-new-logo-icon-tech-companies-thumbnail.png" alt="Slack Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
                     Unlocking AI
@@ -679,8 +679,8 @@
     <!-- Hero Section: Updated with 3D Canvas -->
     <!-- WRAPPED ENTIRE BANNER CONTENT IN A MAX-WIDTH CONTAINER -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
-        <!-- REDUCED HEIGHT TO 450px -->
-        <div id="banner-canvas-wrapper" class="relative w-full overflow-hidden" style="height: 450px;">
+        <!-- ADDED rounded-xl for the rounded corners -->
+        <div id="banner-canvas-wrapper" class="relative w-full overflow-hidden rounded-xl" style="height: 450px;">
             <!-- THREE.JS CANVAS -->
             <canvas id="carousel-canvas" aria-hidden="true"></canvas>
             
@@ -858,7 +858,7 @@
                             <h5 class="key-feature-subheading flex-1">Key Benefits</h5>
                         </div>
                         
-                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-base">
                             <li><b>Visibility:</b> Mapping out where and how our team is currently using AI.</li>
                             <li><b>Prioritization:</b> Identifying specific legal tasks where AI can deliver the greatest productivity lift.</li>
                             <li><b>Scalability:</b> Pinpointing the data and technology needed to scale successful AI use cases enterprise-wide.</li>
@@ -887,7 +887,7 @@
                         <h4 class="article-topic-label">New Technology Rollout</h4>
 
                         <!-- Article Headline -->
-                        <h3 class="text-3xl font-extrabold mb-2 leading-snug">New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool Procurement Starts</h3>
+                        <h3 class="text-3xl font-extrabold mb-2 leading-snug">New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool On Its Way</h3>
                         
                         <p class="leading-relaxed mb-4">The procurement process <b>has started</b> for <b>Harvey.ai</b>, a cutting-edge generative AI platform built specifically for legal professionals. Think of Harvey as a powerful, secure AI partner that will help us deliver results faster!</p>
                         
@@ -902,7 +902,7 @@
                             <h5 class="key-feature-subheading flex-1">Key Benefits</h5>
                         </div>
 
-                        <ul class="list-disc list-inside space-y-1 ml-4 text-sm">
+                        <ul class="list-disc list-inside space-y-1 ml-4 text-base">
                             <li><b>Accelerated Drafting:</b> Generate first drafts of complex contracts and memos instantly.</li>
                             <li><b>Rapid Review:</b> Rapidly analyze large volumes of legal documents (like due diligence).</li>
                             <li><b>Enhanced Research:</b> Get accurate, source-cited answers to complex legal queries quickly.</li>
@@ -1059,7 +1059,7 @@
                         </a>
 
                         <!-- Card 2: Presentations with Gemini - UPDATED ARROW STYLE & IMAGE & LINK -->
-                        <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4tbEFNNJ7r6JuCBRLur4Y0/f7da8089c5199588bb6e3eec6e142bc6e/tile_globaldataprocessing?fit=fill&f=center&w=768&h=432');" title="Generate a full presentation deck from a document or prompt using the 'Canvas' tool.">
+                        <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/13GnUsSKSfhZjI12ihVgu9/f77af2d8a93144ffa7e669db323b1d16/iStock-158540094-6.jpg?fit=fill&f=center&w=768&h=432');" title="Generate a full presentation deck from a document or prompt using the 'Canvas' tool.">
                             <div class="ai-card-overlay"></div>
                             <div class="ai-card-content">
                                 <h4 class="text-2xl font-extrabold leading-snug">Presentations with Gemini</h4>
@@ -1201,7 +1201,7 @@
                                     </td>
                                     <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content in Confluence to boost productivity.</td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                        <!-- REMOVED RESOURCE LINKS AS REQUESTED -->
+                                        <p><a href="https://www.youtube.com/watch?v=LvK6fROn4G4" target="_blank" class="table-link">Confluence AI Overview (Video)</a></p>
                                     </td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
                                 </tr>
@@ -1217,7 +1217,7 @@
                                     </td>
                                     <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content across Atlassian products (Jira) to boost productivity.</td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                        <!-- REMOVED RESOURCE LINKS AS REQUESTED -->
+                                        <p><a href="https://www.youtube.com/watch?v=G5EBWZZam-Y" target="_blank" class="table-link">JIRA AI in Action (Video)</a></p>
                                     </td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
                                 </tr>
@@ -1233,7 +1233,7 @@
                                     </td>
                                     <td class="px-6 py-4 max-w-sm text-sm">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension. It can also create custom <b>workflow agents</b>.</td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                        <!-- REMOVED RESOURCE LINKS AS REQUESTED -->
+                                        <p><a href="https://www.youtube.com/watch?v=LbEFkTukBqc" target="_blank" class="table-link">Rovo AI Agent Builder (Video)</a></p>
                                     </td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
                                 </tr>
@@ -1278,7 +1278,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="table-icon-container loom-icon-bg">
-                                                <img src="https://e7.pngegg.com/pngimages/472/111/png-clipart-loom-new-logo-icon-tech-companies.png" alt="Loom Icon" class="table-icon-img">
+                                                <img src="https://images.seeklogo.com/logo-png/39/2/loom-logo-png_seeklogo-393095.png" alt="Loom Icon" class="table-icon-img">
                                             </div>
                                             <div class="text-sm font-medium text-white">Loom AI</div>
                                         </div>
@@ -1318,6 +1318,9 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 max-w-sm text-sm">A digital assistant that uses generative AI to create content, summarize meetings and chats, and generate ideas/content for whiteboards.</td>
+                                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                        <p><a href="https://www.youtube.com/watch?v=wT1TkwHDI2U" target="_blank" class="table-link">Zoom AI Companion (Video)</a></p>
+                                    </td>
                                     <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
                                 </tr>
                             </tbody>
@@ -1521,9 +1524,9 @@
                         </button>
                         <div id="recent-trials-content" class="collapsible-content pt-3 px-3 open">
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                <!-- Card 1: Harvey.ai - UPDATED IMAGE AND LINK -->
-                                <!-- REMOVED .harvey-card CLASS -->
-                                <a href="https://www.harvey.ai/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/1qJW5Otz8RN7rDgconLyqR/4ff59ca0788d65708cc3f46b7afc8ec1/ConstructionSoftwareBuyersGuide_keyart_1920x1080?fit=fill&f=center&w=768&h=432');" title="Trial status for the custom generative AI legal assistant platform.">
+                                <!-- Card 1: Harvey.ai - UPDATED LINK -->
+                                <!-- We are updating the link here to the Confluence Evaluation page -->
+                                <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/4613144703/GenAI+Legal+Tech+Evaluation" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/1qJW5Otz8RN7rDgconLyqR/4ff59ca0788d65708cc3f46b7afc8ec1/ConstructionSoftwareBuyersGuide_keyart_1920x1080?fit=fill&f=center&w=768&h=432');" title="Trial status for the custom generative AI legal assistant platform.">
                                     <div class="ai-card-overlay"></div>
                                     <div class="ai-card-content">
                                         <h4 class="text-2xl font-extrabold leading-snug">Harvey.ai Trial Status</h4>
@@ -1591,8 +1594,8 @@
 <script>
     // --- THREE.JS LOGIC FOR DYNAMIC BANNER BACKGROUND ---
     let renderer, camera, scene, cubes = [];
-    let backgroundPlane; 
     const textureLoader = new THREE.TextureLoader();
+    let backgroundPlane; 
     
     // Custom assets matching Procore theme
     const backgroundImage = 'https://placehold.co/1200x600/FF5200/FF5200?text=Procore+Orange'; 

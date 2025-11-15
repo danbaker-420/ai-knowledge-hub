@@ -478,13 +478,14 @@
     <div class="mx-auto px-6 sm:px-10 lg:px-20">
         <div class="flex justify-between items-center h-20">
 
-            <!-- Logo/Brand (Procore Logo SVG) - Now a direct child of the main flex container -->
+            <!-- Logo/Brand (Procore Logo SVG) - NOW REDIRECTS TO LRC INFO LIBRARY -->
             <div class="flex-shrink-0">
-                <img src="https://media.ffycdn.net/us/procore/oJWY14VdUCCeDGsU52FU.svg?width=150" alt="Procore Logo" class="h-8 w-auto">
+                <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" title="Go to LRC Info Library (Internal Link)">
+                    <img src="https://media.ffycdn.net/us/procore/oJWY14VdUCCeDGsU52FU.svg?width=150" alt="Procore Logo" class="h-8 w-auto">
+                </a>
             </div>
 
-            <!-- Desktop Navigation Menu (4 Dropdowns on Left, 2 Buttons Pushed Right) -->
-            <!-- The ml-auto is now on the Unlocking AI button to push it and the LRC button to the far right -->
+            <!-- Desktop Navigation Menu (4 Dropdowns on Left, 1 Button Pushed Right) -->
             <nav class="hidden md:flex space-x-2 items-center flex-1 ml-4">
                 
                 <!-- 1. EXPLORE DROPDOWN -->
@@ -616,16 +617,8 @@
                     </div>
                 </div>
 
-                <!-- 5. UPDATED LINK: Unlocking AI (Slack) - ADDED ml-auto to push buttons right -->
-                <a href="slack://open?team=ETE26C2LQ&id=C08BHU3M2G2" class="ml-auto inline-flex items-center justify-center w-[170px] px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors" title="#unlocking-ai-community">
-                    <img src="https://e7.pngegg.com/pngimages/775/191/png-clipart-slack-new-logo-icon-tech-companies-thumbnail.png" alt="Slack Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
-                    <b>Unlocking AI</b>
-                </a>
-                <!-- 6. UPDATED LINK: LRC Information Library -->
-                <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" class="inline-flex items-center justify-center w-[170px] px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white procore-orange-bg transition-colors lrc-library-button" title="Access internal legal documentation, policies, and knowledge bases.">
-                    <img src="https://play-lh.googleusercontent.com/7HFT3wvmk_2r_8HSydOUBJ7nzUnyzjA2gCOSGEIe5XjAikdLJke0a9n044hzqc3FcCY" alt="Library Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
-                    <b>LRC Info Library</b>
-                </a>
+                <!-- REMOVED: Unlocking AI Button (Desktop) -->
+                <!-- REMOVED: LRC Info Library Button (it is now the logo link) -->
 
             </nav>
 
@@ -701,24 +694,12 @@
                     <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" title="Check out the Applied Science Demo Hub for the latest AI product demonstrations and internal pilots." class="block py-2 text-sm text-gray-300 hover:text-white">AI Demo Hub</a>
                     <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" title="Showcasing innovators within Procore who are driving internal AI initiatives and adoption." class="block py-2 text-sm text-gray-300 hover:text-white">Curious Innovators in Action</a>
                     <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" title="Access curated courses, documentation, and educational resources for upskilling in AI and prompt engineering." class="block py-2 text-sm text-gray-300 hover:text-white">AI Learning Resources</a>
-                    <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" title="Weekly open forum for questions, demonstrations, and hands-on practice with Generative AI tools and strategies." class="block py-2 text-sm text-gray-300 hover:text-white">AI Office Hours (Add to Calendar)</a>
+                    <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Office Hours (Add to Calendar)</a>
                 </div>
             </div>
             
-            <!-- UPDATED LINK: Unlocking AI (Mobile) -->
-            <a href="slack://open?team=ETE26C2LQ&id=C08BHU3M2G2" class="block px-3 py-2 rounded-full text-base font-medium text-white bg-gray-600 text-center mt-3" title="#unlocking-ai-community">
-                <span class="inline-flex items-center">
-                    <img src="https://e7.pngegg.com/pngimages/775/191/png-clipart-slack-new-logo-icon-tech-companies-thumbnail.png" alt="Slack Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
-                    <b>Unlocking AI</b>
-                </span>
-            </a>
-            <!-- UPDATED LINK: LRC Information Library (Mobile) -->
-            <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" class="block px-3 py-2 rounded-full text-base font-medium text-white procore-orange-bg text-center lrc-library-button" title="Access internal legal documentation, policies, and knowledge bases.">
-                <span class="inline-flex items-center">
-                    <img src="https://play-lh.googleusercontent.com/7HFT3wvmk_2r_8HSydOUBJ7nzUnyzjA2gCOSGEIe5XjAikdLJke0a9n044hzqc3FcCY" alt="Library Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
-                    <b>LRC Info Library</b>
-                </span>
-            </a>
+            <!-- REMOVED: Unlocking AI Button (Mobile) -->
+            <!-- REMOVED: LRC Info Library Button (Mobile) -->
 
         </div>
     </div>
@@ -862,7 +843,7 @@
                                         <h5 class="key-feature-subheading flex-1">Outcome</h5>
                                     </div>
                                     
-                                    <p class="leading-relaxed">Harvey will automate repetitive, time-consuming tasks, allowing us to focus our expertise on <b>high-value strategic analysis, critical judgment, and key negotiations</b>.</p>
+                                    <p class="leading-relaxed">The roadmap's outcome is <b>organizational clarity and capability</b>: a prioritized plan that aligns AI adoption across LRC with our overarching business objectives and **significantly increases the team's ability to safely and effectively leverage AI**, ensuring every investment directly supports enhanced expertise and strategic value.</p>
                                 </div>
                                 
                                 <!-- NEW: Separator line added between articles -->

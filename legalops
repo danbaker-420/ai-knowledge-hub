@@ -531,11 +531,6 @@
                 <!-- END NEW EXPLORE DROPDOWN -->
 
 
-                <!-- LRC Team Spotlight (Now points to the nested section) -->
-                <a href="#lrc-team-spotlight-section" class="nav-item-button text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium transition-colors">
-                    LRC Team Spotlight
-                </a>
-
                 <!-- Dropdown Menu 1: Blogs - RESTORED WRAPPER -->
                 <div class="relative">
                     <button id="dropdown-toggle-1" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-1', this)">
@@ -561,7 +556,7 @@
                             <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI." class="dropdown-link">Pivot 5 AI</a>
                             <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI." class="dropdown-link">Dazza Greenwood</a>
                             <!-- MOVED NEWSLETTER HERE -->
-                            <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa98986eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f873663f0fb0e62f9ab72d7e47ee74" target="_blank" title="PLI's new curated quarterly newsletter on AI, legal education, and regulatory reform." class="dropdown-link rounded-b-lg">Unprecedented Newsletter (Substack)</a>
+                            <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa98986eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" title="PLI's new curated quarterly newsletter on AI, legal education, and regulatory reform." class="dropdown-link rounded-b-lg">Unprecedented Newsletter (Substack)</a>
                         </div>
                     </div>
                 </div>
@@ -674,7 +669,7 @@
                     <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI." class="block py-2 text-sm text-gray-300 hover:text-white">Pivot 5 AI</a>
                     <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI." class="block py-2 text-sm text-gray-300 hover:text-white">Dazza Greenwood</a>
                     <!-- MOVED NEWSLETTER HERE -->
-                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa98986eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f873663f0fb0e62f9ab72d7e47ee74" target="_blank" title="PLI's new curated quarterly newsletter on AI, legal education, and regulatory reform." class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
+                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa98986eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" title="PLI's new curated quarterly newsletter on AI, legal education, and regulatory reform." class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
                 </div>
             </div>
 
@@ -1514,7 +1509,7 @@
                         </a>
 
                         <!-- Card 2: In-House Use of Gen AI More Than Doubles - UPDATED LINK AND BACKGROUND -->
-                        <a href="https://news.bloomberglaw.com/artificial-intelligence/in-house-lawyers-use-of-gen-al-more-than-doubles-in-one-year" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://news-api.bloomberglaw.com/v1/resize-image?url=http%3A%2F%2Fbloomberg-bna-brightspot.s3.amazonaws.com%2F52%2Fea%2F7fb148aa41f58d03de9aec7a37b7%2Fai.jpg&width=2480&height=960&fit=cover&crop=3993x1539%2B3%2B105');" title="A Bloomberg Law report highlighting the massive surge in corporate Gen AI adoption, primarily driven by the need for increased efficiency and productivity gains across the legal profession.">
+                        <a href="https://news.bloomberg.law/artificial-intelligence/in-house-lawyers-use-of-gen-al-more-than-doubles-in-one-year" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://news-api.bloomberg.law/v1/resize-image?url=http%3A%2F%2Fbloomberg-bna-brightspot.s3.amazonaws.com%2F52%2Fea%2F7fb148aa41f58d03de9aec7a37b7%2Fai.jpg&width=2480&height=960&fit=cover&crop=3993x1539%2B3%2B105');" title="A Bloomberg Law report highlighting the massive surge in corporate Gen AI adoption, primarily driven by the need for increased efficiency and productivity gains across the legal profession.">
                             <div class="ai-card-overlay"></div>
                             <div class="ai-card-content">
                                 <!-- REMOVED ICON -->
@@ -1631,7 +1626,7 @@
                             <!-- ADDED 'open' CLASS TO BUTTON FOR DEFAULT OPEN STATE -->
                         <button id="legal-tools-toggle" class="collapsible-button flex items-center justify-between w-full p-3 transition duration-200 hover:bg-gray-800 rounded-lg open" onclick="toggleCollapsible('legal-tools-content', this)" aria-expanded="true" title="Click to view details on established and approved legal technology tools.">
                             <div class="flex items-center space-x-4">
-                                <svg class="w-6 h-6 procore-orange-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <svg class="w-6 h-6 procore-orange-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37-2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                 <span class="text-xl font-bold text-white">Legal AI Tech Tools</span>
                             </div>
                               <!-- Down Arrow Icon -->
@@ -2223,7 +2218,7 @@
             });
             
             // Reset standard header dropdown icons
-            document.querySelectorAll('nav .nav-item-button .dropdown-icon').forEach(icon => {
+            document.querySelectorAll('.nav-item-button .dropdown-icon').forEach(icon => {
                 if (icon.closest('button') && icon.closest('button').id.startsWith('dropdown-toggle')) {
                     icon.style.transform = 'rotate(0deg)';
                 }

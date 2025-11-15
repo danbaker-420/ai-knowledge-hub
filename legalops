@@ -447,7 +447,7 @@
             width: 32px;
             height: 32px;
             color: white;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));
         }
         
         /* --- NEW TAB/NAVIGATION STYLES (for Legal Innovation Center) --- */
@@ -478,26 +478,26 @@
     <div class="mx-auto px-6 sm:px-10 lg:px-20">
         <div class="flex justify-between items-center h-20">
 
-            <!-- Logo/Brand (Procore Logo SVG) -->
+            <!-- Logo/Brand (Procore Logo SVG) - Now a direct child of the main flex container -->
             <div class="flex-shrink-0">
                 <img src="https://media.ffycdn.net/us/procore/oJWY14VdUCCeDGsU52FU.svg?width=150" alt="Procore Logo" class="h-8 w-auto">
             </div>
 
-            <!-- Desktop Menu (visible on large screens) -->
-            <!-- RESTORED space-x-2 for comfortable spacing -->
-            <nav class="hidden md:flex space-x-2 items-center">
+            <!-- Desktop Navigation Menu (4 Dropdowns on Left, 2 Buttons Pushed Right) -->
+            <!-- The ml-auto is now on the Unlocking AI button to push it and the LRC button to the far right -->
+            <nav class="hidden md:flex space-x-2 items-center flex-1 ml-4">
                 
-                <!-- NEW EXPLORE DROPDOWN (Mirrors utility bar logic) - STYLED TO MATCH OTHERS -->
+                <!-- 1. EXPLORE DROPDOWN -->
                 <div class="relative">
                     <button id="header-explore-toggle" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleExploreDropdown('header-explore-menu-1', this)">
-                        Explore
+                        <b>Explore</b>
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
 
-                    <!-- Main Dropdown Menu (Level 1) - REDESIGNED -->
+                    <!-- Main Dropdown Menu (Level 1) -->
                     <div id="header-explore-menu-1" class="origin-top-left absolute left-0 mt-2 header-dropdown-menu hidden z-30" role="menu">
                         <div class="dropdown-header">
                             <h3 class="dropdown-header-title">Explore</h3>
@@ -506,41 +506,29 @@
                             </svg>
                         </div>
                         <div class="py-1" role="none">
-                            
-                            <!-- UPDATED LINK: Team News & Innovation Spotlight (Points to the section) -->
                             <a href="#lrc-team-updates-section" class="dropdown-link rounded-t-xl" title="Latest strategic initiatives, departmental milestones, and featured innovations.">
                                 Team News & Innovation Spotlight
                             </a>
-                            <!-- REMOVED LINK: LRC Learning & Innovation Showcase -->
-
-                            <!-- Sub-Dropdown 1: Enterprise AI Resources (Level 2 Toggle) -->
                             <div class="relative">
-                                <button id="header-explore-toggle-2a" class="w-full text-left flex justify-between items-center nested-dropdown-button text-sm font-medium text-white hover:bg-gray-800" onclick="toggleExploreSubDropdown('header-explore-menu-2a', this)">
+                                <button id="header-explore-toggle-2a" class="w-full text-left flex justify-between items-center nested-dropdown-button font-medium text-white hover:bg-gray-800" onclick="toggleExploreSubDropdown('header-explore-menu-2a', this)">
                                     Enterprise AI Resources
                                     <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="header-icon-2a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
-                                
-                                <!-- Sub-Dropdown Content 1 (Level 2) - UPDATED TABS -->
                                 <div id="header-explore-menu-2a" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
-                                    <!-- NEW: Corporate Productivity AI Updates is now first -->
                                     <a href="#updates-tab-button" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Corporate Productivity AI Updates</a>
                                     <a href="#enterprise-tools-tab-button" class="text-sm text-white hover:bg-gray-700">Procore Enterprise Tools</a>
                                     <a href="#learning-tab-button" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Learning & Development</a>
                                 </div>
                             </div>
-
-                            <!-- Sub-Dropdown 2: Legal Specific-Resources (Level 2 Toggle) -->
                             <div class="relative">
-                                <button id="header-explore-toggle-2b" class="w-full text-left flex justify-between items-center nested-dropdown-button text-sm font-medium text-white hover:bg-gray-800 rounded-b-xl" onclick="toggleExploreSubDropdown('header-explore-menu-2b', this)">
+                                <button id="header-explore-toggle-2b" class="w-full text-left flex justify-between items-center nested-dropdown-button font-medium text-white hover:bg-gray-800 rounded-b-xl" onclick="toggleExploreSubDropdown('header-explore-menu-2b', this)">
                                     Legal Innovation Center
                                     <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="header-icon-2b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                             </svg>
                                 </button>
-                                
-                                <!-- Sub-Dropdown Content 2 (Level 2) -->
                                 <div id="header-explore-menu-2b" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
                                     <a href="#workstreams-tab-button" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">AI Work Streams</a>
                                     <a href="#trends-tab-button" class="text-sm text-white hover:bg-gray-700">Legal Industry Topics & Trends</a>
@@ -550,20 +538,15 @@
                         </div>
                     </div>
                 </div>
-                <!-- END NEW EXPLORE DROPDOWN -->
-
-
-                <!-- Dropdown Menu 1: Blogs - RESTORED WRAPPER -->
+                <!-- 2. Dropdown Menu 1: Blogs -->
                 <div class="relative">
                     <button id="dropdown-toggle-1" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-1', this)">
-                        Blogs
+                        <b>Blogs</b>
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    
-                    <!-- Dropdown Content (Blogs) - NEW STRUCTURE AND CLASS -->
                     <div id="dropdown-menu-1" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden" role="menu">
                         <div class="dropdown-header">
                             <h3 class="dropdown-header-title">Blogs</h3>
@@ -577,23 +560,20 @@
                             <a href="https://ajsai.substack.com/" target="_blank" title="In-depth analysis of AI, technology, and their broader implications." class="dropdown-link">AJ's AI</a>
                             <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI." class="dropdown-link">Pivot 5 AI</a>
                             <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI." class="dropdown-link">Dazza Greenwood</a>
-                            <!-- MOVED NEWSLETTER HERE -->
                             <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa98986eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" title="PLI's new curated quarterly newsletter on AI, legal education, and regulatory reform." class="dropdown-link rounded-b-lg">Unprecedented Newsletter (Substack)</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Dropdown Menu 2: Podcasts - RESTORED WRAPPER -->
+                <!-- 3. Dropdown Menu 2: Podcasts -->
                 <div class="relative">
                     <button id="dropdown-toggle-2" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-2', this)">
-                        Podcasts
+                        <b>Podcasts</b>
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    
-                    <!-- Dropdown Content -->
                     <div id="dropdown-menu-2" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden" role="menu">
                         <div class="dropdown-header">
                             <h3 class="dropdown-header-title">Podcasts</h3>
@@ -603,26 +583,22 @@
                         </div>
                         <div class="py-1" role="none">
                             <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="dropdown-link rounded-t-lg">Latent Space</a>
-                            <!-- NEW PODCAST 1: AI and the Future of Law Podcast -->
                             <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" title="A biweekly podcast exploring how AI is transforming legal practice with Jen Leonard and Bridget McCormack." class="dropdown-link">AI and the Future of Law Podcast</a>
-                            <!-- NEW PODCAST 2: The Innovator's Edge: AI and the Future of the Profession Quarterly Briefing -->
                             <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3af186100b43d61e18afb489eeaf7a0849fc6c48ec966c62a4312d5f17d2e3e83f24b3fce34147d7874aa10049d964a7335847dc635ee843f" target="_blank" class="dropdown-link">The Innovator's Edge: AI Briefing</a>
                             <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="dropdown-link rounded-b-lg">AI Unleashed Podcast (Procore)</a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Dropdown Menu 3: AI on The Core - RESTORED WRAPPER -->
+                <!-- 4. Dropdown Menu 3: AI on The Core -->
                 <div class="relative">
                     <button id="dropdown-toggle-3" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-3', this)">
-                        AI on The Core
+                        <b>AI on The Core</b>
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    
-                    <!-- Dropdown Content (The Core) -->
                     <div id="dropdown-menu-3" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden" role="menu">
                         <div class="dropdown-header">
                             <h3 class="dropdown-header-title">AI on The Core</h3>
@@ -632,29 +608,23 @@
                         </div>
                         <div class="py-1" role="none">
                             <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="dropdown-link rounded-t-lg">Unlocking AI for All Hub</a>
-                            <!-- MODIFIED SUBLINK: AS Demo Hub to AI Demo Hub -->
                             <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" title="Check out the Applied Science Demo Hub for the latest AI product demonstrations and internal pilots." class="dropdown-link">AI Demo Hub</a>
-                            <!-- NEW SUBLINK -->
-                            <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" title="Showcasing innovators within Procore who are driving internal AI initiatives and adoption." class="dropdown-link">Curious Innovators in Action</a>
-                            <!-- NEW SUBLINK -->
+                            <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="dropdown-link">Curious Innovators in Action</a>
                             <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" title="Access curated courses, documentation, and educational resources for upskilling in AI and prompt engineering." class="dropdown-link">AI Learning Resources</a>
-                            <!-- MODIFIED SUBLINK: AI Office Hours to AI Office Hours (Add to Calendar) -->
                             <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" title="Weekly open forum for questions, demonstrations, and hands-on practice with Generative AI tools and strategies." class="dropdown-link rounded-b-lg">AI Office Hours (Add to Calendar)</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- UPDATED LINK: Unlocking AI (Slack) - PUSHED TO RIGHT -->
-                <a href="slack://open?team=ETE26C2LQ&id=C08BHU3M2G2" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors ml-auto" title="#unlocking-ai-community">
-                    <!-- Updated Slack icon usage with circular and larger style -->
+                <!-- 5. UPDATED LINK: Unlocking AI (Slack) - ADDED ml-auto to push buttons right -->
+                <a href="slack://open?team=ETE26C2LQ&id=C08BHU3M2G2" class="ml-auto inline-flex items-center justify-center w-[170px] px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors" title="#unlocking-ai-community">
                     <img src="https://e7.pngegg.com/pngimages/775/191/png-clipart-slack-new-logo-icon-tech-companies-thumbnail.png" alt="Slack Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
-                    Unlocking AI
+                    <b>Unlocking AI</b>
                 </a>
-                <!-- UPDATED LINK: LRC Information Library - PUSHED TO RIGHT -->
-                <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white procore-orange-bg transition-colors lrc-library-button" title="Access internal legal documentation, policies, and knowledge bases.">
-                    <!-- NEW Icon for LRC Information Library -->
+                <!-- 6. UPDATED LINK: LRC Information Library -->
+                <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" class="inline-flex items-center justify-center w-[170px] px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white procore-orange-bg transition-colors lrc-library-button" title="Access internal legal documentation, policies, and knowledge bases.">
                     <img src="https://play-lh.googleusercontent.com/7HFT3wvmk_2r_8HSydOUBJ7nzUnyzjA2gCOSGEIe5XjAikdLJke0a9n044hzqc3FcCY" alt="Library Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
-                    LRC Info Library
+                    <b>LRC Info Library</b>
                 </a>
 
             </nav>
@@ -684,10 +654,10 @@
             <!-- Keeping this link as it points to the parent section where the articles are -->
             <a href="#lrc-team-updates-section" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-700">Team News & Innovation Spotlight</a>
             
-            <!-- Mobile Dropdown 1: Blogs (Updated from Solutions) -->
+            <!-- Mobile Dropdown 1: Blogs (Updated from Solutions) - BOLDED TEXT -->
             <div class="relative">
                 <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-1', this)">
-                    Blogs
+                    <b>Blogs</b>
                     <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
@@ -698,15 +668,14 @@
                     <a href="https://ajsai.substack.com/" target="_blank" title="In-depth analysis of AI, technology, and their broader implications." class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
                     <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI." class="block py-2 text-sm text-gray-300 hover:text-white">Pivot 5 AI</a>
                     <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI." class="block py-2 text-sm text-gray-300 hover:text-white">Dazza Greenwood</a>
-                    <!-- MOVED NEWSLETTER HERE -->
                     <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa98986eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
                 </div>
             </div>
 
-            <!-- Mobile Dropdown 2: Podcasts -->
+            <!-- Mobile Dropdown 2: Podcasts - BOLDED TEXT -->
             <div class="relative">
                 <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-2', this)">
-                    Podcasts
+                    <b>Podcasts</b>
                     <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
@@ -719,23 +688,19 @@
                 </div>
             </div>
 
-            <!-- Mobile Dropdown 3: The Core (Updated from Pricing) -->
+            <!-- Mobile Dropdown 3: The Core (Updated from Pricing) - BOLDED TEXT -->
             <div class="relative">
                 <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-3', this)">
-                    AI on The Core
+                    <b>AI on The Core</b>
                     <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
                 <div id="mobile-dropdown-menu-3" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
                     <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="block py-2 text-sm text-gray-300 hover:text-white">Unlocking AI for All Hub</a>
-                     <!-- MODIFIED SUBLINK: AS Demo Hub to AI Demo Hub -->
                     <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" title="Check out the Applied Science Demo Hub for the latest AI product demonstrations and internal pilots." class="block py-2 text-sm text-gray-300 hover:text-white">AI Demo Hub</a>
-                    <!-- NEW SUBLINK -->
                     <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" title="Showcasing innovators within Procore who are driving internal AI initiatives and adoption." class="block py-2 text-sm text-gray-300 hover:text-white">Curious Innovators in Action</a>
-                    <!-- NEW SUBLINK -->
                     <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" title="Access curated courses, documentation, and educational resources for upskilling in AI and prompt engineering." class="block py-2 text-sm text-gray-300 hover:text-white">AI Learning Resources</a>
-                    <!-- MODIFIED SUBLINK: AI Office Hours to AI Office Hours (Add to Calendar) -->
                     <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" title="Weekly open forum for questions, demonstrations, and hands-on practice with Generative AI tools and strategies." class="block py-2 text-sm text-gray-300 hover:text-white">AI Office Hours (Add to Calendar)</a>
                 </div>
             </div>
@@ -744,14 +709,14 @@
             <a href="slack://open?team=ETE26C2LQ&id=C08BHU3M2G2" class="block px-3 py-2 rounded-full text-base font-medium text-white bg-gray-600 text-center mt-3" title="#unlocking-ai-community">
                 <span class="inline-flex items-center">
                     <img src="https://e7.pngegg.com/pngimages/775/191/png-clipart-slack-new-logo-icon-tech-companies-thumbnail.png" alt="Slack Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
-                    Unlocking AI
+                    <b>Unlocking AI</b>
                 </span>
             </a>
             <!-- UPDATED LINK: LRC Information Library (Mobile) -->
             <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" class="block px-3 py-2 rounded-full text-base font-medium text-white procore-orange-bg text-center lrc-library-button" title="Access internal legal documentation, policies, and knowledge bases.">
                 <span class="inline-flex items-center">
                     <img src="https://play-lh.googleusercontent.com/7HFT3wvmk_2r_8HSydOUBJ7nzUnyzjA2gCOSGEIe5XjAikdLJke0a9n044hzqc3FcCY" alt="Library Icon" class="w-6 h-6 mr-2 bg-white rounded-full p-0.5 object-contain">
-                    LRC Info Library
+                    <b>LRC Info Library</b>
                 </span>
             </a>
 
@@ -1692,7 +1657,6 @@
                                         <div class="ai-card-overlay"></div>
                                         <div class="ai-card-content">
                                             <h4 class="text-2xl font-extrabold leading-snug">Thomson Reuters CoCounsel Trial</h4>
-                                            <!-- UPDATED DESCRIPTION TO INCLUDE LEGAL RESEARCH -->
                                             <p class="mt-2 text-sm text-gray-300">Testing its effectiveness for legal research, summarizing documents, and creating first drafts of memos.</p>
                                             <div class="mt-4 flex justify-end">
                                                 <div class="ai-card-arrow">
@@ -1992,7 +1956,7 @@
     }
 
     /**
-     * Toggles the visibility of the main Explore menu (Level 1).
+     * Toggles the visibility of a main Explore menu (Level 1).
      */
     function toggleExploreDropdown(menuId, button) {
         const menu = document.getElementById(menuId);
@@ -2097,93 +2061,6 @@
 
 
     /**
-     * Filters content blocks based on the search input value.
-     * Searches content by title/tooltip text.
-     * NOTE: This function's logic remains sound even after tab content moves, 
-     * as long as the searchable classes are applied correctly.
-     */
-    function filterContent(query) {
-        const searchText = query.toLowerCase().trim();
-        // Target elements that are visually distinct and link to content
-        // Including the collapsible buttons themselves for searchable text
-        const items = document.querySelectorAll('.searchable-item, .workstream-card, #spotlight-container, #updates-toggle-button, #tools-toggle-button, #trends-toggle-button, #tools-trials-toggle-button, #legal-tools-toggle, #recent-trials-toggle, #internal-builds-toggle');
-        
-        // Check if we are actively searching
-        const isSearching = searchText.length > 0;
-
-        items.forEach(item => {
-            let searchableText = (item.title || item.textContent).toLowerCase();
-            
-            // Include nested content for complex sections
-            if (item.classList.contains('ai-card') || item.id === 'spotlight-container' || item.classList.contains('workstream-card') || item.classList.contains('collapsible-button')) {
-                searchableText += ' ' + item.textContent.toLowerCase();
-            }
-
-            const isMatch = searchableText.includes(searchText);
-
-            // Determine the element to hide/show based on its purpose
-            let elementToControl = item;
-            
-            // Handle different display styles for direct child elements in a grid/flex
-            let displayStyle = 'block';
-
-            if (item.closest('#small-stories-container')) {
-                displayStyle = 'flex'; // Small story cards are flex children
-            } else if (item.classList.contains('ai-card')) {
-                displayStyle = 'block'; // AI cards are block children of a grid
-            } else if (item.classList.contains('workstream-card')) {
-                displayStyle = 'block'; // Workstream cards are block children of a grid
-            } else if (item.classList.contains('collapsible-button')) {
-                 // Collapsible buttons should remain block-level elements
-                displayStyle = 'flex'; 
-            } else if (item.id === 'spotlight-container') {
-                displayStyle = 'block'; 
-            }
-
-
-            // Apply display logic
-            if (isSearching) {
-                elementToControl.style.display = isMatch ? displayStyle : 'none';
-            } else {
-                // If search is empty, clear inline display style to restore original CSS/Tailwind classes
-                elementToControl.style.display = '';
-            }
-        });
-
-        // Toggle Collapsible Sections based on search status
-        document.querySelectorAll('.collapsible-button[id$="-toggle-button"], .collapsible-button[id^="legal-tools-toggle"], .collapsible-button[id^="recent-trials-toggle"], #internal-builds-toggle').forEach(button => {
-            const match = button.getAttribute('onclick').match(/'(.*?)'/);
-            const contentId = match ? match[1] : null;
-            const content = document.getElementById(contentId);
-            const isButtonMatch = button.style.display !== 'none';
-
-            if (content) {
-                if (isSearching) {
-                    // When searching, collapse sections unless the button itself matched the search query
-                    if (isButtonMatch) {
-                          // If the button title matched, keep the button displayed, but the content should still be collapsed unless the content itself is part of the "searchable items" logic above.
-                        content.classList.remove('open');
-                        button.classList.remove('open');
-                        button.setAttribute('aria-expanded', 'false');
-
-                    } else {
-                        // If the button didn't match, it's already display:none, and the content remains closed.
-                        content.classList.remove('open');
-                    }
-                } else {
-                    // When search is cleared, restore them to their default 'open' state (all default to open in your HTML)
-                    content.classList.add('open');
-                    button.classList.add('open');
-                    button.setAttribute('aria-expanded', 'true');
-                    
-                    // Reset visibility explicitly in case the logic above hid it
-                    button.style.display = 'flex';
-                }
-            }
-        });
-    }
-
-    /**
      * Toggles between content tabs (workstreams, trends, tools/trials).
      * @param {string} contentId - The ID of the tab content to show.
      * @param {HTMLElement} button - The button element that was clicked.
@@ -2267,14 +2144,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-        // --- Search Listener Setup ---
-        const searchInput = document.getElementById('global-search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                filterContent(e.target.value);
-            });
-        }
-        
         // --- Custom Handler for All Internal Anchor Links (including those in Nav/Dropdowns) ---
         // This ensures smooth scrolling and graceful menu closing for all internal navigation anchors.
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

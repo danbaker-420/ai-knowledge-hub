@@ -474,7 +474,8 @@
 <body>
 
 <header class="bg-black shadow-lg sticky top-0 z-50 border-b border-gray-900">
-    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+    <!-- MODIFIED: Removed max-w-7xl and set padding to lg:px-20 -->
+    <div class="mx-auto px-6 sm:px-10 lg:px-20">
         <div class="flex justify-between items-center h-20">
 
             <!-- Logo/Brand (Procore Logo SVG) -->
@@ -630,7 +631,15 @@
                             </svg>
                         </div>
                         <div class="py-1" role="none">
-                            <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="dropdown-link rounded-t-lg rounded-b-lg">Unlocking AI for All Hub</a>
+                            <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="dropdown-link rounded-t-lg">Unlocking AI for All Hub</a>
+                            <!-- MODIFIED SUBLINK: AS Demo Hub to AI Demo Hub -->
+                            <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" title="Check out the Applied Science Demo Hub for the latest AI product demonstrations and internal pilots." class="dropdown-link">AI Demo Hub</a>
+                            <!-- NEW SUBLINK -->
+                            <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" title="Showcasing innovators within Procore who are driving internal AI initiatives and adoption." class="dropdown-link">Curious Innovators in Action</a>
+                            <!-- NEW SUBLINK -->
+                            <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" title="Access curated courses, documentation, and educational resources for upskilling in AI and prompt engineering." class="dropdown-link">AI Learning Resources</a>
+                            <!-- MODIFIED SUBLINK: AI Office Hours to AI Office Hours (Add to Calendar) -->
+                            <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" title="Weekly open forum for questions, demonstrations, and hands-on practice with Generative AI tools and strategies." class="dropdown-link rounded-b-lg">AI Office Hours (Add to Calendar)</a>
                         </div>
                     </div>
                 </div>
@@ -720,6 +729,14 @@
                 </button>
                 <div id="mobile-dropdown-menu-3" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
                     <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="block py-2 text-sm text-gray-300 hover:text-white">Unlocking AI for All Hub</a>
+                     <!-- MODIFIED SUBLINK: AS Demo Hub to AI Demo Hub -->
+                    <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" title="Check out the Applied Science Demo Hub for the latest AI product demonstrations and internal pilots." class="block py-2 text-sm text-gray-300 hover:text-white">AI Demo Hub</a>
+                    <!-- NEW SUBLINK -->
+                    <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" title="Showcasing innovators within Procore who are driving internal AI initiatives and adoption." class="block py-2 text-sm text-gray-300 hover:text-white">Curious Innovators in Action</a>
+                    <!-- NEW SUBLINK -->
+                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" title="Access curated courses, documentation, and educational resources for upskilling in AI and prompt engineering." class="block py-2 text-sm text-gray-300 hover:text-white">AI Learning Resources</a>
+                    <!-- MODIFIED SUBLINK: AI Office Hours to AI Office Hours (Add to Calendar) -->
+                    <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" title="Weekly open forum for questions, demonstrations, and hands-on practice with Generative AI tools and strategies." class="block py-2 text-sm text-gray-300 hover:text-white">AI Office Hours (Add to Calendar)</a>
                 </div>
             </div>
             
@@ -745,15 +762,17 @@
 <main>
     <!-- Hero Section: Updated with 3D Canvas -->
     <!-- WRAPPED ENTIRE BANNER CONTENT IN A MAX-WIDTH CONTAINER -->
-    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16"> 
+    <!-- MODIFIED: Removed max-w-7xl and set padding to lg:px-20 -->
+    <div class="mx-auto px-6 sm:px-10 lg:px-20"> 
         <!-- ADDED rounded-xl for the rounded corners -->
-        <div id="banner-canvas-wrapper" class="relative w-full overflow-hidden rounded-xl" style="height: 450px;">
+        <!-- MODIFIED: Reduced height from 450px to 400px -->
+        <div id="banner-canvas-wrapper" class="relative w-full overflow-hidden rounded-xl" style="height: 400px;">
             <!-- THREE.JS CANVAS -->
             <canvas id="carousel-canvas" aria-hidden="true"></canvas>
             
             <!-- TEXT OVERLAY -->
-            <!-- ADJUSTED: Decreased vertical padding from py-4 to py-2 to reduce blank space -->
-            <div id="banner-overlay-text" class="absolute inset-0 flex flex-col justify-center py-2 px-6 sm:px-10 lg:px-16 z-10 text-white drop-shadow-lg">
+            <!-- MODIFIED: Set padding to lg:px-20 to match the container padding -->
+            <div id="banner-overlay-text" class="absolute inset-0 flex flex-col justify-center px-6 sm:px-10 lg:px-20 z-10 text-white drop-shadow-lg">
                 
                 <!-- REMOVED max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 from here as it's now on the parent -->
                 <div class="w-full">
@@ -788,7 +807,8 @@
     <!-- Main Content Sections -->
     <!-- Removed: EXPLORE/SEARCH UTILITY BAR -->
     <!-- ADJUSTED: Increased top padding from pt-4 to pt-8 to add space between banner and 'What's New' -->
-    <div class="max-w-7xl mx-auto pt-8 pb-12 px-6 sm:px-10 lg:px-16">
+    <!-- MODIFIED: Removed max-w-7xl and set padding to lg:px-20 -->
+    <div class="mx-auto pt-8 pb-12 px-6 sm:px-10 lg:px-20">
         
         <!-- START Team News & Innovation Spotlight Section (RENAMED and REORGANIZED into Tabs) -->
         <!-- ADJUSTED: Removed mt-6 margin -->
@@ -799,8 +819,8 @@
             <!-- RENAMED SECTION HEADER -->
             <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Team News & Innovation Spotlight</h2>
             
-            <!-- ADDED INTRO PARAGRAPH -->
-            <p class="text-gray-400 mb-8 max-w-4xl">This section features our latest strategic projects, success stories from team members, and recent AI updates across the company's productivity suite.</p>
+            <!-- MODIFIED PARAGRAPH -->
+            <p class="text-gray-400 mb-8 max-w-4xl">This section serves as a real-time showcase of the LRC team's dedication to innovation, featuring key strategic initiatives, employee success stories, and the latest updates on internal and enterprise AI adoption.</p>
 
             <!-- NEW TABBED INTERFACE CONTAINER -->
             <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800">
@@ -815,7 +835,7 @@
                         aria-controls="spotlight-projects-tab-content"
                         aria-selected="true"
                     >
-                        LRC Strategic Projects
+                        LRC Initiative Focus
                     </button>
                     <!-- Tab 2: LRC Team Spotlight -->
                     <button 
@@ -879,6 +899,9 @@
                                     
                                     <p class="leading-relaxed">Harvey will automate repetitive, time-consuming tasks, allowing us to focus our expertise on <b>high-value strategic analysis, critical judgment, and key negotiations</b>.</p>
                                 </div>
+                                
+                                <!-- NEW: Separator line added between articles -->
+                                <hr class="border-t border-gray-400 my-8">
 
                                 <!-- Project 2: New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool Procurement Starts -->
                                 <div class="searchable-item pt-4">
@@ -915,7 +938,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- END Tab 1 Content: LRC Strategic Projects -->
+                    <!-- END Tab 2 Content: LRC Team Spotlight -->
                     
                     
                     <!-- Tab 2 Content: LRC Team Spotlight -->
@@ -950,7 +973,8 @@
                                     <!-- End Image and Intro Wrapper -->
 
                                     <!-- QUOTE AND BUTTON CONTAINER -->
-                                    <div class="flex flex-col md:flex-row md:items-end justify-start md:space-x-8 mt-4">
+                                    <!-- MODIFIED: Changed md:items-end to md:items-center for vertical alignment -->
+                                    <div class="flex flex-col md:flex-row md:items-center justify-start md:space-x-8 mt-4">
                                         
                                         <!-- Collapsible Button -->
                                         <button 
@@ -1503,7 +1527,7 @@
                             </a>
 
                             <!-- Card 3: AI: The New Devil's Advocate -->
-                            <a href="https://www.lawyersweekly.com.au/corporate-counsel/43221-could-ai-be-the-new-devil-s-advocate-for-in-house-lawyers" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/3oZf0iVdhgxZRdjCZpYvFv/4d5ea4b332be59cb2082fdfb9aa686c7/state-licenses-tile.jpg?fit=fill&f=center&w=768&h=432');" title="An article discussing the emerging strategic value of using AI as a 'sparring partner' to challenge core legal arguments, rigorously testing assumptions and exposing potential weaknesses in defense or deal structures.">
+                            <a href="https://www.lawyersweekly.com.au/corporate-counsel/43221-could-ai-be-the-new-devil-s-advocate-for-in-house-lawyers" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/3oZf0iVdhgxZRdjCZpYvFv/4d5ea4b332be59cb2082fdfb9aa686c4/state-licenses-tile.jpg?fit=fill&f=center&w=768&h=432');" title="An article discussing the emerging strategic value of using AI as a 'sparring partner' to challenge core legal arguments, rigorously testing assumptions and exposing potential weaknesses in defense or deal structures.">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content">
                                     <!-- REMOVED ICON -->
@@ -1714,7 +1738,8 @@
 </main>
 
 <footer class="bg-gray-900 mt-12 py-8 border-t border-gray-800">
-    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 text-center text-gray-500">
+    <!-- MODIFIED: Removed max-w-7xl and set padding to lg:px-20 -->
+    <div class="mx-auto px-6 sm:px-10 lg:px-20 text-center text-gray-500">
         <!-- ADDED GEMINI FOOTER TEXT -->
         <p class="text-xs text-gray-600 mb-1">This site was built using a Gemini Gem.</p>
         <!-- Removed Legal | Privacy Policy | Accessibility -->
@@ -1735,9 +1760,10 @@
         // Retrieve explicit height from the HTML element's inline style
         const wrapper = document.getElementById('banner-canvas-wrapper');
         if (wrapper && wrapper.style.height) {
-            return parseFloat(wrapper.style.height);
+            // MODIFIED: Reduced base height to 400px in HTML
+            return parseFloat(wrapper.style.height); 
         }
-        return 450; // Updated default fallback height
+        return 400; // Updated default fallback height
     }
 
     function updateCanvasSize() {
@@ -2159,8 +2185,11 @@
 
     /**
      * Toggles between content tabs (workstreams, trends, tools/trials).
+     * @param {string} contentId - The ID of the tab content to show.
+     * @param {HTMLElement} button - The button element that was clicked.
+     * @param {boolean} [doScroll=true] - Whether to scroll the section into view. Defaults to true.
      */
-    function toggleTab(contentId, button) {
+    function toggleTab(contentId, button, doScroll = true) {
         
         // 1. Determine which parent section we are in
         const parentSectionId = button.closest('section').id;
@@ -2186,12 +2215,13 @@
             button.setAttribute('aria-selected', 'true');
         }
         
-        // 5. Ensure smooth scroll to the selected tab area
-        document.getElementById(parentSectionId).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-
+        // 5. Only scroll if explicitly requested (defaults to true for user clicks, false for initial load)
+        if (doScroll) {
+            document.getElementById(parentSectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     }
 
 
@@ -2286,26 +2316,27 @@
         });
         
         // --- Initial Tab Load: Set the default tabs to open on load ---
+        // Passed 'false' to the optional doScroll parameter to prevent unwanted scrolling on initial load.
         
         // Default Legal Tab (AI Work Streams)
         const defaultLegalTabButton = document.getElementById('workstreams-tab-button');
         if (defaultLegalTabButton) {
             // Manually call toggleTab on the default Legal tab
-            toggleTab('workstreams-tab-content', defaultLegalTabButton);
+            toggleTab('workstreams-tab-content', defaultLegalTabButton, false); 
         }
         
         // Default Enterprise Tab (Corporate Productivity AI Updates)
         const defaultEnterpriseTabButton = document.getElementById('updates-tab-button');
         if (defaultEnterpriseTabButton) {
             // Manually call toggleTab on the default Enterprise tab
-            toggleTab('updates-tab-content', defaultEnterpriseTabButton);
+            toggleTab('updates-tab-content', defaultEnterpriseTabButton, false); 
         }
 
         // Default Spotlight Tab (LRC Strategic Projects)
         const defaultSpotlightTabButton = document.getElementById('spotlight-projects-tab-button');
         if (defaultSpotlightTabButton) {
             // Manually call toggleTab on the default Spotlight tab
-            toggleTab('spotlight-projects-tab-content', defaultSpotlightTabButton);
+            toggleTab('spotlight-projects-tab-content', defaultSpotlightTabButton, false); 
         }
         
     });

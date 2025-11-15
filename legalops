@@ -523,6 +523,7 @@
                                 
                                 <!-- Sub-Dropdown Content 1 (Level 2) - UPDATED TABS -->
                                 <div id="header-explore-menu-2a" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
+                                    <!-- NEW: Corporate Productivity AI Updates is now first -->
                                     <a href="#updates-tab-button" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Corporate Productivity AI Updates</a>
                                     <a href="#enterprise-tools-tab-button" class="text-sm text-white hover:bg-gray-700">Procore Enterprise Tools</a>
                                     <a href="#learning-tab-button" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Learning & Development</a>
@@ -751,8 +752,8 @@
             <canvas id="carousel-canvas" aria-hidden="true"></canvas>
             
             <!-- TEXT OVERLAY -->
-            <!-- INCREASED VERTICAL PADDING TO py-8 -->
-            <div id="banner-overlay-text" class="absolute inset-0 flex flex-col justify-center py-8 px-6 sm:px-10 lg:px-16 z-10 text-white drop-shadow-lg">
+            <!-- ADJUSTED: Decreased vertical padding from py-4 to py-2 to reduce blank space -->
+            <div id="banner-overlay-text" class="absolute inset-0 flex flex-col justify-center py-2 px-6 sm:px-10 lg:px-16 z-10 text-white drop-shadow-lg">
                 
                 <!-- REMOVED max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 from here as it's now on the parent -->
                 <div class="w-full">
@@ -786,10 +787,12 @@
 
     <!-- Main Content Sections -->
     <!-- Removed: EXPLORE/SEARCH UTILITY BAR -->
-    <div class="max-w-7xl mx-auto py-12 px-6 sm:px-10 lg:px-16">
+    <!-- ADJUSTED: Increased top padding from pt-4 to pt-8 to add space between banner and 'What's New' -->
+    <div class="max-w-7xl mx-auto pt-8 pb-12 px-6 sm:px-10 lg:px-16">
         
         <!-- START Team News & Innovation Spotlight Section (RENAMED and REORGANIZED into Tabs) -->
-        <section class="mb-16 mt-6" id="lrc-team-updates-section">
+        <!-- ADJUSTED: Removed mt-6 margin -->
+        <section class="mb-16" id="lrc-team-updates-section">
             <div class="section-differentiator">
                 WHAT'S NEW
             </div>
@@ -802,7 +805,7 @@
             <!-- NEW TABBED INTERFACE CONTAINER -->
             <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800">
                 
-                <!-- Tab Buttons (Navigation) - NEW SET for AI News & Team Spotlight -->
+                <!-- Tab Buttons (Navigation) - REMOVED CORPORATE UPDATES TAB -->
                 <div class="flex border-b border-gray-800">
                     <!-- Tab 1: LRC Strategic Projects (Active by default) -->
                     <button 
@@ -824,16 +827,7 @@
                     >
                         LRC Team Spotlight
                     </button>
-                    <!-- Tab 3: Corporate Productivity AI Updates -->
-                    <button 
-                        id="spotlight-corporate-tab-button"
-                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('spotlight-corporate-tab-content', this)"
-                        aria-controls="spotlight-corporate-tab-content"
-                        aria-selected="false"
-                    >
-                        Corporate Productivity AI Updates
-                    </button>
+                    <!-- REMOVED Tab 3: Corporate Productivity AI Updates -->
                 </div>
 
                 <!-- Tab Content Container -->
@@ -932,10 +926,6 @@
                             
                             <!-- mt-0 and mb-0 to remove top/bottom margin, relying on Tab Content padding -->
                             <div class="mt-0 mb-0" id="lrc-team-spotlight-section">
-                                 <!-- Changed mb-4 to mb-1 to move the next line closer -->
-                                 <h4 class="text-xl font-bold text-white mb-1">LRC Team Spotlight</h4>
-                                 <!-- ADDED mb-4 for a touch of space below this text, moving it slightly away from the spotlight block -->
-                                 <p class="text-sm text-gray-400 mb-4">We're celebrating Caleigh Campion from the Commercial COE team!</p>
                                  <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-800" id="spotlight-container">
                                     
                                     <!-- Image Container -->
@@ -1024,9 +1014,67 @@
                         </div>
                     </div>
                     <!-- END Tab 2 Content: LRC Team Spotlight -->
+                </div>
+            </div>
+            <!-- END NEW TABBED INTERFACE CONTAINER -->
+        </section>
+        <!-- END Team News & Innovation Spotlight Section -->
 
-                    <!-- Tab 3 Content: Corporate Productivity AI Updates (MOVED FROM ENTERPRISE SECTION) -->
-                    <div id="spotlight-corporate-tab-content" class="tab-content searchable-tab-content">
+
+        <!-- START Enterprise AI Resources Section (Updated into Tabs) -->
+        <section class="mb-16 mt-16" id="enterprise-ai-resources-section">
+            <div class="section-differentiator">
+                CORE PRODUCTIVITY TOOLS
+            </div>
+            <!-- Standardized text-3xl font-bold -->
+            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Enterprise AI Resources</h2>
+            
+            <p class="text-gray-400 mb-8 max-w-4xl">This catalog provides a centralized overview of the <b>AI capabilities integrated into our standard Procore enterprise tools</b>. Knowing the specific strengths of these tools—from content creation to meeting summaries—is key to maximizing your daily productivity and leveraging Generative AI responsibly.</p>
+
+            <!-- NEW TABBED INTERFACE CONTAINER -->
+            <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800">
+                
+                <!-- Tab Buttons (Navigation) - UPDATED TO INCLUDE UPDATES FIRST -->
+                <div class="flex border-b border-gray-800">
+                    
+                    <!-- Tab 1: Corporate Productivity AI Updates (Active by default) -->
+                    <button 
+                        id="updates-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-center text-white active" 
+                        onclick="toggleTab('updates-tab-content', this)"
+                        aria-controls="updates-tab-content"
+                        aria-selected="true"
+                    >
+                        Corporate Productivity AI Updates
+                    </button>
+
+                    <!-- Tab 2: Procore Enterprise Tools -->
+                    <button 
+                        id="enterprise-tools-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
+                        onclick="toggleTab('enterprise-tools-tab-content', this)"
+                        aria-controls="enterprise-tools-tab-content"
+                        aria-selected="false"
+                    >
+                        Procore Enterprise Tools
+                    </button>
+                    <!-- Tab 3: Learning & Development -->
+                    <button 
+                        id="learning-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
+                        onclick="toggleTab('learning-tab-content', this)"
+                        aria-controls="learning-tab-content"
+                        aria-selected="false"
+                    >
+                        Learning & Development
+                    </button>
+                </div>
+
+                <!-- Tab Content Container - NEW SET -->
+                <div class="p-4 sm:p-6">
+                    
+                    <!-- NEW Tab 1 Content: Corporate Productivity AI Updates (DEFAULT OPEN) -->
+                    <div id="updates-tab-content" class="tab-content searchable-tab-content" style="display: block;">
                         <h3 class="text-2xl font-bold text-white mb-6">Corporate Productivity AI Updates</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
@@ -1095,58 +1143,11 @@
                             </a>
                         </div>
                     </div>
-                    <!-- END Tab 3 Content: Corporate Productivity AI Updates -->
+                    <!-- END NEW Tab 1 Content: Corporate Productivity AI Updates -->
 
-                </div>
-            </div>
-            <!-- END NEW TABBED INTERFACE CONTAINER -->
-        </section>
-        <!-- END Team News & Innovation Spotlight Section -->
-
-
-        <!-- START Enterprise AI Resources Section (Updated into Tabs) -->
-        <section class="mb-16 mt-16" id="enterprise-ai-resources-section">
-            <div class="section-differentiator">
-                CORE PRODUCTIVITY TOOLS
-            </div>
-            <!-- Standardized text-3xl font-bold -->
-            <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Enterprise AI Resources</h2>
-            
-            <p class="text-gray-400 mb-8 max-w-4xl">This catalog provides a centralized overview of the <b>AI capabilities integrated into our standard Procore enterprise tools</b>. Knowing the specific strengths of these tools—from content creation to meeting summaries—is key to maximizing your daily productivity and leveraging Generative AI responsibly.</p>
-
-            <!-- NEW TABBED INTERFACE CONTAINER -->
-            <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800">
-                
-                <!-- Tab Buttons (Navigation) - NEW SET -->
-                <div class="flex border-b border-gray-800">
                     
-                    <!-- Tab 1: Procore Enterprise Tools (Active by default) -->
-                    <button 
-                        id="enterprise-tools-tab-button"
-                        class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('enterprise-tools-tab-content', this)"
-                        aria-controls="enterprise-tools-tab-content"
-                        aria-selected="true"
-                    >
-                        Procore Enterprise Tools
-                    </button>
-                    <!-- Tab 2: Learning & Development -->
-                    <button 
-                        id="learning-tab-button"
-                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('learning-tab-content', this)"
-                        aria-controls="learning-tab-content"
-                        aria-selected="false"
-                    >
-                        Learning & Development
-                    </button>
-                </div>
-
-                <!-- Tab Content Container - NEW SET -->
-                <div class="p-4 sm:p-6">
-                    
-                    <!-- Tab 1 Content: Procore Enterprise Tools (DEFAULT OPEN) -->
-                    <div id="enterprise-tools-tab-content" class="tab-content searchable-tab-content" style="display: block;">
+                    <!-- Tab 2 Content: Procore Enterprise Tools (NOW SECOND TAB, NO DISPLAY STYLE) -->
+                    <div id="enterprise-tools-tab-content" class="tab-content searchable-tab-content">
                         <h3 class="text-2xl font-bold text-white mb-6">Procore Enterprise Tools</h3>
                         <!-- Table Structure -->
                         <div class="overflow-x-auto rounded-xl shadow-lg border border-gray-700">
@@ -1528,7 +1529,8 @@
                          <h3 class="text-2xl font-bold text-white mb-6">Legal Tech Tools & Recent Trials</h3>
                         
                         <!-- Sub-Section 1: Internal Custom AI Builds -->
-                        <div class="w-full mb-10">
+                        <div class="w-full mb-10"> <!-- INCREASED MARGIN HERE -->
+                                <!-- ADDED 'open' CLASS TO BUTTON FOR DEFAULT OPEN STATE -->
                             <button id="internal-builds-toggle" class="collapsible-button flex items-center justify-between w-full p-3 transition duration-200 hover:bg-gray-800 rounded-lg open" onclick="toggleCollapsible('internal-builds-content', this)" aria-expanded="true" title="Click to view details on internal custom AI solutions developed in partnership with with DTS.">
                                 <div class="flex items-center space-x-4">
                                     <!-- Placeholder Icon: Internal build/custom solution (Code icon) -->
@@ -1912,9 +1914,7 @@
         if (exploreIcon) exploreIcon.style.transform = 'rotate(0deg)';
         
         // Also close the header Explore menu
-        document.getElementById('header-explore-menu-1')?.classList.add('hidden');
-        document.getElementById('header-explore-menu-2a')?.classList.add('hidden');
-        document.getElementById('header-explore-menu-2b')?.classList.add('hidden');
+        document.querySelectorAll('#header-explore-menu-1, #header-explore-menu-2a, #header-explore-menu-2b').forEach(menu => menu.classList.add('hidden'));
         const headerExploreIcon = document.getElementById('header-explore-toggle')?.querySelector('.dropdown-icon');
         if (headerExploreIcon) headerExploreIcon.style.transform = 'rotate(0deg)';
 
@@ -2073,6 +2073,8 @@
     /**
      * Filters content blocks based on the search input value.
      * Searches content by title/tooltip text.
+     * NOTE: This function's logic remains sound even after tab content moves, 
+     * as long as the searchable classes are applied correctly.
      */
     function filterContent(query) {
         const searchText = query.toLowerCase().trim();
@@ -2284,18 +2286,22 @@
         });
         
         // --- Initial Tab Load: Set the default tabs to open on load ---
+        
+        // Default Legal Tab (AI Work Streams)
         const defaultLegalTabButton = document.getElementById('workstreams-tab-button');
         if (defaultLegalTabButton) {
             // Manually call toggleTab on the default Legal tab
             toggleTab('workstreams-tab-content', defaultLegalTabButton);
         }
         
-        const defaultEnterpriseTabButton = document.getElementById('enterprise-tools-tab-button');
+        // Default Enterprise Tab (Corporate Productivity AI Updates)
+        const defaultEnterpriseTabButton = document.getElementById('updates-tab-button');
         if (defaultEnterpriseTabButton) {
             // Manually call toggleTab on the default Enterprise tab
-            toggleTab('enterprise-tools-tab-content', defaultEnterpriseTabButton);
+            toggleTab('updates-tab-content', defaultEnterpriseTabButton);
         }
 
+        // Default Spotlight Tab (LRC Strategic Projects)
         const defaultSpotlightTabButton = document.getElementById('spotlight-projects-tab-button');
         if (defaultSpotlightTabButton) {
             // Manually call toggleTab on the default Spotlight tab

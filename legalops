@@ -515,12 +515,12 @@
                                     </svg>
                                 </button>
                                 <div id="header-explore-menu-2a" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
-                                    <!-- UPDATED: Changed href to # to prevent page jump -->
-                                    <a href="#" onclick="toggleTab('updates-tab-content', document.getElementById('updates-tab-button'), true, event)" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Corporate Productivity AI Updates</a>
-                                    <!-- UPDATED: Changed href to # to prevent page jump -->
-                                    <a href="#" onclick="toggleTab('enterprise-tools-tab-content', document.getElementById('enterprise-tools-tab-button'), true, event)" class="text-sm text-white hover:bg-gray-700">Procore Enterprise Tools</a>
-                                    <!-- UPDATED: Changed href to # to prevent page jump -->
-                                    <a href="#" onclick="toggleTab('learning-tab-content', document.getElementById('learning-tab-button'), true, event)" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Learning & Development</a>
+                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
+                                    <a href="#" onclick="toggleTab('updates-tab-content', document.getElementById('updates-tab-button'), true, event); scrollToSection('enterprise-ai-resources-section', event, true);" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Corporate Productivity AI Updates</a>
+                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
+                                    <a href="#" onclick="toggleTab('enterprise-tools-tab-content', document.getElementById('enterprise-tools-tab-button'), true, event); scrollToSection('enterprise-ai-resources-section', event, true);" class="text-sm text-white hover:bg-gray-700">Procore Enterprise Tools</a>
+                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
+                                    <a href="#" onclick="toggleTab('learning-tab-content', document.getElementById('learning-tab-button'), true, event); scrollToSection('enterprise-ai-resources-section', event, true);" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Learning & Development</a>
                                 </div>
                             </div>
                             <div class="relative">
@@ -531,12 +531,12 @@
                             </svg>
                                 </button>
                                 <div id="header-explore-menu-2b" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
-                                    <!-- UPDATED: Changed href to # to prevent page jump -->
-                                    <a href="#" onclick="toggleTab('workstreams-tab-content', document.getElementById('workstreams-tab-button'), true, event)" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">AI Work Streams</a>
-                                    <!-- UPDATED: Changed href to # to prevent page jump -->
-                                    <a href="#" onclick="toggleTab('trends-tab-content', document.getElementById('trends-tab-button'), true, event)" class="text-sm text-white hover:bg-gray-700">Legal Industry Topics & Trends</a>
-                                    <!-- UPDATED: Changed href to # to prevent page jump -->
-                                    <a href="#" onclick="toggleTab('tools-trials-tab-content', document.getElementById('tools-trials-tab-button'), true, event)" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Legal Tech Tools & Trials</a>
+                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
+                                    <a href="#" onclick="toggleTab('workstreams-tab-content', document.getElementById('workstreams-tab-button'), true, event); scrollToSection('lrc-ai-strategy-tech-stack-section', event, true);" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">AI Work Streams</a>
+                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
+                                    <a href="#" onclick="toggleTab('trends-tab-content', document.getElementById('trends-tab-button'), true, event); scrollToSection('lrc-ai-strategy-tech-stack-section', event, true);" class="text-sm text-white hover:bg-gray-700">Legal Industry Topics & Trends</a>
+                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
+                                    <a href="#" onclick="toggleTab('tools-trials-tab-content', document.getElementById('tools-trials-tab-button'), true, event); scrollToSection('lrc-ai-strategy-tech-stack-section', event, true);" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Legal Tech Tools & Trials</a>
                                 </div>
                             </div>
                         </div>
@@ -561,7 +561,7 @@
                         <div class="py-1" role="none">
                             <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="dropdown-link rounded-t-lg">The Rundown</a>
                             <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="dropdown-link">Ben's Bites</a>
-                            <a href="https://ajsai.substack.com/" target="_blank" title="In-depth analysis of AI, technology, and their broader implications." class="dropdown-link">AJ's AI</a>
+                            <a href="https://ajsai.substack.com/" target="_blank" class="dropdown-link">AJ's AI</a>
                             <a href="https://join.pivot55ai.com/" target="_blank" class="dropdown-link" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
                             <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" class="dropdown-link" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
                             <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa989866eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" title="PLI's new curated quarterly newsletter on AI, legal education, and regulatory reform." class="dropdown-link rounded-b-lg">Unprecedented Newsletter (Substack)</a>
@@ -588,7 +588,7 @@
                         <div class="py-1" role="none">
                             <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="dropdown-link rounded-t-lg">Latent Space</a>
                             <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" title="A biweekly podcast exploring how AI is transforming legal practice with Jen Leonard and Bridget McCormack." class="dropdown-link">AI and the Future of Law Podcast</a>
-                            <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3af186100b43d61e18afb489eeaf7a0849fc6c48ec966c62a4312d5f17d2e3e83f24b3fce34147d7874aa10049d964a7335847dc635ee843f" target="_blank" class="dropdown-link">The Innovator's Edge: AI Briefing</a>
+                            <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3af186100b43d61e18afb4899eeaf7a0849fc6c48ec966c62a4312d5f17d2e3e83f24b3fce34147d7874aa10049d964a7335847dc635ee843f" target="_blank" class="dropdown-link">The Innovator's Edge: AI Briefing</a>
                             <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="dropdown-link rounded-b-lg">AI Unleashed Podcast (Procore)</a>
                         </div>
                     </div>
@@ -664,7 +664,7 @@
                     <a href="https://ajsai.substack.com/" target="_blank" title="In-depth analysis of AI, technology, and their broader implications." class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
                     <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI." class="block py-2 text-sm text-gray-300 hover:text-white">Pivot 5 AI</a>
                     <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI." class="block py-2 text-sm text-gray-300 hover:text-white">Dazza Greenwood</a>
-                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa98986eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
+                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa989866eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
                 </div>
             </div>
 
@@ -680,7 +680,7 @@
                     <!-- REMOVED onclick from external links -->
                     <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="block py-2 text-sm text-gray-300 hover:text-white">Latent Space</a>
                     <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" title="A biweekly podcast exploring how AI is transforming legal practice with Jen Leonard and Bridget McCormack." class="block py-2 text-sm text-gray-300 hover:text-white">AI and the Future of Law Podcast</a>
-                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3af186100b43d61e18afb489eeaf7a0849fc6c48ec966c62a4312d5f17d2e3e83f24b3fce34147d7874aa10049d964a7335847dc635ee843f" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">The Innovator's Edge: AI Briefing</a>
+                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3af186100b43d61e18afb4899eeaf7a0849fc6c48ec966c62a4312d5f17d2e3e83f24b3fce34147d7874aa10049d964a7335847dc635ee843f" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">The Innovator's Edge: AI Briefing</a>
                     <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
                 </div>
             </div>
@@ -697,7 +697,7 @@
                     <!-- REMOVED onclick from external links -->
                     <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="block py-2 text-sm text-gray-300 hover:text-white">Unlocking AI for All Hub</a>
                     <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Demo Hub</a>
-                    <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" title="Showcasing innovators within Procore who are driving internal AI initiatives and adoption." class="block py-2 text-sm text-gray-300 hover:text-white">Curious Innovators in Action</a>
+                    <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Curious Innovators in Action</a>
                     <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" title="Access curated courses, documentation, and educational resources for upskilling in AI and prompt engineering." class="block py-2 text-sm text-gray-300 hover:text-white">AI Learning Resources</a>
                     <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Office Hours (Add to Calendar)</a>
                 </div>
@@ -782,7 +782,7 @@
                     <button 
                         id="spotlight-projects-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('spotlight-projects-tab-content', this)"
+                        onclick="toggleTab('spotlight-projects-tab-content', this, false)"
                         aria-controls="spotlight-projects-tab-content"
                         aria-selected="true"
                     >
@@ -792,7 +792,7 @@
                     <button 
                         id="spotlight-interview-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('spotlight-interview-tab-content', this)"
+                        onclick="toggleTab('spotlight-interview-tab-content', this, false)"
                         aria-controls="spotlight-interview-tab-content"
                         aria-selected="false"
                     >
@@ -848,7 +848,7 @@
                                         <h5 class="key-feature-subheading flex-1">Outcome</h5>
                                     </div>
                                     
-                                    <p class="leading-relaxed">The roadmap's outcome is <b>organizational clarity and capability</b>: a prioritized plan that aligns AI adoption across LRC with our overarching business objectives and <b>significantly increases the team's ability to safely and effectively leverage AI</b>, ensuring every investment directly supports enhanced expertise and strategic value.</p>
+                                    <p class="leading-relaxed">The roadmap's outcome is <b>organizational clarity and capability</b>. This includes a prioritized plan that aligns AI adoption across LRC with our overarching business objectives and significantly increases the team's ability to safely and effectively leverage AI, ensuring every investment directly supports enhanced expertise and strategic value.</p>
                                 </div>
                                 
                                 <!-- NEW: Separator line added between articles -->
@@ -1016,7 +1016,7 @@
                     <button 
                         id="updates-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('updates-tab-content', this)"
+                        onclick="toggleTab('updates-tab-content', this, false)"
                         aria-controls="updates-tab-content"
                         aria-selected="true"
                     >
@@ -1027,7 +1027,7 @@
                     <button 
                         id="enterprise-tools-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('enterprise-tools-tab-content', this)"
+                        onclick="toggleTab('enterprise-tools-tab-content', this, false)"
                         aria-controls="enterprise-tools-tab-content"
                         aria-selected="false"
                     >
@@ -1037,7 +1037,7 @@
                     <button 
                         id="learning-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('learning-tab-content', this)"
+                        onclick="toggleTab('learning-tab-content', this, false)"
                         aria-controls="learning-tab-content"
                         aria-selected="false"
                     >
@@ -1364,7 +1364,7 @@
                     <button 
                         id="workstreams-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('workstreams-tab-content', this)"
+                        onclick="toggleTab('workstreams-tab-content', this, false)"
                         aria-controls="workstreams-tab-content"
                         aria-selected="true"
                     >
@@ -1374,7 +1374,7 @@
                     <button 
                         id="trends-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('trends-tab-content', this)"
+                        onclick="toggleTab('trends-tab-content', this, false)"
                         aria-controls="trends-tab-content"
                         aria-selected="false"
                     >
@@ -1384,7 +1384,7 @@
                     <button 
                         id="tools-trials-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('tools-trials-tab-content', this)"
+                        onclick="toggleTab('tools-trials-tab-content', this, false)"
                         aria-controls="tools-trials-tab-content"
                         aria-selected="false"
                     >
@@ -2056,8 +2056,9 @@
      */
     function toggleTab(contentId, button, doScroll = true, event = null) { // ADDED event = null
         
+        // FIX: Prevent default link behavior for menu links
         if (event && typeof event.preventDefault === 'function') {
-            event.preventDefault(); // <-- FIX: Prevent default link behavior for tab links
+            event.preventDefault(); 
         }
         
         // 1. Determine which parent section we are in
@@ -2101,6 +2102,44 @@
     }
 
 
+    /**
+     * Toggles the visibility of a nested explore menu (Level 2).
+     * @param {string} menuId - The ID of the menu to toggle (e.g., 'header-explore-menu-2a').
+     * @param {HTMLElement} button - The button element that was clicked.
+     */
+    function toggleExploreSubDropdown(menuId, button) {
+        const menu = document.getElementById(menuId);
+        const icon = button.querySelector('svg');
+        
+        // Find the other Level 2 menu ID in the same section (e.g., 'header-explore-menu-2a' vs 'header-explore-menu-2b')
+        let otherMenuId = '';
+        if (menuId.endsWith('2a')) {
+            otherMenuId = menuId.replace('2a', '2b');
+        } else if (menuId.endsWith('2b')) {
+            otherMenuId = menuId.replace('2b', '2a');
+        }
+
+        // Close the other Level 2 menu
+        const otherMenu = document.getElementById(otherMenuId);
+        if (otherMenu && !otherMenu.classList.contains('hidden')) {
+            otherMenu.classList.add('hidden');
+            // Find the other icon and reset its rotation
+            const otherIconId = otherMenuId.replace('menu', 'icon');
+            const otherIcon = document.getElementById(otherIconId);
+            if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+        }
+
+        // Toggle the current menu
+        const isHidden = menu.classList.toggle('hidden');
+
+        // Rotate the current icon
+        if (!isHidden) {
+            icon.style.transform = 'rotate(90deg)';
+        } else {
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
     // --- EVENT LISTENERS ---
 
     /**
@@ -2112,7 +2151,7 @@
         const isHeaderDropdownContent = event.target.closest('#dropdown-menu-1, #dropdown-menu-2, #dropdown-menu-3');
         const isExploreButton = event.target.closest('#header-explore-toggle, #explore-toggle-1');
         const isExploreMenu = event.target.closest('#header-explore-menu-1, #explore-menu-1');
-        const isLevel2Menu = event.target.closest('.nested-dropdown-content');
+        const isLevel2Menu = event.target.closest('.nested-dropdown-content') || event.target.closest('.nested-dropdown-button'); // Added nested button
 
         if (!isHeaderButton && !isHeaderDropdownContent && !isExploreButton && !isExploreMenu && !isLevel2Menu) {
             
@@ -2134,9 +2173,16 @@
             });
             
             // Reset all Explore Icons
-            const iconsToReset = ['header-explore-toggle', 'explore-toggle-1', 'header-icon-2a', 'header-icon-2b', 'icon-2a', 'icon-2b'];
+            const iconsToReset = ['header-explore-toggle', 'explore-toggle-1'];
             iconsToReset.forEach(id => {
                 const iconElement = document.getElementById(id)?.querySelector('.dropdown-icon') || document.getElementById(id);
+                if (iconElement) iconElement.style.transform = 'rotate(0deg)';
+            });
+
+            // Reset Level 2 nested icons (since they aren't children of a single parent button)
+            const nestedIconsToReset = ['header-icon-2a', 'header-icon-2b'];
+            nestedIconsToReset.forEach(id => {
+                const iconElement = document.getElementById(id);
                 if (iconElement) iconElement.style.transform = 'rotate(0deg)';
             });
         }
@@ -2201,3 +2247,4 @@
 
 </body>
 </html>
+

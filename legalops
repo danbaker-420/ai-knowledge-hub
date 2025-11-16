@@ -843,7 +843,7 @@
                                         <h5 class="key-feature-subheading flex-1">Outcome</h5>
                                     </div>
                                     
-                                    <p class="leading-relaxed">The roadmap's outcome is <b>organizational clarity and capability</b>: a prioritized plan that aligns AI adoption across LRC with our overarching business objectives and **significantly increases the team's ability to safely and effectively leverage AI**, ensuring every investment directly supports enhanced expertise and strategic value.</p>
+                                    <p class="leading-relaxed">The roadmap's outcome is <b>organizational clarity and capability</b>: a prioritized plan that aligns AI adoption across LRC with our overarching business objectives and <b>significantly increases the team's ability to safely and effectively leverage AI</b>, ensuring every investment directly supports enhanced expertise and strategic value.</p>
                                 </div>
                                 
                                 <!-- NEW: Separator line added between articles -->
@@ -2203,3 +2203,4 @@
 
 </body>
 </html>
+

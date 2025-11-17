@@ -370,7 +370,7 @@
             flex-shrink: 0;
             /* Soft 3D/Bevel look */
             box-shadow: 
-                inset 0 2px 4px rgba(255, 255, 255, 0.5), /* Highlight top-left */
+                inset degraded 0 2px 4px rgba(255, 255, 255, 0.5), /* Highlight top-left */
                 inset 0 -2px 4px rgba(0, 0, 0, 0.3), /* Shadow bottom-right */
                 0 4px 6px rgba(0, 0, 0, 0.2); /* Lifted shadow */
         }
@@ -515,12 +515,12 @@
                                     </svg>
                                 </button>
                                 <div id="header-explore-menu-2a" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
-                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
-                                    <a href="#" onclick="toggleTab('updates-tab-content', document.getElementById('updates-tab-button'), true, event); scrollToSection('enterprise-ai-resources-section', event, true);" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Corporate Productivity AI Updates</a>
-                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
-                                    <a href="#" onclick="toggleTab('enterprise-tools-tab-content', document.getElementById('enterprise-tools-tab-button'), true, event); scrollToSection('enterprise-ai-resources-section', event, true);" class="text-sm text-white hover:bg-gray-700">Procore Enterprise Tools</a>
-                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
-                                    <a href="#" onclick="toggleTab('learning-tab-content', document.getElementById('learning-tab-button'), true, event); scrollToSection('enterprise-ai-resources-section', event, true);" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Learning & Development</a>
+                                    <!-- UPDATED: Using handleNavTabClick -->
+                                    <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'updates-tab-button', 'updates-tab-content', event);" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Corporate Productivity AI Updates</a>
+                                    <!-- UPDATED: Using handleNavTabClick -->
+                                    <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'enterprise-tools-tab-button', 'enterprise-tools-tab-content', event);" class="text-sm text-white hover:bg-gray-700">Procore Enterprise Tools</a>
+                                    <!-- UPDATED: Using handleNavTabClick -->
+                                    <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'learning-tab-button', 'learning-tab-content', event);" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Learning & Development</a>
                                 </div>
                             </div>
                             <div class="relative">
@@ -531,12 +531,12 @@
                             </svg>
                                 </button>
                                 <div id="header-explore-menu-2b" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
-                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
-                                    <a href="#" onclick="toggleTab('workstreams-tab-content', document.getElementById('workstreams-tab-button'), true, event); scrollToSection('lrc-ai-strategy-tech-stack-section', event, true);" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">AI Work Streams</a>
-                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
-                                    <a href="#" onclick="toggleTab('trends-tab-content', document.getElementById('trends-tab-button'), true, event); scrollToSection('lrc-ai-strategy-tech-stack-section', event, true);" class="text-sm text-white hover:bg-gray-700">Legal Industry Topics & Trends</a>
-                                    <!-- UPDATED: Changed onclick to explicitly prevent default scroll -->
-                                    <a href="#" onclick="toggleTab('tools-trials-tab-content', document.getElementById('tools-trials-tab-button'), true, event); scrollToSection('lrc-ai-strategy-tech-stack-section', event, true);" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Legal Tech Tools & Trials</a>
+                                    <!-- UPDATED: Using handleNavTabClick -->
+                                    <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'workstreams-tab-button', 'workstreams-tab-content', event);" class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Our AI Work Streams</a>
+                                    <!-- UPDATED: Using handleNavTabClick -->
+                                    <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'trends-tab-button', 'trends-tab-content', event);" class="text-sm text-white hover:bg-gray-700">Legal Industry Topics & Trends</a>
+                                    <!-- UPDATED: Using handleNavTabClick -->
+                                    <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'tools-trials-tab-button', 'tools-trials-tab-content', event);" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Legal Tech Tools & Trials</a>
                                 </div>
                             </div>
                         </div>
@@ -562,7 +562,7 @@
                             <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="dropdown-link rounded-t-lg">The Rundown</a>
                             <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="dropdown-link">Ben's Bites</a>
                             <a href="https://ajsai.substack.com/" target="_blank" class="dropdown-link">AJ's AI</a>
-                            <a href="https://join.pivot55ai.com/" target="_blank" class="dropdown-link" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
+                            <a href="https://join.pivot5ai.com/" target="_blank" class="dropdown-link" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
                             <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" class="dropdown-link" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
                             <a href="https://unprecedentedpli.substack.com/" target="_blank" title="PLI's curated newsletter on AI, legal education, and regulatory reform." class="dropdown-link rounded-b-lg">Unprecedented Newsletter (Substack)</a>
                         </div>
@@ -588,7 +588,7 @@
                         <div class="py-1" role="none">
                             <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="dropdown-link rounded-t-lg">Latent Space</a>
                             <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" title="A biweekly podcast exploring how AI is transforming legal practice with Jen Leonard and Bridget McCormack." class="dropdown-link">AI and the Future of Law Podcast</a>
-                            <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="dropdown-link rounded-b-lg">AI Unleashed Podcast (Procore)</a>
+                            <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="dropdown-link rounded-b-lg">AI Unleashed Podcast (Procore)</a>
                         </div>
                     </div>
                 </div>
@@ -613,8 +613,8 @@
                             <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="dropdown-link rounded-t-lg">Unlocking AI for All Hub</a>
                             <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="dropdown-link">AI Demo Hub</a>
                             <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="dropdown-link">Curious Innovators in Action</a>
-                            <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" title="Access curated courses, documentation, and educational resources for upskilling in AI and prompt engineering." class="dropdown-link">AI Learning Resources</a>
-                            <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" title="Weekly open forum for questions, demonstrations, and hands-on practice with Generative AI tools and strategies." class="dropdown-link rounded-b-lg">AI Office Hours (Add to Calendar)</a>
+                            <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="dropdown-link">AI Learning Resources</a>
+                            <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="dropdown-link rounded-b-lg">AI Office Hours (Add to Calendar)</a>
                         </div>
                     </div>
                 </div>
@@ -663,7 +663,7 @@
                     <a href="https://ajsai.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
                     <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
                     <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
-                    <a href="https://unprecedentedpli.substack.com/" target="_blank" title="PLI's curated newsletter on AI, legal education, and regulatory reform." class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
+                    <a href="https://unprecedentedpli.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
                 </div>
             </div>
 
@@ -679,7 +679,7 @@
                     <!-- REMOVED onclick from external links -->
                     <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="block py-2 text-sm text-gray-300 hover:text-white">Latent Space</a>
                     <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" title="A biweekly podcast exploring how AI is transforming legal practice with Jen Leonard and Bridget McCormack." class="block py-2 text-sm text-gray-300 hover:text-white">AI and the Future of Law Podcast</a>
-                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
+                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
                 </div>
             </div>
 
@@ -696,7 +696,7 @@
                     <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="block py-2 text-sm text-gray-300 hover:text-white">Unlocking AI for All Hub</a>
                     <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Demo Hub</a>
                     <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Curious Innovators in Action</a>
-                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" title="Access curated courses, documentation, and educational resources for upskilling in AI and prompt engineering." class="block py-2 text-sm text-gray-300 hover:text-white">AI Learning Resources</a>
+                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Learning Resources</a>
                     <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Office Hours (Add to Calendar)</a>
                 </div>
             </div>
@@ -780,7 +780,7 @@
                     <button 
                         id="spotlight-projects-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('spotlight-projects-tab-content', this, true)"
+                        onclick="toggleTab('spotlight-projects-tab-content', this, false)"
                         aria-controls="spotlight-projects-tab-content"
                         aria-selected="true"
                     >
@@ -790,7 +790,7 @@
                     <button 
                         id="spotlight-interview-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('spotlight-interview-tab-content', this, true)"
+                        onclick="toggleTab('spotlight-interview-tab-content', this, false)"
                         aria-controls="spotlight-interview-tab-content"
                         aria-selected="false"
                     >
@@ -991,16 +991,18 @@
             </div>
             <!-- END NEW TABBED INTERFACE CONTAINER -->
             
-            <!-- Back to Top Link -->
-            <div class="flex justify-end pt-4 pb-2">
-                <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
-                    Back to Top
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
-                    </svg>
-                </a>
-            </div>
+            <!-- Back to Top Link was here - MOVED BELOW SECTION -->
+            
         </section>
+        <!-- Back to Top Link (NOW OUTSIDE section 1) -->
+        <div class="flex justify-end pt-4 pb-2">
+            <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
+                Back to Top
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
+                </svg>
+            </a>
+        </div>
         <!-- END Team News & Innovation Spotlight Section -->
 
 
@@ -1024,7 +1026,7 @@
                     <button 
                         id="updates-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('updates-tab-content', this, true)"
+                        onclick="toggleTab('updates-tab-content', this, false)"
                         aria-controls="updates-tab-content"
                         aria-selected="true"
                     >
@@ -1035,7 +1037,7 @@
                     <button 
                         id="enterprise-tools-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('enterprise-tools-tab-content', this, true)"
+                        onclick="toggleTab('enterprise-tools-tab-content', this, false)"
                         aria-controls="enterprise-tools-tab-content"
                         aria-selected="false"
                     >
@@ -1045,7 +1047,7 @@
                     <button 
                         id="learning-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('learning-tab-content', this, true)"
+                        onclick="toggleTab('learning-tab-content', this, false)"
                         aria-controls="learning-tab-content"
                         aria-selected="false"
                     >
@@ -1350,16 +1352,18 @@
             </div>
             <!-- END NEW TABBED INTERFACE CONTAINER -->
             
-            <!-- Back to Top Link -->
-            <div class="flex justify-end pt-4 pb-2">
-                <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
-                    Back to Top
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
-                    </svg>
-                </a>
-            </div>
+            <!-- Back to Top Link was here - MOVED BELOW SECTION -->
+            
         </section>
+        <!-- Back to Top Link (NOW OUTSIDE section 2) -->
+        <div class="flex justify-end pt-4 pb-2">
+            <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
+                Back to Top
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
+                </svg>
+            </a>
+        </div>
         <!-- END Enterprise AI Resources Section -->
         
         
@@ -1382,17 +1386,17 @@
                     <button 
                         id="workstreams-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('workstreams-tab-content', this, true)"
+                        onclick="toggleTab('workstreams-tab-content', this, false)"
                         aria-controls="workstreams-tab-content"
                         aria-selected="true"
                     >
-                        AI Work Streams
+                        Our AI Work Streams
                     </button>
                     <!-- Tab 2: Topics & Trends -->
                     <button 
                         id="trends-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('trends-tab-content', this, true)"
+                        onclick="toggleTab('trends-tab-content', this, false)"
                         aria-controls="trends-tab-content"
                         aria-selected="false"
                     >
@@ -1402,7 +1406,7 @@
                     <button 
                         id="tools-trials-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('tools-trials-tab-content', this, true)"
+                        onclick="toggleTab('tools-trials-tab-content', this, false)"
                         aria-controls="tools-trials-tab-content"
                         aria-selected="false"
                     >
@@ -1496,7 +1500,7 @@
                             </a>
 
                             <!-- Card 3: AI: The New Devil's Advocate -->
-                            <a href="https://www.lawyersweekly.com.au/corporate-counsel/43221-could-ai-be-the-new-devil-s-advocate-for-in-house-lawyers" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/3oZf0iVdhgxZRdjCZpYvFv/4d5ea4b332be59cb2082fdfb9aa686c4/state-licenses-tile.jpg?fit=fill&f=center&w=768&h=432');" title="An article discussing the emerging strategic value of using AI as a 'sparring partner' to challenge core legal arguments, rigorously testing assumptions and exposing potential weaknesses in defense or deal structures.">
+                            <a href="https://www.lawyersweekly.com.au/corporate-counsel/43221-could-ai-be-the-new-devil-s-advocate-for-in-house-lawyers" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/3oZf0iVdhgxZRdjCZpYvFv/4d5ea4b332be59cb208fdfb9aa686c4/state-licenses-tile.jpg?fit=fill&f=center&w=768&h=432');" title="An article discussing the emerging strategic value of using AI as a 'sparring partner' to challenge core legal arguments, rigorously testing assumptions and exposing potential weaknesses in defense or deal structures.">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content">
                                     <!-- REMOVED ICON -->
@@ -1641,7 +1645,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     <!-- Card 1: Harvey.ai - UPDATED LINK -->
                                     <!-- We are updating the link here to the Confluence Evaluation page -->
-                                    <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/4613144703/GenAI+Legal+Tech+Evaluation" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/1qJW5Otz8RN7rDgconLyqR/4ff59ca0788d65708cc3f46b7afc8ec1/ConstructionSoftwareBuyersGuide_keyart_1920x1080?fit=fill&f=center&w=768&h=432');" title="Trial status for the custom generative AI legal assistant platform.">
+                                    <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/4613144703/GenAI+Legal+Tech+Evaluation" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/1qJW5Otz8RN7rDgconLyqR/4ff59ca0788d65708ec1/ConstructionSoftwareBuyersGuide_keyart_1920x1080?fit=fill&f=center&w=768&h=432');" title="Trial status for the custom generative AI legal assistant platform.">
                                         <div class="ai-card-overlay"></div>
                                         <div class="ai-card-content">
                                             <h4 class="text-2xl font-extrabold leading-snug">Harvey.ai Trial Status</h4>
@@ -1650,6 +1654,7 @@
                                                 <div class="ai-card-arrow">
                                                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                        
                                                     </svg>
                                                 </div>
                                             </div>
@@ -1699,17 +1704,19 @@
             </div>
             <!-- END NEW TABBED INTERFACE CONTAINER -->
             
-            <!-- Back to Top Link -->
-            <div class="flex justify-end pt-4 pb-2">
-                <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
-                    Back to Top
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
-                    </svg>
-                </a>
-            </div>
+            <!-- Back to Top Link was here - MOVED BELOW SECTION -->
+            
         </section>
-        <!-- END Enterprise AI Resources Section -->
+        <!-- Back to Top Link (NOW OUTSIDE section 3) -->
+        <div class="flex justify-end pt-4 pb-2">
+            <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
+                Back to Top
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
+                </svg>
+            </a>
+        </div>
+        <!-- END Legal Innovation Center Section -->
         
     </div>
 </main>
@@ -1888,6 +1895,32 @@
     }
     // --- END THREE.JS LOGIC ---
 
+    // --- UTILITY CLEANUP FUNCTION (UPDATED) ---
+    function toggleDropdownCleanup(excludeMenuId = null) {
+        // Close all desktop dropdowns (standard and explore)
+        document.querySelectorAll('.header-dropdown-menu').forEach(menu => {
+            // Only hide menus that are NOT the one we are excluding
+            if (menu.id !== excludeMenuId) { 
+                menu.classList.add('hidden');
+            }
+        });
+        
+        // Reset desktop dropdown icons
+        document.querySelectorAll('.nav-item-button .dropdown-icon').forEach(icon => {
+            // Reset icon rotation if it belongs to a main toggle button
+            if (icon.closest('button') && (icon.closest('button').id.startsWith('dropdown-toggle') || icon.closest('button').id === 'header-explore-toggle')) {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Reset nested explore icons
+        document.querySelectorAll('#header-icon-2a, #header-icon-2b').forEach(icon => {
+            icon.style.transform = 'rotate(0deg)';
+        });
+    }
+    // --- END UTILITY CLEANUP FUNCTION ---
+
+
     // --- MAIN SCRIPT LOGIC (Dropdown, Mobile Menu, Collapsible, Explore, Tabs) ---
 
     /**
@@ -1896,38 +1929,22 @@
     function toggleDropdown(menuId, button) {
         const menu = document.getElementById(menuId);
         const icon = button.querySelector('.dropdown-icon');
-
-        // Close other desktop dropdowns
-        document.querySelectorAll('.rounded-lg[role="menu"], .header-dropdown-menu').forEach(otherMenu => {
-            if (otherMenu.id !== menuId) {
-                otherMenu.classList.add('hidden');
-            }
-        });
-        document.querySelectorAll('.nav-item-button .dropdown-icon').forEach(otherIcon => {
-            // Find the correct parent button for the icon
-            if (otherIcon !== icon && otherIcon.closest('button').id.startsWith('dropdown-toggle')) {
-                otherIcon.style.transform = 'rotate(0deg)';
-            }
-        });
         
-        // Also close the Explore menus (specific fix)
-        document.getElementById('explore-menu-1')?.classList.add('hidden');
-        document.getElementById('explore-menu-2a')?.classList.add('hidden');
-        document.getElementById('explore-menu-2b')?.classList.add('hidden');
-        const exploreIcon = document.getElementById('explore-toggle-1')?.querySelector('.dropdown-icon');
-        if (exploreIcon) exploreIcon.style.transform = 'rotate(0deg)';
+        // Determine if the menu is currently OPEN before cleanup
+        const wasOpen = !menu.classList.contains('hidden');
         
-        // Also close the header Explore menu
-        document.querySelectorAll('#header-explore-menu-1, #header-explore-menu-2a, #header-explore-menu-2b').forEach(menu => menu.classList.add('hidden'));
-        const headerExploreIcon = document.getElementById('header-explore-toggle')?.querySelector('.dropdown-icon');
-        if (headerExploreIcon) headerExploreIcon.style.transform = 'rotate(0deg)';
+        // 1. Cleanup: Close all OTHER menus except the one being clicked
+        toggleDropdownCleanup(menuId); 
 
-        menu.classList.toggle('hidden');
-
-        if (!menu.classList.contains('hidden')) {
-            icon.style.transform = 'rotate(180deg)';
-        } else {
+        // 2. Toggle the current menu's visibility and icon state
+        if (wasOpen) {
+            // If it was open, close it
+            menu.classList.add('hidden');
             icon.style.transform = 'rotate(0deg)';
+        } else {
+            // If it was closed, open it
+            menu.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
         }
     }
 
@@ -1964,8 +1981,6 @@
             content.classList.toggle('open');
             button.classList.toggle('open');
             button.setAttribute('aria-expanded', isOpening);
-            
-            // REVERTED: No automatic scrolling on expansion of the interview content.
         }
     }
 
@@ -1974,93 +1989,52 @@
      */
     function toggleExploreDropdown(menuId, button) {
         const menu = document.getElementById(menuId);
-        
-        // Determine if this is the header or utility menu based on ID prefix
-        const isHeader = menuId.startsWith('header-');
-        
-        // 1. Close all other *main* header dropdowns explicitly via toggleDropdown
-        document.querySelectorAll('nav .relative button[id^="dropdown-toggle-"]').forEach(btn => {
-            const match = btn.getAttribute('onclick').match(/'(.*?)'/);
-            const btnMenuId = match ? match[1] : null;
-            if (btnMenuId && btnMenuId !== menuId) {
-                document.getElementById(btnMenuId)?.classList.add('hidden');
-                btn.querySelector('.dropdown-icon').style.transform = 'rotate(0deg)';
-            }
-        });
-
-        // 2. Close the *other* main Explore menu if it's open (header vs utility)
-        const otherExploreMenuId = isHeader ? 'explore-menu-1' : 'header-explore-menu-1';
-        const otherExploreMenu = document.getElementById(otherExploreMenuId);
-        if (otherExploreMenu) {
-            otherExploreMenu.classList.add('hidden');
-            // Reset the other Explore icon
-            const otherExploreToggleId = isHeader ? 'explore-toggle-1' : 'header-explore-toggle';
-            const otherExploreIcon = document.getElementById(otherExploreToggleId)?.querySelector('.dropdown-icon');
-            if (otherExploreIcon) otherExploreIcon.style.transform = 'rotate(0deg)';
-        }
-
-
-        // 3. Close all Level 2 menus associated with the *same* main menu
-        const level2MenuIds = isHeader ? ['header-explore-menu-2a', 'header-explore-menu-2b'] : ['explore-menu-2a', 'explore-menu-2b'];
-        level2MenuIds.forEach(id => {
-            const level2Menu = document.getElementById(id);
-            if (level2Menu) level2Menu.classList.add('hidden');
-        });
-        
-        // 4. Reset all Level 2 icons associated with the *same* main menu
-        const level2IconIds = isHeader ? ['header-icon-2a', 'header-icon-2b'] : ['icon-2a', 'icon-2b'];
-        level2IconIds.forEach(id => {
-            const level2Icon = document.getElementById(id);
-            if (level2Icon) level2Icon.style.transform = 'rotate(0deg)';
-        });
-
-
-        // 5. Toggle the target Level 1 menu
-        const isHidden = menu.classList.toggle('hidden');
-
-        // 6. Toggle the main arrow icon
         const mainIcon = button.querySelector('.dropdown-icon');
-        if (mainIcon) {
-            if (!isHidden) {
-                mainIcon.style.transform = 'rotate(180deg)';
-            } else {
-                mainIcon.style.transform = 'rotate(0deg)';
-            }
+        
+        // 1. Determine current state
+        const wasOpen = !menu.classList.contains('hidden');
+
+        // 2. Cleanup: Close all OTHER menus (including standard dropdowns)
+        toggleDropdownCleanup(menuId); 
+
+        // 3. Toggle the current menu's visibility and rotation
+        if (wasOpen) {
+            // If it was open, close it
+            menu.classList.add('hidden');
+            mainIcon.style.transform = 'rotate(0deg)';
+            
+            // Also close its children menus and reset icons when closing the parent
+            document.querySelectorAll('#header-explore-menu-2a, #header-explore-menu-2b').forEach(m => m.classList.add('hidden'));
+            document.querySelectorAll('#header-icon-2a, #header-icon-2b').forEach(icon => icon.style.transform = 'rotate(0deg)');
+            
+        } else {
+            // If it was closed, open it
+            menu.classList.remove('hidden');
+            mainIcon.style.transform = 'rotate(180deg)';
+            
+            // Ensure child menus are closed when opening the main menu
+            document.querySelectorAll('#header-explore-menu-2a, #header-explore-menu-2b').forEach(m => m.classList.add('hidden'));
+            document.querySelectorAll('#header-icon-2a, #header-icon-2b').forEach(icon => icon.style.transform = 'rotate(0deg)');
         }
     }
 
-
     /**
      * Scrolls to a specific section and handles menu cleanup.
-     * @param {string} targetId - The ID of the element/section to scroll to.
-     * @param {object} [event=null] - The click event object.
-     * @param {boolean} [doScroll=true] - Whether to perform the scroll.
+     * Used for non-tab-related links (e.g., Back to Top, Team News Link).
      */
-    function scrollToSection(targetId, event = null, doScroll = true) { // ADDED event = null
+    function scrollToSection(targetId, event = null, doScroll = true) {
         if (event && typeof event.preventDefault === 'function') {
-            event.preventDefault(); // <-- FIX: Prevent default link behavior
+            event.preventDefault();
         }
         
-        // 1. Close ALL desktop dropdowns (standard and explore)
-        document.querySelectorAll('.header-dropdown-menu').forEach(menu => {
-            menu.classList.add('hidden');
-        });
-        
-        // 2. Reset desktop dropdown icons
-        document.querySelectorAll('.nav-item-button .dropdown-icon').forEach(icon => {
-            // Resetting icons on header and utility explore toggle buttons by checking their parent's ID
-            if (icon.closest('button') && (icon.closest('button').id.startsWith('dropdown-toggle') || icon.closest('button').id === 'header-explore-toggle')) {
-                icon.style.transform = 'rotate(0deg)';
-            }
-        });
-
-        // 3. Close mobile menu if open
+        // 1. Cleanup dropdowns/mobile menu
+        toggleDropdownCleanup();
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenu && mobileMenu.classList.contains('open')) {
             toggleMobileMenu();
         }
 
-        // 4. Perform smooth scroll
+        // 2. Perform smooth scroll (CSS handles 'smooth')
         if (doScroll) {
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
@@ -2069,7 +2043,6 @@
                     block: 'start'
                 });
             } else if (targetId === 'top-of-page') {
-                // Special case for top of page if element ID isn't found/needed.
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
@@ -2081,37 +2054,33 @@
 
     /**
      * Toggles between content tabs (workstreams, trends, tools/trials).
-     * NOTE: Event object is passed as 4th argument in inline clicks to avoid breaking DOMContentLoaded calls.
-     * @param {string} contentId - The ID of the tab content to show.
-     * @param {HTMLElement} button - The button element that was clicked.
-     * @param {boolean} [doScroll=true] - Whether to scroll the section into view.
-     * @param {object} [event=null] - The click event object (optional).
+     * This function should now only swap content, fixing the page jump.
      */
-    function toggleTab(contentId, button, doScroll = true, event = null) { // ADDED event = null
+    function toggleTab(contentId, button, doScroll = false, event = null) {
         
-        // FIX: Prevent default link behavior for menu links
+        // 1. Prevent default link behavior for menu links
         if (event && typeof event.preventDefault === 'function') {
             event.preventDefault(); 
         }
         
-        // 1. Determine which parent section we are in
+        // 2. Find parent section
         const parentSection = button.closest('section');
         if (!parentSection) return;
         const parentSectionId = parentSection.id;
 
-        // 2. Hide all tab content within that parent section
+        // 3. Hide all tab content
         document.querySelectorAll(`#${parentSectionId} .tab-content`).forEach(content => {
             content.style.display = 'none';
         });
 
-        // 3. Deactivate all tab buttons within that parent section
+        // 4. Deactivate all tab buttons
         document.querySelectorAll(`#${parentSectionId} .tab-button`).forEach(btn => {
             btn.classList.remove('active', 'text-white');
             btn.classList.add('text-gray-400');
             btn.setAttribute('aria-selected', 'false');
         });
 
-        // 4. Show the selected content and activate the button
+        // 5. Show the selected content and activate the button
         const selectedContent = document.getElementById(contentId);
         if (selectedContent) {
             selectedContent.style.display = 'block';
@@ -2120,37 +2089,42 @@
             button.setAttribute('aria-selected', 'true');
         }
         
-        // 5. Only scroll if explicitly requested (defaults to true for user clicks, false for initial load)
-        if (doScroll) {
-            // FIX: Increased delay to 100ms to allow content dimensions to settle before smooth scrolling.
-            setTimeout(() => {
-                const targetElement = document.getElementById(parentSectionId);
+        // The previous attempt at solving the jump issue by forcing a scroll here is now intentionally removed.
+    }
 
-                // Scroll the parent section (where the tabs are located)
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                // Also ensure the main nav is closed after clicking a tab link
-                // Pass null for event argument and false for doScroll to prevent redundant scroll
-                scrollToSection(parentSectionId, null, false); 
-            }, 100); // Increased delay to 100ms
+    /**
+     * Handler for nested desktop navigation clicks. Scrolls to the section, then activates the tab.
+     */
+    function handleNavTabClick(sectionId, buttonId, contentId, event) {
+        if (event && typeof event.preventDefault === 'function') {
+            event.preventDefault();
+        }
+
+        const targetElement = document.getElementById(sectionId);
+        const tabButton = document.getElementById(buttonId);
+
+        if (targetElement && tabButton) {
+            
+            // 1. Cleanup dropdowns/mobile menu
+            toggleDropdownCleanup();
+            
+            // 2. Perform smooth scroll to the section (this is intended for navigation)
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // 3. Toggle the tab state immediately after scroll initiation 
+            toggleTab(contentId, tabButton, false); 
         }
     }
 
 
     /**
      * Toggles the visibility of a nested explore menu (Level 2).
-     * @param {string} menuId - The ID of the menu to toggle (e.g., 'header-explore-menu-2a').
-     * @param {HTMLElement} button - The button element that was clicked.
      */
     function toggleExploreSubDropdown(menuId, button) {
         const menu = document.getElementById(menuId);
         const icon = button.querySelector('svg');
         
-        // Find the other Level 2 menu ID in the same section (e.g., 'header-explore-menu-2a' vs 'header-explore-menu-2b')
+        // Find the other Level 2 menu ID in the same section
         let otherMenuId = '';
         if (menuId.endsWith('2a')) {
             otherMenuId = menuId.replace('2a', '2b');
@@ -2186,52 +2160,18 @@
      */
     document.addEventListener('click', (event) => {
         // Elements that should keep the dropdown open if clicked
-        const isHeaderButton = event.target.closest('button[id^="dropdown-toggle-"]');
-        const isHeaderDropdownContent = event.target.closest('#dropdown-menu-1, #dropdown-menu-2, #dropdown-menu-3');
-        const isExploreButton = event.target.closest('#header-explore-toggle, #explore-toggle-1');
-        const isExploreMenu = event.target.closest('#header-explore-menu-1, #explore-menu-1');
-        const isLevel2Menu = event.target.closest('.nested-dropdown-content') || event.target.closest('.nested-dropdown-button'); // Added nested button
-
-        if (!isHeaderButton && !isHeaderDropdownContent && !isExploreButton && !isExploreMenu && !isLevel2Menu) {
-            
-            // Close all standard header dropdowns
-            document.querySelectorAll('#dropdown-menu-1, #dropdown-menu-2, #dropdown-menu-3').forEach(menu => {
-                menu.classList.add('hidden');
-            });
-            
-            // Reset standard header dropdown icons
-            document.querySelectorAll('.nav-item-button .dropdown-icon').forEach(icon => {
-                if (icon.closest('button') && icon.closest('button').id.startsWith('dropdown-toggle')) {
-                    icon.style.transform = 'rotate(0deg)';
-                }
-            });
-
-            // Close all Explore Menus (Header and Utility)
-            document.querySelectorAll('#header-explore-menu-1, #explore-menu-1, #explore-menu-2a, #explore-menu-2b, #header-explore-menu-2a, #header-explore-menu-2b').forEach(menu => {
-                menu.classList.add('hidden');
-            });
-            
-            // Reset all Explore Icons
-            const iconsToReset = ['header-explore-toggle', 'explore-toggle-1'];
-            iconsToReset.forEach(id => {
-                const iconElement = document.getElementById(id)?.querySelector('.dropdown-icon') || document.getElementById(id);
-                if (iconElement) iconElement.style.transform = 'rotate(0deg)';
-            });
-
-            // Reset Level 2 nested icons (since they aren't children of a single parent button)
-            const nestedIconsToReset = ['header-icon-2a', 'header-icon-2b'];
-            nestedIconsToReset.forEach(id => {
-                const iconElement = document.getElementById(id);
-                if (iconElement) iconElement.style.transform = 'rotate(0deg)';
-            });
+        const isHeaderButton = event.target.closest('button[id^="dropdown-toggle-"]') || event.target.closest('#header-explore-toggle');
+        const isHeaderDropdownContent = event.target.closest('.header-dropdown-menu');
+        
+        if (!isHeaderButton && !isHeaderDropdownContent) {
+            toggleDropdownCleanup();
         }
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-        // --- Custom Handler for All Internal Anchor Links (only for those *without* explicit onclick/href) ---
-        // This listener now correctly prevents default behavior for links without inline handlers.
+        // --- Custom Handler for All Internal Anchor Links ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            // Check if the link already has an explicit onclick handler (which handles scrolling)
+            // Check if the link already has an explicit onclick handler (which handles scrolling/tabs)
             if (anchor.getAttribute('onclick')) {
                 return; 
             }
@@ -2242,33 +2182,31 @@
             // Only proceed if it's an internal hash link that points to an existing element ID
             if (href.length > 1 && href.startsWith('#') && document.getElementById(targetId)) {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault(); // <-- FIX: Prevent default browser scroll/jump/reload
+                    e.preventDefault(); 
                     scrollToSection(targetId);
                 });
             }
         });
         
         // --- Initial Tab Load: Set the default tabs to open on load ---
-        // Passed 'false' to the optional doScroll parameter to prevent unwanted scrolling on initial load.
         
-        // Default Legal Tab (AI Work Streams)
+        // Default Legal Tab (Our AI Work Streams) - doScroll: false
         const defaultLegalTabButton = document.getElementById('workstreams-tab-button');
         if (defaultLegalTabButton) {
-            // Manually call toggleTab on the default Legal tab
+            // Note: This needs to be called after the DOM is fully loaded but BEFORE the page loads external resources.
+            // Using a simple call here, relying on the clean toggleTab function.
             toggleTab('workstreams-tab-content', defaultLegalTabButton, false); 
         }
         
-        // Default Enterprise Tab (Corporate Productivity AI Updates)
+        // Default Enterprise Tab (Corporate Productivity AI Updates) - doScroll: false
         const defaultEnterpriseTabButton = document.getElementById('updates-tab-button');
         if (defaultEnterpriseTabButton) {
-            // Manually call toggleTab on the default Enterprise tab
             toggleTab('updates-tab-content', defaultEnterpriseTabButton, false); 
         }
 
-        // Default Spotlight Tab (LRC Strategic Projects)
+        // Default Spotlight Tab (LRC Strategic Projects) - doScroll: false
         const defaultSpotlightTabButton = document.getElementById('spotlight-projects-tab-button');
         if (defaultSpotlightTabButton) {
-            // Manually call toggleTab on the default Spotlight tab
             toggleTab('spotlight-projects-tab-content', defaultSpotlightTabButton, false); 
         }
         

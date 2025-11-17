@@ -564,7 +564,7 @@
                             <a href="https://ajsai.substack.com/" target="_blank" class="dropdown-link">AJ's AI</a>
                             <a href="https://join.pivot55ai.com/" target="_blank" class="dropdown-link" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
                             <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" class="dropdown-link" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
-                            <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d3834e66aa989866eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" title="PLI's new curated quarterly newsletter on AI, legal education, and regulatory reform." class="dropdown-link rounded-b-lg">Unprecedented Newsletter (Substack)</a>
+                            <a href="https://unprecedentedpli.substack.com/" target="_blank" title="PLI's curated newsletter on AI, legal education, and regulatory reform." class="dropdown-link rounded-b-lg">Unprecedented Newsletter (Substack)</a>
                         </div>
                     </div>
                 </div>
@@ -588,7 +588,6 @@
                         <div class="py-1" role="none">
                             <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="dropdown-link rounded-t-lg">Latent Space</a>
                             <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" title="A biweekly podcast exploring how AI is transforming legal practice with Jen Leonard and Bridget McCormack." class="dropdown-link">AI and the Future of Law Podcast</a>
-                            <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3af186100b43d61e18afb4899eeaf7a0849fc6c48ec966c62a4312d5f17d2e3e83f24b3fce34147d7874aa10049d964a7335847dc635ee843f" target="_blank" class="dropdown-link">The Innovator's Edge: AI Briefing</a>
                             <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="dropdown-link rounded-b-lg">AI Unleashed Podcast (Procore)</a>
                         </div>
                     </div>
@@ -661,10 +660,10 @@
                     <!-- REMOVED onclick from external links -->
                     <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="block py-2 text-sm text-gray-300 hover:text-white">The Rundown</a>
                     <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="block py-2 text-sm text-gray-300 hover:text-white">Ben's Bites</a>
-                    <a href="https://ajsai.substack.com/" target="_blank" title="In-depth analysis of AI, technology, and their broader implications." class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
-                    <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI." class="block py-2 text-sm text-gray-300 hover:text-white">Pivot 5 AI</a>
-                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI." class="block py-2 text-sm text-gray-300 hover:text-white">Dazza Greenwood</a>
-                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d30cb28f82130579bd1d383324e66aa989866eb76d10ce83d753bd78ccf3d99aecd875e1202bcdfae253328f87363f0fb0e62f9ab72d7e47ee74" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
+                    <a href="https://ajsai.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
+                    <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
+                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
+                    <a href="https://unprecedentedpli.substack.com/" target="_blank" title="PLI's curated newsletter on AI, legal education, and regulatory reform." class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
                 </div>
             </div>
 
@@ -680,7 +679,6 @@
                     <!-- REMOVED onclick from external links -->
                     <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="block py-2 text-sm text-gray-300 hover:text-white">Latent Space</a>
                     <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" title="A biweekly podcast exploring how AI is transforming legal practice with Jen Leonard and Bridget McCormack." class="block py-2 text-sm text-gray-300 hover:text-white">AI and the Future of Law Podcast</a>
-                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3af186100b43d61e18afb4899eeaf7a0849fc6c48ec966c62a4312d5f17d2e3e83f24b3fce34147d7874aa10049d964a733584dc635ee843f" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">The Innovator's Edge: AI Briefing</a>
                     <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" title="Hear how our Legal Operations and Commercial Legal teams partnered with DTS to deploy the GTM Assist Seller AI Tool, successfully deflecting support requests and driving meaningful time savings. This is a prime example of leveraging corporate AI to solve specific legal workflow challenges and deliver immediate ROI." class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
                 </div>
             </div>
@@ -782,7 +780,7 @@
                     <button 
                         id="spotlight-projects-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('spotlight-projects-tab-content', this, false)"
+                        onclick="toggleTab('spotlight-projects-tab-content', this, true)"
                         aria-controls="spotlight-projects-tab-content"
                         aria-selected="true"
                     >
@@ -792,7 +790,7 @@
                     <button 
                         id="spotlight-interview-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('spotlight-interview-tab-content', this, false)"
+                        onclick="toggleTab('spotlight-interview-tab-content', this, true)"
                         aria-controls="spotlight-interview-tab-content"
                         aria-selected="false"
                     >
@@ -904,9 +902,9 @@
                                     
                                     <!-- Image Container -->
                                     <div class="flex flex-col sm:flex-row items-start sm:items-center mb-6 space-y-4 sm:space-y-0 sm:space-x-6">
-                                        <!-- Circular Image -->
+                                        <!-- Circular Image (UPDATED SRC HERE) -->
                                         <img 
-                                            src="https://media.licdn.com/dms/image/v2/D4E03AQGIU0Jb-C9x4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682708253519?e=1764201600&v=beta&t=y8baMlbvfCzTsCO8ZYc5tH6VxH-Q4eDxo3Ced4xs1-I" 
+                                            src="https://media.licdn.com/dms/image/v2/D4E03AQGIU0Jb-C9x4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682708253519?e=1764806400&v=beta&t=MpPs-8q8_9gFMvMyEbzCjzvuNVUQjRloYr2xAuUwl0I" 
                                             alt="Caleigh Campion Profile Picture" 
                                             class="spotlight-image"
                                             onerror="this.onerror=null; this.src='https://placehold.co/120x120/FF5200/FFFFFF?text=CC';"
@@ -1026,7 +1024,7 @@
                     <button 
                         id="updates-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('updates-tab-content', this, false)"
+                        onclick="toggleTab('updates-tab-content', this, true)"
                         aria-controls="updates-tab-content"
                         aria-selected="true"
                     >
@@ -1037,7 +1035,7 @@
                     <button 
                         id="enterprise-tools-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('enterprise-tools-tab-content', this, false)"
+                        onclick="toggleTab('enterprise-tools-tab-content', this, true)"
                         aria-controls="enterprise-tools-tab-content"
                         aria-selected="false"
                     >
@@ -1047,7 +1045,7 @@
                     <button 
                         id="learning-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('learning-tab-content', this, false)"
+                        onclick="toggleTab('learning-tab-content', this, true)"
                         aria-controls="learning-tab-content"
                         aria-selected="false"
                     >
@@ -1384,7 +1382,7 @@
                     <button 
                         id="workstreams-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-white active" 
-                        onclick="toggleTab('workstreams-tab-content', this, false)"
+                        onclick="toggleTab('workstreams-tab-content', this, true)"
                         aria-controls="workstreams-tab-content"
                         aria-selected="true"
                     >
@@ -1394,7 +1392,7 @@
                     <button 
                         id="trends-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('trends-tab-content', this, false)"
+                        onclick="toggleTab('trends-tab-content', this, true)"
                         aria-controls="trends-tab-content"
                         aria-selected="false"
                     >
@@ -1404,7 +1402,7 @@
                     <button 
                         id="tools-trials-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400" 
-                        onclick="toggleTab('tools-trials-tab-content', this, false)"
+                        onclick="toggleTab('tools-trials-tab-content', this, true)"
                         aria-controls="tools-trials-tab-content"
                         aria-selected="false"
                     >
@@ -1464,7 +1462,7 @@
                             </a>
 
                             <!-- Card 1: ACC AI Toolkit - UPDATED LINK AND BACKGROUND IMAGE -->
-                            <a href="https://www.acc.com/sites/default/files/resources/upload/ACC-Artificial-Intelligence-Toolkit-for-In-house-Lawyers-FINAL.pdf" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/76ymLftNSahu1k0zXTrG4B/9599d01223d0ae15fbb0513391a6e552/terms-of-use-tile.jpg?fit=fill&f=center&w=768&h=432');" title="This toolkit focuses on key areas for in-house counsel: AI Governance, Protecting IP & Ethics, and Career Readiness. It provides a foundational framework for safe and effective AI adoption within corporate legal departments.">
+                            <a href="https://www.acc.com/sites/default/files/resources/upload/ACC-Artificial-Intelligence-Toolkit-for-In-house-Lawyers-FINAL.pdf" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/76ymLftNSahu1k0zXTrG4B/9599d01223d0ae15fbb05133391a6e552/terms-of-use-tile.jpg?fit=fill&f=center&w=768&h=432');" title="This toolkit focuses on key areas for in-house counsel: AI Governance, Protecting IP & Ethics, and Career Readiness. It provides a foundational framework for safe and effective AI adoption within corporate legal departments.">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content">
                                     <!-- REMOVED ICON -->
@@ -1711,7 +1709,7 @@
                 </a>
             </div>
         </section>
-        <!-- END Legal Innovation Center Section -->
+        <!-- END Enterprise AI Resources Section -->
         
     </div>
 </main>
@@ -1967,7 +1965,7 @@
             button.classList.toggle('open');
             button.setAttribute('aria-expanded', isOpening);
             
-            // NOTE: Removed `scrollTarget.scrollIntoView` call here to fix unwanted scrolling
+            // REVERTED: No automatic scrolling on expansion of the interview content.
         }
     }
 
@@ -2124,15 +2122,21 @@
         
         // 5. Only scroll if explicitly requested (defaults to true for user clicks, false for initial load)
         if (doScroll) {
-            // Only scroll the parent section (where the tabs are located)
-            parentSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            // FIX: Increased delay to 100ms to allow content dimensions to settle before smooth scrolling.
+            setTimeout(() => {
+                const targetElement = document.getElementById(parentSectionId);
 
-            // Also ensure the main nav is closed after clicking a tab link
-            // Pass null for event argument and false for doScroll to prevent redundant scroll
-            scrollToSection(parentSectionId, null, false); 
+                // Scroll the parent section (where the tabs are located)
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Also ensure the main nav is closed after clicking a tab link
+                // Pass null for event argument and false for doScroll to prevent redundant scroll
+                scrollToSection(parentSectionId, null, false); 
+            }, 100); // Increased delay to 100ms
         }
     }
 

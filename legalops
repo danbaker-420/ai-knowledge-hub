@@ -978,7 +978,7 @@
                                             <p>What excites me most is watching AI become more concept-aware. It’s already moving beyond simple keyword matching to understand meaning, like knowing "indemnify without limitation" is the concept of "<b>uncapped liability</b>." As that capability grows, it will build incredible trust between users and AI, and unlock entirely new ways for us to work smarter.</p>
                                             
                                             <h4>7. Is there a tool, library, or technique you've recently adopted that has fundamentally changed the way you approach your work?</h4>
-                                            <p>I’ve most recently adopted the <b>Improve Prompt</b> feature in Harvey. This feature utilizes AI before the response generation. Good input is one of, if not the most, important components of AI use. The improve prompt feature works to make your prompt clearer, more thorough, and more AI friendly. The best part is, it can be applied to any AI platform. I will go into Harvey, pop in my prompt, and use the improve prompt feature. I think rework the prompt and bring it over to Gemini if I think that’s the more appropriate platform for the project/task. This has allowed for exponentially better input on my end, meaning better base output and less reworking to try and get the AI to understand what I am asking it.</p>
+                                            <p>I’ve most recently adopted the <b>Improve Prompt</b> feature in Harvey. This feature utilizes AI before the response generation. Good input is one of, if not the most, important components of AI use. The improve prompt feature works to make your prompt clearer, more thorough, and more AI friendly. The best part is, it can be applied to any AI platform. I will go into Harvey, pop in my prompt, and use the improve prompt feature. I think rework the prompt and bring it over to Gemini if I’m not if I think that’s the more appropriate platform for the project/task. This has allowed for exponentially better input on my end, meaning better base output and less reworking to try and get the AI to understand what I am asking it.</p>
                                             
                                         </div>
                                     </div>
@@ -1007,7 +1007,8 @@
 
 
         <!-- START Enterprise AI Resources Section (Updated into Tabs) -->
-        <section class="mb-16 mt-16" id="enterprise-ai-resources-section">
+        <!-- MODIFIED CLASSES: mt-16 mb-16 -> mt-10 mb-8 -->
+        <section class="mb-8 mt-10" id="enterprise-ai-resources-section">
             <div class="section-differentiator">
                 CORE PRODUCTIVITY TOOLS
             </div>
@@ -1188,7 +1189,9 @@
                                         </td>
                                         <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content in Confluence to boost productivity.</td>
                                         <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <p><a href="https://www.youtube.com/watch?v=LvK6fROn4G4" target="_blank" class="table-link">Confluence AI Overview (Video)</a></p>
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/LvK6fROn4G4" title="Confluence AI Overview (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
                                         </td>
                                         <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
                                     </tr>
@@ -1204,7 +1207,9 @@
                                         </td>
                                         <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content across Atlassian products (Jira) to boost productivity.</td>
                                         <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <p><a href="https://www.youtube.com/watch?v=G5EBWZZam-Y" target="_blank" class="table-link">JIRA AI in Action (Video)</a></p>
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/G5EBWZZam-Y" title="JIRA AI in Action (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
                                         </td>
                                         <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
                                     </tr>
@@ -1220,7 +1225,9 @@
                                         </td>
                                         <td class="px-6 py-4 max-w-sm text-sm">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension. It can also create custom <b>workflow agents</b>.</td>
                                         <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <p><a href="https://www.youtube.com/watch?v=LbEFkTukBqc" target="_blank" class="table-link">Rovo AI Agent Builder (Video)</a></p>
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/LbEFkTukBqc" title="Rovo AI Agent Builder (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
                                         </td>
                                         <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
                                     </tr>
@@ -1368,7 +1375,8 @@
         
         
         <!-- START Legal Innovation Center Section (UPDATED TOP-LEVEL SECTION NAME) -->
-        <section class="mb-16 mt-16" id="lrc-ai-strategy-tech-stack-section">
+        <!-- MODIFIED CLASSES: mt-16 mb-16 -> mt-10 mb-8 -->
+        <section class="mb-8 mt-10" id="lrc-ai-strategy-tech-stack-section">
             <div class="section-differentiator">
                 STRATEGIC FOCUS & LEGAL AI
             </div>
@@ -2215,4 +2223,3 @@
 
 </body>
 </html>
-

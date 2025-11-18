@@ -122,13 +122,13 @@
         .interview-content h4 {
             font-size: 1.25rem; /* text-xl */
             font-weight: 700; /* font-bold */
-            color: #ECE0D6; /* Procore Stone - White */
+            color: #ECE0D6; /* Procore Stone - Default Text */
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }
         /* Style for workstream sub-headings */
         .workstream-card h3 {
-            color: #ECE0D6; /* Procore Stone - White */
+            color: #ECE0D6; /* Procore Stone - Default Text */
         }
 
         /* Custom style for the circular image */
@@ -370,7 +370,7 @@
             flex-shrink: 0;
             /* Soft 3D/Bevel look */
             box-shadow: 
-                inset degraded 0 2px 4px rgba(255, 255, 255, 0.5), /* Highlight top-left */
+                inset 0 2px 4px rgba(255, 255, 255, 0.5), /* Highlight top-left */
                 inset 0 -2px 4px rgba(0, 0, 0, 0.3), /* Shadow bottom-right */
                 0 4px 6px rgba(0, 0, 0, 0.2); /* Lifted shadow */
         }
@@ -1447,7 +1447,8 @@
                     <!-- Tab 2 Content: Legal Industry Topics & Trends -->
                     <div id="trends-tab-content" class="tab-content searchable-tab-content">
                          <h3 class="text-2xl font-bold text-white mb-6">Legal Industry Topics & Trends</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- UPDATED: Changed grid layout to lg:grid-cols-4 for four cards per row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                             
                             <!-- NEW Card: The AI-Empowered Counsel -->
                             <a href="https://docket.acc.com/ai-empowered-counsel-practical-framework-house-legal-teams?utm_source=MagnetMail&utm_medium=email&utm_campaign=ACC%20Docket" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://docket.acc.com/sites/default/files/styles/large_wide_image/public/2025-10/shutterstock_2637618061_0.jpg?h=89fa80c1&itok=w-tSXlIk');" title="A practical framework for in-house legal teams to strategically adopt AI, focusing on governance and value creation.">

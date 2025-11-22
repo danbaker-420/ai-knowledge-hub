@@ -13,15 +13,28 @@
             color: #ECE0D6;
             scroll-behavior: smooth;
         }
+        /* Primary Dropdown Icon Rotation */
         .nav-item-button:hover .dropdown-icon {
             transform: rotate(180deg);
         }
         .nav-item-button {
             transition: background-color 0.2s, transform 0.2s;
+            /* Ensure buttons start content left for left alignment */
+            justify-content: flex-start; 
         }
         .dropdown-icon {
             transition: transform 0.3s ease;
         }
+        /* Nested Dropdown Icon Rotation (Right arrow changes to down arrow 90deg) */
+        .nested-dropdown-button .dropdown-icon-nested {
+            transition: transform 0.3s ease;
+            transform: rotate(0deg); /* Default right arrow position */
+        }
+        .nested-dropdown-button.open .dropdown-icon-nested {
+            /* This is handled by JS now, but setting the transition here is good */
+            transition: transform 0.3s ease;
+        }
+
         #mobile-menu {
             transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
             max-height: 0;
@@ -62,6 +75,8 @@
         }
         .nested-dropdown-button {
             padding: 0.75rem 1.5rem;
+            /* Ensure text aligns left in nested buttons */
+            justify-content: space-between;
         }
         .nested-dropdown-content a {
             padding: 0.5rem 2rem;
@@ -373,35 +388,16 @@
             padding-top: 1.5rem;
             display: none;
         }
-        /* New style for Rovo Chat Sidebar */
-        #rovo-chat-sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 60; /* Higher than header (z-50) */
-            width: 380px; /* Width for the sidebar */
-            height: 100vh;
-            background-color: #111827; /* Dark background */
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-out;
+        
+        /* New CSS for consistent button sizing and alignment */
+        .interview-action-button {
+            width: 200px; /* Fixed width for consistent size */
+            justify-content: center; /* Center text within the fixed width */
         }
-        #rovo-chat-sidebar.open {
-            transform: translateX(0);
-        }
-        @media (max-width: 640px) { /* Adjust for mobile */
-            #rovo-chat-sidebar {
-                width: 100%;
-            }
-        }
-        /* Style for the iframe inside the sidebar */
-        #rovo-iframe {
-            width: 100%;
-            height: calc(100vh - 64px); 
-            border: none;
-        }
-        .rovo-icon-bg {
-            background-color: #0052CC; /* Atlassian Blue/Rovo Blue */
+        .nav-link-align {
+            /* Consistent horizontal padding for all main nav items, including the direct link and dropdown buttons */
+            padding-left: 0.75rem; 
+            padding-right: 0.75rem; 
         }
     </style>
 </head>
@@ -409,111 +405,34 @@
 
 <header class="bg-black shadow-lg sticky top-0 z-50 border-b border-gray-900">
     <div class="mx-auto px-6 sm:px-10 lg:px-20">
-        <div class="flex justify-between items-center h-20">
-            <div class="flex-shrink-0">
+        <!-- FIX: Updated the main container layout -->
+        <div class="flex items-center justify-start h-20">
+            <!-- Logo container (fixed size) -->
+            <div class="flex-shrink-0 mr-4">
                 <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/2802943856/LRC+Internal" target="_blank" title="Go to LRC Info Library (Internal Link)">
                     <img src="https://media.ffycdn.net/us/procore/oJWY14VdUCCeDGsU52FU.svg?width=150" alt="Procore Logo" class="h-8 w-auto">
                 </a>
             </div>
 
-            <!-- Desktop Navigation Menu (UPDATED: Explore is now first) -->
-            <nav class="hidden md:flex space-x-2 items-center flex-1 ml-4">
+            <!-- Desktop Navigation Menu (Now uses flex-grow and justify-start) -->
+            <nav class="hidden md:flex items-center space-x-2 flex-grow">
                 
-                <!-- 1. EXPLORE DROPDOWN (MOVED TO FRONT) -->
-                <div class="relative">
-                    <button id="header-explore-toggle" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('header-explore-menu-1', this)">
-                        <b>Explore</b>
-                        <!-- Down Arrow Icon -->
-                        <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-
-                    <!-- Explore Dropdown Menu -->
-                    <div id="header-explore-menu-1" class="origin-top-left absolute left-0 mt-2 header-dropdown-menu hidden z-30" role="menu">
-                        <div class="dropdown-header">
-                            <h3 class="dropdown-header-title">External Resources</h3>
-                            <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <div class="py-1" role="none">
-                            <!-- Blogs Dropdown Links -->
-                            <div class="relative">
-                                <button id="header-explore-toggle-2a" class="w-full text-left flex justify-between items-center nested-dropdown-button font-medium text-white hover:bg-gray-800" onclick="toggleExploreSubDropdown('header-explore-menu-2a', this)">
-                                    Blogs
-                                    <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="header-icon-2a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                                <div id="header-explore-menu-2a" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
-                                    <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">The Rundown</a>
-                                    <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="text-sm text-white hover:bg-gray-700">Ben's Bites</a>
-                                    <a href="https://ajsai.substack.com/" target="_blank" class="text-sm text-white hover:bg-gray-700">AJ's AI</a>
-                                    <a href="https://join.pivot5ai.com/" target="_blank" class="text-sm text-white hover:bg-gray-700">Pivot 5 AI</a>
-                                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
-                                    <a href="https://unprecedentedpli.substack.com/" target="_blank" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Unprecedented Newsletter (Substack)</a>
-                                </div>
-                            </div>
-
-                            <!-- Podcasts Dropdown Links -->
-                            <div class="relative">
-                                <button id="header-explore-toggle-2b" class="w-full text-left flex justify-between items-center nested-dropdown-button font-medium text-white hover:bg-gray-800" onclick="toggleExploreSubDropdown('header-explore-menu-2b', this)">
-                                    Podcasts
-                                    <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="header-icon-2b" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                                <div id="header-explore-menu-2b" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
-                                    <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Latent Space</a>
-                                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" class="text-sm text-white hover:bg-gray-700">AI and the Future of Law Podcast</a>
-                                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">AI Unleashed Podcast (Procore)</a>
-                                </div>
-                            </div>
-                            
-                            <!-- AI on The Core Dropdown Links -->
-                            <div class="relative">
-                                <button id="header-explore-toggle-2c" class="w-full text-left flex justify-between items-center nested-dropdown-button font-medium text-white hover:bg-gray-800 rounded-b-xl" onclick="toggleExploreSubDropdown('header-explore-menu-2c', this)">
-                                    AI on The Core
-                                    <svg class="ml-2 h-4 w-4 transform transition-transform duration-200" id="header-icon-2c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10 10.586l3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                                <div id="header-explore-menu-2c" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
-                                    <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Unlocking AI for All Hub</a>
-                                    <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="text-sm text-white hover:bg-gray-700">AI Demo Hub</a>
-                                    <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="text-sm text-white hover:bg-gray-700">Curious Innovators in Action</a>
-                                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="text-sm text-white hover:bg-gray-700">AI Learning Resources</a>
-                                    <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">AI Office Hours (Add to Calendar)</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 2. LRC News & Innovation Spotlight (Direct Link - MOVED FROM #1) -->
-                <a href="#lrc-team-updates-section" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="scrollToSection('lrc-team-updates-section', event)">
+                <!-- 1. LRC News & Innovation Spotlight (Direct Link) - Uses nav-link-align for padding consistency -->
+                <a href="#lrc-team-updates-section" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="scrollToSection('lrc-team-updates-section', event)">
                     <b>LRC News & Innovation Spotlight</b>
                 </a>
                 
-                <!-- 3. Rovo AI Assistant Button (Desktop) -->
-                <button id="rovo-agent-button-desktop" onclick="toggleRovoChat()" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" title="Open Rovo AI Assistant">
-                    <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l.647-.282a1 1 0 00.548-.962V13.5a1 1 0 011-1h1.5a1 1 0 011 1v2.888a1 1 0 00.548.962l.647.282a1 1 0 001.17-1.409l-7-14z" />
-                    </svg>
-                    <b>Rovo AI Chat</b>
-                </button>
-
-                <!-- 4. Enterprise AI Resources (Dropdown) -->
+                <!-- 2. Enterprise AI Resources (Dropdown) -->
                 <div class="relative">
-                    <button id="dropdown-toggle-1" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-1', this)">
+                    <!-- Uses nav-link-align for padding consistency -->
+                    <button id="dropdown-toggle-1" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-1', this)">
                         <b>Enterprise AI Resources</b>
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <!-- Enterprise AI Dropdown Menu (RE-ADDED) -->
+                    <!-- Enterprise AI Dropdown Menu (AI on the Core is a sub-dropdown) -->
                     <div id="dropdown-menu-1" class="origin-top-left absolute left-0 mt-2 header-dropdown-menu hidden" role="menu">
                         <div class="dropdown-header">
                             <h3 class="dropdown-header-title">Enterprise AI</h3>
@@ -524,21 +443,40 @@
                         <div class="py-1" role="none">
                             <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'updates-tab-button', 'updates-tab-content', event);" class="dropdown-link rounded-t-lg">Corporate Productivity AI Updates</a>
                             <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'enterprise-tools-tab-button', 'enterprise-tools-tab-content', event);" class="dropdown-link">Procore Enterprise Tools</a>
-                            <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'learning-tab-button', 'learning-tab-content', event);" class="dropdown-link rounded-b-lg">Learning & Development</a>
+                            <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'learning-tab-button', 'learning-tab-content', event);" class="dropdown-link">Learning & Development</a>
+                            
+                            <!-- AI on The Core Sub-Dropdown (RE-SEPARATED) -->
+                            <div class="relative">
+                                <button id="header-explore-toggle-2c" class="w-full text-left flex justify-between items-center nested-dropdown-button font-medium text-white hover:bg-gray-800 border-t border-gray-800 mt-2 rounded-none" onclick="toggleExploreSubDropdown('header-explore-menu-2c', this)">
+                                    AI on The Core
+                                    <!-- Right Arrow Icon (Fixed) -->
+                                    <svg class="ml-2 h-4 w-4 dropdown-icon-nested" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <div id="header-explore-menu-2c" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
+                                    <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Unlocking AI for All Hub</a>
+                                    <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="text-sm text-white hover:bg-gray-700">AI Demo Hub</a>
+                                    <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="text-sm text-white hover:bg-gray-700">Curious Innovators in Action</a>
+                                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="text-sm text-white hover:bg-gray-700">AI Learning Resources</a>
+                                    <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="text-sm text-white hover:bg-gray-700 rounded-b-lg">AI Office Hours (Add to Calendar)</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 5. Legal Innovation Center (Dropdown) -->
+                <!-- 3. Legal Innovation Center (Dropdown) -->
                 <div class="relative">
-                    <button id="dropdown-toggle-2" class="nav-item-button flex items-center text-gray-400 hover:text-white px-3 py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-2', this)">
+                    <!-- Uses nav-link-align class for padding consistency -->
+                    <button id="dropdown-toggle-2" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-2', this)">
                         <b>Legal Innovation Center</b>
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <!-- Legal Innovation Center Dropdown Menu (RE-ADDED) -->
+                    <!-- Legal Innovation Center Dropdown Menu -->
                     <div id="dropdown-menu-2" class="origin-top-left absolute left-0 mt-2 header-dropdown-menu hidden" role="menu">
                         <div class="dropdown-header">
                             <h3 class="dropdown-header-title">LRC Innovation</h3>
@@ -554,6 +492,65 @@
                     </div>
                 </div>
 
+                <!-- 4. BLOGS & PODCASTS DROPDOWN - Nested menus open left -->
+                <div class="relative">
+                    <!-- Uses nav-link-align class for padding consistency -->
+                    <button id="header-explore-toggle" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('header-explore-menu-1', this)">
+                        <b>Blogs & Podcasts</b>
+                        <!-- Down Arrow Icon -->
+                        <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <!-- Blogs & Podcasts Dropdown Menu - Opens to the left of the button -->
+                    <div id="header-explore-menu-1" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden z-30" role="menu">
+                        <div class="dropdown-header">
+                            <h3 class="dropdown-header-title">External Resources</h3>
+                            <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="py-1" role="none">
+                            <!-- Blogs Dropdown Links -->
+                            <div class="relative">
+                                <button id="header-explore-toggle-2a" class="w-full text-left flex justify-between items-center nested-dropdown-button font-medium text-white hover:bg-gray-800" onclick="toggleExploreSubDropdown('header-explore-menu-2a', this)">
+                                    Blogs
+                                    <!-- Right Arrow Icon (Fixed) -->
+                                    <svg class="ml-2 h-4 w-4 dropdown-icon-nested" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <!-- FIX: Nested menu opens to the LEFT (right-full mr-1) -->
+                                <div id="header-explore-menu-2a" class="hidden absolute top-0 right-full mr-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
+                                    <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">The Rundown</a>
+                                    <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="text-sm text-white hover:bg-gray-700">Ben's Bites</a>
+                                    <a href="https://ajsai.substack.com/" target="_blank" class="text-sm text-white hover:bg-gray-700">AJ's AI</a>
+                                    <a href="https://join.pivot5ai.com/" target="_blank" class="text-sm text-white hover:bg-gray-700">Pivot 5 AI</a>
+                                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
+                                    <a href="https://unprecedentedpli.substack.com/" target="_blank" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">Unprecedented Newsletter (Substack)</a>
+                                </div>
+                            </div>
+
+                            <!-- Podcasts Dropdown Links -->
+                            <div class="relative">
+                                <button id="header-explore-toggle-2b" class="w-full text-left flex justify-between items-center nested-dropdown-button font-medium text-white hover:bg-gray-800" onclick="toggleExploreSubDropdown('header-explore-menu-2b', this)">
+                                    Podcasts
+                                    <!-- Right Arrow Icon (Fixed) -->
+                                    <svg class="ml-2 h-4 w-4 dropdown-icon-nested" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <!-- FIX: Nested menu opens to the LEFT (right-full mr-1) -->
+                                <div id="header-explore-menu-2b" class="hidden absolute top-0 right-full mr-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
+                                    <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Latent Space</a>
+                                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" class="text-sm text-white hover:bg-gray-700">AI and the Future of Law Podcast</a>
+                                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">AI Unleashed Podcast (Procore)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
 
             <div class="flex md:hidden">
@@ -570,71 +567,16 @@
         </div>
     </div>
 
-    <!-- Mobile Menu (Dropdown structure for small screens) -->
+    <!-- Mobile Menu (Dropdown structure for small screens): Reordered and Content Migrated -->
     <div class="md:hidden bg-gray-900" id="mobile-menu" aria-expanded="false">
         <div class="pt-2 pb-3 space-y-1 sm:px-3">
             
-            <!-- Mobile Dropdown 1: Blogs (MOVED TO TOP) -->
-            <div class="relative">
-                <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-1', this)">
-                    <b>Blogs</b>
-                    <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <div id="mobile-dropdown-menu-1" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
-                    <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="block py-2 text-sm text-gray-300 hover:text-white">The Rundown</a>
-                    <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="block py-2 text-sm text-gray-300 hover:text-white">Ben's Bites</a>
-                    <a href="https://ajsai.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
-                    <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
-                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
-                    <a href="https://unprecedentedpli.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
-                </div>
-            </div>
-
-            <!-- Mobile Dropdown 2: Podcasts (MOVED TO TOP) -->
-            <div class="relative">
-                <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-2', this)">
-                    <b>Podcasts</b>
-                    <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <div id="mobile-dropdown-menu-2" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
-                    <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="block py-2 text-sm text-gray-300 hover:text-white">Latent Space</a>
-                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI and the Future of Law Podcast</a>
-                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
-                </div>
-            </div>
-
-            <!-- Mobile Dropdown 3: The Core (MOVED TO TOP) -->
-            <div class="relative">
-                <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-3', this)">
-                    <b>AI on The Core</b>
-                    <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <div id="mobile-dropdown-menu-3" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
-                    <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="block py-2 text-sm text-gray-300 hover:text-white">Unlocking AI for All Hub</a>
-                    <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Demo Hub</a>
-                    <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Curious Innovators in Action</a>
-                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Learning Resources</a>
-                    <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Office Hours (Add to Calendar)</a>
-                </div>
-            </div>
-            
-            <!-- NEW/MOVED: LRC News & Innovation Spotlight (Direct Link) -->
-            <a href="#lrc-team-updates-section" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-700" onclick="scrollToSection('lrc-team-updates-section', event)">
+            <!-- 1. LRC News & Innovation Spotlight (Direct Link) -->
+            <a href="#lrc-team-updates-section" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="scrollToSection('lrc-team-updates-section', event)">
                 <b>LRC News & Innovation Spotlight</b>
             </a>
 
-            <!-- NEW: Rovo Button (Mobile) -->
-            <a href="javascript:void(0)" id="rovo-agent-button-mobile" onclick="toggleRovoChat(); toggleMobileMenu();" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-                <b>Rovo AI Assistant</b>
-            </a>
-
-            <!-- NEW/MOVED: Enterprise AI Resources (Dropdown for mobile) -->
+            <!-- 2. Enterprise AI Resources (Dropdown for mobile) - Includes migrated AI on the Core -->
             <div class="relative">
                 <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-4', this)">
                     <b>Enterprise AI Resources</b>
@@ -646,10 +588,19 @@
                     <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'updates-tab-button', 'updates-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Corporate Productivity AI Updates</a>
                     <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'enterprise-tools-tab-button', 'enterprise-tools-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Procore Enterprise Tools</a>
                     <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'learning-tab-button', 'learning-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Learning & Development</a>
+                    <!-- Migrated AI on The Core links -->
+                    <div class="px-3 pt-3 pb-1">
+                        <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider border-t border-gray-700 pt-2 mt-2">AI on The Core</h4>
+                    </div>
+                    <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="block py-2 text-sm text-gray-300 hover:text-white pl-6">Unlocking AI for All Hub</a>
+                    <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">AI Demo Hub</a>
+                    <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">Curious Innovators in Action</a>
+                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">AI Learning Resources</a>
+                    <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">AI Office Hours (Add to Calendar)</a>
                 </div>
             </div>
 
-            <!-- NEW/MOVED: Legal Innovation Center (Dropdown for mobile) -->
+            <!-- 3. Legal Innovation Center (Dropdown for mobile) -->
             <div class="relative">
                 <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-5', this)">
                     <b>Legal Innovation Center</b>
@@ -663,32 +614,35 @@
                     <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'tools-trials-tab-button', 'tools-trials-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Legal Tech Tools & Trials</a>
                 </div>
             </div>
+
+            <!-- 4. Blogs & Podcasts (Dropdown for mobile) - Combined menu -->
+            <div class="relative">
+                <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-1', this)">
+                    <b>Blogs & Podcasts</b>
+                    <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="mobile-dropdown-menu-1" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
+                    <!-- Blogs Links -->
+                    <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="block py-2 text-sm text-gray-300 hover:text-white">The Rundown</a>
+                    <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="block py-2 text-sm text-gray-300 hover:text-white">Ben's Bites</a>
+                    <a href="https://ajsai.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
+                    <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
+                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
+                    <a href="https://unprecedentedpli.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
+                    <!-- Podcasts Links -->
+                    <div class="px-3 pt-3 pb-1">
+                        <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider border-t border-gray-700 pt-2 mt-2">Podcasts</h4>
+                    </div>
+                    <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="block py-2 text-sm text-gray-300 hover:text-white">Latent Space</a>
+                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI and the Future of Law Podcast</a>
+                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
+                </div>
+            </div>
         </div>
     </div>
 </header>
-
-<!-- Rovo Chat Sidebar Panel (Hidden by default) -->
-<aside id="rovo-chat-sidebar" class="flex flex-col">
-    <!-- Header with Close Button -->
-    <div class="flex justify-between items-center h-16 px-4 bg-gray-900 border-b border-gray-800 flex-shrink-0">
-        <h3 class="text-xl font-bold text-white flex items-center">
-            <svg class="w-6 h-6 mr-2 rovo-icon-bg p-1 rounded-full text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l.647-.282a1 1 0 00.548-.962V13.5a1 1 0 011-1h1.5a1 1 0 011 1v2.888a1 1 0 00.548.962l.647.282a1 1 0 001.17-1.409l-7-14z" />
-            </svg>
-            Rovo AI Assistant
-        </h3>
-        <button id="rovo-close-button" onclick="toggleRovoChat(true)" class="p-2 rounded-full text-gray-400 hover:bg-gray-700 hover:text-white transition duration-200" title="Close chat window">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-    </div>
-    <!-- Iframe Content -->
-    <iframe
-        id="rovo-iframe"
-        src="https://home.atlassian.com/o/d1de2e90-c8b6-4598-9400-85329abae8a8/chat?rovoChatPathway=chat&rovoChatCloudId=cdf4443f-e3ed-4a9e-9567-bb704cf01f1f&rovoChatAgentId=9d13f196-d1d4-4bf0-8010-202ebcba1798&cloudId=cdf4443f-e3ed-4a9e-9567-bb704cf01f1f"
-        title="Rovo AI Chat"
-        class="flex-grow"
-    ></iframe>
-</aside>
 
 <main>
     <div class="mx-auto px-6 sm:px-10 lg:px-20">
@@ -705,9 +659,9 @@
                         Welcome to the LRC AI Knowledge Hub
                     </h1>
                     
-                    <!-- UPDATED HERO PARAGRAPH with <br> -->
+                    <!-- HERO PARAGRAPH -->
                     <p class="mt-4 text-xl text-stone-200 drop-shadow-md">
-                        The LRC AI Knowledge Hub is your central resource, reflecting LRC's commitment to your growth and directly supporting the LRC EVS Action Plan.<br>Use it to enhance your expertise, uplevel your career, and amplify your impact at Procore.
+                        The LRC AI Knowledge Hub is your central resource, reflecting LRC's commitment to your growth and directly supporting the LRC EVS Action Plan. Use it to enhance your expertise, uplevel your career, and amplify your impact at Procore.
                     </p>
                 </div>
             </div>
@@ -856,19 +810,33 @@
                                             </div>
                                         </div>
                                         
+                                        <!-- UPDATED: Button column ensures vertical stack and icon is removed from Interview Brief -->
                                         <div class="flex flex-col md:flex-row md:items-center justify-start md:space-x-8 mt-4">
                                             
-                                            <button
-                                                id="spotlight-toggle-button"
-                                                class="collapsible-button inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors mb-4 md:mb-0"
-                                                onclick="toggleCollapsible('spotlight-interview-content', this)"
-                                                aria-expanded="false"
-                                            >
-                                                View Full Interview
-                                                <svg class="ml-2 h-5 w-5 dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                                </svg>
-                                            </button>
+                                            <!-- Button column: Applied interview-action-button class for fixed size/alignment -->
+                                            <div class="flex flex-col space-y-2 mb-4 md:mb-0">
+                                                
+                                                <!-- 1. View Full Interview Button (Now first/top) -->
+                                                <button
+                                                    id="spotlight-toggle-button"
+                                                    class="collapsible-button inline-flex items-center interview-action-button px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors"
+                                                    onclick="toggleCollapsible('spotlight-interview-content', this)"
+                                                    aria-expanded="false"
+                                                >
+                                                    Full Interview
+                                                    <svg class="ml-2 h-5 w-5 dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+
+                                                <!-- 2. Interview Brief (Below View Full Interview) - ICON REMOVED, interview-action-button applied -->
+                                                <a href="https://drive.google.com/file/d/1eQFXgJ58qbnnIvwc_qRLTLS77bWRvjTX/view?usp=drive_link" target="_blank"
+                                                    class="inline-flex items-center interview-action-button px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-gray-600 hover:bg-gray-700 transition-colors"
+                                                    title="Listen to the interview brief (Drive Link)"
+                                                >
+                                                    Interview Brief (1:31)
+                                                </a>
+                                            </div>
 
                                             <div class="flex-1 p-4 highlighted-quote rounded-lg shadow-lg relative w-full md:max-w-full">
                                                 <div class="absolute left-0 top-0 bottom-0 w-1.5 quote-bar rounded-l-lg"></div>
@@ -920,9 +888,10 @@
         <div class="flex justify-end pt-4 pb-2">
             <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
                 Back to Top
+                <!-- UPDATED: Replaced checkmark with up arrow -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
-                    </svg>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5V4.5m0 0l-6 6m6-6l6 6" />
+                </svg>
             </a>
         </div>
 
@@ -1249,8 +1218,9 @@
         <div class="flex justify-end pt-4 pb-2">
             <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
                 Back to Top
+                <!-- UPDATED: Replaced checkmark with up arrow -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5V4.5m0 0l-6 6m6-6l6 6" />
                 </svg>
             </a>
         </div>
@@ -1262,7 +1232,7 @@
             </div>
             <h2 class="text-3xl font-bold procore-orange-text mb-6 border-b border-gray-900 pb-2">Legal Innovation Center</h2>
             
-            <p class="text-gray-400 mb-8">This section covers the team's strategic workstreams, internal initiatives, and documentation for LRC-specific AI tools and legal technology trials.</p>
+            <p class="text-gray-400 mb-8">This section provides a complete overview of the LRC team's strategic workstreams and internal initiatives, alongside key documentation for our specialized AI tools and legal technology trials.</p>
             
             <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800">
                 
@@ -1309,12 +1279,12 @@
                             
                             <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-800 workstream-card">
                                 <h4 class="text-xl font-semibold mb-3">2. Internal Productivity</h4>
-                                <p class="text-gray-400">This workstream focuses on maximizing the value of our existing internal tools and custom AI builds, including Google, Rovo, Slack, Zoom, and Bolt, and more. We are actively identifying and promoting productivity gains by educating the team on how to leverage this suite of tools for a wide range of daily tasks.</p>
+                                <p class="text-gray-400">This workstream focuses on maximizing the value of existing internal tools and custom AI builds, including Google, Rovo, Slack, Zoom, and Bolt, among others. Productivity gains are actively identified and promoted by educating the team on how to leverage this suite of tools for a wide range of daily tasks.</p>
                             </div>
                             
                             <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-800 workstream-card">
                                 <h4 class="text-xl font-semibold mb-3">3. Third-Party AI Solutions</h4>
-                                <p class="text-gray-400">We are in the process of piloting and onboarding carefully vetted third-party AI solutions. This workstream involves evaluating potential tools, conducting trials to assess their performance and security, and then implementing those that meet our strict criteria. The goal is to safely introduce specialized AI tools that can solve specific in-house legal challenges.</p>
+                                <p class="text-gray-400">This workstream involves vetting potential third-party AI solutions against strict criteria, conducting trials to assess performance and security, and introducing specialized AI tools capable of solving challenges specific to our in-house legal team.</p>
                             </div>
                         </div>
                     </div>
@@ -1541,8 +1511,9 @@
         <div class="flex justify-end pt-4 pb-2">
             <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
                 Back to Top
+                <!-- UPDATED: Replaced checkmark with up arrow -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-7.5 7.5V5.25" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5V4.5m0 0l-6 6m6-6l6 6" />
                 </svg>
             </a>
         </div>
@@ -1708,26 +1679,6 @@
     }
 
     /**
-     * Toggles the visibility of the Rovo Chat sidebar.
-     */
-    function toggleRovoChat(forceClose = false) {
-        const sidebar = document.getElementById('rovo-chat-sidebar');
-        if (!sidebar) return;
-
-        const isOpen = sidebar.classList.contains('open');
-
-        if (forceClose || isOpen) {
-            sidebar.classList.remove('open');
-            document.body.style.overflow = ''; // Restore body scroll
-        } else {
-            // Close all other menus before opening the chat
-            toggleDropdownCleanup();
-            sidebar.classList.add('open');
-            // document.body.style.overflow = 'hidden'; // Optional: Lock body scroll
-        }
-    }
-
-    /**
      * Closes all standard header dropdown menus and mobile menu.
      * Optionally excludes one toggle ID.
      */
@@ -1737,7 +1688,7 @@
             menu.classList.add('hidden');
         });
         
-        // 2. Reset standard dropdown icons (except the one being clicked)
+        // 2. Reset primary dropdown icons (except the one being clicked)
         document.querySelectorAll('.nav-item-button').forEach(button => {
             if (button.id !== excludeToggleId) {
                 const icon = button.querySelector('.dropdown-icon');
@@ -1745,9 +1696,9 @@
             }
         });
         
-        // 3. Reset nested explore menus/icons
-        document.querySelectorAll('#header-explore-menu-2a, #header-explore-menu-2b, #header-explore-menu-2c').forEach(m => m.classList.add('hidden'));
-        document.querySelectorAll('#header-icon-2a, #header-icon-2b, #header-icon-2c').forEach(icon => icon.style.transform = 'rotate(0deg)');
+        // 3. Reset nested menus/icons (specific for Blogs & Podcasts and AI on the Core)
+        document.querySelectorAll('.nested-dropdown-content').forEach(m => m.classList.add('hidden'));
+        document.querySelectorAll('.dropdown-icon-nested').forEach(icon => icon.style.transform = 'rotate(0deg)');
         
         // 4. Close the mobile menu if open (unless the mobile toggle button itself is being clicked)
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1764,7 +1715,8 @@
      */
     function toggleDropdown(menuId, button) {
         const menu = document.getElementById(menuId);
-        const icon = button.querySelector('.dropdown-icon');
+        // Ensure we are targeting the primary dropdown icon (dropdown-icon)
+        const icon = button.querySelector('.dropdown-icon'); 
         
         const wasOpen = !menu.classList.contains('hidden');
         
@@ -1821,29 +1773,47 @@
      */
     function toggleExploreSubDropdown(menuId, button) {
         const menu = document.getElementById(menuId);
-        const icon = button.querySelector('svg');
+        // Find the icon SVG specifically inside this button with class 'dropdown-icon-nested'
+        const icon = button.querySelector('.dropdown-icon-nested'); 
         
-        const allLevel2Menus = document.querySelectorAll('#header-explore-menu-2a, #header-explore-menu-2b, #header-explore-menu-2c');
-        const allLevel2Icons = document.querySelectorAll('#header-icon-2a, #header-icon-2b, #header-icon-2c');
+        // Find all other level 2 menus in the same container (e.g., inside dropdown-menu-1 or header-explore-menu-1)
+        const parentDropdown = button.closest('.header-dropdown-menu');
+        if (!parentDropdown) return;
 
+        const allLevel2Menus = parentDropdown.querySelectorAll('.nested-dropdown-content');
+        const allLevel2Buttons = parentDropdown.querySelectorAll('.nested-dropdown-button');
+
+        // Close all other menus and reset their icons
         allLevel2Menus.forEach(m => {
             if (m.id !== menuId) {
                 m.classList.add('hidden');
             }
         });
-        allLevel2Icons.forEach(i => {
-            if (i.closest('button').id !== button.id) {
-                i.style.transform = 'rotate(0deg)';
+        allLevel2Buttons.forEach(btn => {
+            const btnIcon = btn.querySelector('.dropdown-icon-nested');
+            if (btn.id !== button.id && btnIcon) {
+                btnIcon.style.transform = 'rotate(0deg)'; 
+                btn.classList.remove('open');
             }
         });
 
-
+        // Toggle current menu/icon
         const isHidden = menu.classList.toggle('hidden');
+        button.classList.toggle('open', !isHidden);
+        
+        // Determine if we are opening to the left (only happens for Blogs & Podcasts, which is header-explore-menu-1)
+        const isOpeningLeft = button.closest('#header-explore-menu-1') !== null; 
 
         if (!isHidden) {
-            icon.style.transform = 'rotate(90deg)';
+            // If opening left (Blogs & Podcasts), rotate 180deg (right arrow -> left arrow)
+            if (isOpeningLeft) {
+                if(icon) icon.style.transform = 'rotate(180deg)'; 
+            } else {
+                // If opening right (Enterprise AI submenu), rotate 90deg (right arrow -> down arrow)
+                if(icon) icon.style.transform = 'rotate(90deg)'; 
+            }
         } else {
-            icon.style.transform = 'rotate(0deg)';
+            if(icon) icon.style.transform = 'rotate(0deg)'; 
         }
     }
     
@@ -1942,15 +1912,6 @@
 
         if (!isHeaderButton && !isHeaderDropdownContent && !isMobileToggle) {
             toggleDropdownCleanup();
-        }
-        
-        // Specific logic to close Rovo if clicked outside of the sidebar or its button
-        const sidebar = document.getElementById('rovo-chat-sidebar');
-        const isRovoSidebar = event.target.closest('#rovo-chat-sidebar');
-        const isRovoButton = event.target.closest('#rovo-agent-button-desktop') || event.target.closest('#rovo-agent-button-mobile');
-
-        if (sidebar && sidebar.classList.contains('open') && !isRovoSidebar && !isRovoButton) {
-            toggleRovoChat(true);
         }
     });
 

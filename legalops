@@ -524,7 +524,7 @@
                                 <!-- FIX: Nested menu opens to the LEFT (right-full mr-1) -->
                                 <div id="header-explore-menu-2a" class="hidden absolute top-0 right-full mr-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
                                     <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">The Rundown</a>
-                                    <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="text-sm text-white hover:bg-gray-700">Ben's Bites</a>
+                                    <a href="https://www.bensbites.com/subscribe" target="_blank" class="text-sm text-white hover:bg-gray-700">Ben's Bites</a>
                                     <a href="https://ajsai.substack.com/" target="_blank" class="text-sm text-white hover:bg-gray-700">AJ's AI</a>
                                     <a href="https://join.pivot5ai.com/" target="_blank" class="text-sm text-white hover:bg-gray-700">Pivot 5 AI</a>
                                     <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
@@ -719,7 +719,7 @@
                                             <img src="https://elevate.law/wp-content/uploads/2021/03/elevate-logo-1.svg" alt="Elevate Logo" class="inline-block h-4 relative -top-0.5">
                                         </b>
                                     </h3>
-                                    <p class="leading-relaxed mb-4"><b>LRC is building</b> a comprehensive action plan to <b>align our AI efforts to Procore's enterprise vision</b>. This includes developing and delivering education and training to up-skill our team on AI tools and best practices. <b>As part of this, LRC is also</b> transforming our hiring processes to better attract and integrate talent with AI-related skills, ensuring our team is equipped for the future.</p>
+                                    <p class="leading-relaxed mb-4">LRC is engaging AI-focused consultants to partner with the legal team to document how AI is currently being used and to identify any potential projects and/or new use-cases. This analysis will include a review of data sources (and quality) to create a long-term roadmap to help focus our efforts.</p>
                                     
                                     <div class="flex items-center">
                                         <div class="beveled-icon-container">
@@ -1274,7 +1274,7 @@
                             
                             <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-800 workstream-card">
                                 <h4 class="text-xl font-semibold mb-3">1. EVS Action Plan</h4>
-                                <p class="text-gray-400">LRC is building a comprehensive action plan to align our AI efforts to Procore's enterprise vision. This includes developing and delivering education and training to up-skill our team on AI tools and best practices. As part of this, LRC is also transforming our hiring processes to better attract and integrate talent with AI-related skills, ensuring our team is equipped for the future.</p>
+                                <p class="text-gray-400">LRC is engaging AI-focused consultants to partner with the legal team to document how AI is currently being used and to identify any potential projects and/or new use-cases. This analysis will include a review of data sources (and quality) to create a long-term roadmap to help focus our efforts.</p>
                             </div>
                             
                             <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-800 workstream-card">

@@ -447,7 +447,8 @@
                     <!-- LRC News Dropdown Menu -->
                     <div id="dropdown-menu-3" class="origin-top-left absolute left-0 mt-2 header-dropdown-menu hidden" role="menu">
                         <div class="dropdown-header">
-                            <h3 class="dropdown-header-title">Innovation Spotlight</h3>
+                            <!-- CONFIRMED TITLE -->
+                            <h3 class="dropdown-header-title">LRC News & Spotlight</h3>
                             <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                             </svg>
@@ -525,7 +526,10 @@
                         </div>
                         <div class="py-1" role="none">
                             <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'workstreams-tab-button', 'workstreams-tab-content', event);" class="dropdown-link rounded-t-lg">Our AI Work Streams</a>
+                            
+                            <!-- REMOVED SUBMENU and restored top-level link for Legal Tech Tools & Trials -->
                             <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'tools-trials-tab-button', 'tools-trials-tab-content', event);" class="dropdown-link">Legal Tech Tools & Trials</a>
+
                             <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'trends-tab-button', 'trends-tab-content', event);" class="dropdown-link rounded-b-lg">Legal Industry Topics & Trends</a>
                         </div>
                     </div>
@@ -534,7 +538,7 @@
                 <!-- 4. BLOGS & PODCASTS DROPDOWN - Nested menus open left -->
                 <div class="relative">
                     <!-- Uses nav-link-align class for padding consistency -->
-                    <button id="header-explore-toggle" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-1', this)">
+                    <button id="header-explore-toggle" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('header-explore-menu-1', this)">
                         <b>Blogs & Podcasts</b>
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -543,9 +547,10 @@
                     </button>
 
                     <!-- Blogs & Podcasts Dropdown Menu - Opens to the left of the button -->
-                    <div id="header-explore-menu-1" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden z-30" role="menu">
+                    <div id="header-explore-menu-1" class="origin-top-right absolute right-0 mt-2 header-dropdown-menu hidden" role="menu">
                         <div class="dropdown-header">
-                            <h3 class="dropdown-header-title">External Resources</h3>
+                            <!-- CONFIRMED TITLE -->
+                            <h3 class="dropdown-header-title">Blogs & Podcasts</h3>
                             <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                             </svg>
@@ -645,7 +650,6 @@
                     <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">Unlocking AI for All Hub</a>
                     <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">AI Demo Hub</a>
                     <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">Curious Innovators in Action</a>
-                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">AI Learning Resources</a>
                     <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">AI Office Hours (Add to Calendar)</a>
                 </div>
             </div>
@@ -660,7 +664,10 @@
                 </button>
                 <div id="mobile-dropdown-menu-5" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
                     <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'workstreams-tab-button', 'workstreams-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Our AI Work Streams</a>
+                    
+                    <!-- RESTORED DIRECT LINK (removed submenu wrapper) -->
                     <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'tools-trials-tab-button', 'tools-trials-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Legal Tech Tools & Trials</a>
+                    
                     <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'trends-tab-button', 'trends-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Legal Industry Topics & Trends</a>
                 </div>
             </div>
@@ -784,10 +791,10 @@
                                     
                                     <ul class="list-disc list-inside space-y-2 ml-4 text-base">
                                         <li>
-                                            <b class="text-black">Status:</b> Elevate is focused on establishing a clear baseline of performance. This involves mapping our current workflows to understand where AI can deliver the most measurable improvements.
+                                            <b>Status:</b> Elevate is focused on establishing a clear baseline of performance. This involves mapping our current workflows to understand where AI can deliver the most measurable improvements.
                                         </li>
                                         <li>
-                                            <b class="text-black">Leadership Interviews:</b> LRC Leaders were interviewed last week to deeply explore and define the problems and opportunities within our processes. This step is critical to ensure the resulting solutions drive value for every role.
+                                            <b>Leadership Interviews:</b> LRC Leaders were interviewed last week to deeply explore and define the problems and opportunities within our processes. This step is critical to ensure the resulting solutions drive value for every role.
                                         </li>
                                     </ul>
                                     
@@ -808,10 +815,10 @@
                                     
                                     <ul class="list-disc list-inside space-y-2 ml-4 text-base">
                                         <li>
-                                            <b class="text-black">Workshops:</b> Following the interviews, we will move into targeted workshops to validate the latest findings.
+                                            <b>Workshops:</b> Following the interviews, we will move into targeted workshops to validate the latest findings.
                                         </li>
                                         <li>
-                                            <b class="text-black">Your Role:</b> While not all staff will be interviewed at this stage, the insights gathered from leadership will shape the path we all take. Please continue to think about the repetitive, time-consuming tasks you face daily, as these are the areas where the Elevate roadmap is designed to deliver the most impact.
+                                            <b>Your Role:</b> While not all staff will be interviewed at this stage, the insights gathered from leadership will shape the path we all take. Please continue to think about the repetitive, time-consuming tasks you face daily, as these are the areas where the Elevate roadmap is designed to deliver the most impact.
                                         </li>
                                     </ul>
                                 </div>
@@ -859,7 +866,10 @@
                                     <div id="initiative-archive-content" class="collapsible-content pt-3 px-3">
                                         <!-- PREVIOUS Elevate Project CONTENT (NOW ARCHIVED) -->
                                         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-300 searchable-item mb-4">
-                                            <h4 class="article-topic-label">Archived Strategic Project (Initial Scope)</h4>
+                                            <h4 class="article-topic-label flex justify-between">
+                                                <span>Archived Strategic Project (Initial Scope)</span>
+                                                <span class="font-normal text-gray-500">Nov 11, 2025</span> <!-- DATE ADDED -->
+                                            </h4>
                                             <h3 class="text-2xl font-extrabold mb-2 leading-snug text-gray-900">
                                                 Building Our Foundation: Drafting our Strategic AI Roadmap with 
                                                 <b>
@@ -898,7 +908,10 @@
                                         
                                         <!-- ARCHIVED Harvey.ai Content -->
                                         <div class="bg-white p-6 rounded-lg shadow-md border border-gray-300 searchable-item">
-                                            <h4 class="article-topic-label">Archived Technology Rollout (Procurement Phase)</h4>
+                                            <h4 class="article-topic-label flex justify-between">
+                                                <span>Archived Technology Rollout (Procurement Phase)</span>
+                                                <span class="font-normal text-gray-500">Nov 11, 2025</span> <!-- DATE ADDED -->
+                                            </h4>
                                             <h3 class="text-2xl font-extrabold mb-2 leading-snug text-gray-900">New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool On Its Way</h3>
                                             <p class="leading-relaxed mb-4 text-gray-700">The procurement process <b>has started</b> for <b>Harvey.ai</b>, a cutting-edge generative AI platform built specifically for legal professionals. Think of Harvey as a powerful, secure AI partner that will help us deliver results faster!</p>
                                             
@@ -1147,11 +1160,17 @@
                             <h4 class="text-xl font-bold text-white">Training Schedule & Resources</h4>
                         </div>
                         <div class="text-gray-400 text-sm space-y-3">
+                            
+                            <!-- UPDATED CONTENT FOR IMMEDIATE PRIORITY -->
                             <p class="font-semibold text-white">1. Immediate Priority: Platform 101 (Pre-Holiday)</p>
-                            <ul class="list-disc list-inside space-y-1 ml-4">
-                                <li>Live Training: The next "Secure Your Platform 101" live webinar is scheduled for Dec 11 at 9:00 AM PT. <a href="https://help.harvey.ai/webinars/upcoming" target="_blank" class="table-link text-red-500 hover:text-white underline">View Full Schedule</a></li>
-                                <li>On-Demand Recording: If you cannot attend live, watch the recorded session here: <a href="https://help.harvey.ai/webinars/recordings/azlTdUpYSlRTZmlUdlhGRGxBZ29pQT09" target="_blank" class="table-link text-red-500 hover:text-white underline">Watch Recording</a></li>
-                            </ul>
+                            <p class="text-sm">
+                                <b>Training Action Item:</b> The foundational Platform 101 recorded webinar training is available here: 
+                                <a href="https://help.harvey.ai/webinars/recordings/azlTdUpYSlRTZmlUdlhGRGxBZ29pQT09" target="_blank" class="table-link text-red-500 hover:text-white underline">Watch Recording</a>.
+                                View the full schedule and secure your spot for a live webinar here: 
+                                <a href="https://help.harvey.ai/webinars/upcoming" target="_blank" class="table-link text-red-500 hover:text-white underline">Harvey Training Schedule</a>.
+                            </p>
+                            <!-- END UPDATED CONTENT -->
+
                             <p class="font-semibold text-white pt-2">2. Deep Dives (January)</p>
                             <p>We will host 30-minute sessions focused on advanced use cases (Word Add-In and Vault).</p>
                             <p class="font-semibold text-white pt-2">3. Advanced Workflows (Months 2–3)</p>
@@ -1169,7 +1188,8 @@
                             <p class="font-semibold text-white">Key Features</p>
                             <ul class="list-disc list-inside space-y-1 ml-4">
                                 <li>Google Drive Integration: Sync folders and files directly into the platform to streamline document review.</li>
-                                <li>Continuous Improvement: Join the internal "AI Tools User Group" on Slack to share prompts and success stories.</li>
+                                <!-- UPDATED LINE BELOW -->
+                                <li>Continuous Improvement: Join the internal **lrc-ai-connect** slack channel on Slack to share prompts and success stories.</li>
                             </ul>
                             <p class="font-semibold text-white pt-2">How to Get Support (24/7)</p>
                             <ul class="list-disc list-inside space-y-1 ml-4">
@@ -1181,7 +1201,14 @@
                 </div>
             </div>
         </section>
-        <!-- END DEDICATED HARVEY SECTION -->
+        <div class="flex justify-end pt-4 pb-2">
+            <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
+                Back to Top
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5V4.5m0 0l-6 6m6-6l6 6" />
+                </svg>
+            </a>
+        </div>
 
 
         <section class="mb-8 mt-10" id="enterprise-ai-resources-section">
@@ -1473,13 +1500,13 @@
                             <p>* <b>Note on Google Gemini availability:</b> Generative AI capabilities are available across Google Workspace products, including <b>Chrome, Drive, Gmail, Docs, Sheets,</b> and <b>Slides</b>. Availability may vary by specific license type.</p>
                         </div>
                     </div>
+
                     
-                    
-                    <div id="updates-tab-content" class="tab-content searchable-tab-content">
+                    <div id="updates-tab-content" class="tab-content searchable-tab-content" style="display: none;">
                         <h3 class="text-2xl font-bold text-white mb-6">Corporate Productivity AI Updates</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                            <!-- NEW CONTENT: GEMINI RELEASE 3 -->
+                            <!-- GEMINI RELEASE 3 -->
                             <a href="https://workspace.google.com/blog/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4Zyrj8vQlUNuV9J4wYg8qB/c9f8019d2ba89f0ef62f1cc4fa4f506d/Procore-Pay-Legal-Tile.jpg?fit=fill&f=center&w=768&h=432');" title="Learn how Gemini Release 3 enhances all Google Workspace tools for greater productivity.">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content">
@@ -1531,10 +1558,11 @@
                                 </div>
                             </a>
 
+                            <!-- RENAMED CARD -->
                             <a href="https://workspaceupdates.googleblog.com/2025/10/new-latex-features-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4Zyrj8vQlUNuV9J4wYg8qB/c9f8019d2ba89f0ef62f1cc4fa4f506d/Procore-Pay-Legal-Tile.jpg?fit=fill&f=center&w=768&h=432');" title="Generate clean, perfectly formatted project proposals and documents using Gemini.">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content">
-                                    <h4 class="text-2xl font-extrabold leading-snug">LaTeX for Professional Docs</h4>
+                                    <h4 class="text-2xl font-extrabold leading-snug">Generate Structured Professional Documents</h4>
                                     <p class="mt-2 text-sm text-gray-300">Generate clean, perfectly formatted project proposals and documents using Gemini.</p>
                                     <div class="mt-4 flex justify-end">
                                         <div class="ai-card-arrow">
@@ -1547,190 +1575,6 @@
                             </a>
                         </div>
                     </div>
-                    
-                    <div id="enterprise-tools-tab-content" class="tab-content searchable-tab-content">
-                        <h3 class="text-2xl font-bold text-white mb-6">Procore Enterprise Tools</h3>
-                        <div class="overflow-x-auto rounded-xl shadow-lg border border-gray-700">
-                            <table class="min-w-full divide-y divide-gray-700 text-left">
-                                <thead class="bg-gray-800">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
-                                            Tool Name
-                                        </th>
-                                        <th scope="col" class="px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider w-1/3">
-                                            Description
-                                        </th>
-                                        <th scope="col" class="px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
-                                            Resources
-                                        </th>
-                                        <th scope="col" class="hidden sm:table-cell px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
-                                            When to Use (Coming Soon)
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-gray-900 divide-y divide-gray-700 text-gray-400">
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Adobe AI Assistant for PDF Summarization and Analysis">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container adobe-icon-bg">
-                                                    <img src="https://pngdownload.io/wp-content/uploads/2023/12/Adobe-Logo-PNG-Design-Brand-Transparent-jpg.webp" alt="Adobe Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Adobe AI Assistant</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">Integrates with <b>Adobe Acrobat</b> to summarize documents, answer questions, and perform deep content analysis on PDFs.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/tHlt818hILU" title="Adobe AI Assistant Overview (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian Confluence AI for Content Creation">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container atlassian-icon-bg">
-                                                    <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Atlassian Confluence AI</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content in Confluence to boost productivity.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/LvK6fROn4G4" title="Confluence AI Overview (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian JIRA AI for Task Automation">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container atlassian-icon-bg">
-                                                    <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Atlassian JIRA AI</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content across Atlassian products (Jira) to boost productivity.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/G5EBWZZam-Y" title="JIRA AI in Action (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian Rovo AI for Search and Workflow Agents">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container atlassian-icon-bg">
-                                                    <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Atlassian Rovo AI</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension. It can also create custom <b>workflow agents</b>.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/LbEFkTukBqc" title="Rovo AI Agent Builder (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Google Gemini Assistant for Workspace">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container google-icon-bg">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Google Gemini *</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">An AI assistant that uses a multimodal large language model to help with a wide range of tasks by understanding and generating text, images, audio, and more.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/sQt3wuG0Kik" title="Google Gemini Features (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Google NotebookLM for Research and Document Grounding">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container google-icon-bg">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Google NotebookLM</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">An AI-powered research assistant that helps you learn and explore information more effectively, grounding research in your own source materials.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/UG0DP6nVnrc" title="Google NotebookLM in Action (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Loom AI for Video Summaries">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container loom-icon-bg">
-                                                    <img src="https://images.seeklogo.com/logo-png/39/2/loom-logo-png_seeklogo-393095.png" alt="Loom Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Loom AI</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">Automatically generates summaries, transcriptions, and suggested titles for your Loom videos, boosting productivity and enabling quick information retrieval.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/Jxa8L0EV9F0" title="Loom AI Video Summaries (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Slack AI for Conversation Summarization and Search">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container slack-icon-bg">
-                                                    <img src="https://images.icon-icons.com/2699/PNG/512/slack_tile_logo_icon_168820.png" alt="Slack Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Slack AI</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">Provides smarter search, instant conversation summaries, and automated responses to streamline team communication.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/q1JFMm8biXo" title="Slack AI Search & Summaries (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Zoom AI for Meeting Summaries">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="table-icon-container zoom-icon-bg">
-                                                    <img src="https://www.citypng.com/public/uploads/preview/download-round-blue-zoom-logo-icon-png-701751695039210sjnvxytv5d.png" alt="Zoom Icon" class="table-icon-img">
-                                                </div>
-                                                <div class="text-sm font-medium text-white">Zoom AI</div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 max-w-sm text-sm">A digital assistant that uses generative AI to create content, summarize meetings and chats, and generate ideas/content for whiteboards.</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
-                                            <div class="mb-2 w-full max-w-xs">
-                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/3F3HcegaW28" title="Zoom AI Meeting Companion (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
-                                            </div>
-                                        </td>
-                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <div class="mt-4 text-gray-400 text-sm italic">
-                            <p>* <b>Note on Google Gemini availability:</b> Generative AI capabilities are available across Google Workspace products, including <b>Chrome, Drive, Gmail, Docs, Sheets,</b> and <b>Slides</b>. Availability may vary by specific license type.</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             
@@ -1812,7 +1656,7 @@
                     </div>
                     
                     
-                    <div id="tools-trials-tab-content" class="tab-content searchable-tab-content">
+                    <div id="tools-trials-tab-content" class="tab-content searchable-tab-content" style="display: none;">
                         <h3 class="text-2xl font-bold text-white mb-6">Legal Tech Stack & Trials</h3>
                         
                         <!-- INNER TABS FOR LEGAL TECH TOOLS & TRIALS -->
@@ -1891,7 +1735,6 @@
                                                 
                                             </div>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>

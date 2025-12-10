@@ -399,6 +399,23 @@
             padding-left: 0.75rem; 
             padding-right: 0.75rem; 
         }
+        /* Inner tab styling for Legal Tech Tools */
+        .inner-tab-button {
+            border-bottom: 2px solid transparent;
+            font-weight: 600; /* Increased font weight */
+            padding: 0.5rem 1rem;
+            transition: all 0.2s;
+            color: #6B7280; /* Gray text when inactive */
+            background-color: #F8F8F8; /* Light gray background */
+        }
+        .inner-tab-button:hover {
+            background-color: #E5E7EB; /* Slightly darker on hover */
+        }
+        .inner-tab-button.active {
+            border-bottom: 2px solid #FF5200; /* Procore Orange border */
+            color: #000000; /* Black text when active */
+            background-color: #FFFFFF; /* White background when active */
+        }
     </style>
 </head>
 <body id="top-of-page">
@@ -417,10 +434,32 @@
             <!-- Desktop Navigation Menu (Now uses flex-grow and justify-start) -->
             <nav class="hidden md:flex items-center space-x-2 flex-grow">
                 
-                <!-- 1. LRC News & Innovation Spotlight (Direct Link) - Uses nav-link-align for padding consistency -->
-                <a href="#lrc-team-updates-section" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="scrollToSection('lrc-team-updates-section', event)">
-                    <b>LRC News & Innovation Spotlight</b>
-                </a>
+                <!-- 1. LRC NEWS & INNOVATION SPOTLIGHT (Dropdown) - NEW DROPDOWN -->
+                <div class="relative">
+                    <!-- Uses nav-link-align for padding consistency -->
+                    <button id="dropdown-toggle-3" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-3', this)">
+                        <b>LRC News</b>
+                        <!-- Down Arrow Icon -->
+                        <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <!-- LRC News Dropdown Menu -->
+                    <div id="dropdown-menu-3" class="origin-top-left absolute left-0 mt-2 header-dropdown-menu hidden" role="menu">
+                        <div class="dropdown-header">
+                            <h3 class="dropdown-header-title">Innovation Spotlight</h3>
+                            <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <div class="py-1" role="none">
+                            <a href="#harvey-center-section" onclick="scrollToSection('harvey-center-section', event);" class="dropdown-link">Harvey AI Deployment Center</a>
+                            <a href="#lrc-team-updates-section" onclick="handleNavTabClick('lrc-team-updates-section', 'spotlight-projects-tab-button', 'spotlight-projects-tab-content', event);" class="dropdown-link rounded-t-lg">LRC Initiative Focus</a>
+                            <a href="#lrc-team-updates-section" onclick="handleNavTabClick('lrc-team-updates-section', 'spotlight-interview-tab-button', 'spotlight-interview-tab-content', event);" class="dropdown-link">LRC Team Spotlight</a>
+                            <a href="#lrc-team-updates-section" onclick="handleNavTabClick('lrc-team-updates-section', 'awards-tab-button', 'awards-tab-content', event);" class="dropdown-link rounded-b-lg">AI Amplifier Awards</a>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- 2. Enterprise AI Resources (Dropdown) -->
                 <div class="relative">
@@ -441,9 +480,9 @@
                             </svg>
                         </div>
                         <div class="py-1" role="none">
-                            <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'updates-tab-button', 'updates-tab-content', event);" class="dropdown-link rounded-t-lg">Corporate Productivity AI Updates</a>
+                            <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'learning-tab-button', 'learning-tab-content', event);" class="dropdown-link rounded-t-lg">Learning & Development</a>
                             <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'enterprise-tools-tab-button', 'enterprise-tools-tab-content', event);" class="dropdown-link">Procore Enterprise Tools</a>
-                            <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'learning-tab-button', 'learning-tab-content', event);" class="dropdown-link">Learning & Development</a>
+                            <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'updates-tab-button', 'updates-tab-content', event);" class="dropdown-link">Corporate Productivity AI Updates</a>
                             
                             <!-- AI on The Core Sub-Dropdown (RE-SEPARATED) -->
                             <div class="relative">
@@ -486,8 +525,8 @@
                         </div>
                         <div class="py-1" role="none">
                             <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'workstreams-tab-button', 'workstreams-tab-content', event);" class="dropdown-link rounded-t-lg">Our AI Work Streams</a>
-                            <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'trends-tab-button', 'trends-tab-content', event);" class="dropdown-link">Legal Industry Topics & Trends</a>
-                            <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'tools-trials-tab-button', 'tools-trials-tab-content', event);" class="dropdown-link rounded-b-lg">Legal Tech Tools & Trials</a>
+                            <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'tools-trials-tab-button', 'tools-trials-tab-content', event);" class="dropdown-link">Legal Tech Tools & Trials</a>
+                            <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'trends-tab-button', 'trends-tab-content', event);" class="dropdown-link rounded-b-lg">Legal Industry Topics & Trends</a>
                         </div>
                     </div>
                 </div>
@@ -495,7 +534,7 @@
                 <!-- 4. BLOGS & PODCASTS DROPDOWN - Nested menus open left -->
                 <div class="relative">
                     <!-- Uses nav-link-align class for padding consistency -->
-                    <button id="header-explore-toggle" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('header-explore-menu-1', this)">
+                    <button id="header-explore-toggle" class="nav-item-button nav-link-align flex items-center justify-start text-gray-400 hover:text-white py-2 rounded-lg text-base font-medium" onclick="toggleDropdown('dropdown-menu-1', this)">
                         <b>Blogs & Podcasts</b>
                         <!-- Down Arrow Icon -->
                         <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -571,10 +610,21 @@
     <div class="md:hidden bg-gray-900" id="mobile-menu" aria-expanded="false">
         <div class="pt-2 pb-3 space-y-1 sm:px-3">
             
-            <!-- 1. LRC News & Innovation Spotlight (Direct Link) -->
-            <a href="#lrc-team-updates-section" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="scrollToSection('lrc-team-updates-section', event)">
-                <b>LRC News & Innovation Spotlight</b>
-            </a>
+            <!-- 1. LRC News & Innovation Spotlight (Dropdown for mobile) - NEW DROPDOWN -->
+            <div class="relative">
+                <button class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" onclick="toggleDropdown('mobile-dropdown-menu-6', this)">
+                    <b>LRC News</b>
+                    <svg class="ml-2 h-4 w-4 dropdown-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="mobile-dropdown-menu-6" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
+                    <a href="#harvey-center-section" onclick="scrollToSection('harvey-center-section', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Harvey AI Deployment Center</a>
+                    <a href="#lrc-team-updates-section" onclick="handleNavTabClick('lrc-team-updates-section', 'spotlight-projects-tab-button', 'spotlight-projects-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">LRC Initiative Focus</a>
+                    <a href="#lrc-team-updates-section" onclick="handleNavTabClick('lrc-team-updates-section', 'spotlight-interview-tab-button', 'spotlight-interview-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">LRC Team Spotlight</a>
+                    <a href="#lrc-team-updates-section" onclick="handleNavTabClick('lrc-team-updates-section', 'awards-tab-button', 'awards-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">AI Amplifier Awards</a>
+                </div>
+            </div>
 
             <!-- 2. Enterprise AI Resources (Dropdown for mobile) - Includes migrated AI on the Core -->
             <div class="relative">
@@ -585,14 +635,14 @@
                     </svg>
                 </button>
                 <div id="mobile-dropdown-menu-4" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
-                    <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'updates-tab-button', 'updates-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Corporate Productivity AI Updates</a>
-                    <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'enterprise-tools-tab-button', 'enterprise-tools-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Procore Enterprise Tools</a>
                     <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'learning-tab-button', 'learning-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Learning & Development</a>
+                    <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'enterprise-tools-tab-button', 'enterprise-tools-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Procore Enterprise Tools</a>
+                    <a href="#enterprise-ai-resources-section" onclick="handleNavTabClick('enterprise-ai-resources-section', 'updates-tab-button', 'updates-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Corporate Productivity AI Updates</a>
                     <!-- Migrated AI on The Core links -->
                     <div class="px-3 pt-3 pb-1">
                         <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider border-t border-gray-700 pt-2 mt-2">AI on The Core</h4>
                     </div>
-                    <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="block py-2 text-sm text-gray-300 hover:text-white pl-6">Unlocking AI for All Hub</a>
+                    <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">Unlocking AI for All Hub</a>
                     <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">AI Demo Hub</a>
                     <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">Curious Innovators in Action</a>
                     <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white pl-6">AI Learning Resources</a>
@@ -610,8 +660,8 @@
                 </button>
                 <div id="mobile-dropdown-menu-5" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
                     <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'workstreams-tab-button', 'workstreams-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Our AI Work Streams</a>
-                    <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'trends-tab-button', 'trends-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Legal Industry Topics & Trends</a>
                     <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'tools-trials-tab-button', 'tools-trials-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Legal Tech Tools & Trials</a>
+                    <a href="#lrc-ai-strategy-tech-stack-section" onclick="handleNavTabClick('lrc-ai-strategy-tech-stack-section', 'trends-tab-button', 'trends-tab-content', event);" class="block py-2 text-sm text-gray-300 hover:text-white">Legal Industry Topics & Trends</a>
                 </div>
             </div>
 
@@ -625,17 +675,17 @@
                 </button>
                 <div id="mobile-dropdown-menu-1" class="hidden pl-4 pr-3 py-1 bg-gray-800 rounded-b-md">
                     <!-- Blogs Links -->
-                    <a href="https://www.therundown.ai/subscribe" target="_blank" title="Curated daily AI news delivered in a brief, easy-to-read format." class="block py-2 text-sm text-gray-300 hover:text-white">The Rundown</a>
-                    <a href="https://www.bensbites.com/subscribe" target="_blank" title="A daily email summarizing the top AI headlines and new tools." class="block py-2 text-sm text-gray-300 hover:text-white">Ben's Bites</a>
+                    <a href="https://www.therundown.ai/subscribe" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">The Rundown</a>
+                    <a href="https://www.bensbites.com/subscribe" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Ben's Bites</a>
                     <a href="https://ajsai.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AJ's AI</a>
-                    <a href="https://join.pivot55ai.com/" target="_blank" title="Focuses on strategic application and maximizing business value with AI.">Pivot 5 AI</a>
-                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" title="Expert legal and technical analysis on decentralized technology and AI.">Dazza Greenwood</a>
+                    <a href="https://join.pivot55ai.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Pivot 5 AI</a>
+                    <a href="https://www.dazzagreenwood.com/?utm_source=substack&utm_medium=email" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Dazza Greenwood</a>
                     <a href="https://unprecedentedpli.substack.com/" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Unprecedented Newsletter (Substack)</a>
                     <!-- Podcasts Links -->
                     <div class="px-3 pt-3 pb-1">
                         <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider border-t border-gray-700 pt-2 mt-2">Podcasts</h4>
                     </div>
-                    <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="block py-2 text-sm text-gray-300 hover:text-white">Latent Space</a>
+                    <a href="https://www.latent.space/podcast" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">Latent Space</a>
                     <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI and the Future of Law Podcast</a>
                     <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
                 </div>
@@ -700,6 +750,16 @@
                     >
                         LRC Team Spotlight
                     </button>
+                    <!-- NEW TAB: AI Amplifier Awards -->
+                    <button
+                        id="awards-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400"
+                        onclick="toggleTab('awards-tab-content', this, false)"
+                        aria-controls="awards-tab-content"
+                        aria-selected="false"
+                    >
+                        AI Amplifier Awards
+                    </button>
                 </div>
 
                 <div class="p-4 sm:p-6">
@@ -710,77 +770,168 @@
                         <div class="w-full">
                             <div class="light-article-section p-8 space-y-4 rounded-xl border border-gray-200">
                                 
+                                <!-- CONTENT: Elevate Project: Assessment Phase Update with Date -->
                                 <div class="searchable-item border-b border-gray-200 pb-4">
-                                    <h4 class="article-topic-label">Strategic Project</h4>
+                                    <h4 class="article-topic-label flex justify-between">
+                                        <span>Strategic Project Update</span>
+                                        <span class="font-normal text-gray-500">Dec 10, 2025</span>
+                                    </h4>
                                     <h3 class="text-3xl font-extrabold mb-2 leading-snug">
-                                        Building Our Foundation: Drafting our Strategic AI Roadmap with
-                                        <b>
-                                            Elevate
-                                            <img src="https://elevate.law/wp-content/uploads/2021/03/elevate-logo-1.svg" alt="Elevate Logo" class="inline-block h-4 relative -top-0.5">
-                                        </b>
+                                        Elevate Project: Assessment Phase Update
+                                        <img src="https://elevate.law/wp-content/uploads/2021/03/elevate-logo-1.svg" alt="Elevate Logo" class="inline-block h-4 relative -top-0.5">
                                     </h3>
-                                    <p class="leading-relaxed mb-4">LRC is engaging AI-focused consultants to partner with the legal team to document how AI is currently being used and to identify any potential projects and/or new use-cases. This analysis will include a review of data sources (and quality) to create a long-term roadmap to help focus our efforts.</p>
+                                    <p class="leading-relaxed mb-4">Our partnership with Elevate is designed to build a clear, intentional, and high-value roadmap for AI adoption across the LRC department. The project is currently in the "Capture & Assess" phase:</p>
                                     
-                                    <div class="flex items-center">
-                                        <div class="beveled-icon-container">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                            </svg>
-                                        </div>
-                                        <h5 class="key-feature-subheading flex-1">Key Benefits</h5>
-                                    </div>
-                                    <ul class="list-disc list-inside space-y-1 ml-4 text-base">
-                                        <li><b>Visibility:</b> Mapping out where and how our team is currently using AI.</li>
-                                        <li><b>Prioritization:</b> Identifying specific legal tasks where AI can deliver the greatest productivity lift.</li>
-                                        <li><b>Scalability:</b> Pinpointing the data and technology needed to scale successful AI use cases enterprise-wide.</li>
-                                        <li><b>Alignment:</b> Creating clarity and confidence in AI across all levels of the team.</li>
+                                    <ul class="list-disc list-inside space-y-2 ml-4 text-base">
+                                        <li>
+                                            <b class="text-black">Status:</b> Elevate is focused on establishing a clear baseline of performance. This involves mapping our current workflows to understand where AI can deliver the most measurable improvements.
+                                        </li>
+                                        <li>
+                                            <b class="text-black">Leadership Interviews:</b> LRC Leaders were interviewed last week to deeply explore and define the problems and opportunities within our processes. This step is critical to ensure the resulting solutions drive value for every role.
+                                        </li>
                                     </ul>
                                     
-                                    <div class="flex items-center mt-6">
-                                        <div class="beveled-icon-container">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.697V11.25a2.25 2.25 0 004.5 0V9.697z" />
+                                    <!-- Survey Highlight Block (Matching visual alert style from screenshot) -->
+                                    <div class="mt-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-800 rounded-md shadow-inner">
+                                        <h5 class="text-lg font-bold text-red-900 mb-1 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.3 16c-.77 1.333.192 3 1.732 3z" />
                                             </svg>
-                                        </div>
-                                        <h5 class="key-feature-subheading flex-1">Outcome</h5>
+                                            ACTION REQUIRED: Survey
+                                        </h5>
+                                        <p class="text-sm">We need everyone to complete a short survey (around 10 minutes) to highlight what slows you down and where AI could make your work easier or more rewarding. Your insights will directly shape our high-level roadmap and influence where we focus our budget and efforts.</p>
+                                        <p class="mt-2 text-sm font-bold">Deadline: <span class="text-red-600">COB Friday, December 12th</span></p>
+                                        <p class="mt-1 text-sm font-medium">Access the Survey Here: <a href="https://www.surveymonkey.com/r/Procore_AIUse" target="_blank" class="table-link text-red-700 hover:text-red-900 underline">https://www.surveymonkey.com/r/Procore_AIUse</a></p>
                                     </div>
                                     
-                                    <p class="leading-relaxed">The roadmap's outcome is <b>organizational clarity and capability</b>. This includes a prioritized plan that aligns AI adoption across LRC with our overarching business objectives and significantly increases the team's ability to safely and effectively leverage AI, ensuring every investment directly supports enhanced expertise and strategic value.</p>
+                                    <h5 class="key-feature-subheading mt-6">Next Steps</h5>
+                                    
+                                    <ul class="list-disc list-inside space-y-2 ml-4 text-base">
+                                        <li>
+                                            <b class="text-black">Workshops:</b> Following the interviews, we will move into targeted workshops to validate the latest findings.
+                                        </li>
+                                        <li>
+                                            <b class="text-black">Your Role:</b> While not all staff will be interviewed at this stage, the insights gathered from leadership will shape the path we all take. Please continue to think about the repetitive, time-consuming tasks you face daily, as these are the areas where the Elevate roadmap is designed to deliver the most impact.
+                                        </li>
+                                    </ul>
                                 </div>
-                                
+                                <!-- END NEW CONTENT (Elevate) -->
+
+
+                                <!-- NEW CONCISE HARVEY ANNOUNCEMENT / REDIRECT (Dec 10, 2025) -->
                                 <hr class="border-t border-gray-400 my-8">
 
                                 <div class="searchable-item pt-4">
-                                    <h4 class="article-topic-label">New Technology Rollout</h4>
-                                    <h3 class="text-3xl font-extrabold mb-2 leading-snug">New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool On Its Way</h3>
-                                    <p class="leading-relaxed mb-4">The procurement process <b>has started</b> for <b>Harvey.ai</b>, a cutting-edge generative AI platform built specifically for legal professionals. Think of Harvey as a powerful, secure AI partner that will help us deliver results faster!</p>
+                                    <h4 class="article-topic-label flex justify-between">
+                                        <span>Strategic Partnership & Rollout</span>
+                                        <span class="font-normal text-gray-500">Dec 10, 2025</span>
+                                    </h4>
+                                    <h3 class="text-3xl font-extrabold mb-2 leading-snug">
+                                        Harvey AI Deployment Kicks Off
+                                    </h3>
+                                    <p class="leading-relaxed mb-4">Following a successful evaluation, our strategic partnership with Harvey AI is officially underway! Harvey is a cutting-edge generative AI platform built specifically for legal professionals. For all deployment details, training schedules, feature deep dives, and support information, please visit the new dedicated hub below:</p>
                                     
-                                    <div class="flex items-center">
-                                        <div class="beveled-icon-container">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                    <div class="mt-6">
+                                        <a href="#harvey-center-section" onclick="scrollToSection('harvey-center-section', event);" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors">
+                                            Go to Harvey Deployment Center
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 ml-2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                                             </svg>
-                                        </div>
-                                        <h5 class="key-feature-subheading flex-1">Key Benefits</h5>
+                                        </a>
                                     </div>
-                                    <ul class="list-disc list-inside space-y-1 ml-4 text-base">
-                                        <li><b>Accelerated Drafting:</b> Generate first drafts of complex contracts and memos instantly.</li>
-                                        <li><b>Rapid Review:</b> Rapidly analyze large volumes of legal documents (like due diligence).</li>
-                                        <li><b>Enhanced Research:</b> Get accurate, source-cited answers to complex legal queries quickly.</li>
-                                        <li><b>Risk Management:</b> Streamline tasks like regulatory review and internal policy cross-referencing.</li>
-                                    </ul>
-                                    
-                                    <div class="flex items-center mt-6">
-                                        <div class="beveled-icon-container">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.697V11.25a2.25 2.25 0 004.5 0V9.697z" />
-                                            </svg>
-                                        </div>
-                                        <h5 class="key-feature-subheading flex-1">Outcome</h5>
-                                    </div>
-                                    
-                                    <p class="leading-relaxed">Harvey will automate repetitive, time-consuming tasks, allowing us to focus our expertise on <b>high-value strategic analysis, critical judgment, and key negotiations</b>.</p>
                                 </div>
+                                
+                                <!-- ARCHIVE SECTION -->
+                                <hr class="border-t border-gray-400 my-8">
+
+                                <div class="w-full pt-4">
+                                    <button id="initiative-archive-toggle" class="collapsible-button flex items-center justify-between w-full p-3 transition duration-200 bg-gray-200 hover:bg-gray-300 rounded-lg" onclick="toggleCollapsible('initiative-archive-content', this)" aria-expanded="false" title="Click to view previous LRC Initiative updates.">
+                                        <div class="flex items-center space-x-4">
+                                            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10m-8-6h16"></path></svg>
+                                            <span class="text-xl font-bold text-gray-900">Archived Initiatives</span>
+                                        </div>
+                                        <div class="flex-shrink-0">
+                                            <svg class_ ="w-6 h-6 text-gray-700 dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                    <div id="initiative-archive-content" class="collapsible-content pt-3 px-3">
+                                        <!-- PREVIOUS Elevate Project CONTENT (NOW ARCHIVED) -->
+                                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-300 searchable-item mb-4">
+                                            <h4 class="article-topic-label">Archived Strategic Project (Initial Scope)</h4>
+                                            <h3 class="text-2xl font-extrabold mb-2 leading-snug text-gray-900">
+                                                Building Our Foundation: Drafting our Strategic AI Roadmap with 
+                                                <b>
+                                                    Elevate
+                                                    <img src="https://elevate.law/wp-content/uploads/2021/03/elevate-logo-1.svg" alt="Elevate Logo" class="inline-block h-4 relative -top-0.5">
+                                                </b>
+                                            </h3>
+                                            <p class="leading-relaxed mb-4 text-gray-700">LRC is engaging AI-focused consultants to partner with the legal team to document how AI is currently being used and to identify any potential projects and/or new use-cases. This analysis will include a review of data sources (and quality) to create a long-term roadmap to help focus our efforts.</p>
+                                            
+                                            <div class="flex items-center">
+                                                <div class="beveled-icon-container bg-blue-600">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                                    </svg>
+                                                </div>
+                                                <h5 class="key-feature-subheading flex-1 text-blue-600 border-gray-300">Key Benefits</h5>
+                                            </div>
+                                            <ul class="list-disc list-inside space-y-1 ml-4 text-gray-700 text-base">
+                                                <li><b>Visibility:</b> Mapping out where and how our team is currently using AI.</li>
+                                                <li><b>Prioritization:</b> Identifying specific legal tasks where AI can deliver the greatest productivity lift.</li>
+                                                <li><b>Scalability:</b> Pinpointing the data and technology needed to scale successful AI use cases enterprise-wide.</li>
+                                                <li><b>Alignment:</b> Creating clarity and confidence in AI across all levels of the team.</li>
+                                            </ul>
+                                            
+                                            <div class="flex items-center mt-6">
+                                                <div class="beveled-icon-container bg-blue-600">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.697V11.25a2.25 2.25 0 004.5 0V9.697z" />
+                                                    </svg>
+                                                </div>
+                                                <h5 class="key-feature-subheading flex-1 text-blue-600 border-gray-300">Outcome</h5>
+                                            </div>
+                                            
+                                            <p class="leading-relaxed text-gray-700">The roadmap's outcome is <b>organizational clarity and capability</b>. This includes a prioritized plan that aligns AI adoption across LRC with our overarching business objectives and significantly increases the team's ability to safely and effectively leverage AI, ensuring every investment directly supports enhanced expertise and strategic value.</p>
+                                        </div>
+                                        
+                                        <!-- ARCHIVED Harvey.ai Content -->
+                                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-300 searchable-item">
+                                            <h4 class="article-topic-label">Archived Technology Rollout (Procurement Phase)</h4>
+                                            <h3 class="text-2xl font-extrabold mb-2 leading-snug text-gray-900">New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool On Its Way</h3>
+                                            <p class="leading-relaxed mb-4 text-gray-700">The procurement process <b>has started</b> for <b>Harvey.ai</b>, a cutting-edge generative AI platform built specifically for legal professionals. Think of Harvey as a powerful, secure AI partner that will help us deliver results faster!</p>
+                                            
+                                            <div class="flex items-center">
+                                                <div class="beveled-icon-container bg-blue-600">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                                    </svg>
+                                                </div>
+                                                <h5 class="key-feature-subheading flex-1 text-blue-600 border-gray-300">Key Benefits</h5>
+                                            </div>
+                                            <ul class="list-disc list-inside space-y-1 ml-4 text-gray-700 text-base">
+                                                <li><b>Accelerated Drafting:</b> Generate first drafts of complex contracts and memos instantly.</li>
+                                                <li><b>Rapid Review:</b> Rapidly analyze large volumes of legal documents (like due diligence).</li>
+                                                <li><b>Enhanced Research:</b> Get accurate, source-cited answers to complex legal queries quickly.</li>
+                                                <li><b>Risk Management:</b> Streamline tasks like regulatory review and internal policy cross-referencing.</li>
+                                            </ul>
+                                            
+                                            <div class="flex items-center mt-6">
+                                                <div class="beveled-icon-container bg-blue-600">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.697V11.25a2.25 2.25 0 004.5 0V9.697z" />
+                                                    </svg>
+                                                </div>
+                                                <h5 class="key-feature-subheading flex-1 text-blue-600 border-gray-300">Outcome</h5>
+                                            </div>
+                                            
+                                            <p class="leading-relaxed text-gray-700">Harvey will automate repetitive, time-consuming tasks, allowing us to focus our expertise on <b>high-value strategic analysis, critical judgment, and key negotiations</b>.</p>
+                                        </div>
+                                        <!-- END ARCHIVED Harvey.ai Content -->
+                                    </div>
+                                </div>
+                                <!-- END ARCHIVE SECTION -->
                             </div>
                         </div>
                     </div>
@@ -795,10 +946,10 @@
                                         
                                         <div class="flex flex-col sm:flex-row items-start sm:items-center mb-6 space-y-4 sm:space-y-0 sm:space-x-6">
                                             <img
-                                                src="https://media.licdn.com/dms/image/v2/D4E03AQGIU0Jb-C9x4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682708253519?e=1764806400&v=beta&t=MpPs-8q8_9gFMvMyEbzCjzvuNVUQjRloYr2xAuUwl0I"
+                                                src="https://media.licdn.com/dms/image/v2/D4E03AQGIU0Jb-C9x4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682708253519?e=1767225600&v=beta&t=RyEW76qtswD3_I-Rs2xvhSCPwZUAEZDF7KYltRZwRpA"
                                                 alt="Caleigh Campion Profile Picture"
                                                 class="spotlight-image"
-                                                onerror="this.onerror=null; this.src='https://placehold.co/120x120/FF5200/FFFFFF?text=CC';"
+                                                
                                             >
                                             
                                             <div class="flex flex-col text-stone-200">
@@ -881,6 +1032,68 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- NEW TAB CONTENT: AI Amplifier Awards -->
+                    <div id="awards-tab-content" class="tab-content searchable-tab-content">
+                        <h3 class="text-2xl font-bold text-white mb-6">AI Amplifier Awards (Real Money for Smart Work!)</h3>
+                        <div class="w-full">
+                            <div class="light-article-section p-8 space-y-4 rounded-xl border border-gray-200">
+                                
+                                <div class="searchable-item pb-4">
+                                    <h4 class="article-topic-label flex justify-between">
+                                        <span>Program Announcement</span>
+                                        <span class="font-normal text-gray-500">Dec 10, 2025</span>
+                                    </h4>
+                                    <h3 class="text-3xl font-extrabold mb-2 leading-snug">
+                                        AI Amplifier Awards: Celebrating Innovation & Efficiency
+                                    </h3>
+                                    <p class="leading-relaxed mb-4">Did you miss Jessica Dean's announcement? The AI Amplifier Awards program is officially live, rewarding you with real cash for AI innovation and efficiency wins! This is our way of celebrating the trailblazers working smarter.</p>
+                                    
+                                    <div class="key-feature-subheading text-lg font-bold flex items-center mb-4">
+                                        <span class="emoji-icon mr-3">💰</span> The Prize
+                                    </div>
+                                    <p class="leading-relaxed mb-4 ml-4">Real money! We have secured funding to run the program through FY26.</p>
+
+                                    <div class="key-feature-subheading text-lg font-bold flex items-center mb-4">
+                                        <span class="emoji-icon mr-3">📝</span> Nominations
+                                    </div>
+                                    <p class="leading-relaxed mb-4 ml-4">Use the AI Amplifier Slack intake on our new channel. Anyone in LRC can nominate anyone—including self-nominations or peer nominations.</p>
+                                    <ul class="list-disc list-inside space-y-1 ml-8 text-base">
+                                        <li>
+                                            <b>How to Nominate:</b> Go to the <a href="https://slack.com/archives/C0A25KQP9KP" target="_blank" class="table-link text-red-700 hover:text-red-900 underline"><b>lrc-ai-connect</b></a> slack channel and click on <b>Workflows</b> at the top of the page.
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="key-feature-subheading text-lg font-bold flex items-center mt-6 mb-4">
+                                        <span class="emoji-icon mr-3">🏅</span> Eligibility & Recognition
+                                    </div>
+                                    <ul class="list-disc list-inside space-y-2 ml-4 text-base">
+                                        <li>
+                                            <b>Eligibility:</b> Any career employee in LRC is eligible (excluding LRCLT, who serve as the judges). You can also nominate a group, but the cash prize will be split.
+                                        </li>
+                                        <li>
+                                            <b>Recognition:</b> Winners will be announced at each quarterly All LRC meeting by Ben and the nominator(s).
+                                        </li>
+                                        <li>
+                                            <b>Frequent Flyers Welcome:</b> If you’ve won before, you can win again! Innovation and impact don't require us taking turns.
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 rounded-md shadow-inner">
+                                        <h5 class="text-lg font-bold text-yellow-900 mb-1 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            Bonus Insight
+                                        </h5>
+                                        <p class="text-sm">We also reward <b>"Smart Failures"</b>—sharing key lessons learned from experiments that didn't work saves the team time and is just as valuable!</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END NEW TAB CONTENT -->
                 </div>
             </div>
             
@@ -894,6 +1107,81 @@
                 </svg>
             </a>
         </div>
+        
+        
+        <!-- DEDICATED HARVEY SECTION IS NOW HERE -->
+        <section class="mb-16 mt-10" id="harvey-center-section">
+            <div class="section-differentiator">
+                STRATEGIC INITIATIVE
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-900 pb-2 flex items-center">
+                <svg class="w-7 h-7 procore-orange-text mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L12 10.586V7z" clip-rule="evenodd"></path>
+                </svg>
+                Harvey AI Deployment & Training Center
+            </h2>
+            <div class="bg-gray-900 p-8 rounded-xl shadow-xl border border-gray-800">
+                <h3 class="text-2xl font-bold procore-orange-text mb-4">Legal AI Update: Harvey Partnership Kickoff, Training & Next Steps</h3>
+                <p class="text-gray-400 mb-6">Following a successful evaluation, our strategic partnership with Harvey AI is officially underway! As a reminder, Harvey is a cutting-edge generative AI platform built specifically for legal professionals. This center provides all resources and updates for the rollout.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Vision -->
+                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <span class="emoji-icon text-3xl mr-3">🚀</span>
+                            <h4 class="text-xl font-bold text-white">The Vision: Why Harvey?</h4>
+                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-gray-400 text-sm ml-4">
+                            <li><b>Reduce Context Switching:</b> Centralize workflows so you don't have to jump between multiple tools.</li>
+                            <li><b>Unlock Institutional Knowledge:</b> Use <b>Harvey Vault</b> to analyze large volumes of documents (e.g., SSAs) to find precedents and unstructured language.</li>
+                            <li><b>Enhance Drafting & Research:</b> Utilize "Deep Research" capabilities and the Word Add-In for drafting and redlining.</li>
+                            <li><b>Streamline Operations:</b> Leverage data extraction to backfill structured fields in systems like Ironclad.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Training -->
+                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <span class="emoji-icon text-3xl mr-3">📅</span>
+                            <h4 class="text-xl font-bold text-white">Training Schedule & Resources</h4>
+                        </div>
+                        <div class="text-gray-400 text-sm space-y-3">
+                            <p class="font-semibold text-white">1. Immediate Priority: Platform 101 (Pre-Holiday)</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li>Live Training: The next "Secure Your Platform 101" live webinar is scheduled for Dec 11 at 9:00 AM PT. <a href="https://help.harvey.ai/webinars/upcoming" target="_blank" class="table-link text-red-500 hover:text-white underline">View Full Schedule</a></li>
+                                <li>On-Demand Recording: If you cannot attend live, watch the recorded session here: <a href="https://help.harvey.ai/webinars/recordings/azlTdUpYSlRTZmlUdlhGRGxBZ29pQT09" target="_blank" class="table-link text-red-500 hover:text-white underline">Watch Recording</a></li>
+                            </ul>
+                            <p class="font-semibold text-white pt-2">2. Deep Dives (January)</p>
+                            <p>We will host 30-minute sessions focused on advanced use cases (Word Add-In and Vault).</p>
+                            <p class="font-semibold text-white pt-2">3. Advanced Workflows (Months 2–3)</p>
+                            <p>Later in Q1, we will conduct Workflow Builder Workshops for custom automations.</p>
+                        </div>
+                    </div>
+
+                    <!-- Support & Integrations -->
+                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <span class="emoji-icon text-3xl mr-3">✨</span>
+                            <h4 class="text-xl font-bold text-white">Support & Integrations</h4>
+                        </div>
+                        <div class="text-gray-400 text-sm space-y-3">
+                            <p class="font-semibold text-white">Key Features</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li>Google Drive Integration: Sync folders and files directly into the platform to streamline document review.</li>
+                                <li>Continuous Improvement: Join the internal "AI Tools User Group" on Slack to share prompts and success stories.</li>
+                            </ul>
+                            <p class="font-semibold text-white pt-2">How to Get Support (24/7)</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li>In-Platform: Click the "Support" button in the bottom left or the "Get Support" link in the top banner of the Harvey platform.</li>
+                                <li>Email: Contact the support team directly at <a href="mailto:support@harvey.ai" class="table-link text-red-500 hover:text-white underline">support@harvey.ai</a>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END DEDICATED HARVEY SECTION -->
 
 
         <section class="mb-8 mt-10" id="enterprise-ai-resources-section">
@@ -909,15 +1197,15 @@
                 <div class="flex border-b border-gray-800">
                     
                     <button
-                        id="updates-tab-button"
-                        class="tab-button flex-1 py-4 px-4 text-center text-white active"
-                        onclick="toggleTab('updates-tab-content', this, false)"
-                        aria-controls="updates-tab-content"
+                        id="learning-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-white active"
+                        onclick="toggleTab('learning-tab-content', this, false)"
+                        aria-controls="learning-tab-content"
                         aria-selected="true"
                     >
-                        Corporate Productivity AI Updates
+                        Learning & Development
                     </button>
-
+                    
                     <button
                         id="enterprise-tools-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400"
@@ -927,28 +1215,65 @@
                     >
                         Procore Enterprise Tools
                     </button>
+                    
                     <button
-                        id="learning-tab-button"
+                        id="updates-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400"
-                        onclick="toggleTab('learning-tab-content', this, false)"
-                        aria-controls="learning-tab-content"
+                        onclick="toggleTab('updates-tab-content', this, false)"
+                        aria-controls="updates-tab-content"
                         aria-selected="false"
                     >
-                        Learning & Development
+                        Corporate Productivity AI Updates
                     </button>
+
                 </div>
 
                 <div class="p-4 sm:p-6">
                     
-                    <div id="updates-tab-content" class="tab-content searchable-tab-content" style="display: block;">
-                        <h3 class="text-2xl font-bold text-white mb-6">Corporate Productivity AI Updates</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div id="learning-tab-content" class="tab-content searchable-tab-content" style="display: block;">
+                        <h3 class="text-2xl font-bold text-white mb-6">Learning & Development</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                            <a href="https://support.google.com/gemini/?p=get_started_chrome_extension" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/QmYvaJpfBE9RgsLwxWKgg/c36cc019d7af9b7336ad902ad870ccea/RailworksHQ-hero-1440px.jpg?fit=fill&f=center&w=768&h=432');" title="Instant AI help right in your browser tab, using context from the current page. Click for getting started guide & live usage tips.">
+                            <!-- NEW LEARNING CONTENT: IN-DEPTH CLE -->
+                            <a href="https://www.pli.edu/programs/artificial-intelligence-law/442619?tCode=COR5_8AM12" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://placehold.co/768x432/4A90E2/4A90E2'); background-size: cover;">
+                                <div class="ai-card-overlay"></div>
+                                <div class="ai-card-content !pt-4">
+                                    <h4 class="text-xl font-extrabold leading-snug">In-Depth CLE: Artificial Intelligence Law (Two-Day Event)</h4>
+                                    <p class="mt-2 text-sm text-gray-300">Focus: Core concepts, applications, and ethical considerations for using AI in legal practice today.</p>
+                                    <p class="mt-1 text-xs font-bold text-green-400">Credits: Up to 15.0 total credits (including up to 2.5 Ethics credits).</p>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow w-10 h-10">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- NEW LEARNING CONTENT: JOB CRAFTING CLE -->
+                            <a href="https://www.pli.edu/programs/lawyer-job-crafting-and-upskilling-for-a-generative-ai-era/455667" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://placehold.co/768x432/4A90E2/4A90E2'); background-size: cover;">
+                                <div class="ai-card-overlay"></div>
+                                <div class="ai-card-content !pt-4">
+                                    <h4 class="text-xl font-extrabold leading-snug">Lawyer Job Crafting & Upskilling - Specialized CLE</h4>
+                                    <p class="mt-2 text-sm text-gray-300">Focus: A forward-looking session on how legal roles are changing and the necessary upskilling required for the Generative AI era.</p>
+                                    <p class="mt-1 text-xs font-bold text-yellow-400">Credits: Credit Pending (Finalized by PLI).</p>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow w-10 h-10">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Existing LinkedIn Learning Content -->
+                            <a href="https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai-24636124/joining-the-nlp-revolution" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://placehold.co/768x432/4A90E2/4A90E2'); background-size: cover;" title="LinkedIn Learning course on how to craft effective prompts for Gen AI tools.">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content">
-                                    <h4 class="text-2xl font-extrabold leading-snug">Gemini in Chrome is Live</h4>
-                                    <p class="mt-2 text-sm text-gray-300">Instant AI help right in your browser tab, using context from the current page.</p>
+                                    <h4 class="text-2xl font-extrabold leading-snug">Introduction to Prompt Engineering for Generative AI</h4>
+                                    <p class="mt-2 text-sm text-gray-300">This LinkedIn Learning course offers essential training on how to craft effective prompts, ensuring you receive accurate and relevant outputs from Gen AI tools like Gemini. Learning this skill is crucial for maximizing productivity and reducing "hallucinations."</p>
                                     <div class="mt-4 flex justify-end">
                                         <div class="ai-card-arrow">
                                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -958,52 +1283,11 @@
                                     </div>
                                 </div>
                             </a>
-
-                            <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/13GnUsSKSfhZjI12ihVgu9/f77af2d8a93144ffa7e669db323b1d16/iStock-158540094-6.jpg?fit=fill&f=center&w=768&h=432');" title="Generate a full presentation deck from a document or prompt using the 'Canvas' tool.">
-                                <div class="ai-card-overlay"></div>
-                                <div class="ai-card-content">
-                                    <h4 class="text-2xl font-extrabold leading-snug">Presentations with Gemini</h4>
-                                    <p class="mt-2 text-sm text-gray-300">Generate a full presentation deck from a document or prompt using the 'Canvas' tool.</p>
-                                    <div class="mt-4 flex justify-end">
-                                        <div class="ai-card-arrow">
-                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="https://blog.google/technology/google-labs/notebooklm-custom-personas-engine-upgrade/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/2NhO9ZrCCydm5fgcWuB5zx/9720fd07f9ff3625ff83184826b3ddfc/profservices_hero?fit=fill&f=center&w=768&h=432');" title="Your personal AI assistant now features Custom Goals and an 8x larger context window.">
-                                <div class="ai-card-overlay"></div>
-                                <div class="ai-card-content">
-                                    <h4 class="text-2xl font-extrabold leading-snug">NotebookLM: Enhanced Research</h4>
-                                    <p class="mt-2 text-sm text-gray-300">Your personal AI assistant now features Custom Goals and an 8x larger context window.</p>
-                                    <div class="mt-4 flex justify-end">
-                                        <div class="ai-card-arrow">
-                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="https://workspaceupdates.googleblog.com/2025/10/new-latex-features-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4Zyrj8vQlUNuV9J4wYg8qB/c9f8019d2ba89f0ef62f1cc4fa4f506d/Procore-Pay-Legal-Tile.jpg?fit=fill&f=center&w=768&h=432');" title="Generate clean, perfectly formatted project proposals and documents using Gemini.">
-                                <div class="ai-card-overlay"></div>
-                                <div class="ai-card-content">
-                                    <h4 class="text-2xl font-extrabold leading-snug">LaTeX for Professional Docs</h4>
-                                    <p class="mt-2 text-sm text-gray-300">Generate clean, perfectly formatted project proposals and documents using Gemini.</p>
-                                    <div class="mt-4 flex justify-end">
-                                        <div class="ai-card-arrow">
-                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                            
                         </div>
+                        
+                        <!-- ORIGINAL LEARNING CONTENT MOVED TO ARCHIVE/REPLACED -->
+                        
                     </div>
                     
                     
@@ -1191,14 +1475,21 @@
                     </div>
                     
                     
-                    <div id="learning-tab-content" class="tab-content searchable-tab-content">
-                        <h3 class="text-2xl font-bold text-white mb-6">Learning & Development</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <a href="https://www.linkedin.com/learning/introduction-to-prompt-engineering-for-generative-ai-24636124/joining-the-nlp-revolution" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://placehold.co/768x432/4A90E2/4A90E2'); background-size: cover;" title="LinkedIn Learning course on how to craft effective prompts for Gen AI tools.">
+                    <div id="updates-tab-content" class="tab-content searchable-tab-content">
+                        <h3 class="text-2xl font-bold text-white mb-6">Corporate Productivity AI Updates</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                            <!-- NEW CONTENT: GEMINI RELEASE 3 -->
+                            <a href="https://workspace.google.com/blog/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4Zyrj8vQlUNuV9J4wYg8qB/c9f8019d2ba89f0ef62f1cc4fa4f506d/Procore-Pay-Legal-Tile.jpg?fit=fill&f=center&w=768&h=432');" title="Learn how Gemini Release 3 enhances all Google Workspace tools for greater productivity.">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content">
-                                    <h4 class="text-2xl font-extrabold leading-snug">Introduction to Prompt Engineering for Generative AI</h4>
-                                    <p class="mt-2 text-sm text-gray-300">This LinkedIn Learning course offers essential training on how to craft effective prompts, ensuring you receive accurate and relevant outputs from Gen AI tools like Gemini. Learning this skill is crucial for maximizing productivity and reducing "hallucinations."</p>
+                                    <h4 class="text-2xl font-extrabold leading-snug">🚀 Gemini Release 3: Your Enterprise Productivity Engine</h4>
+                                    <p class="mt-2 text-sm text-gray-300">The latest generation of Google's foundational model, Gemini Release 3, brings significant power to our existing Workspace tools.</p>
+                                    <ul class="mt-3 text-xs text-gray-400 space-y-1 list-disc list-inside ml-2">
+                                        <li>Super-Smart Thinking for strategy planning.</li>
+                                        <li>Automatic Assistant for multi-step tasks across apps.</li>
+                                        <li>Understands Everything (text, sound, pictures, video).</li>
+                                    </ul>
                                     <div class="mt-4 flex justify-end">
                                         <div class="ai-card-arrow">
                                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1208,9 +1499,238 @@
                                     </div>
                                 </div>
                             </a>
+                            <!-- END NEW CONTENT -->
                             
+                            <a href="https://support.google.com/gemini/?p=get_started_chrome_extension" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/QmYvaJpfBE9RgsLwxWKgg/c36cc019d7af9b7336ad902ad870ccea/RailworksHQ-hero-1440px.jpg?fit=fill&f=center&w=768&h=432');" title="Instant AI help right in your browser tab, using context from the current page. Click for getting started guide & live usage tips.">
+                                <div class="ai-card-overlay"></div>
+                                <div class="ai-card-content">
+                                    <h4 class="text-2xl font-extrabold leading-snug">Gemini in Chrome is Live</h4>
+                                    <p class="mt-2 text-sm text-gray-300">Instant AI help right in your browser tab, using context from the current page.</p>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="https://workspaceupdates.googleblog.com/2025/10/generate-presentations-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/13GnUsSKSfhZjI12ihVgu9/f77af2d8a93144ffa7e669db323b1d16/iStock-158540094-6.jpg?fit=fill&f=center&w=768&h=432');" title="Generate a full presentation deck from a document or prompt using the 'Canvas' tool.">
+                                <div class="ai-card-overlay"></div>
+                                <div class="ai-card-content">
+                                    <h4 class="text-2xl font-extrabold leading-snug">Presentations with Gemini</h4>
+                                    <p class="mt-2 text-sm text-gray-300">Generate a full presentation deck from a document or prompt using the 'Canvas' tool.</p>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="https://workspaceupdates.googleblog.com/2025/10/new-latex-features-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4Zyrj8vQlUNuV9J4wYg8qB/c9f8019d2ba89f0ef62f1cc4fa4f506d/Procore-Pay-Legal-Tile.jpg?fit=fill&f=center&w=768&h=432');" title="Generate clean, perfectly formatted project proposals and documents using Gemini.">
+                                <div class="ai-card-overlay"></div>
+                                <div class="ai-card-content">
+                                    <h4 class="text-2xl font-extrabold leading-snug">LaTeX for Professional Docs</h4>
+                                    <p class="mt-2 text-sm text-gray-300">Generate clean, perfectly formatted project proposals and documents using Gemini.</p>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
+                    
+                    <div id="enterprise-tools-tab-content" class="tab-content searchable-tab-content">
+                        <h3 class="text-2xl font-bold text-white mb-6">Procore Enterprise Tools</h3>
+                        <div class="overflow-x-auto rounded-xl shadow-lg border border-gray-700">
+                            <table class="min-w-full divide-y divide-gray-700 text-left">
+                                <thead class="bg-gray-800">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
+                                            Tool Name
+                                        </th>
+                                        <th scope="col" class="px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider w-1/3">
+                                            Description
+                                        </th>
+                                        <th scope="col" class="px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
+                                            Resources
+                                        </th>
+                                        <th scope="col" class="hidden sm:table-cell px-6 py-4 text-sm font-semibold text-white uppercase tracking-wider">
+                                            When to Use (Coming Soon)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-gray-900 divide-y divide-gray-700 text-gray-400">
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Adobe AI Assistant for PDF Summarization and Analysis">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container adobe-icon-bg">
+                                                    <img src="https://pngdownload.io/wp-content/uploads/2023/12/Adobe-Logo-PNG-Design-Brand-Transparent-jpg.webp" alt="Adobe Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Adobe AI Assistant</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">Integrates with <b>Adobe Acrobat</b> to summarize documents, answer questions, and perform deep content analysis on PDFs.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/tHlt818hILU" title="Adobe AI Assistant Overview (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian Confluence AI for Content Creation">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container atlassian-icon-bg">
+                                                    <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Atlassian Confluence AI</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content in Confluence to boost productivity.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/LvK6fROn4G4" title="Confluence AI Overview (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian JIRA AI for Task Automation">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container atlassian-icon-bg">
+                                                    <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Atlassian JIRA AI</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">Automates tasks, summarizes information, and generates content across Atlassian products (Jira) to boost productivity.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/G5EBWZZam-Y" title="JIRA AI in Action (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Atlassian Rovo AI for Search and Workflow Agents">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container atlassian-icon-bg">
+                                                    <img src="https://logos-world.net/wp-content/uploads/2023/03/Atlassian-Logo.png" alt="Atlassian Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Atlassian Rovo AI</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">Allows you to ask questions and get help. It understands context in Confluence and Jira, or via the Rovo browser extension. It can also create custom <b>workflow agents</b>.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/LbEFkTukBqc" title="Rovo AI Agent Builder (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Google Gemini Assistant for Workspace">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container google-icon-bg">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Google Gemini *</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">An AI assistant that uses a multimodal large language model to help with a wide range of tasks by understanding and generating text, images, audio, and more.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/sQt3wuG0Kik" title="Google Gemini Features (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Google NotebookLM for Research and Document Grounding">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container google-icon-bg">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Google NotebookLM</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">An AI-powered research assistant that helps you learn and explore information more effectively, grounding research in your own source materials.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/UG0DP6nVnrc" title="Google NotebookLM in Action (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Loom AI for Video Summaries">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container loom-icon-bg">
+                                                    <img src="https://images.seeklogo.com/logo-png/39/2/loom-logo-png_seeklogo-393095.png" alt="Loom Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Loom AI</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">Automatically generates summaries, transcriptions, and suggested titles for your Loom videos, boosting productivity and enabling quick information retrieval.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/Jxa8L0EV9F0" title="Loom AI Video Summaries (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Slack AI for Conversation Summarization and Search">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container slack-icon-bg">
+                                                    <img src="https://images.icon-icons.com/2699/PNG/512/slack_tile_logo_icon_168820.png" alt="Slack Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Slack AI</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">Provides smarter search, instant conversation summaries, and automated responses to streamline team communication.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/q1JFMm8biXo" title="Slack AI Search & Summaries (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-800 transition duration-150 searchable-item" title="Zoom AI for Meeting Summaries">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="table-icon-container zoom-icon-bg">
+                                                    <img src="https://www.citypng.com/public/uploads/preview/download-round-blue-zoom-logo-icon-png-701751695039210sjnvxytv5d.png" alt="Zoom Icon" class="table-icon-img">
+                                                </div>
+                                                <div class="text-sm font-medium text-white">Zoom AI</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 max-w-sm text-sm">A digital assistant that uses generative AI to create content, summarize meetings and chats, and generate ideas/content for whiteboards.</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm space-y-1 flex flex-col">
+                                            <div class="mb-2 w-full max-w-xs">
+                                                <iframe width="240" height="135" src="https://www.youtube.com/embed/3F3HcegaW28" title="Zoom AI Meeting Companion (Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-md w-full"></iframe>
+                                            </div>
+                                        </td>
+                                        <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-sm"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="mt-4 text-gray-400 text-sm italic">
+                            <p>* <b>Note on Google Gemini availability:</b> Generative AI capabilities are available across Google Workspace products, including <b>Chrome, Drive, Gmail, Docs, Sheets,</b> and <b>Slides</b>. Availability may vary by specific license type.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             
@@ -1246,15 +1766,7 @@
                     >
                         Our AI Work Streams
                     </button>
-                    <button
-                        id="trends-tab-button"
-                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400"
-                        onclick="toggleTab('trends-tab-content', this, false)"
-                        aria-controls="trends-tab-content"
-                        aria-selected="false"
-                    >
-                        Industry Topics & Trends
-                    </button>
+                    <!-- REORDERED: Legal Tech Tools & Trials is now second -->
                     <button
                         id="tools-trials-tab-button"
                         class="tab-button flex-1 py-4 px-4 text-center text-gray-400"
@@ -1263,6 +1775,16 @@
                         aria-selected="false"
                     >
                         Legal Tech Tools & Trials
+                    </button>
+                    <!-- REORDERED: Industry Topics & Trends is now third -->
+                    <button
+                        id="trends-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400"
+                        onclick="toggleTab('trends-tab-content', this, false)"
+                        aria-controls="trends-tab-content"
+                        aria-selected="false"
+                    >
+                        Industry Topics & Trends
                     </button>
                 </div>
 
@@ -1285,6 +1807,168 @@
                             <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-800 workstream-card">
                                 <h4 class="text-xl font-semibold mb-3">3. Third-Party AI Solutions</h4>
                                 <p class="text-gray-400">This workstream involves vetting potential third-party AI solutions against strict criteria, conducting trials to assess performance and security, and introducing specialized AI tools capable of solving challenges specific to our in-house legal team.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div id="tools-trials-tab-content" class="tab-content searchable-tab-content">
+                        <h3 class="text-2xl font-bold text-white mb-6">Legal Tech Stack & Trials</h3>
+                        
+                        <!-- INNER TABS FOR LEGAL TECH TOOLS & TRIALS -->
+                        <div class="bg-white p-4 rounded-lg shadow-inner mb-6">
+                            <div class="flex space-x-2 border-b border-gray-300 mb-4">
+                                <!-- REORDERED: Established is now first -->
+                                <button
+                                    id="established-sub-tab-button"
+                                    class="inner-tab-button text-sm active"
+                                    onclick="toggleInnerTab('established-tools-sub-tab-content', this)"
+                                >
+                                    Legal AI Tech Tools (Established)
+                                </button>
+                                <!-- REORDERED: Legal Innovation Center is now second -->
+                                <button
+                                    id="lic-sub-tab-button"
+                                    class="inner-tab-button text-sm"
+                                    onclick="toggleInnerTab('lic-sub-tab-content', this)"
+                                >
+                                    Legal Innovation Center
+                                </button>
+                                <button
+                                    id="trials-sub-tab-button"
+                                    class="inner-tab-button text-sm"
+                                    onclick="toggleInnerTab('recent-trials-sub-tab-content', this)"
+                                >
+                                    Recent Trials (Beta/Pilot Status)
+                                </button>
+                            </div>
+                            
+                            <!-- 1. Legal AI Tech Tools (Established) - NOW FIRST TAB CONTENT -->
+                            <div id="established-tools-sub-tab-content" class="inner-tab-content" style="display: block;">
+                                <div class="w-full">
+                                    <h4 class="text-lg font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Established & Approved Legal Tools</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        
+                                        <!-- HARVEY CARD (UPDATED) -->
+                                        <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/4613144703/GenAI+Legal+Tech+Evaluation" target="_blank" class="ai-card searchable-item group" style="min-height: 200px; background-image: url('https://help.harvey.ai/assets/logo.png'); background-size: 50% auto; background-position: center 20%; background-repeat: no-repeat; background-color: #000000;" title="Click for procurement details, training, and support links.">
+                                            <div class="ai-card-overlay bg-black/50 group-hover:bg-black/70"></div>
+                                            <div class="ai-card-content !py-4">
+                                                <h4 class="text-xl font-extrabold leading-snug">Harvey.ai</h4>
+                                                <p class="mt-1 text-xs text-gray-300">Think of Harvey as a powerful, secure AI partner that will help us deliver results faster!</p>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow w-10 h-10">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <a href="https://www.luminance.com/" target="_blank" class="ai-card searchable-item group" style="min-height: 200px; background-image: url('https://golden-storage-production.golden-support.com/topic_images/13296a02269a4283aeb2f63a888d55ad.png');" title="AI-powered contract review platform used for due diligence and negotiation.">
+                                            <div class="ai-card-overlay"></div>
+                                            <div class="ai-card-content !py-4">
+                                                <h4 class="text-xl font-extrabold leading-snug">Luminance</h4>
+                                                <p class="mt-1 text-xs text-gray-300">AI-powered contract review platform used for due diligence and negotiation.</p>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow w-10 h-10">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        
+                                        <div class="ai-card searchable-item group bg-gray-800 border border-gray-700 hover:bg-gray-800 transition duration-300" style="min-height: 200px;" title="Placeholder card for future legal AI tool integration.">
+                                            <div class="ai-card-overlay"></div>
+                                            <div class="ai-card-content flex flex-col justify-center items-center h-full text-center !py-4">
+                                                <svg class="w-8 h-8 text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <h4 class="text-xl font-bold leading-snug text-gray-400">Placeholder: New Tool Coming</h4>
+                                                <p class="mt-1 text-sm text-gray-500">Evaluating new legal AI tools for future pilots.</p>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Legal Innovation Center (Internal Builds) - NOW SECOND TAB CONTENT -->
+                            <div id="lic-sub-tab-content" class="inner-tab-content" style="display: none;">
+                                <div class="w-full">
+                                    <h4 class="text-lg font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Internal Custom AI Builds</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                                        <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="ai-card searchable-item group" style="min-height: 200px; background-image: url('https://eco-cdn.iqpc.com/eco/images/channel_content/images/ai-generated-8198769_1280CouJQsu7bGgMP0qwsYaCSsTx7aJKSAlTZPuYxsp4.webp');" title="Hear how our Legal Operations, Commercial Legal, and Product, Privacy, & IP teams partnered with DTS to deploy the GTM Assist Seller AI Tool and RapidReview.">
+                                            <div class="ai-card-overlay"></div>
+                                            <div class="ai-card-content !py-4">
+                                                <h4 class="text-xl font-extrabold leading-snug">AI Unleashed Podcast: GTM Assist & RapidReview Deep Dive</h4>
+                                                <p class="mt-1 text-xs text-gray-300">Hear how our Legal Operations, Commercial Legal, and Product, Privacy, & IP teams partnered with DTS to deploy GTM Assist & RapidReview for time savings and ROI.</p>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow w-10 h-10">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Recent Trials (Beta/Pilot Status) -->
+                            <div id="recent-trials-sub-tab-content" class="inner-tab-content" style="display: none;">
+                                <div class="w-full">
+                                    <h4 class="text-lg font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Ongoing Legal Tech Trials</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    
+                                        <a href="https://www.thomsonreuters.com/en" target="_blank" class="ai-card searchable-item group" style="min-height: 200px; background-image: url('https://legal.thomsonreuters.com/en/c/cocounsel-legal/all-in-pan/_jcr_content/root/container/container_copy_copy/image_copy.coreimg.jpeg/1753900224328/253782.jpeg');" title="Trial status for Thomson Reuters' generative AI legal research and drafting tool.">
+                                            <div class="ai-card-overlay"></div>
+                                            <div class="ai-card-content !py-4">
+                                                <h4 class="text-xl font-extrabold leading-snug">Thomson Reuters CoCounsel Trial</h4>
+                                                <p class="mt-1 text-xs text-gray-300">Testing its effectiveness for legal research, summarizing documents, and creating first drafts of memos.</p>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow w-10 h-10">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                            </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="https://www.lexisnexis.com/en-us/products/protege.page" target="_blank" class="ai-card searchable-item group protege-card" style="min-height: 200px; background-image: url('https://www.lexisnexis.com/images/logo.svg'); background-size: 50% auto; background-position: center 20%; background-repeat: no-repeat; background-color: #000000;" title="Trial status for LexisNexis' comprehensive document and knowledge management AI suite.">
+                                            <div class="ai-card-overlay"></div>
+                                            <div class="ai-card-content !py-4">
+                                                <h4 class="text-xl font-extrabold leading-snug">LexisNexis Protege+ Pilot</h4>
+                                                <p class="mt-1 text-xs text-gray-300">Evaluation of advanced legal research, analytical tools, and predictive modeling features.</p>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow w-10 h-10">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                            </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div class="ai-card searchable-item group bg-gray-800 border border-gray-700 hover:bg-gray-800 transition duration-300" style="min-height: 200px;" title="Placeholder card for future legal AI tool integration.">
+                                            <div class="ai-card-overlay"></div>
+                                            <div class="ai-card-content flex flex-col justify-center items-center h-full text-center !py-4">
+                                                <svg class="w-8 h-8 text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <h4 class="text-xl font-bold leading-snug text-gray-400">Placeholder: New Tool Coming</h4>
+                                                <p class="mt-1 text-sm text-gray-500">Evaluating new legal AI tools for future pilots.</p>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1356,154 +2040,6 @@
                             
                         </div>
                     </div>
-
-                    
-                    <div id="tools-trials-tab-content" class="tab-content searchable-tab-content">
-                        <h3 class="text-2xl font-bold text-white mb-6">Legal Innovation Center</h3>
-                        
-                        <div class="w-full mb-10">
-                            <button id="internal-builds-toggle" class="collapsible-button flex items-center justify-between w-full p-3 transition duration-200 hover:bg-gray-800 rounded-lg open" onclick="toggleCollapsible('internal-builds-content', this)" aria-expanded="true" title="Click to view details on internal custom AI solutions developed in partnership with with DTS.">
-                                <div class="flex items-center space-x-4">
-                                    <svg class="w-6 h-6 procore-orange-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                                    <span class="text-xl font-bold text-white">Internal Custom AI Builds</span>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <svg class_ ="w-6 h-6 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <div id="internal-builds-content" class="collapsible-content pt-3 px-3 open">
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://eco-cdn.iqpc.com/eco/images/channel_content/images/ai-generated-8198769_1280CouJQsu7bGgMP0qwsYaCSsTx7aJKSAlTZPuYxsp4.webp');" title="Hear how our Legal Operations, Commercial Legal, and Product, Privacy, & IP teams partnered with DTS to deploy the GTM Assist Seller AI Tool and RapidReview.">
-                                        <div class="ai-card-overlay"></div>
-                                        <div class="ai-card-content">
-                                            <h4 class="text-2xl font-extrabold leading-snug">AI Unleashed Podcast: GTM Assist & RapidReview Deep Dive</h4>
-                                            <p class="mt-2 text-sm text-gray-300">Hear how our Legal Operations, Commercial Legal, and Product, Privacy, & IP teams partnered with DTS to deploy GTM Assist & RapidReview for time savings and ROI.</p>
-                                            <div class="mt-4 flex justify-end">
-                                                <div class="ai-card-arrow">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="w-full mb-10">
-                            <button id="legal-tools-toggle" class="collapsible-button flex items-center justify-between w-full p-3 transition duration-200 hover:bg-gray-800 rounded-lg open" onclick="toggleCollapsible('legal-tools-content', this)" aria-expanded="true" title="Click to view details on established and approved legal technology tools.">
-                                <div class="flex items-center space-x-4">
-                                    <svg class="w-6 h-6 procore-orange-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37-2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    <span class="text-xl font-bold text-white">Legal AI Tech Tools (Established)</span>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <svg class_ ="w-6 h-6 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <div id="legal-tools-content" class="collapsible-content pt-3 px-3 open">
-                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                                        <a href="https://www.luminance.com/" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://golden-storage-production.golden-support.com/topic_images/13296a02269a4283aeb2f63a888d55ad.png');" title="AI-powered contract review platform used for due diligence and negotiation.">
-                                            <div class="ai-card-overlay"></div>
-                                            <div class="ai-card-content">
-                                                <h4 class="text-2xl font-extrabold leading-snug">Luminance</h4>
-                                                <p class="mt-2 text-sm text-gray-300">AI-powered contract review platform used for due diligence and negotiation.</p>
-                                                <div class="mt-4 flex justify-end">
-                                                    <div class="ai-card-arrow">
-                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <div class="ai-card searchable-item group bg-gray-800 border border-gray-700 hover:bg-gray-800 transition duration-300" style="background-image: none;" title="Placeholder card for future legal AI tool integration.">
-                                            <div class="ai-card-overlay"></div>
-                                            <div class="ai-card-content flex flex-col justify-center items-center h-full text-center">
-                                                <svg class="w-10 h-10 text-gray-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                </svg>
-                                                <h4 class="text-xl font-bold leading-snug text-gray-400">Placeholder: New Tool Coming</h4>
-                                                <p class="mt-1 text-sm text-gray-500">Evaluating new legal AI tools for future pilots.</p>
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                            </div>
-                        </div>
-                        
-                        <div class="w-full">
-                            <button id="recent-trials-toggle" class="collapsible-button flex items-center justify-between w-full p-3 transition duration-200 hover:bg-gray-800 rounded-lg open" onclick="toggleCollapsible('recent-trials-content', this)" aria-expanded="true" title="Click to view status updates and reports on ongoing legal AI trials.">
-                                <div class="flex items-center space-x-4">
-                                    <svg class="w-6 h-6 procore-orange-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    <span class="text-xl font-bold text-white">Recent Trials (Beta/Pilot Status)</span>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <svg class_ ="w-6 h-6 procore-orange-text dropdown-icon transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                            </button>
-                            <div id="recent-trials-content" class="collapsible-content pt-3 px-3 open">
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/4613144703/GenAI+Legal+Tech+Evaluation" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/1qJW5Otz8RN7rDgconLyqR/4ff59ca0788d65708ec1/ConstructionSoftwareBuyersGuide_keyart_1920x1080?fit=fill&f=center&w=768&h=432');" title="Trial status for the custom generative AI legal assistant platform.">
-                                        <div class="ai-card-overlay"></div>
-                                        <div class="ai-card-content">
-                                            <h4 class="text-2xl font-extrabold leading-snug">Harvey.ai Trial Status</h4>
-                                            <p class="mt-2 text-sm text-gray-300">Evaluating generative AI capabilities for legal research, contract analysis, and Q&A.</p>
-                                            <div class="mt-4 flex justify-end">
-                                                <div class="ai-card-arrow">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                    <a href="https://www.thomsonreuters.com/en" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://legal.thomsonreuters.com/en/c/cocounsel-legal/all-in-pan/_jcr_content/root/container/container_copy_copy/image_copy.coreimg.jpeg/1753900224328/253782.jpeg');" title="Trial status for Thomson Reuters' generative AI legal research and drafting tool.">
-                                        <div class="ai-card-overlay"></div>
-                                        <div class="ai-card-content">
-                                            <h4 class="text-2xl font-extrabold leading-snug">Thomson Reuters CoCounsel Trial</h4>
-                                            <p class="mt-2 text-sm text-gray-300">Testing its effectiveness for legal research, summarizing documents, and creating first drafts of memos.</p>
-                                            <div class="mt-4 flex justify-end">
-                                                <div class="ai-card-arrow">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                                        </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="https://www.lexisnexis.com/en-us/products/protege.page" target="_blank" class="ai-card searchable-item group protege-card" style="background-image: url('https://www.lexisnexis.com/images/logo.svg');" title="Trial status for LexisNexis' comprehensive document and knowledge management AI suite.">
-                                        <div class="ai-card-overlay"></div>
-                                        <div class="ai-card-content">
-                                            <h4 class="text-2xl font-extrabold leading-snug">LexisNexis Protege+ Pilot</h4>
-                                            <p class="mt-2 text-sm text-gray-300">Evaluation of advanced legal research, analytical tools, and predictive modeling features.</p>
-                                            <div class="mt-4 flex justify-end">
-                                                <div class="ai-card-arrow">
-                                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                                        </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
             
@@ -1546,7 +2082,7 @@
     function updateCanvasSize() {
         const canvas = document.getElementById('carousel-canvas');
         if (!canvas) return;
-        
+
         const newWidth = canvas.parentElement ? canvas.parentElement.clientWidth : window.innerWidth;
         const newHeight = getBannerHeight();
         
@@ -1879,6 +2415,30 @@
             button.setAttribute('aria-selected', 'true');
         }
     }
+    
+    /**
+     * Toggles between content tabs for the INNER tab system.
+     */
+    function toggleInnerTab(contentId, button) {
+        const parent = button.closest('.bg-white'); // Find the closest containing box
+        if (!parent) return;
+
+        // Hide all inner tab content and deactivate all buttons within this container
+        parent.querySelectorAll('.inner-tab-content').forEach(content => {
+            content.style.display = 'none';
+        });
+        parent.querySelectorAll('.inner-tab-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Show the selected content and activate the clicked button
+        const selectedContent = document.getElementById(contentId);
+        if (selectedContent) {
+            selectedContent.style.display = 'block';
+            button.classList.add('active');
+        }
+    }
+
 
     /**
      * Handler for nested desktop navigation clicks. Scrolls to the section, then activates the tab.
@@ -1935,19 +2495,38 @@
         
         // --- Initial Tab Load: Set the default tabs to open on load ---
         
-        const defaultLegalTabButton = document.getElementById('workstreams-tab-button');
-        if (defaultLegalTabButton) {
-            toggleTab('workstreams-tab-content', defaultLegalTabButton, false);
+        const defaultWorkstreamsTabButton = document.getElementById('workstreams-tab-button');
+        if (defaultWorkstreamsTabButton) {
+            toggleTab('workstreams-tab-content', defaultWorkstreamsTabButton, false);
         }
         
-        const defaultEnterpriseTabButton = document.getElementById('updates-tab-button');
+        // Handle Enterprise tab default (now Learning & Development)
+        const defaultEnterpriseTabButton = document.getElementById('learning-tab-button');
         if (defaultEnterpriseTabButton) {
-            toggleTab('updates-tab-content', defaultEnterpriseTabButton, false);
+            toggleTab('learning-tab-content', defaultEnterpriseTabButton, false);
         }
-
+        
         const defaultSpotlightTabButton = document.getElementById('spotlight-projects-tab-button');
         if (defaultSpotlightTabButton) {
             toggleTab('spotlight-projects-tab-content', defaultSpotlightTabButton, false);
+        }
+        
+        // Default inner tab load for Legal Tech Tools & Trials (Should be the first item, which is now Established Tools)
+        const defaultInnerTabButton = document.getElementById('established-sub-tab-button');
+        if (defaultInnerTabButton) {
+            // Need to manually toggle it to display the first tab content correctly if the initial element is invisible.
+             const contentId = defaultInnerTabButton.getAttribute('onclick').match(/'([^']+)'/)[1];
+             if (contentId) {
+                 const content = document.getElementById(contentId);
+                 if (content) content.style.display = 'block';
+             }
+             defaultInnerTabButton.classList.add('active');
+        } else {
+             // Fallback to ensuring the visible tab is marked active
+             const fallbackInnerTabButton = document.getElementById('lic-sub-tab-button');
+             if (fallbackInnerTabButton) {
+                 fallbackInnerTabButton.classList.add('active');
+             }
         }
         
     });

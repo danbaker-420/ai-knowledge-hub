@@ -416,6 +416,31 @@
             color: #000000; /* Black text when active */
             background-color: #FFFFFF; /* White background when active */
         }
+        
+        /* START OF NEW CSS FOR AWARDS INNER TABS */
+        .award-tab-button {
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #9CA3AF; /* text-gray-400 */
+            padding: 0.75rem 1rem;
+            flex-grow: 1;
+            text-align: center;
+        }
+        .award-tab-button:hover {
+            color: #ECE0D6; /* light text on hover */
+            background-color: #1f2937; /* slight background change */
+        }
+        .award-tab-button.active-award-tab {
+            border-bottom: 2px solid #FF5200;
+            color: #FF5200;
+            background-color: transparent; /* don't change background */
+        }
+        .award-tab-content {
+            display: none;
+        }
+        /* END OF NEW CSS FOR AWARDS INNER TABS */
+
     </style>
 </head>
 <body id="top-of-page">
@@ -710,7 +735,7 @@
                 <div class="w-full text-left">
                     <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3 drop-shadow-lg">
                         LEGAL, REGULATORY, & COMPLIANCE (LRC)
-                    </h2>
+                    </h2 >
                     
                     <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight text-white drop-shadow-xl">
                         Welcome to the LRC AI Knowledge Hub
@@ -825,28 +850,87 @@
                                 <!-- END NEW CONTENT (Elevate) -->
 
 
-                                <!-- NEW CONCISE HARVEY ANNOUNCEMENT / REDIRECT (Dec 10, 2025) -->
+                                <!-- UPDATED HARVEY ANNOUNCEMENT (Dec 10, 2025) -->
                                 <hr class="border-t border-gray-400 my-8">
 
-                                <div class="searchable-item pt-4">
+                                <div class="searchable-item pt-4 text-gray-700">
                                     <h4 class="article-topic-label flex justify-between">
                                         <span>Strategic Partnership & Rollout</span>
                                         <span class="font-normal text-gray-500">Dec 10, 2025</span>
                                     </h4>
-                                    <h3 class="text-3xl font-extrabold mb-2 leading-snug">
+                                    <h3 class="text-3xl font-extrabold mb-2 leading-snug text-gray-900">
                                         Harvey AI Deployment Kicks Off
                                     </h3>
-                                    <p class="leading-relaxed mb-4">Following a successful evaluation, our strategic partnership with Harvey AI is officially underway! Harvey is a cutting-edge generative AI platform built specifically for legal professionals. For all deployment details, training schedules, feature deep dives, and support information, please visit the new dedicated hub below:</p>
+                                    <p class="leading-relaxed mb-4">Following a successful evaluation, our strategic partnership with Harvey AI is officially underway! As a reminder, Harvey is a cutting-edge generative AI platform built specifically for legal professionals.</p>
                                     
-                                    <div class="mt-6">
-                                        <a href="#harvey-center-section" onclick="scrollToSection('harvey-center-section', event);" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white procore-orange-bg hover-procore-orange-bg transition-colors">
-                                            Go to Harvey Deployment Center
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 ml-2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                            </svg>
-                                        </a>
+                                    <div class="space-y-4 text-base">
+                                        <p class="mt-2">
+                                            <span class="font-bold text-gray-900">Deployment is GO:</span> The kickoff meeting with Harvey on December 3rd set the clear plan to integrate this platform. The goal is to drive measurable, tangible value and achieve near-daily usage.
+                                        </p>
+                                        <p>
+                                            <span class="font-bold text-gray-900">Strategic Alignment:</span> Our focus is on defining success now by establishing clear metrics to demonstrate the platform's ROI.
+                                        </p>
+                                        <p>
+                                            <span class="font-bold text-gray-900">Training Action Item:</span> The foundational Platform 101 recorded webinar training is available here: <a href="https://help.harvey.ai/webinars/recordings/azlTdUpYSlRTZmlUdlhGRGxBZ29pQT09" target="_blank" class="table-link text-red-700 hover:text-red-900 underline">Watch Recording</a>. View the full schedule and secure your spot for a live webinar here: <a href="https://help.harvey.ai/webinars/upcoming" target="_blank" class="table-link text-red-700 hover:text-red-900 underline">Harvey Training Schedule</a>.
+                                        </p>
                                     </div>
                                 </div>
+                                <!-- END UPDATED HARVEY ANNOUNCEMENT -->
+                                
+                                <!-- NEW CONTENT: AI Amplifier Awards Program Announcement (Moved from Awards tab) -->
+                                <hr class="border-t border-gray-400 my-8">
+
+                                <div class="searchable-item pt-4">
+                                    <h4 class="article-topic-label flex justify-between">
+                                        <span>Program Announcement: AI Amplifier Awards</span>
+                                        <span class="font-normal text-gray-500">Dec 10, 2025</span>
+                                    </h4>
+                                    <h3 class="text-3xl font-extrabold mb-2 leading-snug">
+                                        AI Amplifier Awards: Celebrating Innovation & Efficiency
+                                    </h3>
+                                    <p class="leading-relaxed mb-4">Did you miss Jessica Dean's announcement? The AI Amplifier Awards program is officially live, rewarding you with real cash for AI innovation and efficiency wins! This is our way of celebrating the trailblazers working smarter.</p>
+                                    
+                                    <div class="key-feature-subheading text-lg font-bold flex items-center mb-4">
+                                        <span class="emoji-icon mr-3">💰</span> The Prize
+                                    </div>
+                                    <p class="leading-relaxed mb-4 ml-4">Real money! We have secured funding to run the program through FY26.</p>
+
+                                    <div class="key-feature-subheading text-lg font-bold flex items-center mb-4">
+                                        <span class="emoji-icon mr-3">📝</span> Nominations
+                                    </div>
+                                    <p class="leading-relaxed mb-4 ml-4">Use the AI Amplifier Slack intake on our new channel. Anyone in LRC can nominate anyone—including self-nominations or peer nominations.</p>
+                                    <ul class="list-disc list-inside space-y-1 ml-8 text-base">
+                                        <li>
+                                            <b>How to Nominate:</b> Go to the <a href="https://slack.com/archives/C0A25KQP9KP" target="_blank" class="table-link text-red-700 hover:text-red-900 underline"><b>lrc-ai-connect</b></a> slack channel and click on <b>Workflows</b> at the top of the page.
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="key-feature-subheading text-lg font-bold flex items-center mt-6 mb-4">
+                                        <span class="emoji-icon mr-3">🏅</span> Eligibility & Recognition
+                                    </div>
+                                    <ul class="list-disc list-inside space-y-2 ml-4 text-base">
+                                        <li>
+                                            <b>Eligibility:</b> Any career employee in LRC is eligible (excluding LRCLT, who serve as the judges). You can also nominate a group, but the cash prize will be split.
+                                        </li>
+                                        <li>
+                                            <b>Recognition:</b> Winners will be announced at each quarterly All LRC meeting by Ben and the nominator(s).
+                                        </li>
+                                        <li>
+                                            <b>Frequent Flyers Welcome:</b> If you’ve won before, you can win again! Innovation and impact don't require us taking turns.
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 rounded-md shadow-inner">
+                                        <h5 class="text-lg font-bold text-yellow-900 mb-1 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            Bonus Insight
+                                        </h5>
+                                        <p class="text-sm">We also reward <b>"Smart Failures"</b>—sharing key lessons learned from experiments that didn't work saves the team time and is just as valuable!</p>
+                                    </div>
+                                </div>
+                                <!-- END NEW CONTENT: AI Amplifier Awards Program Announcement -->
                                 
                                 <!-- ARCHIVE SECTION -->
                                 <hr class="border-t border-gray-400 my-8">
@@ -1049,62 +1133,110 @@
                     <!-- NEW TAB CONTENT: AI Amplifier Awards -->
                     <div id="awards-tab-content" class="tab-content searchable-tab-content">
                         <h3 class="text-2xl font-bold text-white mb-6">AI Amplifier Awards (Real Money for Smart Work!)</h3>
-                        <div class="w-full">
-                            <div class="light-article-section p-8 space-y-4 rounded-xl border border-gray-200">
-                                
-                                <div class="searchable-item pb-4">
-                                    <h4 class="article-topic-label flex justify-between">
-                                        <span>Program Announcement</span>
-                                        <span class="font-normal text-gray-500">Dec 10, 2025</span>
-                                    </h4>
-                                    <h3 class="text-3xl font-extrabold mb-2 leading-snug">
-                                        AI Amplifier Awards: Celebrating Innovation & Efficiency
-                                    </h3>
-                                    <p class="leading-relaxed mb-4">Did you miss Jessica Dean's announcement? The AI Amplifier Awards program is officially live, rewarding you with real cash for AI innovation and efficiency wins! This is our way of celebrating the trailblazers working smarter.</p>
-                                    
-                                    <div class="key-feature-subheading text-lg font-bold flex items-center mb-4">
-                                        <span class="emoji-icon mr-3">💰</span> The Prize
+                        
+                        <!-- Inner Tab Structure for Awards Program Details -->
+                        <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800">
+                            <div class="flex border-b border-gray-800">
+                                <button
+                                    id="award-overview-button"
+                                    class="award-tab-button active-award-tab procore-orange-text"
+                                    onclick="toggleAwardInnerTab('award-overview-content', this)"
+                                >
+                                    Awards Overview
+                                </button>
+                                <button
+                                    id="award-process-button"
+                                    class="award-tab-button text-gray-400"
+                                    onclick="toggleAwardInnerTab('award-process-content', this)"
+                                >
+                                    Process & Rules
+                                </button>
+                            </div>
+                            
+                            <!-- 1. Awards Overview Content (Default Active) -->
+                            <div id="award-overview-content" class="award-tab-content p-6" style="display: block;">
+                                <h4 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Category Definitions & Eligibility</h4>
+                                <!-- MODIFIED TEXT STYLING -->
+                                <p class="text-base font-normal text-gray-400 mb-6">We will be naming at least 6 winners each quarter to be announced at each All LRC meeting!</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <!-- 1. Impact Award -->
+                                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                                        <div class="flex flex-col items-center text-center">
+                                            <span class="emoji-icon text-5xl mb-3">📈</span>
+                                            <h5 class="text-2xl font-bold text-white mb-2">1 Impact Award</h5>
+                                        </div>
+                                        <p class="text-gray-400 text-sm mt-4">For the most significant, measurable outcome delivered in the quarter. This recognizes a truly transformative application of AI.</p>
                                     </div>
-                                    <p class="leading-relaxed mb-4 ml-4">Real money! We have secured funding to run the program through FY26.</p>
-
-                                    <div class="key-feature-subheading text-lg font-bold flex items-center mb-4">
-                                        <span class="emoji-icon mr-3">📝</span> Nominations
+                                    <!-- 2. Innovator Awards -->
+                                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                                        <div class="flex flex-col items-center text-center">
+                                            <span class="emoji-icon text-5xl mb-3">💡</span>
+                                            <h5 class="text-2xl font-bold text-white mb-2">2 Innovator Awards</h5>
+                                        </div>
+                                        <p class="text-gray-400 text-sm mt-4">For individuals or small teams who demonstrate a highly creative and effective new use of AI in their work, resulting in a clear improvement in quality or efficiency.</p>
                                     </div>
-                                    <p class="leading-relaxed mb-4 ml-4">Use the AI Amplifier Slack intake on our new channel. Anyone in LRC can nominate anyone—including self-nominations or peer nominations.</p>
-                                    <ul class="list-disc list-inside space-y-1 ml-8 text-base">
-                                        <li>
-                                            <b>How to Nominate:</b> Go to the <a href="https://slack.com/archives/C0A25KQP9KP" target="_blank" class="table-link text-red-700 hover:text-red-900 underline"><b>lrc-ai-connect</b></a> slack channel and click on <b>Workflows</b> at the top of the page.
-                                        </li>
-                                    </ul>
-                                    
-                                    <div class="key-feature-subheading text-lg font-bold flex items-center mt-6 mb-4">
-                                        <span class="emoji-icon mr-3">🏅</span> Eligibility & Recognition
+                                    <!-- 3. Amplify Awards -->
+                                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                                        <div class="flex flex-col items-center text-center">
+                                            <span class="emoji-icon text-5xl mb-3">⭐</span>
+                                            <h5 class="text-2xl font-bold text-white mb-2">3 - 5 Amplify Awards</h5>
+                                        </div>
+                                        <p class="text-gray-400 text-sm mt-4">A flexible award to recognize individuals for acting as a:</p>
+                                        <ul class="list-disc list-inside space-y-1 ml-4 text-gray-300 text-sm mt-2">
+                                            <li><b>Catalyst:</b> Effectively teaching, sharing best practices, or creating resources for others.</li>
+                                            <li><b>Pathfinder:</b> Taking bold, creative chances and sharing the valuable lessons learned, regardless of the outcome.</li>
+                                        </ul>
                                     </div>
-                                    <ul class="list-disc list-inside space-y-2 ml-4 text-base">
-                                        <li>
-                                            <b>Eligibility:</b> Any career employee in LRC is eligible (excluding LRCLT, who serve as the judges). You can also nominate a group, but the cash prize will be split.
-                                        </li>
-                                        <li>
-                                            <b>Recognition:</b> Winners will be announced at each quarterly All LRC meeting by Ben and the nominator(s).
-                                        </li>
-                                        <li>
-                                            <b>Frequent Flyers Welcome:</b> If you’ve won before, you can win again! Innovation and impact don't require us taking turns.
-                                        </li>
-                                    </ul>
-                                    
-                                    <div class="mt-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 rounded-md shadow-inner">
-                                        <h5 class="text-lg font-bold text-yellow-900 mb-1 flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                            Bonus Insight
-                                        </h5>
-                                        <p class="text-sm">We also reward <b>"Smart Failures"</b>—sharing key lessons learned from experiments that didn't work saves the team time and is just as valuable!</p>
-                                    </div>
-                                    
                                 </div>
                             </div>
+                            
+                            <!-- 2. Process & Rules Content -->
+                            <div id="award-process-content" class="award-tab-content p-6">
+                                <h4 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Nomination, Selection, and Winning Criteria</h4>
+                                
+                                <!-- Process Grid (from Screenshot 2025-12-10 at 1.26.45 PM.jpg) -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center mb-8">
+                                    
+                                    <!-- Nomination Process -->
+                                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700 flex flex-col items-center">
+                                        <span class="emoji-icon text-5xl mb-3">📝</span>
+                                        <h5 class="text-xl font-bold text-white mb-2">Nomination Process</h5>
+                                        <p class="text-gray-400 text-sm">Submit nominations via the workflow in the new <a href="https://slack.com/archives/C0A25KQP9KP" target="_blank" class="table-link text-red-500 hover:text-white underline"><b>#LRC-AI-Connect Slack Channel</b></a>. Head down to the "Apps" section in slack to complete the nomination form.</p>
+                                    </div>
+
+                                    <!-- Selection Committee -->
+                                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700 flex flex-col items-center">
+                                        <span class="emoji-icon text-5xl mb-3">🏅</span>
+                                        <h5 class="text-xl font-bold text-white mb-2">Selection Committee</h5>
+                                        <p class="text-gray-400 text-sm">LRCLT with advice from non-voting advisors.</p>
+                                    </div>
+
+                                    <!-- Rules -->
+                                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700 flex flex-col items-center">
+                                        <span class="emoji-icon text-5xl mb-3">📜</span>
+                                        <h5 class="text-xl font-bold text-white mb-2">Rules</h5>
+                                        <ul class="list-disc list-inside space-y-1 text-gray-400 text-sm text-left w-full pl-6">
+                                            <li>Open to LRC FTEs below VP.</li>
+                                            <li>Willing to provide a recorded demo or interview (to be featured on the LRC AI Knowledge Hub).</li>
+                                            <li>Repeat winners and group nominations allowed.</li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- What Does It Take to Win?! -->
+                                    <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-700 flex flex-col items-center">
+                                        <span class="emoji-icon text-5xl mb-3">🏆</span>
+                                        <h5 class="text-xl font-bold text-white mb-2">What Does It Take to Win?!</h5>
+                                        <p class="text-gray-400 text-sm text-left w-full pl-2"><b>A Win:</b> Demonstrate successful AI use with quantifiable value, evidence of replicability, and a future improvement plan.</p>
+                                        <p class="text-gray-400 text-sm mt-2 text-left w-full pl-2"><b>- or -</b></p>
+                                        <p class="text-gray-400 text-sm mt-2 text-left w-full pl-2"><b>A Lesson:</b> Share valuable lessons learned from bold AI experiments with transparency.</p>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
                         </div>
+                        <!-- END Inner Tab Structure -->
+                        
                     </div>
                     <!-- END NEW TAB CONTENT -->
                 </div>
@@ -1261,11 +1393,13 @@
                         <h3 class="text-2xl font-bold text-white mb-6">Learning & Development</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                            <!-- NEW LEARNING CONTENT: IN-DEPTH CLE -->
+                            <!-- UPDATED LEARNING CONTENT: IN-DEPTH CLE (Glow Removed) -->
                             <a href="https://www.pli.edu/programs/artificial-intelligence-law/442619?tCode=COR5_8AM12" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://placehold.co/768x432/4A90E2/4A90E2'); background-size: cover;">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content !pt-4">
                                     <h4 class="text-xl font-extrabold leading-snug">In-Depth CLE: Artificial Intelligence Law (Two-Day Event)</h4>
+                                    <!-- PROMINENT DATE ADDED - GLOW REMOVED -->
+                                    <p class="mt-2 text-base font-extrabold text-white">Jan 22 – 23, 8:30 AM EST</p>
                                     <p class="mt-2 text-sm text-gray-300">Focus: Core concepts, applications, and ethical considerations for using AI in legal practice today.</p>
                                     <p class="mt-1 text-xs font-bold text-green-400">Credits: Up to 15.0 total credits (including up to 2.5 Ethics credits).</p>
                                     <div class="mt-4 flex justify-end">
@@ -1278,11 +1412,13 @@
                                 </div>
                             </a>
 
-                            <!-- NEW LEARNING CONTENT: JOB CRAFTING CLE -->
+                            <!-- UPDATED LEARNING CONTENT: JOB CRAFTING CLE (Glow Removed) -->
                             <a href="https://www.pli.edu/programs/lawyer-job-crafting-and-upskilling-for-a-generative-ai-era/455667" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://placehold.co/768x432/4A90E2/4A90E2'); background-size: cover;">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content !pt-4">
                                     <h4 class="text-xl font-extrabold leading-snug">Lawyer Job Crafting & Upskilling - Specialized CLE</h4>
+                                    <!-- PROMINENT DATE ADDED - GLOW REMOVED -->
+                                    <p class="mt-2 text-base font-extrabold text-white">Feb 19, 1:00 PM EST</p>
                                     <p class="mt-2 text-sm text-gray-300">Focus: A forward-looking session on how legal roles are changing and the necessary upskilling required for the Generative AI era.</p>
                                     <p class="mt-1 text-xs font-bold text-yellow-400">Credits: Credit Pending (Finalized by PLI).</p>
                                     <div class="mt-4 flex justify-end">
@@ -1559,7 +1695,7 @@
                             </a>
 
                             <!-- RENAMED CARD -->
-                            <a href="https://workspaceupdates.googleblog.com/2025/10/new-latex-features-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4Zyrj8vQlUNuV9J4wYg8qB/c9f8019d2ba89f0ef62f1cc4fa4f506d/Procore-Pay-Legal-Tile.jpg?fit=fill&f=center&w=768&h=432');" title="Generate clean, perfectly formatted project proposals and documents using Gemini.">
+                            <a href="https://workspaceupdates.googleblog.com/2025/10/new-latex-features-in-gemini-app.html" target="_blank" class="ai-card searchable-item group" style="background-image: url('https://images.ctfassets.net/8pep15rt0kef/4Zyrj8vQlUNuV9J4wYg8qB/c9f8019d2ba89f0ef62f1cc4fa4f5066d/Procore-Pay-Legal-Tile.jpg?fit=fill&f=center&w=768&h=432');" title="Generate clean, perfectly formatted project proposals and documents using Gemini.">
                                 <div class="ai-card-overlay"></div>
                                 <div class="ai-card-content">
                                     <h4 class="text-2xl font-extrabold leading-snug">Generate Structured Professional Documents</h4>
@@ -1628,7 +1764,7 @@
                         aria-controls="trends-tab-content"
                         aria-selected="false"
                     >
-                        Industry Topics & Trends
+                        Legal Industry Topics & Trends
                     </button>
                 </div>
 
@@ -1639,18 +1775,18 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="workstream-cards-container">
                             
                             <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-800 workstream-card">
-                                <h4 class="text-xl font-semibold mb-3">1. EVS Action Plan</h4>
-                                <p class="text-gray-400">LRC is engaging AI-focused consultants to partner with the legal team to document how AI is currently being used and to identify any potential projects and/or new use-cases. This analysis will include a review of data sources (and quality) to create a long-term roadmap to help focus our efforts.</p>
+                                <h4 class="text-xl font-semibold mb-3 text-white">1. EVS Action Plan</h4>
+                                <p class="text-lg text-gray-300">LRC is engaging AI-focused consultants to partner with the legal team to document how AI is currently being used and to identify any potential projects and/or new use-cases. This analysis will include a review of data sources (and quality) to create a long-term roadmap to help focus our efforts.</p>
                             </div>
                             
                             <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-800 workstream-card">
-                                <h4 class="text-xl font-semibold mb-3">2. Internal Productivity</h4>
-                                <p class="text-gray-400">This workstream focuses on maximizing the value of existing internal tools and custom AI builds, including Google, Rovo, Slack, Zoom, and Bolt, among others. Productivity gains are actively identified and promoted by educating the team on how to leverage this suite of tools for a wide range of daily tasks.</p>
+                                <h4 class="text-xl font-semibold mb-3 text-white">2. Internal Productivity</h4>
+                                <p class="text-lg text-gray-300">This workstream focuses on maximizing the value of existing internal tools and custom AI builds, including Google, Rovo, Slack, Zoom, and Bolt, among others. Productivity gains are actively identified and promoted by educating the team on how to leverage this suite of tools for a wide range of daily tasks.</p>
                             </div>
                             
                             <div class="p-6 bg-black rounded-xl shadow-lg border border-gray-800 workstream-card">
-                                <h4 class="text-xl font-semibold mb-3">3. Third-Party AI Solutions</h4>
-                                <p class="text-gray-400">This workstream involves vetting potential third-party AI solutions against strict criteria, conducting trials to assess performance and security, and introducing specialized AI tools capable of solving challenges specific to our in-house legal team.</p>
+                                <h4 class="text-xl font-semibold mb-3 text-white">3. Third-Party AI Solutions</h4>
+                                <p class="text-lg text-gray-300">This workstream involves vetting potential third-party AI solutions against strict criteria, conducting trials to assess performance and security, and introducing specialized AI tools capable of solving challenges specific to our in-house legal team.</p>
                             </div>
                         </div>
                     </div>
@@ -1693,8 +1829,8 @@
                                     <h4 class="text-lg font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Established & Approved Legal Tools</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         
-                                        <!-- HARVEY CARD (UPDATED) -->
-                                        <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/4613144703/GenAI+Legal+Tech+Evaluation" target="_blank" class="ai-card searchable-item group" style="min-height: 200px; background-image: url('https://help.harvey.ai/assets/logo.png'); background-size: 50% auto; background-position: center 20%; background-repeat: no-repeat; background-color: #000000;" title="Click for procurement details, training, and support links.">
+                                        <!-- HARVEY CARD (UPDATED MIN-HEIGHT) -->
+                                        <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/4613144703/GenAI+Legal+Tech+Evaluation" target="_blank" class="ai-card searchable-item group" style="min-height: 400px; background-image: url('https://help.harvey.ai/assets/logo.png'); background-size: 50% auto; background-position: center 20%; background-repeat: no-repeat; background-color: #000000;" title="Click for procurement details, training, and support links.">
                                             <div class="ai-card-overlay bg-black/50 group-hover:bg-black/70"></div>
                                             <div class="ai-card-content !py-4">
                                                 <h4 class="text-xl font-extrabold leading-snug">Harvey.ai</h4>
@@ -1709,7 +1845,8 @@
                                             </div>
                                         </a>
 
-                                        <a href="https://www.luminance.com/" target="_blank" class="ai-card searchable-item group" style="min-height: 200px; background-image: url('https://golden-storage-production.golden-support.com/topic_images/13296a02269a4283aeb2f63a888d55ad.png');" title="AI-powered contract review platform used for due diligence and negotiation.">
+                                        <!-- LUMINANCE CARD (UPDATED BACKGROUND & MIN-HEIGHT) -->
+                                        <a href="https://www.luminance.com/" target="_blank" class="ai-card searchable-item group" style="min-height: 400px; background-color: #1a1a1a;" title="AI-powered contract review platform used for due diligence and negotiation.">
                                             <div class="ai-card-overlay"></div>
                                             <div class="ai-card-content !py-4">
                                                 <h4 class="text-xl font-extrabold leading-snug">Luminance</h4>
@@ -1724,7 +1861,8 @@
                                             </div>
                                         </a>
                                         
-                                        <div class="ai-card searchable-item group bg-gray-800 border border-gray-700 hover:bg-gray-800 transition duration-300" style="min-height: 200px;" title="Placeholder card for future legal AI tool integration.">
+                                        <!-- PLACEHOLDER CARD (UPDATED MIN-HEIGHT) -->
+                                        <div class="ai-card searchable-item group bg-gray-800 border border-gray-700 hover:bg-gray-800 transition duration-300" style="min-height: 400px;" title="Placeholder card for future legal AI tool integration.">
                                             <div class="ai-card-overlay"></div>
                                             <div class="ai-card-content flex flex-col justify-center items-center h-full text-center !py-4">
                                                 <svg class="w-8 h-8 text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1745,7 +1883,8 @@
                                     <h4 class="text-lg font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Internal Custom AI Builds</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                                        <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="ai-card searchable-item group" style="min-height: 200px; background-image: url('https://eco-cdn.iqpc.com/eco/images/channel_content/images/ai-generated-8198769_1280CouJQsu7bGgMP0qwsYaCSsTx7aJKSAlTZPuYxsp4.webp');" title="Hear how our Legal Operations, Commercial Legal, and Product, Privacy, & IP teams partnered with DTS to deploy the GTM Assist Seller AI Tool and RapidReview.">
+                                        <!-- PODCAST CARD (UPDATED MIN-HEIGHT) -->
+                                        <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="ai-card searchable-item group" style="min-height: 400px; background-image: url('https://eco-cdn.iqpc.com/eco/images/channel_content/images/ai-generated-8198769_1280CouJQsu7bGgMP0qwsYaCSsTx7aJKSAlTZPuYxsp4.webp');" title="Hear how our Legal Operations, Commercial Legal, and Product, Privacy, & IP teams partnered with DTS to deploy the GTM Assist Seller AI Tool and RapidReview.">
                                             <div class="ai-card-overlay"></div>
                                             <div class="ai-card-content !py-4">
                                                 <h4 class="text-xl font-extrabold leading-snug">AI Unleashed Podcast: GTM Assist & RapidReview Deep Dive</h4>
@@ -1769,7 +1908,8 @@
                                     <h4 class="text-lg font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">Ongoing Legal Tech Trials</h4>
                                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     
-                                        <a href="https://www.thomsonreuters.com/en" target="_blank" class="ai-card searchable-item group" style="min-height: 200px; background-image: url('https://legal.thomsonreuters.com/en/c/cocounsel-legal/all-in-pan/_jcr_content/root/container/container_copy_copy/image_copy.coreimg.jpeg/1753900224328/253782.jpeg');" title="Trial status for Thomson Reuters' generative AI legal research and drafting tool.">
+                                        <!-- COCOUNSEL CARD (UPDATED MIN-HEIGHT) -->
+                                        <a href="https://www.thomsonreuters.com/en" target="_blank" class="ai-card searchable-item group" style="min-height: 400px; background-image: url('https://legal.thomsonreuters.com/en/c/cocounsel-legal/all-in-pan/_jcr_content/root/container/container_copy_copy/image_copy.coreimg.jpeg/1753900224328/253782.jpeg');" title="Trial status for Thomson Reuters' generative AI legal research and drafting tool.">
                                             <div class="ai-card-overlay"></div>
                                             <div class="ai-card-content !py-4">
                                                 <h4 class="text-xl font-extrabold leading-snug">Thomson Reuters CoCounsel Trial</h4>
@@ -1784,7 +1924,8 @@
                                             </div>
                                         </a>
                                         
-                                        <a href="https://www.lexisnexis.com/en-us/products/protege.page" target="_blank" class="ai-card searchable-item group protege-card" style="min-height: 200px; background-image: url('https://www.lexisnexis.com/images/logo.svg'); background-size: 50% auto; background-position: center 20%; background-repeat: no-repeat; background-color: #000000;" title="Trial status for LexisNexis' comprehensive document and knowledge management AI suite.">
+                                        <!-- PROTEGE CARD (UPDATED MIN-HEIGHT) -->
+                                        <a href="https://www.lexisnexis.com/en-us/products/protege.page" target="_blank" class="ai-card searchable-item group protege-card" style="min-height: 400px; background-image: url('https://www.lexisnexis.com/images/logo.svg'); background-size: 50% auto; background-position: center 20%; background-repeat: no-repeat; background-color: #000000;" title="Trial status for LexisNexis' comprehensive document and knowledge management AI suite.">
                                             <div class="ai-card-overlay"></div>
                                             <div class="ai-card-content !py-4">
                                                 <h4 class="text-xl font-extrabold leading-snug">LexisNexis Protege+ Pilot</h4>
@@ -1799,7 +1940,8 @@
                                             </div>
                                         </a>
 
-                                        <div class="ai-card searchable-item group bg-gray-800 border border-gray-700 hover:bg-gray-800 transition duration-300" style="min-height: 200px;" title="Placeholder card for future legal AI tool integration.">
+                                        <!-- PLACEHOLDER CARD (UPDATED MIN-HEIGHT) -->
+                                        <div class="ai-card searchable-item group bg-gray-800 border border-gray-700 hover:bg-gray-800 transition duration-300" style="min-height: 400px;" title="Placeholder card for future legal AI tool integration.">
                                             <div class="ai-card-overlay"></div>
                                             <div class="ai-card-content flex flex-col justify-center items-center h-full text-center !py-4">
                                                 <svg class="w-8 h-8 text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2281,6 +2423,31 @@
             button.classList.add('active');
         }
     }
+    
+    /**
+     * Toggles between content tabs for the custom dark Awards inner tab system.
+     */
+    function toggleAwardInnerTab(contentId, button) {
+        const parent = button.closest('.bg-gray-900'); // Find the closest containing box
+        if (!parent) return;
+
+        // Hide all inner tab content and deactivate all buttons within this container
+        parent.querySelectorAll('.award-tab-content').forEach(content => {
+            content.style.display = 'none';
+        });
+        parent.querySelectorAll('.award-tab-button').forEach(btn => {
+            btn.classList.remove('active-award-tab', 'procore-orange-text');
+            btn.classList.add('text-gray-400');
+        });
+
+        // Show the selected content and activate the clicked button
+        const selectedContent = document.getElementById(contentId);
+        if (selectedContent) {
+            selectedContent.style.display = 'block';
+            button.classList.remove('text-gray-400');
+            button.classList.add('active-award-tab', 'procore-orange-text');
+        }
+    }
 
 
     /**
@@ -2370,6 +2537,15 @@
              if (fallbackInnerTabButton) {
                  fallbackInnerTabButton.classList.add('active');
              }
+        }
+        
+        // Set default for the new Awards inner tab
+        const defaultAwardInnerTabButton = document.getElementById('award-overview-button');
+        if (defaultAwardInnerTabButton) {
+             const contentId = 'award-overview-content';
+             const content = document.getElementById(contentId);
+             if (content) content.style.display = 'block';
+             defaultAwardInnerTabButton.classList.add('active-award-tab', 'procore-orange-text');
         }
         
     });

@@ -131,7 +131,7 @@
         }
         .ai-card {
             position: relative;
-            min-height: 400px;
+            min-height: 250px; /* Reduced min-height for uniform look */
             background-size: cover;
             background-position: center;
             border-radius: 0.75rem;
@@ -141,6 +141,8 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            /* Default dark card background for all inner tabs */
+            background-color: #1a1a1a; 
         }
         .ai-card:hover {
             transform: translateY(-5px);
@@ -411,7 +413,7 @@
         .inner-tab-button:hover {
             background-color: #E5E7EB; /* Slightly darker on hover */
         }
-        .inner-tab-button.active {
+        .inner-tab-button.active-inner-tab {
             border-bottom: 2px solid #FF5200; /* Procore Orange border */
             color: #000000; /* Black text when active */
             background-color: #FFFFFF; /* White background when active */
@@ -471,13 +473,6 @@
                     </button>
                     <!-- LRC News Dropdown Menu -->
                     <div id="dropdown-menu-3" class="origin-top-left absolute left-0 mt-2 header-dropdown-menu hidden" role="menu">
-                        <div class="dropdown-header">
-                            <!-- CONFIRMED TITLE -->
-                            <h3 class="dropdown-header-title">LRC News & Spotlight</h3>
-                            <svg class="w-6 h-6 procore-orange-text" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
                         <div class="py-1" role="none">
                             <a href="#harvey-center-section" onclick="scrollToSection('harvey-center-section', event);" class="dropdown-link">Harvey AI Deployment Center</a>
                             <a href="#lrc-team-updates-section" onclick="handleNavTabClick('lrc-team-updates-section', 'spotlight-projects-tab-button', 'spotlight-projects-tab-content', event);" class="dropdown-link rounded-t-lg">LRC Initiative Focus</a>
@@ -517,13 +512,12 @@
                                     <!-- Right Arrow Icon (Fixed) -->
                                     <svg class="ml-2 h-4 w-4 dropdown-icon-nested" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
+                            </svg>
                                 </button>
                                 <div id="header-explore-menu-2c" class="hidden absolute top-0 left-full ml-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
                                     <a href="https://thecore.procore.com/pac/unlockingai" target="_blank" title="The main hub for Procore's internal AI strategy, content, and guidelines." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Unlocking AI for All Hub</a>
                                     <a href="https://thecore.procore.com/pac/aiprodhub/aitoolshub/aicontent/pilots" target="_blank" class="text-sm text-white hover:bg-gray-700">AI Demo Hub</a>
                                     <a href="https://thecore.procore.com/pac/unlockingai/curiousinnovators" target="_blank" class="text-sm text-white hover:bg-gray-700">Curious Innovators in Action</a>
-                                    <a href="https://thecore.procore.com/pac/unlockingai/ai_learning" target="_blank" class="text-sm text-white hover:bg-gray-700">AI Learning Resources</a>
                                     <a href="https://calendar.google.com/calendar/u/0/r?cid=c_6a7820b8ee804d9bbe04ac1512adbbb22bfb7a474503c27995d57dfc1c8b49c1@group.calendar.google.com" target="_blank" class="text-sm text-white hover:bg-gray-700 rounded-b-lg">AI Office Hours (Add to Calendar)</a>
                                 </div>
                             </div>
@@ -613,8 +607,8 @@
                                 <!-- FIX: Nested menu opens to the LEFT (right-full mr-1) -->
                                 <div id="header-explore-menu-2b" class="hidden absolute top-0 right-full mr-1 w-64 rounded-xl shadow-2xl bg-gray-800 border border-gray-700 z-40 nested-dropdown-content" role="menu">
                                     <a href="https://www.latent.space/podcast" target="_blank" title="Technical deep dives and interviews on AI engineering and machine learning." class="text-sm text-white hover:bg-gray-700 rounded-t-xl">Latent Space</a>
-                                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" class="text-sm text-white hover:bg-gray-700">AI and the Future of Law Podcast</a>
-                                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="text-sm text-white hover:bg-gray-700 rounded-b-xl">AI Unleashed Podcast (Procore)</a>
+                                    <a href="https://click.message.pli.edu/?qs=d37b210e23cc24d3348558f27408effc445eb76f7db6b48decf081ca257425915760a278aeca7b6e627e2d713a4eea26ce0f8a53673bd54f2e18f45b3311b63c" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI and the Future of Law Podcast</a>
+                                    <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" class="block py-2 text-sm text-gray-300 hover:text-white">AI Unleashed Podcast (Procore)</a>
                                 </div>
                             </div>
                         </div>
@@ -1001,42 +995,6 @@
                                                 <h5 class="key-feature-subheading flex-1 text-blue-600 border-gray-300">Outcome</h5>
                                             </div>
                                             
-                                            <p class="leading-relaxed text-gray-700">The roadmap's outcome is <b>organizational clarity and capability</b>. This includes a prioritized plan that aligns AI adoption across LRC with our overarching business objectives and significantly increases the team's ability to safely and effectively leverage AI, ensuring every investment directly supports enhanced expertise and strategic value.</p>
-                                        </div>
-                                        
-                                        <!-- ARCHIVED Harvey.ai Content -->
-                                        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-300 searchable-item">
-                                            <h4 class="article-topic-label flex justify-between">
-                                                <span>Archived Technology Rollout (Procurement Phase)</span>
-                                                <span class="font-normal text-gray-500">Nov 11, 2025</span> <!-- DATE ADDED -->
-                                            </h4>
-                                            <h3 class="text-2xl font-extrabold mb-2 leading-snug text-gray-900">New Heavy Equipment: Harvey.ai Legal Research & Analysis Tool On Its Way</h3>
-                                            <p class="leading-relaxed mb-4 text-gray-700">The procurement process <b>has started</b> for <b>Harvey.ai</b>, a cutting-edge generative AI platform built specifically for legal professionals. Think of Harvey as a powerful, secure AI partner that will help us deliver results faster!</p>
-                                            
-                                            <div class="flex items-center">
-                                                <div class="beveled-icon-container bg-blue-600">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                                                    </svg>
-                                                </div>
-                                                <h5 class="key-feature-subheading flex-1 text-blue-600 border-gray-300">Key Benefits</h5>
-                                            </div>
-                                            <ul class="list-disc list-inside space-y-1 ml-4 text-gray-700 text-base">
-                                                <li><b>Accelerated Drafting:</b> Generate first drafts of complex contracts and memos instantly.</li>
-                                                <li><b>Rapid Review:</b> Rapidly analyze large volumes of legal documents (like due diligence).</li>
-                                                <li><b>Enhanced Research:</b> Get accurate, source-cited answers to complex legal queries quickly.</li>
-                                                <li><b>Risk Management:</b> Streamline tasks like regulatory review and internal policy cross-referencing.</li>
-                                            </ul>
-                                            
-                                            <div class="flex items-center mt-6">
-                                                <div class="beveled-icon-container bg-blue-600">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.697V11.25a2.25 2.25 0 004.5 0V9.697z" />
-                                                    </svg>
-                                                </div>
-                                                <h5 class="key-feature-subheading flex-1 text-blue-600 border-gray-300">Outcome</h5>
-                                            </div>
-                                            
                                             <p class="leading-relaxed text-gray-700">Harvey will automate repetitive, time-consuming tasks, allowing us to focus our expertise on <b>high-value strategic analysis, critical judgment, and key negotiations</b>.</p>
                                         </div>
                                         <!-- END ARCHIVED Harvey.ai Content -->
@@ -1055,6 +1013,7 @@
                             <div class="mt-0 mb-0" id="lrc-team-spotlight-section">
                                     <div class="bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-800" id="spotlight-container">
                                         
+                                        <!-- RESTORED CALEIGH CAMPTION PHOTO URL -->
                                         <div class="flex flex-col sm:flex-row items-start sm:items-center mb-6 space-y-4 sm:space-y-0 sm:space-x-6">
                                             <img
                                                 src="https://media.licdn.com/dms/image/v2/D4E03AQGIU0Jb-C9x4A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682708253519?e=1767225600&v=beta&t=RyEW76qtswD3_I-Rs2xvhSCPwZUAEZDF7KYltRZwRpA"
@@ -1340,8 +1299,8 @@
                             <p class="font-semibold text-white pt-2">How to Get Support (24/7)</p>
                             <ul class="list-disc list-inside space-y-1 ml-4">
                                 <li>In-Platform: Click the "Support" button in the bottom left or the "Get Support" link in the top banner of the Harvey platform.</li>
-                                <!-- MODIFIED LINE BELOW to open Gmail compose window -->
-                                <li>Email: Contact the support team directly at <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@harvey.ai&su=Harvey%20AI%20Support%20Request%20(LRC)" target="_blank" class="table-link text-red-500 hover:text-white underline">support@harvey.ai (Open in Gmail)</a>.</li>
+                                <!-- MODIFIED LINE BELOW to use new subject -->
+                                <li>Email: Contact the support team directly at <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@harvey.ai&su=%F0%9F%A6%89%20Procore:%20Harvey%20AI%20Support%20Request%20(LRC)" target="_blank" class="table-link text-red-500 hover:text-white underline">support@harvey.ai (Open in Gmail)</a>.</li>
                             </ul>
                         </div>
                     </div>
@@ -1357,7 +1316,380 @@
             </a>
         </div>
 
+        <!-- MISSING SECTION: LEGAL INNOVATION CENTER (Work Streams, Tools, Trends) - RESTORED -->
+        <section class="mb-16 mt-10" id="lrc-ai-strategy-tech-stack-section">
+            <div class="section-differentiator">
+                LRC STRATEGY & TECHNOLOGY
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-900 pb-2">Legal Innovation Center</h2>
+            <p class="text-gray-400 mb-8 max-w-4xl">Explore LRC's strategic approach to AI and legal technology. This center details our current operational work streams, the internal and external tools we are piloting, and key industry trends impacting the legal landscape.</p>
 
+            <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800">
+                
+                <div class="flex border-b border-gray-800">
+                    <button
+                        id="workstreams-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-center text-white active"
+                        onclick="toggleTab('workstreams-tab-content', this, false)"
+                        aria-controls="workstreams-tab-content"
+                        aria-selected="true"
+                    >
+                        Our AI Work Streams
+                    </button>
+                    <button
+                        id="tools-trials-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400"
+                        onclick="toggleTab('tools-trials-tab-content', this, false)"
+                        aria-controls="tools-trials-tab-content"
+                        aria-selected="false"
+                    >
+                        Legal Tech Tools & Trials
+                    </button>
+                    <button
+                        id="trends-tab-button"
+                        class="tab-button flex-1 py-4 px-4 text-center text-gray-400"
+                        onclick="toggleTab('trends-tab-content', this, false)"
+                        aria-controls="trends-tab-content"
+                        aria-selected="false"
+                    >
+                        Legal Industry Topics & Trends
+                    </button>
+                </div>
+
+                <div class="p-4 sm:p-6">
+                    
+                    <!-- 1. Work Streams Tab Content (UPDATED) -->
+                    <div id="workstreams-tab-content" class="tab-content" style="display: block;">
+                        <h3 class="text-2xl font-bold text-white mb-6">LRC AI Strategic Work Streams</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            
+                            <div class="workstream-card p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                                <div class="project-icon-container blueprint-bg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 0a2.25 2.25 0 002.25 2.25h12c1.033 0 1.954-.42 2.632-1.098M3.75 12c0 1.238.257 2.45.753 3.562m-2.25-3.562h.008v.008h-.008v-.008zm16.5 0h.008v.008h-.008v-.008z" /></svg>
+                                </div>
+                                <h4 class="text-xl font-bold text-white mb-2">1. EVS Action Plan</h4>
+                                <p class="text-gray-400 text-sm">LRC is engaging AI-focused consultants to partner with the legal team to document how AI is currently being used and to identify any potential projects and/or new use-cases. This analysis will include a review of data sources (and quality) to create a long-term roadmap to help focus our efforts.</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-500 text-xs mt-3 ml-2">
+                                    <li>Roadmap Definition & Prioritization</li>
+                                    <li>Baseline Workflow Documentation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="workstream-card p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                                <div class="project-icon-container excavator-bg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 9.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 15.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg>
+                                </div>
+                                <h4 class="text-xl font-bold text-white mb-2">2. Internal Productivity</h4>
+                                <p class="text-gray-400 text-sm">This workstream focuses on maximizing the value of existing internal tools and custom AI builds, including Google, Rovo, Slack, Zoom, and Bolt, among others. Productivity gains are actively identified and promoted by educating the team on how to leverage this suite of tools for a wide range of daily tasks.</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-500 text-xs mt-3 ml-2">
+                                    <li>Custom Internal AI Builds (e.g., RFP Gem)</li>
+                                    <li>Enterprise Tool Education (Google, Slack, Zoom)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="workstream-card p-6 bg-black rounded-xl shadow-lg border border-gray-700">
+                                <div class="project-icon-container bg-green-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5M12 21a9 9 0 100-18 9 9 0 000 18z" /></svg>
+                                </div>
+                                <h4 class="text-xl font-bold text-white mb-2">3. Third-Party AI Solutions</h4>
+                                <p class="text-gray-400 text-sm">This workstream involves vetting potential third-party AI solutions against strict criteria, conducting trials to assess performance and security, and introducing specialized AI tools capable of solving challenges specific to our in-house legal team.</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-500 text-xs mt-3 ml-2">
+                                    <li>Vendor Vetting & Security Review</li>
+                                    <li>Deployed LegalTech (e.g., Harvey, Luminance)</li>
+                                    <li>Active Trial Tools (e.g., LexisNexis, Thomson Reuters)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Legal Tech Tools & Trials Tab Content (REBUILT WITH INNER TABS) -->
+                    <div id="tools-trials-tab-content" class="tab-content" style="display: none;">
+                        <h3 class="text-2xl font-bold text-white mb-6">Legal Tech Stack & Trials</h3>
+                        
+                        <div class="bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-800">
+                            
+                            <!-- Inner Tab Headers -->
+                            <div class="flex border-b border-gray-700 bg-white p-1 rounded-t-xl">
+                                <button
+                                    id="established-sub-tab-button"
+                                    class="inner-tab-button active-inner-tab flex-1 text-center text-sm rounded-lg"
+                                    onclick="toggleInnerTab('established-sub-tab-content', this)"
+                                >
+                                    Legal AI Tech Tools (Established)
+                                </button>
+                                <button
+                                    id="lic-sub-tab-button"
+                                    class="inner-tab-button flex-1 text-center text-sm rounded-lg"
+                                    onclick="toggleInnerTab('lic-sub-tab-content', this)"
+                                >
+                                    Legal Innovation Center
+                                </button>
+                                <button
+                                    id="recent-trials-sub-tab-button"
+                                    class="inner-tab-button flex-1 text-center text-sm rounded-lg"
+                                    onclick="toggleInnerTab('recent-trials-sub-tab-content', this)"
+                                >
+                                    Recent Trials (Beta/Pilot Status)
+                                </button>
+                            </div>
+
+                            <!-- Inner Tab Content Container -->
+                            <div class="p-6 bg-black rounded-b-xl">
+                                
+                                <!-- 2.1. Established Tools Content (Default Active) -->
+                                <div id="established-sub-tab-content" class="inner-tab-content" style="display: block;">
+                                    <h4 class="text-xl font-bold text-white mb-4">Established & Approved Legal Tools</h4>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        
+                                        <!-- Harvey.ai Card (Green/Dark) - UPDATED LINK -->
+                                        <a href="https://procoretech.atlassian.net/wiki/spaces/LRC/pages/4613144703/GenAI+Legal+Tech+Evaluation" target="_blank"
+                                            class="legal-specific-card p-6 bg-black border-2 border-green-600 hover:border-green-400 shadow-lg transition-all"
+                                        >
+                                            <div class="flex flex-col h-full justify-between">
+                                                <div>
+                                                    <span class="emoji-icon text-4xl mb-3 block">🤖</span> 
+                                                    <h5 class="text-xl font-bold text-white mb-2">Harvey.ai</h5>
+                                                    <p class="text-sm text-gray-400">Generative AI assistant for legal drafting, research, and analysis. Secure, private, and purpose-built for legal teams.</p>
+                                                </div>
+                                                <div class="mt-4 flex justify-end">
+                                                    <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Luminance Card (Blue/Dark) - UPDATED LINK -->
+                                        <a href="https://www.luminance.com/" target="_blank"
+                                            class="legal-specific-card p-6 bg-black border-2 border-blue-600 hover:border-blue-400 shadow-lg transition-all"
+                                        >
+                                            <div class="flex flex-col h-full justify-between">
+                                                <div>
+                                                    <span class="emoji-icon text-4xl mb-3 block">📄</span>
+                                                    <h5 class="text-xl font-bold text-white mb-2">Luminance</h5>
+                                                    <p class="text-sm text-gray-400">AI-powered contract review platform used for due diligence and negotiation.</p>
+                                                </div>
+                                                <div class="mt-4 flex justify-end">
+                                                    <svg class="h-6 w-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Ironclad Card (Red/Dark) - REMOVED -->
+                                        
+                                    </div>
+                                </div>
+                                
+                                <!-- 2.2. Legal Innovation Center Content (UPDATED CARDS) -->
+                                <div id="lic-sub-tab-content" class="inner-tab-content" style="display: none;">
+                                    <h4 class="text-xl font-bold text-white mb-4">Internal Custom AI Builds</h4>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                        
+                                        <!-- RFP Gem Card (Internal Build Example) - STYLED AS AI CARD, NO BACKGROUND IMAGE -->
+                                        <a href="#spotlight-interview-content" onclick="toggleCollapsible('spotlight-interview-content', document.getElementById('spotlight-toggle-button')); scrollToSection('spotlight-interview-content', event);"
+                                            class="ai-card searchable-item group col-span-1 border-2 border-purple-600 hover:border-purple-400 bg-black"
+                                            title="Read the interview on the RFP Gem project"
+                                            style="background-image: none; min-height: 250px;"
+                                        >
+                                            <div class="ai-card-content !pt-4 flex flex-col h-full justify-end">
+                                                <div>
+                                                    <h5 class="text-2xl font-extrabold text-white mb-2">RFP Gem</h5>
+                                                    <p class="mt-2 text-sm text-gray-300">Internal AI solution that parses RFPs, classifies legal risks, and generates quantitative go/no-go recommendations for sales teams.</p>
+                                                </div>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow bg-purple-600 hover:bg-purple-700">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <!-- AI Unleashed Podcast Card (Internal Custom AI Builds Image) - STYLED AS AI CARD, NO BACKGROUND IMAGE -->
+                                        <a href="https://procoretech.atlassian.net/wiki/spaces/PEP/pages/3868590218/AI+Unleashed+Podcast" target="_blank" 
+                                            class="ai-card searchable-item group col-span-1 md:col-span-2 lg:col-span-2 border-2 border-yellow-600 hover:border-yellow-400 bg-black" 
+                                            title="AI Unleashed Podcast: GTM Assist & RapidReview Deep Dive"
+                                            style="background-image: none; min-height: 250px;"
+                                        >
+                                            <div class="ai-card-content !pt-4 flex flex-col h-full justify-end">
+                                                <div>
+                                                    <h4 class="text-2xl font-extrabold leading-snug">AI Unleashed Podcast: GTM Assist & RapidReview Deep Dive</h4>
+                                                    <p class="mt-2 text-sm text-gray-300">Hear how our Legal Operations, Commercial Legal, and Product, Privacy, & IP teams partnered with DTS to deploy GTM Assist & RapidReview for time savings and ROI.</p>
+                                                </div>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow bg-yellow-600 hover:bg-yellow-700">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </div>
+                                
+                                <!-- 2.3. Recent Trials Content (REBUILT) -->
+                                <div id="recent-trials-sub-tab-content" class="inner-tab-content" style="display: none;">
+                                    <h4 class="text-xl font-bold text-white mb-4">Active & Completed Beta/Pilot Status Tools</h4>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                                        <!-- Thomson Reuters CoCounsel Trial Card - NO BACKGROUND IMAGE -->
+                                        <a href="https://www.thomsonreuters.com/en" target="_blank"
+                                            class="ai-card searchable-item group col-span-1 border-2 border-red-600 hover:border-red-400 bg-black"
+                                            style="background-image: none; min-height: 250px;"
+                                            title="Thomson Reuters CoCounsel Trial"
+                                        >
+                                            <div class="ai-card-content !pt-4 flex flex-col h-full justify-end">
+                                                <div>
+                                                    <h5 class="text-xl font-bold text-white mb-2">Thomson Reuters CoCounsel Trial</h5>
+                                                    <p class="mt-2 text-sm text-gray-300">Testing its effectiveness for legal research, summarizing documents, and creating first drafts of memos.</p>
+                                                </div>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow bg-red-600 hover:bg-red-700">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        
+                                        <!-- LexisNexis Protege+ Pilot Card - NO BACKGROUND IMAGE -->
+                                        <a href="https://www.lexisnexis.com/en-us/products/protege.page" target="_blank"
+                                            class="ai-card searchable-item group col-span-1 border-2 border-orange-600 hover:border-orange-400 bg-black"
+                                            style="background-image: none; min-height: 250px;"
+                                            title="LexisNexis Protege+ Pilot"
+                                        >
+                                            <div class="ai-card-overlay"></div>
+                                            <div class="ai-card-content !pt-4 flex flex-col h-full justify-end">
+                                                <div>
+                                                    <h5 class="text-xl font-bold text-white mb-2">LexisNexis Protege+ Pilot</h5>
+                                                    <p class="mt-2 text-sm text-gray-300">Evaluation of advanced legal research, analytical tools, and predictive modeling features.</p>
+                                                </div>
+                                                <div class="mt-4 flex justify-end">
+                                                    <div class="ai-card-arrow bg-orange-600 hover:bg-orange-700">
+                                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <!-- Generic Placeholder Card -->
+                                        <div class="legal-specific-card p-6 bg-gray-800 border-2 border-gray-700 shadow-lg transition-all flex flex-col justify-center items-center text-center">
+                                            <span class="emoji-icon text-5xl mb-3 block text-gray-500">+</span>
+                                            <h5 class="text-xl font-bold text-white mb-2">Placeholder: New Tool Coming</h5>
+                                            <p class="text-sm text-gray-500">Evaluating new legal AI tools for future pilots.</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Legal Industry Topics & Trends Tab Content (UPDATED) -->
+                    <div id="trends-tab-content" class="tab-content" style="display: none;">
+                        <h3 class="text-2xl font-bold text-white mb-6">Key Industry Topics & Emerging Trends</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            
+                            <!-- Trend Card 1: The AI-Empowered In-House Counsel: A Practical Framework -->
+                            <a href="https://docket.acc.com/ai-empowered-counsel-practical-framework-house-legal-teams?utm_source=MagnetMail&utm_medium=email&utm_campaign=ACC%20Docket" target="_blank"
+                                class="ai-card searchable-item group col-span-1 border-2 border-yellow-600 hover:border-yellow-400 bg-black"
+                                style="background-image: none; min-height: 250px;"
+                            >
+                                <div class="ai-card-content !pt-4 flex flex-col h-full justify-end">
+                                    <div>
+                                        <h5 class="text-2xl font-extrabold leading-snug text-white mb-2">The AI-Empowered In-House Counsel: A Practical Framework</h5>
+                                        <p class="mt-2 text-sm text-gray-300">A practical framework for in-house legal teams to strategically adopt AI, focusing on governance and value creation.</p>
+                                    </div>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow bg-yellow-600 hover:bg-yellow-700">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Trend Card 2: ACC AI Toolkit: 3 Pillars of Legal AI Readiness -->
+                            <a href="https://www.acc.com/sites/default/files/resources/upload/ACC-Artificial-Intelligence-Toolkit-for-In-house-Lawyers-FINAL.pdf" target="_blank"
+                                class="ai-card searchable-item group col-span-1 border-2 border-red-600 hover:border-red-400 bg-black"
+                                style="background-image: none; min-height: 250px;"
+                            >
+                                <div class="ai-card-content !pt-4 flex flex-col h-full justify-end">
+                                    <div>
+                                        <h5 class="text-2xl font-extrabold leading-snug text-white mb-2">ACC AI Toolkit: 3 Pillars of Legal AI Readiness</h5>
+                                        <p class="mt-2 text-sm text-gray-300">Foundational framework for safe and effective AI adoption within corporate legal departments.</p>
+                                    </div>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow bg-red-600 hover:bg-red-700">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Trend Card 3: In-House Use of Gen AI More Than Doubles in One Year -->
+                            <a href="https://news.bloomberg.law/artificial-intelligence/in-house-lawyers-use-of-gen-al-more-than-doubles-in-one-year" target="_blank"
+                                class="ai-card searchable-item group col-span-1 border-2 border-blue-600 hover:border-blue-400 bg-black"
+                                style="background-image: none; min-height: 250px;"
+                            >
+                                <div class="ai-card-content !pt-4 flex flex-col h-full justify-end">
+                                    <div>
+                                        <h5 class="text-2xl font-extrabold leading-snug text-white mb-2">In-House Use of Gen AI More Than Doubles in One Year</h5>
+                                        <p class="mt-2 text-sm text-gray-300">Report on the surge in corporate Gen AI adoption driven by efficiency and productivity gains.</p>
+                                    </div>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow bg-blue-600 hover:bg-blue-700">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Trend Card 4: AI: The New Devil's Advocate for Legal Strategy -->
+                            <a href="https://www.lawyersweekly.com.au/corporate-counsel/43221-could-ai-be-the-new-devil-s-advocate-for-in-house-lawyers" target="_blank"
+                                class="ai-card searchable-item group col-span-1 border-2 border-purple-600 hover:border-purple-400 bg-black"
+                                style="background-image: none; min-height: 250px;"
+                            >
+                                <div class="ai-card-content !pt-4 flex flex-col h-full justify-end">
+                                    <div>
+                                        <h5 class="text-2xl font-extrabold leading-snug text-white mb-2">AI: The New Devil's Advocate for Legal Strategy</h5>
+                                        <p class="mt-2 text-sm text-gray-300">Strategic value of using AI to challenge core legal arguments and test assumptions.</p>
+                                    </div>
+                                    <div class="mt-4 flex justify-end">
+                                        <div class="ai-card-arrow bg-purple-600 hover:bg-purple-700">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="flex justify-end pt-4 pb-2">
+            <a href="#top-of-page" class="inline-flex items-center text-sm font-medium procore-orange-text hover:text-white transition duration-200" title="Smooth scroll to top menu">
+                Back to Top
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5V4.5m0 0l-6 6m6-6l6 6" />
+                </svg>
+            </a>
+        </div>
+        
         <section class="mb-8 mt-10" id="enterprise-ai-resources-section">
             <div class="section-differentiator">
                 CORE PRODUCTIVITY TOOLS
@@ -1434,8 +1766,8 @@
                                     <h4 class="text-xl font-extrabold leading-snug">Lawyer Job Crafting & Upskilling - Specialized CLE</h4>
                                     <!-- PROMINENT DATE ADDED - GLOW REMOVED -->
                                     <p class="mt-2 text-base font-extrabold text-white">Feb 19, 1:00 PM EST</p>
-                                    <p class="mt-2 text-sm text-gray-300">Focus: A forward-looking session on how legal roles are changing and the necessary upskilling required for the Generative AI era.</p>
                                     <p class="mt-1 text-xs font-bold text-yellow-400">Credits: Credit Pending (Finalized by PLI).</p>
+                                    <p class="mt-2 text-sm text-gray-300">Focus: A forward-looking session on how legal roles are changing and the necessary upskilling required for the Generative AI era.</p>
                                     <div class="mt-4 flex justify-end">
                                         <div class="ai-card-arrow w-10 h-10">
                                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2106,7 +2438,7 @@
      * Toggles between content tabs for the INNER tab system.
      */
     function toggleInnerTab(contentId, button) {
-        const parent = button.closest('.bg-white'); // Find the closest containing box
+        const parent = button.closest('.bg-gray-900'); // Find the closest containing box for inner tabs
         if (!parent) return;
 
         // Hide all inner tab content and deactivate all buttons within this container
@@ -2114,14 +2446,14 @@
             content.style.display = 'none';
         });
         parent.querySelectorAll('.inner-tab-button').forEach(btn => {
-            btn.classList.remove('active');
+            btn.classList.remove('active-inner-tab');
         });
 
         // Show the selected content and activate the clicked button
         const selectedContent = document.getElementById(contentId);
         if (selectedContent) {
             selectedContent.style.display = 'block';
-            button.classList.add('active');
+            button.classList.add('active-inner-tab');
         }
     }
     
@@ -2169,6 +2501,24 @@
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             toggleTab(contentId, tabButton, false);
+            
+            // Special handling for Legal Tech Tools (nested tabs)
+            if (sectionId === 'lrc-ai-strategy-tech-stack-section' && contentId === 'tools-trials-tab-content') {
+                // Ensure the correct *inner* tab is activated as default if we land here
+                const defaultInnerButton = document.getElementById('established-sub-tab-button');
+                const defaultInnerContent = document.getElementById('established-sub-tab-content');
+                
+                if (defaultInnerButton && defaultInnerContent) {
+                     // Deactivate all inner buttons first
+                    document.querySelectorAll('.inner-tab-button').forEach(btn => {
+                        btn.classList.remove('active-inner-tab');
+                    });
+                     // Activate default inner button and show content
+                    defaultInnerButton.classList.add('active-inner-tab');
+                    document.querySelectorAll('.inner-tab-content').forEach(content => content.style.display = 'none');
+                    defaultInnerContent.style.display = 'block';
+                }
+            }
         }
     }
 
@@ -2206,41 +2556,34 @@
         
         // --- Initial Tab Load: Set the default tabs to open on load ---
         
+        // 1. Legal Innovation Center (LRC Workstreams) - Default to open
         const defaultWorkstreamsTabButton = document.getElementById('workstreams-tab-button');
         if (defaultWorkstreamsTabButton) {
             toggleTab('workstreams-tab-content', defaultWorkstreamsTabButton, false);
         }
         
-        // Handle Enterprise tab default (now Learning & Development)
+        // 2. Enterprise tab default (now Learning & Development) - Default to open
         const defaultEnterpriseTabButton = document.getElementById('learning-tab-button');
         if (defaultEnterpriseTabButton) {
             toggleTab('learning-tab-content', defaultEnterpriseTabButton, false);
         }
         
+        // 3. Spotlight tab default (LRC Initiative Focus) - Default to open
         const defaultSpotlightTabButton = document.getElementById('spotlight-projects-tab-button');
         if (defaultSpotlightTabButton) {
             toggleTab('spotlight-projects-tab-content', defaultSpotlightTabButton, false);
         }
         
-        // Default inner tab load for Legal Tech Tools & Trials (Should be the first item, which is now Established Tools)
+        // 4. Default INNER tab load for Legal Tech Tools & Trials
         const defaultInnerTabButton = document.getElementById('established-sub-tab-button');
         if (defaultInnerTabButton) {
-            // Need to manually toggle it to display the first tab content correctly if the initial element is invisible.
-             const contentId = defaultInnerTabButton.getAttribute('onclick').match(/'([^']+)'/)[1];
-             if (contentId) {
-                 const content = document.getElementById(contentId);
-                 if (content) content.style.display = 'block';
-             }
-             defaultInnerTabButton.classList.add('active');
-        } else {
-             // Fallback to ensuring the visible tab is marked active
-             const fallbackInnerTabButton = document.getElementById('lic-sub-tab-button');
-             if (fallbackInnerTabButton) {
-                 fallbackInnerTabButton.classList.add('active');
-             }
+             const contentId = 'established-sub-tab-content';
+             const content = document.getElementById(contentId);
+             if (content) content.style.display = 'block';
+             defaultInnerTabButton.classList.add('active-inner-tab');
         }
         
-        // Set default for the new Awards inner tab
+        // 5. Set default for the new Awards inner tab
         const defaultAwardInnerTabButton = document.getElementById('award-overview-button');
         if (defaultAwardInnerTabButton) {
              const contentId = 'award-overview-content';
